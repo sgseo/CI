@@ -1,0 +1,214 @@
+<include file="Public:_header_common_invest" /> 
+<link rel="stylesheet" href="__ROOT__/Style/H/css/yijinshunrong.css" />
+<link rel="stylesheet" href="__ROOT__/Style/H/css/cljf.css?v=20150325" />
+<script type="text/javascript" src="__ROOT__/Style/H/js/common.js" language="javascript"></script>
+<script type="text/javascript">
+var Transfer_invest_url = "__APP__/tinvest";
+</script>
+<script type="text/javascript" src="__ROOT__/Style/H/js/area.js"></script>
+<include file="Public:_header_main" />
+<tagLib name="htmlA" />
+<script type="text/javascript">
+var url = window.location.href;
+if(url)var allargs = url.split("?")[1];
+if(allargs)var tab1= allargs.split("=")[1];
+if(tab1)var tab= tab1.split("&")[0];
+
+$(function(){ 
+    if(tab==9){
+        $('#a1').addClass("show_style");
+    }
+    if(tab==4){
+        $('#a2').addClass("show_style");
+        $('#a1').removeClass("show_style");
+    }
+    if(tab==6){
+        $('#a3').addClass("show_style");
+        $('#a1').removeClass("show_style");
+    };
+    if(tab==7){
+        $('#a4').addClass("show_style");
+        $('#a1').removeClass("show_style");
+    };
+    if(tab==10){
+        $('#a5').addClass("show_style");
+        $('#a1').removeClass("show_style");
+        $('#black').attr('style','display:block');
+        $('#con').attr('style','display:none');
+    };
+});
+
+</script>
+<div class="bodyer"> 
+
+
+
+<div id="center">
+<div class="path">您现在的位置：<span>房屋抵押</span></div> 
+<div id="touzi-left"> 
+<div class="list-menu">
+<ul>
+<li  data-url="__URL__/index">
+<a href="__URL__/index">
+理财专区<font id="tzpd"> ( <em>{$zong}</em> )</font>
+<div class="focus-gb first-c"></div>
+</a>
+</li>
+
+<li class="focus">
+<a href="__URL__/fangwudiy">
+<span>房屋抵押 <font id="axn"> ( <em style="color:f35a00">{$fang}</em> )</font></span>
+<span class="pro">优质资产，顶级风控</span>
+<div class="focus-gb"></div>
+</a>
+</li>
+
+
+<li data-url="">
+<a href="__URL__/cheliangdiy">
+<span>车辆抵押 <font id="sb"> ( <em style="color:f35a00">{$che}</em> )</font></span>
+<span class="pro">风险低，收益高</span>
+<div class="focus-gb"></div>
+</a>
+</li>
+
+		 
+<li data-url="">
+
+<a href="__APP__/debt/index">
+转让专区<font id="zrzq"></font>
+<div class="focus-gb"></div>
+</a>
+
+</li>
+</ul>
+</div>  
+<div class="list-touzi">
+<div class="touzi-title">近30日投资榜</div>
+<div class="touzi-user-rank">
+<div class="clearfix">
+<div class="touzi-user-l">用户名</div>
+<div class="touzi-user-m">投资金额</div>
+<div class="touzi-user-r">获得收益</div>
+</div>
+
+<ul class="touzi-user-list">
+	<marquee direction='up' scrollamount='2' onMouseOut='this.start()'  height='150px' onMouseOver='this.stop()'>
+	<volist name="left.0" id="vo">
+<li>
+<div class="touzi-user-l">{$vo.username|substr=###,0,3}**</div>
+<div class="touzi-user-m"><span>{$vo.money|getMoneyFormt=###}</span>元</div>
+<div class="touzi-user-r"><span>{$vo.got_money|getMoneyFormt=###}</span>元</div>
+</li>  
+	</volist>
+      </marquee>
+</ul>
+
+</div>
+</div> 
+<div class="list-gonggao">
+<div class="title"><span>网站公告</span><a class="fr" href="__APP__/cfkt/index.html" target="_blank">更多</a></div>
+<ul class="news-list">
+	<volist name='left.1' id='vo'>
+<li>
+<a class="ellipsis" href="__APP__/news/{$vo.id}.html" target="_blank">{$vo.title|cnsubstr=###,11}</a>
+<span class="gray">{$vo.art_time|date="m-d",###}</span>
+</li>
+	</volist>
+</ul>
+</div>
+</div>
+<div id="touzi-right"> 
+<div class="fang-banner"><img src="__ROOT__/Style/H/images/invest/fang-banner.jpg" alt="" /></div>
+<div class="box-right">
+<div class="list-area">
+ 
+<volist name="list.list" id="vb">
+<div class="list-box">
+
+<ul class="box-sig">
+
+<li class="sig-l"> 
+<div class="til"><a href="{$vb.id|getInvestUrl=###}" target="_blank" title="{$vb.borrow_name}">{:getIco($vb)}{$vb.borrow_name|cnsubstr=###,23}</a></div>
+
+<div class="list-a">
+<div class="list-a-1"><em class="rate">{$vb.borrow_interest_rate}</em><i>%</i></div>
+<div class="list-a-2">年化收益率</div>
+</div> 
+<div class="list-a">
+<div class="list-a-1">
+<em class="deadline">
+	<if condition="$vb['repayment_type'] eq 1">
+	{$vb.borrow_duration}天
+	<else/>
+	{$vb.borrow_duration}个月
+	</if>
+</em>
+
+</div>
+<div class="list-a-2">期限</div>
+</div> 
+<div class="list-a">
+<div class="list-a-1">
+<em class="deadline">{$vb.borrow_mortgage_rate}</em>%
+</div>
+<div class="list-a-2">抵押率</div>
+</div> 
+</li>
+
+<li class="sig-r">
+<div class="pt04">剩余金额：<strong>{$vb['borrow_money']-$vb['has_borrow']|getMoneyFormt=###}</strong>元</div><!-- 剩余金额计算方法为 总借款-已经借款 -->
+
+<if condition="$vb.borrow_status eq 3"> 
+				<a href="javascript:;">
+						<img src="__ROOT__/Style/H/images/invest/ylb.jpg" /></a>
+						<elseif condition="$vb.borrow_status eq 4"/>
+						<a href="javascript:;"><img  src="__ROOT__/Style/H/images/invest/fsz.jpg" /></a>
+						<elseif condition="$vb.borrow_status eq 6"/>
+						<a href="javascript:;"><img   src="__ROOT__/Style/H/images/invest/fxz.jpg"  /></a>
+						<elseif condition="$vb.borrow_status gt 6"/>
+						<a href="{$vb.id|getInvestUrl=###}"><img  src="__ROOT__/Style/H/images/invest/ywc.jpg"  /></a>
+						<else/>
+						<a href="{$vb.id|getInvestUrl=###}"><img  src="__ROOT__/Style/H/images/invest/touzi.jpg" /></a> </if>
+
+<!-- 投资按钮 -->
+</li> 
+</ul>
+</div>
+</volist>
+</div>
+
+<div class="touzi-pages">
+<div class="page">
+ 
+<ul>{$list.page}</ul>
+</div>
+</div>
+</div> 
+</div>
+</div>
+ 
+</div>
+  <script language="javascript">
+									$(function() {
+										$(".borrowlistp").bind("mouseover", function(){
+											$(this).css("background", "#fce8e1");
+										})
+
+										$(".borrowlistp").bind("mouseout", function(){
+											$(this).css("background", "#fff");
+										})
+
+
+										$(".borrowlistl").bind("mouseover", function(){
+											$(this).css("background", "#f8f8f8");
+										})
+
+										$(".borrowlistl").bind("mouseout", function(){
+											$(this).css("background", "#fff");
+										})
+									});
+				
+								</script>
+<!--中部结束-->
+<include file="Public:_footer" />

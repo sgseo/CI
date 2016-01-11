@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>手机M站</title> 
+<link href="style/css.css" type="text/css" rel="stylesheet"/>
+</head>
+
+<body> 
+<div id="m_base"> 
+<div class="m_zctitle">购买</div> 
+  
+ 
+<div class="m_goumai">购买金额  <span>最低100元,100元递增,最高不限</span></div>
+<div class="clear"></div>
+<div class="m_goumaitext">
+
+<p>预计到期收益 <span> 0</span> 元</p>
+ 
+<p>账户余额 <span>20000.00 </span> 元</p>
+</div>
+<div class="m_goumaibut"><a href="">立即投标</a></div>
+<div class="m_text"><img src="images/icons.jpg" alt=""></div>  
+ 
+</div>
+</body>
+</html>

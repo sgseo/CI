@@ -1,0 +1,385 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>借款协议-{$glo.web_name}</title>
+<style>
+  .Lending_Agreement {
+  	width:100%;
+  	height:auto;
+  	margin:0px;
+  	padding:0px;
+  }
+  .Lending_Agreement_center {
+  	width:1024px;
+  	height:auto;
+  	margin:0 auto;
+  	border:1px solid #EEEEEE;
+  }
+  .lending_ageeement_tit {
+  	width:960px;
+  	height:45px;
+  	line-height:45px;
+  	color:#666666;
+  	font-family:Arial, Helvetica, sans-serif;
+  	font-size:16px;
+  	font-weight:bold;
+  	text-align:center;
+  	margin:0 auto;
+  	margin-top:30px;
+  	
+  }
+  .ageeement_content {
+  	width:1000px;
+  	height:auto;
+  	margin:0 auto;
+  	margin-top:30px;
+  	font-size:14px;
+  	font-weight:bold;
+  	color:#666666;
+  	overflow:auto;
+  	font-family:Arial, Helvetica, sans-serif;
+  }
+  .ageeement_content h3 {
+  	font-size:14px;
+  	font-weight:bold;
+  	color:#999999;
+  	font-family:Arial, Helvetica, sans-serif;
+  	padding-left:10px;
+  }
+  .font_lendig {
+  	font-size:14px;
+  	font-weight:bold;
+  	color:#666666;
+  	font-family:Arial, Helvetica, sans-serif;
+  	padding-left:10px;
+  	margin-bottom:10px;
+  	display:block;
+  	margin-top:20px;
+  }
+  .ageeement_content p {
+  	line-height:26px;
+  	font-family:Tahoma, Geneva, sans-serif;
+  	font-size:14px;
+  	color:#999999;
+  	margin:0px;
+  	font-weight:normal;
+  	padding-left:10px;
+  	margin-top:6px;
+  }
+  .ageement_tab {
+  	height:40px;
+  	line-height:40px;
+  }
+  .ageement_tab_ite {
+  	height:40px;
+  	line-height:40px;
+  	font-weight:normal;
+  }
+  .lending_top_inf {
+  	width:1000px;
+  	height:auto;
+  	margin-left:10px;
+  }
+  .lending_logo {
+  	width:1000px;
+  	height:100px;
+  	border-bottom:2px solid #EEEEEE;
+  }
+  .lenging_left_logo {
+  	width:252px;
+  	height:100px;
+  	float:left;
+  	border-bottom:2px solid #00ADEE;
+  }
+  .name_inf {
+  	width:400px;
+  	height:65px;
+  	float:left;
+  	margin-left:40px;
+  	margin-top:2px;
+  }
+  .lenging_right_inf {
+  	width:260px;
+  	height:50px;
+  	float:left;
+  	margin-top:9px;
+  }
+  .lenging_right_inf ul {
+  	margin:0px;
+  	padding:0px;
+  }
+  .lenging_right_inf ul li {
+  	width:400px;
+  	height:25px;
+  	line-height:25px;
+  	font-family:Arial, Helvetica, sans-serif;
+  	font-size:14px;
+  	color:#999999;
+  	list-style:none;
+  	float:left;
+  	padding-left:0px;
+  }
+  .lenging_right_inf ul li a {
+  	color:#999999;
+  	text-decoration:none;
+  }
+  .lenging_right_inf ul li a:hover {
+  	color:#FF9900;
+  	text-decoration:none;
+  }
+  .Seal {
+  	width:auto;
+  	height:auto;
+  	margin-right:20px;
+  	float:right;
+  	text-align:center;
+  }
+  .seal_text {
+  	font-family:Arial, Helvetica, sans-serif;
+  	font-size:13px;
+  	color:#999999;
+  	margin-top:6px;
+  	margin-bottom:40px;
+  	display:block;
+  	font-weight:normal;
+  }
+  .Agreement_pic {
+  	width:200px;
+  	height:45px;
+  	margin:0 auto;
+  }
+  a,a:visited{color: #E67714; text-decoration:none;}
+</style>
+<script type="text/javascript" language="javascript">
+	function printht(){
+		window.print();
+	} 
+</script>
+</head>
+<body>
+<div class="Lending_Agreement">
+  <div class="Lending_Agreement_center">
+    <!--顶部信息开始-->
+    <div class="lending_top_inf">
+      <div class="lending_logo">
+        <div class="lenging_left_logo"><a href="/" target="_blank">{:get_ad(1)}</a></div>
+        <div class="name_inf"></div>
+        <div class="lenging_right_inf">
+          <ul>
+            <li class="tel400">{:get_ad(3)}
+              </p>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!--顶部信息结束-->
+    <div class="lending_ageeement_tit"><span class="Agreement_pic">借款协议</span><span style="float:right; padding-right:10px;"><a href="javascrīpt:void(0);" onclick="printht();" target="_self">【打印合同】</a> </span></div>
+	 <div class="lending_ageeement_tit"><span style="padding-right:80px;">宜境金融信息服务（上海）有限公司</span><br/><span style="padding-right:100px;">（宜境顺融网）</span></div>
+	 
+    <div class="ageeement_content">
+	<p><strong>一、协议对象</strong></p>
+	<p><strong>借款人（以下简称为甲方）</strong></p>
+      <p align="left">法定代表人：$mBorrow.user_name} </p>
+	   <p align="left">身份证号码：{$mBorrow.idcard|default='未填写'} </p>
+     
+     
+     <p><strong>投资人（以下简称为乙方）</strong></p>
+      <p>真实姓名：<u>{$mInvest.user_name}</u></p>
+      <p>身份证号码：<u>{$mInvest.idcard|default='未填写'}</u></p>
+      <p>&nbsp;</p>
+     <table style="border:1px solid #999999;">
+		<tr>
+		 <td style="border:1px solid #999999;width:200px;text-align:center">借出金额</td>
+		 <td style="border:1px solid #999999;width:200px;text-align:center">投资期限</td>
+		 <td style="border:1px solid #999999;width:200px;text-align:center">年化利率</td>
+		 <td style="border:1px solid #999999;text-align:center">应收本息</td></tr>
+		<tr>
+		 <td style="border:1px solid #999999;width:200px;text-align:center">{$info.investor_capital}</td>
+		 <td style="border:1px solid #999999;width:200px;text-align:center">{$binfo.borrow_duration}
+          <if condition="$binfo.repayment_type eq 1">天
+            <else/>
+            个月</if></td>
+		 <td style="border:1px solid #999999;width:200px;text-align:center">{$binfo.borrow_interest_rate}%/
+          <if condition="$binfo.repayment_type eq 1">天
+            <else/>
+            月</if></td>
+		 <td style="border:1px solid #999999;width:200px;">{$detail.benxi}</td></tr>
+	 </table>
+	   <p><strong>担保人（以下简称为丙方）</strong></p>
+      <p>丙方名称：<u>$ht.name|default="未填写"}</u></p>
+      <p>丙方运营地址：<u>{$ht.dizhi|default="未填写"}</u></p>
+	   <p>丙方联系方式：<u>{$ht.tel|default="未填写"}</u></p>
+	   <p><strong>平台（以下简称为丁方）</strong></p>
+	   <p>公司名称：宜境金融信息服务（上海）有限公司</p>
+	   <p>在本协议项下，甲方、乙方、丙方和丁方合称“各方”，单称“一方”。</p>
+	   <p><strong>鉴于：</strong></p>
+	   
+      <p>1、丁方是一家合法成立并有效存续的有限责任公司，拥有http://www.68rong.com 网站（以下简称“该网站”）的经营权，为交易提供信息服务。</p>
+      <p>2、甲方和乙方均为具有完全民事行为能力和权利能力的中国公民或根据中国法律法规合法设立的法人或其他法律实体，且为平台的注册用户。</p>
+      <p>3、甲方通过平台提交了一份借款申请；经过丙方和/或其指定征信调查人对甲方进行尽职调查，丙方确认甲方的资信状况及借款申请符合借款条件；甲方的借款申请通过丙方审查，并出具担保函后向丁方提交，
+	  形成一个有效的借款项目（“借款标”），已刊发在平台的投资列表中；乙方经过认真考察借款标，基于独立判断、决策及风险评估，决定投资该借款标。</p>
+      <p> 4、乙方承诺对本协议涉及的借款具有完全的支配能力，是其自有闲散资金，为其合法所得；并承诺其提供给丁方的信息是完全真实的。 <br />
+      <p>  5、甲方有借款需求，乙方亦同意借款，双方有意成为借贷关系。
+    各方平等协商一致，签订如下协议，共同遵照履行：
+</p>
+      <strong class="font_lendig">二、借款基本信息</strong>
+	  <p>1、借款基本信息<br/>投资人在本合同项下的借出本金为大写<span style="border-bottom:1px solid #999;">　　　{$iinfo.investor_capital}　　　</span>，小写 <span style="border-bottom:1px solid #999;">　　　　{$iinfo.investor_capital}　　</span>       元人民币。</p>
+      <table width="980" border="1px" bordercolor="#EEEEEE" cellspacing="0px" style="border-collapse:collapse;margin-top:20px;margin-left:10px;">
+        <tr class="ageement_tab">
+          <td width="182" valign="top"><p align="left">本次借款总金额（人民币）</p></td>
+          <td width="379" valign="top"><p align="left"><span style="border-bottom:1px solid #999;">　　　　　　</span>，小写 <span style="border-bottom:1px solid #999;">　　　　　　</span>       元人民币。</p></td>
+        </tr>
+        <tr class="ageement_tab">
+          <td width="182" valign="top"><p align="left">本次借款最低筹集金额（人民币）</p></td>
+          <td width="379" valign="top"><p align="left">  </p></td>
+        </tr>
+        <tr class="ageement_tab">
+          <td width="182" valign="top"><p align="left">借款利率（年利率％）</p></td>
+          <td width="379" valign="top"><p align="left"><u>{$iinfo.final_interest_rate}%</u> </p></td>
+        </tr>
+        <tr class="ageement_tab">
+          <td width="182" valign="top"><p align="left">借款期限</p></td>
+          <td width="379" valign="top"><p align="left">{$binfo.borrow_duration}
+            <if condition="$binfo.repayment_type eq 1">天
+              <else/>
+              个月</if></p></td>
+        </tr>
+        <tr class="ageement_tab">
+          <td width="182" valign="top"><p align="left">借款期间</p></td>
+          <td width="379" valign="top"><p align="left">　{$binfo.second_verify_time|date="Y年m月d日",###}（借款起始日）{$binfo.deadline|date="Y年m月d日",###}（借款结束日）。</p></td>
+        </tr>
+		 <tr class="ageement_tab">
+          <td width="182" valign="top"><p align="left">本息还款方式</p></td>
+          <td width="379" valign="top"><p align="left">{$Bconfig['REPAYMENT_TYPE'][$binfo['repayment_type']]}  </p></td>
+        </tr>
+        <tr class="ageement_tab">
+          <td width="182" valign="top"><p align="left">开始计息日</p></td>
+          <td width="379" valign="top"><p align="left">{$detailinfo.add_time|date="Y-m-d",###}合同生效日</p></td>
+        </tr>
+        <tr class="ageement_tab">
+          <td width="182" valign="top"><p align="left">约定还款日</p></td>
+          <td width="379" valign="top"><p align="left">默认为借款结束日，如果还款日遇到法定假日或公休日，还款日期提前至前一工作日。</p></td>
+        </tr>
+        <tr class="ageement_tab">
+          <td width="182" valign="top"><p align="left">计息方式</p></td>
+          <td width="379" valign="top"><p align="left">本合同项下借款自借款起始日起依据实际借款天数按日计息。</p></td>
+        </tr>
+      </table>
+	  <p> 3、协议签订地点：江苏省南通市崇川区。（宜境顺融目前办公地，注册地为上海自贸区）</p>
+      <strong class="font_lendig">三、各方权利和义务 </strong>
+      <p>1、甲方必须按期足额向乙方偿还本金和利息。</p>
+      <p>2、甲方在借款到帐时，认可丁方按借款额的约定比例单方扣付其平台居间费。</p>
+      <p>3、甲方承诺所借款项用于申请借款时所述用途，不用于任何违法用途或用于其他用途。如发生以上情况，乙方或丁方代表乙方亦有权宣布借款提前到期，要求甲方提前偿还本合同项下所有到期及未到期债务的本金、利息、费用并需要承担乙方主张权利所产生的（包括但不限于律师费、住所费等）一切费用。</p>
+      <p> 4、甲方应确保其提供的信息和资料的真实性，不得提供虚假信息或隐瞒重要事实。</p>
+      <p> 5、甲方有权了解其在丁方的信息评审进度及结果。</p>
+      <p> 6、甲方不得将本协议项下的任何权利义务转让给任何其他方。</p>
+      <p> 7、甲方应在知悉或应当知悉下列事项发生或可能发生之日起3天内以书面形式通知乙方、丙方、丁方：</p>
+      <p>（1）、甲方住址、联系电话或其他联系方式发生变更；</p>
+      <p>（2）、甲方为他人提供担保；</p>
+      <p>（3）、甲方发生重大消费、负债行为；</p>
+      <p>（4）、甲方与他人发生诉讼或仲裁等法律纠纷；</p>
+      <p>（5）、其他足以影响甲方偿债能力、危及乙方债权的情形； </p>
+      <p>（6）、发生其他对履行还款义务产生或可能产生重大不利影响的事件；</p>
+      <p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;若出现上述所列情形之一的，乙方或丁方根据具体情形，有权单方认定该情形是否影响甲方的还款能力。若乙方或丁方认为该情形可能危及其债权的，乙方或丁方代表乙方有权要求甲方提供乙方认可的新的担保：
+	  乙方或丁方代表乙方亦有权宣布借款提前到期，要求甲方提前偿还本合同项下所有到期及未到期债务的本金、利息、费用以及乙方主张权利所产生的（包括但不限于律师费、住所费等）一切费用。</p>
+      <p><strong class="font_lendig">乙方的权利和义务</strong></p>
+      <p>1、乙方应按合同约定的借款日将足额的借款本金支付给甲方。</p>
+      <p>2、乙方享有甲方向其借款带来的利息收益。</p>
+      <p>3、乙方在还款到账时，认可丁方按借款投资收益的约定比例单方扣付其居间服务费。</p>
+      <p>4、如甲方违约，乙方有权要求丁方提供其已获得的甲方信息。</p>
+      <p>5、无须通知甲方，乙方亦有权根据自己的意愿进行本协议下其对甲方债权的转让。</p>
+	   <p>6、在乙方的债权转让后，甲方需对债权受让人继续履行本协议下其对乙方的还款义务，不得以未接到债权转让通知为由拒绝履行还款义务，甲方承诺以在丁方现已登记的通讯地址、
+	   联系方式为送达地址，任何一方需要向甲方寄送材料需要均以该地址为准，寄出五天内无论是否有送达到均视为已送达。</p>
+      <p>7、乙方应主动缴纳由利息所得带来的可能的税费。</p>
+      <p>8、如甲方还款不足约定本金、利息及违约金的，乙方同意各自按照其借出款项比例收取还款 </p>
+      <strong class="font_lendig"> 丙方的权利及义务</strong>
+      <p>1、丙方同意为本协议下甲方向乙方负有的按时清偿借款本息的义务提供连带责任保证，保证担保的范围：本协议项下的借款金额及利息，甲方应付的平台居间费、其他管理费、
+	  根据本协议的逾期罚息以及甲方根据本协议或使用的中国法律应支付的其他违约金、赔偿金和乙方实现本协议下债权的费用（包括但不限于诉讼费、律师费等）以及其他费用等。</p>
+      <p>2、如果甲方未按照本协议的约定按时、足额清偿任何一期借款本息，丁方有权立即代表乙方向丙方发起清偿要求，要求丙方按照本协议的约定承担连带赔偿责任。丙方需要在收到丁方要求后的       个工作日内通过向监管账户转账金额等同于甲方尚未清偿的所有借款本息及根据本协议计算的逾期罚息，以及甲方根据本协议或适用的中国法律应支付的其他违约金、赔偿金和乙方实现本协议下债权的费用（包括但不限于诉讼费、律师费等）以及其他费用等之和的数额，以履行其在本协议下的担保责任。</p>
+      <p>3、保证期间：自本协议生效之日起至本协议项下甲方清偿借款本息及其他义务的履行期间满3年为止。</p>
+      <p>4、丙方根据本协议规定履行担保责任后，乙方在受到清偿的借款范围项下的权利视为已经得到满足和实现，在该范围内乙方不得再对甲方提出请求或主张，
+	  乙方在上述范围内所享的权利和主张，包括但不限于对借款本息、逾期罚息、其他违约金、赔偿金等所享有的权利和主张，均由丙方享有，丙方亦有权向甲方进行追偿，乙方应提供合理及必要的协助。</p>
+      <p>5、乙方同意甲方以其所拥有或有权处置的合法资产向丙方提供反担保，具体由甲方与丙方协商确定，但仍不减清或免除丙方的连带担保责任。</p>
+      <p>6、乙方或丁方如发现甲方存在本协议中各方权利和义务：甲方权利和义务的第3条或第7条的情况，乙方或丁方有权代理乙方直接向甲方宣布提前收回借款。乙方或丁方有权立即代表乙方向丙方发起清偿要求
+	  ，要求丙方按照本协议的约定承担连带担保责任以及连带赔偿责任。</p>
+      <p> 7、丙方认可乙方随时将对甲方的包括但不限于本金、利息等的债权向第三方转让，丙方确认并向受让人承诺待债权转让后仍然按照本协议约定的担保范围和担保期限向该债权受让人继续承担连带担保责任。</p>
+	   <p><strong class="font_lendig">丁方的权利及义务</strong></p>
+      <p> 1、甲方和乙方在此不可撤销地授权丁方作为代理人，全权代表甲方和乙方负责处理本协议下借款的放款、回收、催收、日常管理及其他相关工作。除本协议另有约定外，其他各方均应通过丁方行使本协议项下约定的各项权利和义务。丁方履行代理职责的行为对其他各方均具有法律约束力。</p>
+      <p>2、丁方审核甲方及丙方提交的借款申请及相关资料，并将借款标刊发在平台的投资列表中，协助甲方通过平台寻找乙方。</p>
+      <p>3、丁方协助乙方通过平台参与借款标的投资。</p>
+      <p>4、丁方撮合借贷及担保交易，并代表交易各方协商确定借款基本条件，起草、修改、达成并保存本借款及担保协议及其他相关交易文件。</p>
+      <p>5、丁方代表乙方指令存管人冻结或划转资金：（a）在乙方投资、放贷等环节，代表乙方指令存管人冻结投资资金，将冻结资金从乙方被监管账户划转至甲方被监管账户；
+	  （b）在甲方还款环节，代表甲方指令存管人将甲方还款资金从甲方被监管账户分别划转至各乙方被监管账户。</p>
+      <p>6、丁方代表甲方指令存管人冻结或划转资金：（a）在甲方提现环节，代表甲方指令存管人，将借款资金从甲方被监管账户划转至借款人提现账户；（b）在甲方还款环节，代表甲方指令存款人将甲方还款资金冻结，并将其从甲方被监管账户分别划转至各乙方被监管账户。</p>
+      <p> 7、当甲方出现逾期还款时，丁方按照本协议约定通知丙方履行担保义务</p>
+      <p>8、乙方欲通过法律途径追究甲方和/或丙方相关责任时，由乙方向丁方提出书面申请，丁方可向乙方推荐委托代理人，但是相关手续由乙方与委托代理人另行签订和办理。如乙方自行委托代理人，应向丁方告知其委托的代理人的基本信息和联系方式，并及时向丁方汇报诉讼案件进展情况和债权实现情况。同时乙方承诺诉讼成功的债权款项（包括借款本息和罚息、违约金、赔偿金等）汇入其在丁方指定的被监管账户。如乙方未将实现的债权款项汇入其在丁方指定的被监管账户，需要向丁方支付该债权款项的30%作为违约金。</p>
+      <p> 9、丁方承担维护平台并使之有效运转的义务。</p>
+	   <strong class="font_lendig"> 丁方声明</strong>
+      <p> 1、在本协议项下的借贷及担保交易中，丁方是纯粹中立的居间人，其对于甲方、乙方、丙方、存管人及其他任何第三方的权利、义务、责任及行为（无论是作为还是不作为）不做任何承诺、保障，且不因此而承担任何责任。</p>
+      <p>2、丁方及其股东、董事、高级管理人员、雇员、顾问及其他关联方对甲方、乙方、丙方、存管人及其他相关方提交或上传至平台的信息、资料及内容的真实性、充分性、及时性、可靠性、完整性和有效性，不做任何承诺、保障，且不因此而承担任何责任。</p>
+      <p>3、在任何情况下，丁方对任何一方因本协议项下交易而产生的任何形式的直接或间接损失均不承担法律责任，包括但不限于资金损失、利润损失、营业中断损失等。因为平台或者涉及的第三方网站的设备、系统存在缺陷或者因为计算机病毒造成的损失，平台和丁方均不负责赔偿，平台补救措施只能是与相关方终止本协议并停止相关方使用平台。但是，中国现行法律、法规另有规定的除外。</p>
+      <p>4、由于黑客攻击、网络供应商技术调整或故障、网站升级、银行方面的问题等原因而造成的丁方服务中断或延迟、因台风、地震、海啸、洪水、停电、战争、恐怖袭击等不可抗力之因素及其他非本网站过错而造成的用户信息泄露、丢失、被盗用或被篡改等，丁方不承担任何责任。</p>
+      <p> 5、丁方亦有权依赖其合理相信为真实的任何通讯或文件行事，除非本协议另有约定，丁方不负责审查其转交给其他各方的文件的格式和内容的充分性、准确性或完整性。</p>
+	   <p><strong class="font_lendig">四、本息偿还方式</strong></p>
+      <p>1、正常还款</p>
+      <p>（1）甲方必须按照本协议的约定按时、足额偿还对乙方的本金和利息。</p>
+      <p>（2）甲方授权丁方委托相应的第三方支付机构及监管银行等合作机构，按本网站资费说明所述还款计划将金额等同于乙方当期应收金额的资金，由监管账户中甲方关联至丁方的账户划转至监管账户中乙方关联至丁方的账户下，划转完毕即视为本期还款发放成功，甲方应保证在每期还款当日（不得迟于12:00）的甲方关联至丁方的账户余额足够支付当期应付本息。</p>
+      <p>（3）如果还款日遇到法定假日或公休日，还款日期提前至前一工作日。</p>
+      <p>2、提前还款</p>
+      <p>甲方一般不得提前还款，如确需提前还款的，则需要递交提前还款申请书，并将所借本金和利息一次性足额偿还，同时甲方需另行向丁方支付服务费，该笔服务费的计算标准以甲方所借本金的一个月利息为准。</p>
+      <p>3、逾期还款</p>
+      <p>（1）每月还款日12:00前，甲方关联至丁方的账户中余额不足以支付当月应还款的，则视为逾期。</p>
+      <p>（2）甲方逾期的，应还总额为：借款本金+利息+罚息。具体参照平台资费说明。</p>
+      <p>（3）逾期罚息：若借款人到期不偿还本合同项下借款本金及利息的（含被宣布提前到期），就逾期部分借款本金和利息，从逾期之日起按照逾期借款罚息利率计收利息，直至清偿本息为止。逾期贷款罚息利率为约定的借款利率水平上加收  150  ％；</p>
+	  <p><strong class="font_lendig">五、费用说明</strong></p>
+      <p>1、担保服务费：丙方有权就本协议借款而向甲方提供的信用咨询、担保等服务向甲方收取咨询服务费（“担保服务费”），担保服务费的收取标准及方式由甲方和丙方双方另行约定。</p>
+      <p>2、平台居间费：对于丁方向甲方提供的一系列服务，甲方同意在借款成功后，向丁方支付借款总额的1%作为平台居间费，此笔费用甲方委托丁方从甲方被监管账户中扣除缴纳。</p>
+      <p>3、居间服务费：对于丁方向乙方提供的一系列服务，乙方同意在投资成功后，向丁方支付投资收益（含利息、逾期罚息、提前还款补偿金）的10%，此笔费用乙方委托丁方从乙方被监管账户中扣除缴纳。</p>
+      <p>4、税费承担：各方同意，任何一方因本协议而产生的所有相关税费（如有）应依照适用法律规定由该方自行承担。</p>
+	   <p><strong class="font_lendig">六、保密约定</strong></p>
+      <p>1、本协议一方不得将秘密信息以任何方式泄露给任何第三方，也不得以任何方式向公众、媒体宣布本协议的签订和履行等情况。</p>
+      <p>2、为本协议之目的，秘密信息一词指的是任何涉及或与本协议各方有关的未公开的秘密信息，包括但不限于下列信息中的全部或任何部分：</p>
+      <p>（1）、任何协议一方的公司结构、股权结构、业务经营和财务资料、经营或发展计划、上市计划及其任何细节、市场调研信息、营销渠道、价格及其他财务记录等资料；</p> 
+	  <p>（2）、有关各方拥有的经营信息、方案、数据、标准、程序；</p>
+	  <p>（3）、各方为本协议目的而签署的任何合同、协议、备忘录、附件、草案或记录（包括本协议）；</p>
+	  <p> 3、发生以下情况，任何一方均不被视为披露或泄露秘密信息：</p>
+	  <p>（1）、所泄露的秘密信息在泄露之前已为公众所知（但以违反本条款方式泄露的除外）；</p>
+	  <p>（2）、经协议各方事先书面同意；</p>
+	  <p>（3）、为本次交易之目的将秘密信息披露给各自的专业顾问，并要求其承担保密责任；</p> 
+	  <p>（4）、政府部门或法律法令的强制性要求而披露，但政府部门的要求必须是以正式书面文件发出的，否则协议一方应当加以拒绝并不得披露或泄露任何秘密信息。</p>
+	  
+	  
+      <strong class="font_lendig"> 七、法律及争议解决</strong>
+	   <p> 本协议的签订、履行、终止、解释均适用于中华人民共和国法律。</p> 
+	   <strong class="font_lendig"> 附则</strong>
+	   <p> 1、本协议采用电子文本形式制成，并永久保存在丁方为此设立的专用服务器上备查，各方均认可该形式的协议效力。</p>
+	    <p> 2、本协议自文本最终生成日生效。</p> 
+		<p> 3、本协议签订之日起至借款全部清偿之日止，乙方或甲方有义务在下列信息变更三日内提供更新后的信息给丙方：本人、本人的家庭联系人及紧急联系人、工作单位、居住地址、住所电话、手机号码、电子邮箱、银行账户的变更。若因任何一方不及时提供上述变更信息而带来的损失或额外费用应由该方承担。</p>
+      
+     
+      <p> 4、如果本协议中的任何一条或多条违反适用的法律法规，则该条将被视为无效，但该无效条款并不影响本协议其他条款的效力。</p>
+      <p> 5、凡因本协议引起的或与本合同有关的争议或纠纷，可由双方协商解决；协商不成或不愿协商时，向协议签订地点管辖区人民法院提起诉讼。</p>
+	  <strong class="font_lendig">特别提示：</strong>
+      <p> 任何一方通过平台网站页面点击确认或以其他方式选择接受本协议，即表示该方同意使用电子签名和数据电文，并表示该方已签署本协议，并同意接受本协议所载全部内容、条款和条件以及平台所列的与本协议所述事项相关的各项规则及其他文件。</p>
+	  <p><strong>借款人（以下简称为甲方）</strong></p>
+      <p align="left">法定代表人：$mBorrow.user_name} </p>
+	   <p align="left">身份证号码：{$mBorrow.idcard|default='未填写'} </p>
+     
+     
+   
+      <p> <strong class="font_lendig">甲方（签名或签章）：</strong>
+      <p> 法定代表人：$mBorrow.user_name}</p>
+	  <p> 身份证号码：{$mBorrow.idcard|default='未填写'}</p>
+	  <p> <strong class="font_lendig">乙方（签名或签章）： <img src="/{$ht.hetong_img}" border="0" width="100px" height="100px"> </strong>
+      <p> 法定代表人：{$mInvest.user_name}</p>
+	  <p> 身份证号码：{$mInvest.idcard|default='未填写'}</p>
+	  <p> <strong class="font_lendig">丙方（签名或签章）：</strong>
+      <p> 法定代表人：{$danbao.title|default='未填写'}</p>
+	  <p> 身份证号码：{$danbao.idcard|default='未填写'}</p>
+      
+    </div>
+  </div>
+</div>
+</body>
+</html>

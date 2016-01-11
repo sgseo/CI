@@ -1,0 +1,55 @@
+<include file="Public:_header_common" /><include file="Public:_header_main" />
+<title>{$glo.web_name}帮助中心</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="__ROOT__/Style/H/css/cljf.css" rel="stylesheet" type="text/css" />
+
+
+<div class="nav_nav">
+	<a href="">首页</a>
+	<em>&nbsp;&gt;&nbsp;</em>
+	<span>帮助中心</span>
+</div>
+<div class="help_box">
+	<div class="licai">
+		<h3>我要理财</h3>
+		<ul>
+			<li><a href="/Product/index.html">产品介绍</a></li>
+			<li><a href="__ROOT__/tinvest/index.html">企业直投</a></li>
+			<li><a href="__ROOT__/invest/index.html">散标投资</a></li>
+			<li><a href="__ROOT__/debt/index">债权转让</a></li> 
+		</ul>
+	</div>
+	<div class="licai">
+		<h3>我要融资</h3>
+		<ul>
+			<li><a href="__ROOT__/member/borrowin#fragment-3">借款费用</a></li>
+			<li><a href="/aboutus/zfsm.html">自费说明</a></li>
+			<li><a href="/member/verify?id=1#fragment-1">资料认证</a></li>
+			<li><a href="/aboutus/zizhi.html">公司资质</a></li>
+			<li><a href="/anquan/leve.html">信用等级与额度</a></li>
+		</ul>
+	</div>
+	<div class="licai">
+		<h3>安全保障</h3>
+		<ul>
+			<li><a href="/anquan/safes.html">本金保障</a></li>
+			<li><a href="/anquan/index.html">法律保障</a></li>
+			<li><a href="/anquan/shenhe.html">审核与风控</a></li>
+			<li><a href="/anquan/safes.html">账户安全</a></li>
+			<li><a href="/ruleserver/index.html">网站相关协议</a></li>
+		</ul>
+	</div>
+	<div class="licai">
+		<h3>账户管理</h3>
+		<ul><if condition="$UID gt 0"><else/>
+			<li><a href="__ROOT__/member/common/login/">登录注册</a></li>
+			</if>
+			
+			<li><a href="/member/user#fragment-1">账户密码</a></li>
+			<li><a href="/anquan/safed.html">安全认证</a></li>
+			<li><a href="/member/charge#fragment-1">充值提现</a></li>
+			<li><a href="/member/msg#fragment-1">消息中心</a></li>
+		</ul>
+	</div>
+</div>
+<include file="Public:_footer" /> 

@@ -1,0 +1,53 @@
+<style> 
+
+.phc_banktitle{height:28px;font-size:18px;display:block;border-bottom:4px solid #C5C5C5; color:#2FA8E1;}
+
+#phc_bank{float: left; font-size:12px;overflow: hidden;width:230px;height: 160px;margin:40px 0 40px 40px;background:none repeat scroll 0% 0% #EFF0F1;border-radius: 4px;box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);border-radius:4px;border: 1px solid #DDDDDD;}
+
+
+.card-box-name {border-bottom: 1px solid #f8f9fb;height: 46px;position: relative;}
+.card-box-name .bank-logo {position: absolute;top: 13px;left: 12px;}
+.card-box-name .bank-name {position: absolute;top: 12px;left: 33px;overflow: hidden;width: 84px;text-overflow: ellipsis; white-space: nowrap;}
+ 
+								
+
+.card-type { color:#333;position: absolute;top: 12px; text-align:right;right: 5px;overflow: hidden; width: 49px;height: 18px; }
+			 
+.express-status{ line-height:49px; padding-left:10px; width:220px; background:#d0d1d5; height:49px; border-top:1px solid #b9b9bb;}
+.express-status .fn-hide{ width:120px; float:left;}
+.express-status .fn-ture{ width:50px; float:right; text-align:right; padding-right:5px;}
+
+
+.phc-bank-num {width:220px; padding-left:10px; height:49px; line-height:49px; display:block;}
+.phc-bank-num .phc-bank-name {width:50px; float:left;height:49px; line-height:49px; display:block;}
+.phc-bank-num .phc-bank-kh { width:160px; padding-right:5px; float:right;height:49px; line-height:49px; display:block; text-align:right; font-size:13px;}
+ 
+#phc_tjbank{ width:230px; height:165px; float:left;margin:40px 0 40px 40px; background:url(/Style/M/images/bank/tjyhk.jpg);}
+#phc_tjbank a{background:url(/Style/M/images/bank/tjyhk.jpg);width:230px; height:165px; display:block;}
+#phc_tjbank a:hover{background:url(/Style/M/images/bank/dqtjyhk.jpg);}
+</style>
+
+<div id="phc_tjbank">
+<a href="/member/bank/bindbank" target="_blank"></a>
+</div>
+
+<div id="phc_bank" <if condition="count($zwBankInfo) eq 0">style='display:none;'</if>>
+<?php foreach($zwBankInfo as $zkey=>$zvalue){ ?>
+<div class="card-box-name">
+<span class="bank-logo"><img src="__ROOT__/Style/M/images/bankicon/<?php echo strtolower($zvalue['BankId']); ?>.png" width="16" height="16" alt="" title="中国工商银行" /></span>
+<span class="bank-name"><?php echo $zvalue['BankName']; ?></span>
+<span class="card-type"><?php echo $zvalue['UsrName']; ?></span>
+</div>   
+  
+<div class="express-status">
+<span class="fn-hide">快捷卡支付</span> 
+<span class="fn-ture"><?php if($zvalue['IsDefault']=="Y"){echo "是";}else{ echo "否";}; ?></span>
+</div> 
+
+<div class="phc-bank-num">
+<span class="phc-bank-name">银行卡号</span> 
+<span class="phc-bank-kh"><?php echo $zvalue['CardKey']; ?></span>
+</div>   
+
+ <?php } ?>
+</div>  

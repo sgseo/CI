@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <link href="__PUBLIC__/bootstrap-datetimepicker/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="__PUBLIC__/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Css/bootstrap-responsive.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Css/style.css" />
+     <script type="text/javascript" src="__PUBLIC__/Js/jquery.js"></script>
+   <!-- <script type="text/javascript" src="__PUBLIC__/Js/jquery.sorted.js"></script>-->
+   <link rel="stylesheet" type="text/css" href="__PUBLIC__/webuploader015/webuploader.css">
+
+<!--引入JS-->
+    <script type="text/javascript" src="__PUBLIC__/webuploader015/webuploader.js"></script>
+   <!-- 时间插件 -->
+    <script type="text/javascript" src="__PUBLIC__/bootstrap-datetimepicker/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="__PUBLIC__/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.fr.js" charset="UTF-8">
+    </script>
+    <!-- 时间插件结束 -->
+    <script type="text/javascript" src="__PUBLIC__/Js/bootstrap.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Js/ckform.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Js/common.js"></script>
+
+    <link id="skin" rel="stylesheet" href="__PUBLIC__/Images/Pink/jbox.css" />
+    <script type="text/javascript" src="__PUBLIC__/Js/js/jquery-1.4.2.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Js/js/jquery.jBox.src.js"></script>
+    <style type="text/css">
+        body {
+            padding-bottom: 40px;
+        }
+        .sidebar-nav {
+            padding: 9px 0;
+        }
+
+        @media (max-width: 980px) {
+            /* Enable use of floated navbar text */
+            .navbar-text.pull-right {
+                float: none;
+                padding-left: 5px;
+                padding-right: 5px;
+            }
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="table table-bordered table-hover definewidth m10" style='margin:auto auto'>
+       <!-- 项目录入 -->
+        <form  class="table table-bordered table-hover definewidth m10" action="__URL__/modify" method="post" enctype="multipart/form-data" >
+        <!-- 基础文档模型 -->
+
+            <div class="controls">
+              <!-- id -->
+               <input type="hidden" class="text input-large" name="id" value="{$list.id}"  id='tt'>
+               借款标题：<input type="text" class="text input-large" name="title" value="{$list.title}"  id='tt'></br>
+               客户姓名：<input type="text" class="text input-large" name="cstname" value="{$list.cstname}" ></br>
+               身份证号：<input type="text" class="text input-large" name="idno" value="{$list.idno}" ></br>
+               手机号码：<input type="text" class="text input-large" name="tel" value="{$list.tel}" ></br>
+               贷款金额：<input type="text" class="text input-large" name="borrowamt" value="{$list.borrowamt}">(元)</br>
+               贷款期限：<input type="text" class="text input-large" name="duration" value="{$list.duration}">(月)</br>
+               贷款利率：<input type="text" class="text input-large" name="rate" value="{$list.rate}">(%)</br>
+               <!-- ：<input type="radio" class="text input-large" name="wed" value="{$list.}"placeholder="婚姻状况"></br> -->
+               <label class="radio" ><input checked="checked" type="radio" value="1" name="wed" />未婚</label>
+               <label class="radio" ><input  type="radio" value="fang" name="wed" value='2'  />已婚</label></br>
+              客户来源 ：<input type="text" class="text input-large" name="source" value="{$list.source}"></br>
+               <label class="textarea">备注信息：<textarea name="tip" >{$list.tip}</textarea></label></br>
+               <label class="radio" ><input checked="checked" type="radio" value="fang" name="category" id='fang' />房屋抵押</label>
+               <label class="radio"><input type="radio" value="car" name="category" id='car'>车辆抵押</label></br>
+         
+            <div id='house'>
+               房屋地址：<input type="text" class="text input-large" name="address" value="{$list.address}"></br>
+               房屋价格：<input type="text" class="text input-large" name="price" value="{$list.price}">(元)</br>
+               房屋户口：<input type="text" class="text input-large" name="residence" value="{$list.residence}" ></br>
+               房屋面积：<input type="text" class="text input-large" name="area" value="{$list.area}" >(平方米)</br>
+            </div>
+             <div id='ca' style="display:none">
+               车子品牌：<input type="text" class="text input-large" name="carbrand" value="{$list.carbrand}" ></br>
+               车子型号：<input type="text" class="text input-large" name="cartype" value="{$list.cartype}" ></br>
+               车子估价：<input type="text" class="text input-large" name="carestimate" value="{$list.carestimate}" >(元)</br>
+               <!-- ：<input type="text" class="text input-large time" name="carbuytime" value="{$list.}" placeholder="车子购买日期"></br> -->
+                车辆购买日期：<input type="text" class="text input-large" name='carbuytime' value="{$list.carbuytime|date=Ymd,###}" id="datetimepicker" />
+             </div>
+             <input type='button' id='AddFile' class='btn btn-large btn-primary btn btn-default' value='补加图片' />
+             <input type="hidden"  name='pic4' id='last'></br> 
+              <div>
+                <volist name='piclist' id='vo' key='k' >
+                 <span  onclick="unlink(this,{$vo.id},'{$vo.path}');">
+                  <img src="/Uploads/{$vo.path}" title="{$vo.pictype}" width='200px' height='200px' border='0'/>
+                  <input type='button'  class='  btn btn-default' value='x'/>
+                </span>
+                  <if condition='($k)%3 eq 0'></br></if>
+                </volist>
+              </div>
+            </div>
+              <p><button class="btn  btn-primary btn btn-default" type="submit">确 定</button></p>
+    </form>
+</div>
+
+</body>
+</html>
+
+<script type="text/javascript">
+   $('#datetimepicker').datetimepicker({
+                    format: 'yyyy-mm-dd',
+                    showMeridian: true,
+                    weekStart: 1,
+                    autoclose: true,
+                    showTime:false,
+                    todayBtn: true
+                });
+                  
+    //showTab();
+</script>
+<script type="text/javascript">
+    $(function(){
+        $("#fang").click(function()
+        {
+            $("#house").show();
+            $("#ca").hide();
+        });
+        $("#car").click(function(){
+            $("#house").hide();
+            $("#ca").show();
+        })
+    });
+
+
+    var button="<div id='adder'><input type='file' id='upLoadFiles[]' name='upLoadFile[]' /><a href='javascript:void(0);'' onclick='del(this)'><input type='button' onlick='del(this)' value='-' /></div></a>";
+
+
+    $("#AddFile").click(function(){
+      //$(this).parent().remove();
+       $('#last').after(button);
+    });
+    function del(a)
+    {
+      $(a).parent().remove();
+    }
+
+    function unlink(t,id,path)
+    {
+          // console.log(path);
+       jBox.tip("Loading...", 'loading');
+           // 模拟2秒后完成操作
+       $.ajax({
+             type: "POST",
+             url: "__URL__/unlink",
+             data: {id:id,pic:path},
+             dataType: "json",
+             success: function(data){
+                        if(data==1)
+                          { 
+                            $(t).remove();
+                            jBox.tip('操作成功.','success');
+                          }else{
+                           jBox.tip('操作失败.','failure');
+                          }
+                      }
+         });
+    }
+    
+</script>
+<!-- 图片上传 -->

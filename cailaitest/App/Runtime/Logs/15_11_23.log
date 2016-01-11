@@ -1,0 +1,186 @@
+[ 2015-11-23T09:42:30+08:00 ] /UF/Uploads/Ad/20150403180104348.jpg | ERR: Cron:cron_1 Runat 2015-11-23 09:42:30 Use 0.001000 s
+
+[ 2015-11-23T09:42:31+08:00 ] /UF/Uploads/Ad/20150403111521289.jpg | ERR: Cron:cron_1 Runat 2015-11-23 09:42:31 Use 0.001000 s
+
+[ 2015-11-23T09:42:31+08:00 ] /UF/Uploads/Ad/20150403180104348.jpg | ERR: Cron:cron_1 Runat 2015-11-23 09:42:31 Use 0.001000 s
+
+[ 2015-11-23T09:50:39+08:00 ] /hi | ERR: Cron:cron_1 Runat 2015-11-23 09:50:39 Use 0.002000 s
+
+[ 2015-11-23T09:50:54+08:00 ] /admin/index/login | ERR: Cron:cron_1 Runat 2015-11-23 09:50:54 Use 0.001000 s
+
+[ 2015-11-23T09:50:56+08:00 ] /Admin/index/index | ERR: Cron:cron_1 Runat 2015-11-23 09:50:56 Use 0.001000 s
+
+[ 2015-11-23T09:50:58+08:00 ] /admin/welcome/index.html | ERR: Cron:cron_1 Runat 2015-11-23 09:50:58 Use 0.005000 s
+
+[ 2015-11-23T09:57:48+08:00 ] /admin/global/sendsms.html | ERR: Cron:cron_1 Runat 2015-11-23 09:57:48 Use 0.000000 s
+
+[ 2015-11-23T09:59:40+08:00 ] /admin/global/sendsms.html | ERR: Cron:cron_1 Runat 2015-11-23 09:59:40 Use 0.002000 s
+
+[ 2015-11-23T10:02:57+08:00 ] /Admin/index/index | ERR: Cron:cron_1 Runat 2015-11-23 10:02:57 Use 0.001000 s
+
+[ 2015-11-23T10:14:52+08:00 ] /Admin/index/index | ERR: Cron:cron_1 Runat 2015-11-23 10:14:52 Use 0.001000 s
+
+[ 2015-11-23T10:14:54+08:00 ] /admin/global/alertsms.html | ERR: Cron:cron_1 Runat 2015-11-23 10:14:54 Use 0.001000 s
+
+[ 2015-11-23T10:17:05+08:00 ] /Admin/index/index | ERR: Cron:cron_1 Runat 2015-11-23 10:17:05 Use 0.002001 s
+
+[ 2015-11-23T10:17:07+08:00 ] /admin/global/alertsms.html | ERR: Cron:cron_1 Runat 2015-11-23 10:17:07 Use 0.001000 s
+
+[ 2015-11-23T10:17:18+08:00 ] /Admin/index/index | ERR: Cron:cron_1 Runat 2015-11-23 10:17:18 Use 0.003000 s
+
+[ 2015-11-23T10:17:21+08:00 ] /admin/global/alertsms.html | ERR: Cron:cron_1 Runat 2015-11-23 10:17:21 Use 0.001000 s
+
+[ 2015-11-23T10:17:49+08:00 ] /Admin/index/index | ERR: Cron:cron_1 Runat 2015-11-23 10:17:49 Use 0.000000 s
+
+[ 2015-11-23T10:17:50+08:00 ] /admin/welcome/index.html | ERR: Cron:cron_1 Runat 2015-11-23 10:17:50 Use 0.002000 s
+
+[ 2015-11-23T10:17:52+08:00 ] /admin/global/alertsms.html | ERR: Cron:cron_1 Runat 2015-11-23 10:17:52 Use 0.001000 s
+
+[ 2015-11-23T10:20:49+08:00 ] /Admin/index/index | ERR: Cron:cron_1 Runat 2015-11-23 10:20:49 Use 0.001000 s
+
+[ 2015-11-23T10:20:50+08:00 ] /admin/welcome/index.html | ERR: Cron:cron_1 Runat 2015-11-23 10:20:50 Use 0.002000 s
+
+[ 2015-11-23T10:21:25+08:00 ] /Admin/index/index | ERR: Cron:cron_1 Runat 2015-11-23 10:21:25 Use 0.001000 s
+
+[ 2015-11-23T10:21:27+08:00 ] /admin/global/alertsms.html | ERR: Cron:cron_1 Runat 2015-11-23 10:21:27 Use 0.001000 s
+
+[ 2015-11-23T11:20:44+08:00 ] /Admin/index/index | ERR: Cron:cron_1 Runat 2015-11-23 11:20:44 Use 0.002000 s
+
+[ 2015-11-23T11:20:45+08:00 ] /admin/welcome/index.html | ERR: Cron:cron_1 Runat 2015-11-23 11:20:45 Use 0.001000 s
+
+[ 2015-11-23T11:20:46+08:00 ] /admin/global/alertsms.html | ERR: Cron:cron_1 Runat 2015-11-23 11:20:46 Use 0.001000 s
+
+[ 2015-11-23T11:21:07+08:00 ] /Admin/index/index | ERR: Cron:cron_1 Runat 2015-11-23 11:21:07 Use 0.000000 s
+
+[ 2015-11-23T11:21:08+08:00 ] /admin/global/alertsms.html | ERR: Cron:cron_1 Runat 2015-11-23 11:21:08 Use 0.000000 s
+
+[ 2015-11-23T11:21:36+08:00 ] /Admin/index/index | ERR: Cron:cron_1 Runat 2015-11-23 11:21:36 Use 0.000000 s
+
+[ 2015-11-23T11:21:37+08:00 ] /admin/welcome/index.html | ERR: Cron:cron_1 Runat 2015-11-23 11:21:37 Use 0.001000 s
+
+[ 2015-11-23T11:22:00+08:00 ] /Admin/index/index | ERR: Cron:cron_1 Runat 2015-11-23 11:22:00 Use 0.001000 s
+
+[ 2015-11-23T11:22:02+08:00 ] /admin/global/alertsms.html | ERR: Cron:cron_1 Runat 2015-11-23 11:22:02 Use 0.000000 s
+
+[ 2015-11-23T11:22:20+08:00 ] /Admin/index/index | ERR: Cron:cron_1 Runat 2015-11-23 11:22:20 Use 0.000000 s
+
+[ 2015-11-23T11:22:21+08:00 ] /admin/global/alertsms.html | ERR: Cron:cron_1 Runat 2015-11-23 11:22:21 Use 0.001000 s
+
+[ 2015-11-23T13:36:01+08:00 ] /Admin/index/index | ERR: Cron:cron_1 Runat 2015-11-23 13:36:01 Use 0.001000 s
+
+[ 2015-11-23T13:36:03+08:00 ] /admin/global/alertsms.html | ERR: Cron:cron_1 Runat 2015-11-23 13:36:03 Use 0.001000 s
+
+[ 2015-11-23T13:36:07+08:00 ] /Admin/global/alertsmsdone | ERR: Cron:cron_1 Runat 2015-11-23 13:36:07 Use 0.001000 s
+
+[ 2015-11-23T13:36:41+08:00 ] /Admin/index/index | ERR: Cron:cron_1 Runat 2015-11-23 13:36:41 Use 0.002000 s
+
+[ 2015-11-23T13:36:43+08:00 ] /admin/global/alertsms.html | ERR: Cron:cron_1 Runat 2015-11-23 13:36:43 Use 0.001001 s
+
+[ 2015-11-23T13:36:46+08:00 ] /Admin/global/alertsmsdone | ERR: Cron:cron_1 Runat 2015-11-23 13:36:46 Use 0.000000 s
+
+[ 2015-11-23T13:37:02+08:00 ] /Admin/index/index | ERR: Cron:cron_1 Runat 2015-11-23 13:37:02 Use 0.001000 s
+
+[ 2015-11-23T13:37:04+08:00 ] /admin/global/alertsms.html | ERR: Cron:cron_1 Runat 2015-11-23 13:37:04 Use 0.002000 s
+
+[ 2015-11-23T13:37:30+08:00 ] /Admin/index/index | ERR: Cron:cron_1 Runat 2015-11-23 13:37:30 Use 0.003000 s
+
+[ 2015-11-23T13:37:32+08:00 ] /admin/global/alertsms.html | ERR: Cron:cron_1 Runat 2015-11-23 13:37:32 Use 0.001000 s
+
+[ 2015-11-23T13:38:01+08:00 ] /Admin/index/index | ERR: Cron:cron_1 Runat 2015-11-23 13:38:01 Use 0.001000 s
+
+[ 2015-11-23T13:38:02+08:00 ] /admin/global/alertsms.html | ERR: Cron:cron_1 Runat 2015-11-23 13:38:02 Use 0.001000 s
+
+[ 2015-11-23T13:38:03+08:00 ] /admin/borrow/waitverify.html | ERR: Cron:cron_1 Runat 2015-11-23 13:38:03 Use 0.001000 s
+
+[ 2015-11-23T13:38:05+08:00 ] /admin/welcome/index.html | ERR: Cron:cron_1 Runat 2015-11-23 13:38:05 Use 0.000000 s
+
+[ 2015-11-23T13:38:06+08:00 ] /admin/global/alertsms.html | ERR: Cron:cron_1 Runat 2015-11-23 13:38:06 Use 0.001000 s
+
+[ 2015-11-23T13:38:09+08:00 ] /Admin/global/alertsmsdone | ERR: Cron:cron_1 Runat 2015-11-23 13:38:09 Use 0.000000 s
+
+[ 2015-11-23T13:45:57+08:00 ] /Admin/index/index | ERR: Cron:cron_1 Runat 2015-11-23 13:45:57 Use 0.001000 s
+
+[ 2015-11-23T13:45:58+08:00 ] /admin/welcome/index.html | ERR: Cron:cron_1 Runat 2015-11-23 13:45:58 Use 0.001000 s
+
+[ 2015-11-23T13:45:59+08:00 ] /admin/global/alertsms.html | ERR: Cron:cron_1 Runat 2015-11-23 13:45:59 Use 0.001000 s
+
+[ 2015-11-23T13:46:17+08:00 ] /Admin/global/alertsmsdone | ERR: Cron:cron_1 Runat 2015-11-23 13:46:17 Use 0.002000 s
+
+[ 2015-11-23T13:46:20+08:00 ] /admin/global/alertsms.html | ERR: Cron:cron_1 Runat 2015-11-23 13:46:20 Use 0.001000 s
+
+[ 2015-11-23T13:47:44+08:00 ] /Admin/global/alertsmsdone | ERR: Cron:cron_1 Runat 2015-11-23 13:47:44 Use 0.002000 s
+
+[ 2015-11-23T13:50:41+08:00 ] /Admin/index/index | ERR: Cron:cron_1 Runat 2015-11-23 13:50:41 Use 0.001000 s
+
+[ 2015-11-23T13:50:43+08:00 ] /admin/global/alertsms.html | ERR: Cron:cron_1 Runat 2015-11-23 13:50:43 Use 0.001000 s
+
+[ 2015-11-23T13:50:52+08:00 ] /Admin/index/index | ERR: Cron:cron_1 Runat 2015-11-23 13:50:52 Use 0.001000 s
+
+[ 2015-11-23T13:50:52+08:00 ] /admin/welcome/index.html | ERR: Cron:cron_1 Runat 2015-11-23 13:50:52 Use 0.001000 s
+
+[ 2015-11-23T13:50:53+08:00 ] /admin/global/alertsms.html | ERR: Cron:cron_1 Runat 2015-11-23 13:50:53 Use 0.001000 s
+
+[ 2015-11-23T13:50:57+08:00 ] /Admin/global/alertsmsdone | ERR: Cron:cron_1 Runat 2015-11-23 13:50:57 Use 0.001000 s
+
+[ 2015-11-23T13:51:25+08:00 ] /admin/global/alertsms.html | ERR: Cron:cron_1 Runat 2015-11-23 13:51:25 Use 0.000000 s
+
+[ 2015-11-23T13:51:31+08:00 ] /Admin/global/alertsmsdone | ERR: Cron:cron_1 Runat 2015-11-23 13:51:31 Use 0.002000 s
+
+[ 2015-11-23T13:51:55+08:00 ] /admin/global/alertsms.html | ERR: Cron:cron_1 Runat 2015-11-23 13:51:55 Use 0.001000 s
+
+[ 2015-11-23T13:53:54+08:00 ] /Admin/global/alertsmsdone | ERR: Cron:cron_1 Runat 2015-11-23 13:53:54 Use 0.001000 s
+
+[ 2015-11-23T13:54:33+08:00 ] /admin/global/alertsms.html | ERR: Cron:cron_1 Runat 2015-11-23 13:54:33 Use 0.002000 s
+
+[ 2015-11-23T13:54:50+08:00 ] /Admin/global/alertsmsdone | ERR: Cron:cron_1 Runat 2015-11-23 13:54:50 Use 0.002000 s
+
+[ 2015-11-23T13:55:40+08:00 ] /admin/global/alertsms.html | ERR: Cron:cron_1 Runat 2015-11-23 13:55:40 Use 0.000000 s
+
+[ 2015-11-23T13:55:59+08:00 ] /Admin/global/alertsmsdone | ERR: Cron:cron_1 Runat 2015-11-23 13:55:59 Use 0.003000 s
+
+[ 2015-11-23T14:16:22+08:00 ] /Admin/index/index | ERR: Cron:cron_1 Runat 2015-11-23 14:16:22 Use 0.002000 s
+
+[ 2015-11-23T14:16:23+08:00 ] /admin/welcome/index.html | ERR: Cron:cron_1 Runat 2015-11-23 14:16:23 Use 0.001000 s
+
+[ 2015-11-23T14:16:24+08:00 ] /admin/global/alertsms.html | ERR: Cron:cron_1 Runat 2015-11-23 14:16:24 Use 0.001000 s
+
+[ 2015-11-23T14:16:57+08:00 ] /admin/global/alertsms.html | ERR: Cron:cron_1 Runat 2015-11-23 14:16:57 Use 0.001000 s
+
+[ 2015-11-23T14:18:26+08:00 ] /admin/global/alertsms.html | ERR: Cron:cron_1 Runat 2015-11-23 14:18:26 Use 0.000000 s
+
+[ 2015-11-23T14:18:29+08:00 ] /admin/global/alertsms.html | ERR: Cron:cron_1 Runat 2015-11-23 14:18:29 Use 0.001000 s
+
+[ 2015-11-23T14:18:51+08:00 ] /Admin/index/index | ERR: Cron:cron_1 Runat 2015-11-23 14:18:51 Use 0.000000 s
+
+[ 2015-11-23T14:18:51+08:00 ] /admin/welcome/index.html | ERR: Cron:cron_1 Runat 2015-11-23 14:18:51 Use 0.001000 s
+
+[ 2015-11-23T14:18:52+08:00 ] /admin/global/alertsms.html | ERR: Cron:cron_1 Runat 2015-11-23 14:18:52 Use 0.001000 s
+
+[ 2015-11-23T14:19:10+08:00 ] /Admin/global/alertsmsdone | ERR: Cron:cron_1 Runat 2015-11-23 14:19:10 Use 0.002000 s
+
+[ 2015-11-23T14:20:20+08:00 ] /Admin/index/index | ERR: Cron:cron_1 Runat 2015-11-23 14:20:20 Use 0.001000 s
+
+[ 2015-11-23T14:20:21+08:00 ] /admin/welcome/index.html | ERR: Cron:cron_1 Runat 2015-11-23 14:20:21 Use 0.001000 s
+
+[ 2015-11-23T14:20:40+08:00 ] /Admin/global/alertsmsdone | ERR: Cron:cron_1 Runat 2015-11-23 14:20:40 Use 0.002000 s
+
+[ 2015-11-23T14:21:48+08:00 ] /Admin/index/index | ERR: Cron:cron_1 Runat 2015-11-23 14:21:48 Use 0.001000 s
+
+[ 2015-11-23T14:21:49+08:00 ] /admin/global/sendsms.html | ERR: Cron:cron_1 Runat 2015-11-23 14:21:49 Use 0.001000 s
+
+[ 2015-11-23T14:29:57+08:00 ] /Admin/index/index | ERR: Cron:cron_1 Runat 2015-11-23 14:29:57 Use 0.001000 s
+
+[ 2015-11-23T14:29:58+08:00 ] /admin/welcome/index.html | ERR: Cron:cron_1 Runat 2015-11-23 14:29:58 Use 0.001000 s
+
+[ 2015-11-23T14:29:58+08:00 ] /admin/global/alertsms.html | ERR: Cron:cron_1 Runat 2015-11-23 14:29:58 Use 0.001000 s
+
+[ 2015-11-23T14:30:15+08:00 ] /Admin/index/index | ERR: Cron:cron_1 Runat 2015-11-23 14:30:15 Use 0.001000 s
+
+[ 2015-11-23T14:30:17+08:00 ] /admin/global/alertsms.html | ERR: Cron:cron_1 Runat 2015-11-23 14:30:17 Use 0.001000 s
+
+[ 2015-11-23T14:30:31+08:00 ] /Admin/index/index | ERR: Cron:cron_1 Runat 2015-11-23 14:30:31 Use 0.001000 s
+
+[ 2015-11-23T14:30:32+08:00 ] /admin/welcome/index.html | ERR: Cron:cron_1 Runat 2015-11-23 14:30:32 Use 0.002000 s
+
+[ 2015-11-23T14:31:29+08:00 ] /Admin/index/index | ERR: Cron:cron_1 Runat 2015-11-23 14:31:29 Use 0.001000 s
+

@@ -1,0 +1,601 @@
+ <include file="Public:_header_common" />
+<link rel="stylesheet" href="__ROOT__/Style/H/css/cljf.css?v=20150609" />
+<script  type="text/javascript" src="__ROOT__/Style/H/js/backtotop.js"></script>
+<script  type="text/javascript" src="__ROOT__/Style/H/js/index.js"></script>
+<!-- 视频 -->
+  <link href="__ROOT__/Style/H/css/video-js.css" rel="stylesheet" type="text/css">
+  <!-- video.js must be in the <head> for older IEs to work. -->
+  <script src="__ROOT__/Style/H/js/video.js"></script>
+
+  <script>
+    videojs.options.flash.swf = "video-js.swf";
+  </script>
+<!-- 视频 -->
+
+<script type="text/javascript" src="__ROOT__/Style/H/js/common.js" language="javascript"></script>
+<script type="text/javascript" src="__ROOT__/Style/H/js/jquery.kinMaxShow-1.0.min.js"></script>
+<link rel="stylesheet" href="__ROOT__/Style/H/css/jquery.bxslider.css" />
+<script  type="text/javascript" src="__ROOT__/Style/H/js/jquery.bxslider.js"></script>  
+<script type="text/javascript">
+var Transfer_invest_url = "__APP__/tinvest"; 
+</script>
+<script type="text/javascript">
+function LoginSubmit() {
+	$.jBox.tip("登陆中......",'loading');
+	$.ajax({
+		url: "__APP__/member/common/actlogin",
+		data: {"sUserName": $("#uname").val(),"sPassword": $("#upass").val(),"sVerCode": $("#vcode").val(),"Keep":$("#loginstate").val()},
+		timeout: 5000,
+		cache: false,
+		type: "post",
+		dataType: "json",
+		success: function (d, s, r) {
+			if(d){
+				if(d.status==0){
+					$.jBox.tip(d.message);	
+				}else{
+					window.location.href="/";
+				}
+			}
+		}
+	});
+}
+
+function jfun_dogetpass(){
+	var ux = $("#emailname").val();
+	if(ux==""){
+		$.jBox.tip('请输入用户名或者邮箱');
+		return;
+	}
+	$.jBox.tip("邮件发送中......","loading");
+	$.ajax({
+		url: "__APP__/member/common/dogetpass/",
+		data: {"u":ux},
+		//timeout: 5000,
+		cache: false,
+		type: "post",
+		dataType: "json",
+		success: function (d, s, r) {
+			if(d){
+				if(d.status==1){
+					$.jBox.tip("发送成功，请去邮箱查收",'success');
+					$.jBox.close(true);
+				}else{
+					$.jBox.tip("发送失败，请重试",'error');
+				}
+			}
+		}
+	});
+
+}
+
+function getPassWord() {
+	$.jBox("get:__APP__/member/common/getpassword/", {
+		title: "找回密码",
+		buttons: {'发送邮件':'jfun_dogetpass()','关闭': true }
+	});   
+}
+
+</script>
+<script type="text/javascript">
+$(function(){
+	
+	$("#kinMaxShow").kinMaxShow({
+			//设置焦点图高度(单位:像素) 必须设置 否则使用默认值 500
+			height:303,
+			//设置焦点图 按钮效果
+			button:{
+			    //设置按钮上面不显示数字索引(默认也是不显示索引)
+                            showIndex:false,
+			    //按钮常规下 样式设置 ，css写法，类似jQuery的 $('xxx').css({key:value,……})中css写法。            
+			    //【友情提示：可以设置透明度哦 不用区分浏览器 统一为 opacity，CSS3属性也支持哦 如：设置按钮圆角、投影等，只不过IE8及以下不支持】            
+                            normal:{background:'url(/Style/H/images/button.png) no-repeat -38px 0',marginRight:'8px',border:'0',left:'28%',bottom:'0px',width:'38px'},
+                            //当前焦点图按钮样式 设置，写法同上
+                            focus:{background:'url(/Style/H/images/button.png) no-repeat 0 0',border:'0'}
+			},
+			//焦点图切换回调，每张图片淡入、淡出都会调用。并且传入2个参数(index,action)。index 当前图片索引 0为第一张图片，action 切入 或是 切出 值:fadeIn或fadeOut
+			//函数内 this指向 当前图片容器对象 可用来操作里面元素。本例中的焦点图动画主要就是靠callback实现的。
+			callback:function(index,action){
+				switch(index){
+					case 0 :
+							if(action=='fadeIn'){
+								$(this).find('.sub_1_1').animate({left:'70px'},600)
+								$(this).find('.sub_1_2').animate({top:'60px'},600)
+								
+							}else{
+								$(this).find('.sub_1_1').animate({left:'110px'},600)
+								$(this).find('.sub_1_2').animate({top:'120px'},600)
+								
+							};
+							break;
+							
+					case 1 :
+							if(action=='fadeIn'){
+								$(this).find('.sub_2_1').animate({left:'-100px'},600)
+								$(this).find('.sub_2_2').animate({top:'60px'},600)
+							}else{
+								$(this).find('.sub_2_1').animate({left:'-160px'},600)	
+								$(this).find('.sub_2_2').animate({top:'20px'},600)
+							};
+							break;
+							
+					case 2 :
+							if(action=='fadeIn'){
+								$(this).find('.sub_3_1').animate({right:'350px'},600)
+								$(this).find('.sub_3_2').animate({left:'180px'},600)
+							}else{
+								$(this).find('.sub_3_1').animate({right:'180px'},600)	
+								$(this).find('.sub_3_2').animate({left:'30px'},600)
+							};
+							break;	 	
+				}
+			}
+		});
+});
+
+</script> 
+<script type="text/javascript"> 
+$(document).ready(function(){ 
+  $(".Ctitle").find(".phc_wz").hover(function(){
+    $(this).css("color", "#2A79D3");
+  }, function(){
+    $(this).css("color", "#f39904");
+  }); 
+if( $(".anNiuTB").length > 0)
+{
+    $(".phc_wz").fadeOut();
+}
+else
+{
+    $(".phc_wz").fadeIn();
+}  
+});
+</script>    
+<script type="text/javascript">  
+ $(function(){
+  $('#marquee').bxSlider({
+        mode:'vertical', //默认的是水平
+        displaySlideQty:1,//显示li的个数
+        moveSlideQty: 1,//移动li的个数  
+        captions: false,//自动控制
+        auto: true,
+        controls: false,//隐藏左右按钮
+        autoControls : false,
+        pause: 3000,
+        autoHover: true,
+		startSlide : 0,
+		infiniteLoop : true
+        
+  });
+}); 
+</script>  
+
+<include file="Public:_header_main" /> 
+<div class="banner">
+    <div class="ibannerbox" >
+			<div id="kinMaxShow">
+			  <volist name=":get_ad(4)" id="va">
+				<div> <a href="{$va.url}"><img src="__ROOT__/{$va.img}" /></a> </div>
+			  </volist>
+			</div>
+        </div>
+		<if condition="$UID gt 0"><else/>
+	<div class="login_box">
+		<p style="padding-top:34px;height:42px;">年化收益率</p>
+		<span><font size="7">8</font>%~<font size="7">15</font>%</span>
+		<a href="/member/common/register/" class="login_btn"></a>
+		<p style="color:#fff;text-indent:92px;font-size:14px;">已有账号？<a href="/member/common/login/" style="color:#ff6000">立即登录</a></p>
+	</div>
+	</if>
+</div>  
+<div class="bodyer">
+<div id="count-video">
+<div class="count-list">
+<ul>
+<li>
+<div class="count-img fl"></div>
+<div class="count-num">{$statictis.get_money|getMoneyFormt=###}元</div>
+<span>累计成交量</span>
+</li>
+
+<li class="middle">
+<div class="count-img count-img2 fl"></div>
+<div class="count-num">{$statictis.make_money|getMoneyFormt=###}元</div>
+<span>为投资人赚取收益</span>
+</li>
+
+<li class="last">
+<div class="count-img count-img3 fl"></div>
+<div class="count-num">{$statictis.needgot_money|getMoneyFormt=###}元</div>
+<span>昨日交易额</span>
+</li>
+</ul>
+</div>
+  <video id="example_video_1" class="video video-js vjs-default-skin" controls preload="none" width="253" height="141"
+      poster="/Style/H/images/count/video.jpg"
+      data-setup="{}">
+    <source src="/Style/H/video/1280cailai.mp4" type='video/mp4' />
+    <source src="/Style/H/video/1280cailai.mp4" type='video/webm' />
+    <source src="/Style/H/video/1280cailai.mp4" type='video/ogg' /> 
+    <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that</p>
+  </video>
+
+
+</div>
+ 
+<div class="zhiying_novice">
+<div id="new_novice">
+<div class="novice_content_left">
+<div class="novice_title"><a href=""><img src="__ROOT__/Style/H/images/status/newicon.png" alt=""></a></div>
+<div class="novice_item_title"><span>新手专区</span> <font color="#f39700">未投资过</font>的新用户专享</div> 
+
+<div class="novice_content_property">
+<div class="novice_bt"><i><?php echo $gary['rate'];?>%</i>年化收益</div>
+<div class="novice_bt"><span><?php echo $gary['min'].'-'.$gary['max'];?></span> 投资区间（元） </div> 
+<div class="novice_bt"><span><?php echo $gary['bidtime'];?></span> 投资期限（天）</div>
+</div> 
+<div class="novice_content_right"><a href="__APP__/invest/newbie?id=<?php echo $gary['id'];?>">立即体验</a></div> 
+</div> 
+</div>
+
+<div class="Whatbox">
+<div class="What">
+<div class="Wleft"><span>官网公告</span> <a href="/cfkt/index.html" class="ckbtn"></a></div>
+<div class="Wright" style='height:205px;'> 
+<ul >
+<marquee direction='up' scrollamount='2' onMouseOut='this.start()'  height='100px' onMouseOver='this.stop()'>
+<volist name='noticeList.list' id='va'>
+<li>
+<a href="{$va.arturl}" title="{$va.title}">{$va.title|cnsubstr=###,23}
+<span>{$va.art_time|date="ymd",###}</span>
+</li>
+</volist>
+</marquee>
+<!-- <php>$xlist = getArticleList(array("type_id"=>37,"pagesize"=>4)); foreach($xlist['list'] as $kx => $va){</php> 
+<li></a>
+<span>{$va.art_time|date="m-d",###}</span></li> 
+             
+<php>};$noticeList=NULL;</php> -->
+</ul> 
+</div>
+</div>
+</div>
+
+</div>
+<div class="zhiying">
+<div class="Ctitle">理财专区 
+<div class="phc_wz">财来网正在审核项目，很快将有新标发布！</div> 
+<div class="phc_licai"><a href="/invest/index.html">进入理财专区</a></div>
+</div> 
+<div style="clear:both"></div> 
+<div class="xin_list">
+			<table>
+				<tr>
+					<th style="width:400px;">项目名称</th>
+					<th style="width:90px;">抵押率</th>
+					<th style="width:100px;">借款金额</th>
+					<th style="width:100px;">年利率</th>
+					<th style="width:100px;">借款期限</th>
+					<th style="width:90px;">投标进度</th>
+					<th style="width:90px;">&nbsp;</th>
+				</tr>
+                        <volist name="listBorrow.list" id="vb">                            
+                             <if condition="$vb.zw_show eq 1">                         
+				<tr style="color:#5b5b5b">
+					<td style="text-align:left; padding-left:20px;" class="ilistimg">{:getIco($vb)}<a href="{$vb.id|getInvestUrl=###}"title="{$vb.borrow_name}">{$vb.borrow_name|cnsubstr=###,23}</a></td>
+                    <td class="dybj">{$vb.borrow_mortgage_rate}%</td>
+					<td style="color:#5b5b5b">{$vb.borrow_money|getMoneyFormt=###}元</td>
+					<td style="color:#5b5b5b"><span style="color:#f35a00; font-size:20px;">{$vb.borrow_interest_rate}</span>%</td>
+					<td style="color:#5b5b5b"><if condition="$vb['repayment_type'] eq 1">
+							{$vb.borrow_duration}天
+						<else/>
+							{$vb.borrow_duration}个月
+						</if></td>
+					<td><span class="ui-list-field"> <span class="ui-progressbar-mid ui-progressbar-mid-{$vb.progress|intval}"><em>{$vb.progress|intval}%</em></span> </span>
+						</td>
+					<td style="padding-right:20px;"><if condition="$vb.borrow_status eq 3"> <a href="javascript:;"><img class="anNiuYLB" src="__ROOT__/Style/H/images/status/touM.gif" /></a>
+              <elseif condition="$vb.borrow_status eq 4"/>
+              <a href="javascript:;"><img class="anNiuDDFS" src="__ROOT__/Style/H/images/status/touM.gif" /></a>
+              <elseif condition="$vb.borrow_status eq 6"/>
+              <a href="javascript:;"><img  class="anNiuHKZ" src="__ROOT__/Style/H/images/status/touM.gif"  /></a>
+              <elseif condition="$vb.borrow_status gt 6"/>
+              <a href="{$vb.id|getInvestUrl=###}"><img class="anNiuYWC" src="__ROOT__/Style/H/images/status/touM.gif"  /></a>
+              <else/>
+              <a href="{$vb.id|getInvestUrl=###}"><img class="anNiuTB" src="__ROOT__/Style/H/images/status/touM.gif" /></a> </if></td>
+				</tr>             
+                            </if>                                                                     
+                    </volist>
+ 
+			</table>
+		</div>
+        
+        
+<div class="Ctitle" style="margin-top:35px">转让专区
+<div class="phc_wzs">其他投资人<span>转让项目</span>后，专区随时更新！</div> 
+<div class="phc_licais"><a href="/debt/index">进入转让专区</a></div>
+</div> 
+<div style="clear:both"></div> 
+<div class="xin_list">
+			<table>
+				<tr>
+					<th style="width:420px;">借款标题</th> 
+					<th style="width:120px;">借款利率</th>
+					<th style="width:120px;">转让价格</th>
+					<th style="width:130px;">待收本息</th>
+					<th style="width:120px;">期数/总期数</th>
+					<th class="dengji"  style="width:70px;">状态</th> 
+					 
+				</tr>
+                
+ 				<script type="text/javascript">
+					function buy_debt(invest_id)
+					{
+					    $.jBox("get:__APP__/Debt/buydebt?invest_id="+invest_id, {
+					        title: "购买债权",
+					        width: "auto",
+					        buttons: {}
+					    });
+					}
+				</script>
+			
+
+        <volist name="lists.data" id="vb">
+
+	    <tr height="60px" class="borrowlist borrowlistl <if condition="($key+1)%10 eq 0">delline</if>">
+		    <td width="286" align="left" style="text-align:left;">
+		    &nbsp;&nbsp;{:getIco($vb)}
+		    <a href="{$vb.id|getInvestUrl=###}"title="{$vb.borrow_name}" >{$vb.borrow_name|cnsubstr=###,23}</a></td>
+		   
+			<td style="color:#5b5b5b"><span style="color:#f35a00; font-size:20px;">{$vb.borrow_interest_rate}</span>%</td>
+		    <td style="color:#5b5b5b"><span class="BL_time">{$vb.transfer_price|default=0}</span>&nbsp;元</td>
+		    <td style="color:#5b5b5b"><span class="BL_time">￥{$vb.money|default=0}</span>&nbsp;元</td>
+		    <td style="color:#5b5b5b"> <span class="BL_time">{$vb.period}</span>期/<span class="BL_time">{$vb.total_period}</span>期
+			</td>
+		    <td class="dengji" width="160">
+		        <if condition="$vb.status eq '2'"> 
+		        	<a href="javascript:;" onclick="buy_debt('{$vb.invest_id}')">
+					<img  src="__ROOT__/Style/H/images/status/kzr.gif" style="width: 100px; height: 39px;" /></a>
+					<elseif condition="$vb.status eq '1'"/>
+		            <img   style="width: 100px; height: 39px;"  src="__ROOT__/Style/H/images/status/ywc.gif"  />
+		            
+		            <elseif condition="$vb.status eq '4'"/>
+		            <img  class="anNiuHKZ"  src="__ROOT__/Style/H/images/status/touM.gif"  /> 
+		        </if>
+		                    
+			      <input id="hid{$vo.debt_id}" type="hidden" value="{$vo['valid']-time()}" />
+				  <script type="text/javascript">
+			        var seconds{$vo.debt_id};
+			        var timer{$vo.debt_id}=null;
+			        function setLeftTime{$vo.debt_id}() {
+			            seconds{$vo.debt_id} = parseInt($("#hid{$vo.debt_id}").val(), 10);
+			            timer{$vo.debt_id} = setInterval(showSeconds{$vo.debt_id},1000);
+			        }
+			        
+			        function showSeconds{$vo.debt_id}() {
+			            var day1{$vo.debt_id} = Math.floor(seconds{$vo.debt_id} / (60 * 60 * 24));
+			            var hour{$vo.debt_id} = Math.floor((seconds{$vo.debt_id} - day1{$vo.debt_id} * 24 * 60 * 60) / 3600);
+			            var minute{$vo.debt_id} = Math.floor((seconds{$vo.debt_id} - day1{$vo.debt_id} * 24 * 60 * 60 - hour{$vo.debt_id} * 3600) / 60);
+			            var second{$vo.debt_id} = Math.floor(seconds{$vo.debt_id} - day1{$vo.debt_id} * 24 * 60 * 60 - hour{$vo.debt_id} * 3600 - minute{$vo.debt_id} * 60);
+			            
+			            $("#loan_time{$vo.debt_id}").html(day1{$vo.debt_id} + " 天 " + hour{$vo.debt_id} + " 小时 " + minute{$vo.debt_id} + " 分 " + second{$vo.debt_id} + " 秒");
+			            
+			            seconds{$vo.debt_id}--;
+			            if(seconds{$vo.debt_id}==0){
+			               $("#endtime{$vo.debt_id}").html("已结束");
+			               $("#buy_button").html('<img  class="anNiuHKZ" src="__ROOT__/Style/H/images/ywc.gif"  />'); 
+			            }
+			        }                
+			        setLeftTime{$vo.debt_id}();
+			    </script>
+		</td>
+		
+	  </tr>
+         </volist> 
+ 
+			</table>
+		</div>
+        
+<div style="clear:both"></div> 
+
+
+<div class="aqbz_list">
+<div class="aqbz_title">安全保障  <div class="phc_more"><a href="/borrow/anquanbaoz.html">查看更多</a></div></div>
+<ul> 
+<li>
+<img src="__ROOT__/Style/H/images/status/aqbz1.jpg" alt="" />
+<span>汇付天下第三方账户独立托管</span>
+</li> 
+<li>
+<img src="__ROOT__/Style/H/images/status/aqbz2.jpg" alt="" />
+<span>合作担保机构100%本息担保</span>
+</li> 
+<li>
+<img src="__ROOT__/Style/H/images/status/aqbz3.jpg" alt="" />
+<span>严格的借款人<br />审核准入制度</span>
+</li> 
+<li>
+<img src="__ROOT__/Style/H/images/status/aqbz4.jpg" alt="" />
+<span>双重风控审核<br />七道工序保障</span>
+</li> 
+<li>
+<img src="__ROOT__/Style/H/images/status/aqbz5.jpg" alt="" />
+<span>精细化资产管理<br />银行级数据安全</span>
+</li> 
+</ul>
+</div>
+  
+<div class="border" >
+<div class="border-title">近30日投资榜</div>
+<div class="user-rank">
+
+<div class="clearfix">
+<div class="user-l fl">用户名</div>
+<div class="user-m fl">投资金额</div>
+<div class="user-r fl">获得收益</div>
+</div>
+<marquee direction='up' scrollamount='2' onMouseOut='this.start()'  height='150px' onMouseOver='this.stop()'>
+<ul class="user-list">
+<volist name="daren" id='vo' >
+<li>
+<div class="user-l fl">{$vo.username|substr=###,0,3}**</div>
+<div class="user-m fl"><span>{$vo.money|getMoneyFormt=###}</span>元</div>
+<div class="user-r fl"><span>{$vo.got_money|getMoneyFormt=###}</span>元</div>
+</li> 
+</volist> 
+</ul>
+
+</marquee>
+
+</div>
+
+</div> 
+
+
+<div style="clear:both"></div>
+<div class="Ctitle" style="margin-top:35px">合作伙伴</div>
+
+<div style="clear:both"></div>
+ <img src="__ROOT__/Style/H/images/status/yinhang.jpg" alt="" style="margin-top:35px;" />       
+</div>
+ 
+</div>
+<script type="text/javascript" src="/Style/artDialog/jquery.artDialog.source.js?skin=aero"></script> 
+<script type="text/javascript">
+$(".btn001,.btn002,.btn003").click(function (){
+var id = title = '';
+	if(this.className == 'btn001'){
+		id = '#pop_msg_1';
+		title = '项目描述';
+	}else if(this.className == 'btn002'){
+		id = '#pop_msg_2';
+		title = '担保机构简介及担保意见';
+	}else if(this.className == 'btn003'){
+		id = '#pop_msg_3';
+		title = '风险控制措施';
+	}
+	
+	$.artDialog({
+		title: title,
+		content: '<div style="width:600px; height:400px; float:left;">' + $(id).html() + "</div>",
+		lock: true,
+		opacity: 0.5,
+		cancelVal: "关闭",
+		cancel: true
+	});
+});
+</script>
+<script type="text/javascript">
+		var lilenth = $(".list-h li").length+1;
+		$(".list-h").css("width", lilenth * 156);
+		var leftpos = 0;
+		var leftcount = 0;
+
+		$("#imgLeft").attr("src", "__ROOT__/Style/H/images/left_g.gif");
+		$("#spec-left1").css("cursor", "default");
+
+		if (lilenth > 1) {
+			$(function() {
+				$("#spec-right").click(function() {
+					if (leftcount >= 0) {
+						$("#imgLeft").attr("src", "__ROOT__/Style/H/images/scroll_left.gif");
+						$("#spec-left1").css("cursor", "pointer");
+					}
+					if (lilenth - leftcount < 3) {
+						$("#imgRight").attr("src", "__ROOT__/Style/H/images/right_g.gif");
+						$("#spec-right").css("cursor", "default");
+					}
+					else {
+						leftpos = leftpos - 156;
+						leftcount = leftcount + 1;
+						$(".list-h").animate({ left: leftpos }, "slow");
+						if (lilenth - leftcount < 2) {
+							$("#imgRight").attr("src", "__ROOT__/Style/H/images/right_g.gif");
+							$("#spec-right").css("cursor", "default");
+						}
+					}
+
+				});
+			});
+
+
+			$(function() {
+				$("#spec-left1").click(function() {
+					if (lilenth - leftcount > 2) {
+						$("#imgRight").attr("src", "__ROOT__/Style/H/images/scroll_right.gif");
+						$("#spec-right").css("cursor", "pointer");
+					}
+
+					if (leftcount < 1) {
+						$("#imgLeft").attr("src", "__ROOT__/Style/H/images/left_g.gif");
+						$("#spec-left1").css("cursor", "default");
+					}
+					else {
+						leftpos = leftpos + 156;
+						leftcount = leftcount - 1;
+						$(".list-h").animate({ left: leftpos }, "slow");
+						if (leftcount < 1) {
+							$("#imgLeft").attr("src", "__ROOT__/Style/H/images/left_g.gif");
+							$("#spec-left1").css("cursor", "default");
+						}
+					}
+
+				}
+				)
+			})
+		}
+		else {
+			$("#imgRight").attr("src", "__ROOT__/Style/H/images/right_g.gif");
+			$("#spec-right").css("cursor", "default");
+		}
+		$(function() {
+			var width = $("#preview").width();
+			$("#spec-list1").css("width", 730).css("margin-right", 8);
+
+		});
+
+		$(function() {
+			$("#spec-list1 img").bind("mouseover", function() {
+				$(this).css({
+					"border": "0px solid #FFFFFF",
+					"padding": "0px"
+				});
+			}).bind("mouseout", function() {
+				$(this).css({
+					"border": "0px solid #ccc",
+					"padding": "0px"
+				});
+			});
+		})
+		
+	$(function() {
+		$(".borrowlistp").bind("mouseover", function(){
+			$(this).css("background", "#f8f8f8");
+		})
+
+		$(".borrowlistp").bind("mouseout", function(){
+			$(this).css("background", "#fff");
+		})
+
+
+		$(".borrowlistl").bind("mouseover", function(){
+			$(this).css("background", "#f8f8f8");
+		})
+
+		$(".borrowlistl").bind("mouseout", function(){
+			$(this).css("background", "#fff");
+		})
+
+		$(".changecolor").bind("mouseover", function(){
+			$(this).css("background", "#f8f8f8");
+			$(this).css("color", "#007EB9");
+		})
+
+		$(".changecolor").bind("mouseout", function(){
+			$(this).css("background", "#fff");
+			$(this).css("color", "#737272");
+		})
+	});
+
+</script>
+
+<include file="Public:_footer" />

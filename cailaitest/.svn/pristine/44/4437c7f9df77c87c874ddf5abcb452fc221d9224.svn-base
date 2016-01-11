@@ -1,0 +1,31 @@
+<style type="text/css">
+	 body { margin: 0; _height:100%;}
+	.divtitle { height: 30px; line-height: 30px; text-align: left; font-size: 12px; font-weight: bold; background-color: #F6F6F6; text-indent: 25px; margin-top: 8px; margin-bottom: 1PX; }
+	.colink { background-image: url(__ROOT__/Style/M/images/btnbg02.gif); width: 98px; font-weight: bold; display: inline-block; line-height: 29px; color: White; text-align: center; }
+	.dv_header_8 {background-image: url(); }
+</style>
+<script type="text/javascript">
+        var newTitle = '{$glo.web_name}提醒您：';
+        $(function() {
+            $("#txt_links").click(function() { $(this).select(); });
+			var clip = new ZeroClipboard.Client(); // 新建一个对象
+				clip.setHandCursor( true );
+				clip.setText($('#txt_links').val()); // 设置要复制的文本。
+				clip.addEventListener( "mouseUp", function(client) {
+					alert("成功复制推荐地址");
+				});
+				clip.glue("copyshareurl");
+        });
+</script>
+
+<div class="yqhy_t">
+<p><strong>方法一：</strong> 您可以通过分享我们的微信二维码或者财来理财App二维码，也可以通过发送个人定制二维码，扫描注册即可。</p>
+<img src="__ROOT__/Style/H/images/new/eweima.jpg" alt="" class="img_left" />
+
+<p><strong>方法二：</strong> 您可以通过微信、QQ、新浪微博、QQ空间分享邀请好友。</p>
+<img src="__ROOT__/Style/H/images/new/fxlj.jpg" alt="" class="img_left" />
+                    
+</div>
+
+ 
+<div style="clear:both;"></div>

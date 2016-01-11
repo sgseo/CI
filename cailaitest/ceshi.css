@@ -1,0 +1,33 @@
+@charset=utf-8;
+/*id选择器 为100 类选择器为10 html标签选择器为 1 行内样式 为1000*/
+*{
+	padding: 0;
+	margin: 0;
+	border: 0;
+	font-family:"microsoft yahei";
+}
+.parent{
+	/*10*/
+	color: yellow;
+}
+
+.child p{
+	权值为10
+	color: pink;
+}
+p{
+	/*权值为2 匹配所有的div*/
+	color:blue;
+	text-underline-position:under;
+	text-decoration-skip:none;
+	user-select:none;
+}
+/*.child p{
+	color: green;
+}*/
+/*div p{
+	color:purple;
+}*/
+/*
+a,b 群组
+*/

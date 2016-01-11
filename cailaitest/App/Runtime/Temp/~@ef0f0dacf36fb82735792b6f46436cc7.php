@@ -1,0 +1,3 @@
+<?php
+//000012960000a:2:{s:7:"ad_type";s:1:"1";s:7:"content";a:5:{i:0;a:3:{s:3:"img";s:35:"UF/Uploads/Ad/20150204214410939.jpg";s:4:"info";s:0:"";s:3:"url";s:0:"";}i:1;a:3:{s:3:"img";s:34:"UF/Uploads/Ad/2015012920500345.jpg";s:4:"info";s:0:"";s:3:"url";s:0:"";}i:2;a:3:{s:3:"img";s:35:"UF/Uploads/Ad/20150204214411125.jpg";s:4:"info";s:0:"";s:3:"url";s:0:"";}i:3;a:3:{s:3:"img";s:35:"UF/Uploads/Ad/20150403111521289.jpg";s:4:"info";s:0:"";s:3:"url";s:0:"";}i:4;a:3:{s:3:"img";s:35:"UF/Uploads/Ad/20150403180104348.jpg";s:4:"info";s:0:"";s:3:"url";s:0:"";}}}
+?>

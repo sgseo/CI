@@ -1,0 +1,12 @@
+<%foreach from=$bondlist value=val %> 
+<div class="new_novice"> 
+    <div class="novice_title"><span><a href="/bond/summary?bid=<% $val[bid] %>"><% $val[bname] %></a></span> <i><% $val[borrow_type] %></i></div>  
+    <div class="novice_content_property">
+        <div class="novice_bt"><i><% $val[interest_rate] %></i> 收益率（%）</div>
+        <div class="novice_bt"><span><% $val[borrow_duration] %></span>期限（月）</div>
+        <div class="novice_bts"><span><% $val[borrow_money] %></span> 规模(<%万%>)</div>
+        <div class="ui-list-field"> <span class="ui-progressbar-mid ui-progressbar-mid-<% $val[ratio] %>"><em><% $val[ratio] %></em></span></div>
+        <div class="<% $val[mBut] %>" arg='bid=<% $val[bid] %>' style="float:right; height:30px; width:18%; margin-top:15px; float:right; background:url(/statics/images/<% $val[status] %>.png) no-repeat right;" ></div> 
+    </div> 
+</div>
+<%/foreach%>

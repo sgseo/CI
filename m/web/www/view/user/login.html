@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<% include file="/public/head.html" %>
+<script type='text/javascript' src='/statics/js/init.js' ></script>
+</head>
+<body> 
+<div id="m_base"> 
+<div class="m_zctitle"><i class='goBack'><?xml version="1.0" encoding="utf-8"?>
+<svg version="1.1" id="图形" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="25px" height="25px" viewBox="0 0 1024 1024" enable-background="new 0 0 1024 1024" xml:space="preserve">
+  <path id='back' fill="#000000" d="M874.690416 316.47523c0-11.2973-9.168824-20.466124-20.466124-20.466124l-604.773963 0 188.083679-188.083679c7.992021-7.992021 7.992021-20.947078 0-28.939099-4.001127-3.990894-9.240455-5.996574-14.46955-5.996574-5.239328 0-10.478655 1.995447-14.479783 5.996574l-223.00912 223.00912c-3.837398 3.837398-5.996574 9.046027-5.996574 14.46955 0 5.433756 2.159176 10.632151 5.996574 14.46955l223.019353 223.029586c7.992021 7.992021 20.957311 7.992021 28.949332 0 7.992021-8.002254 7.992021-20.957311 0-28.949332l-188.073446-188.073446 604.753497 0C865.521592 336.941354 874.690416 327.782763 874.690416 316.47523z" transform="translate(0, 812) scale(1, -1)"/>
+</svg></i>登录<span class='bnnner'><a href="/index/register" >注册</a>|<a href='/index/findpwd'>找回密码</a></span></div> 
+
+<div class="pic_center"><a href="/index/home"><img src="/statics/images/about_03.png" alt=""></a></div>
+<form action="" method="POST" id="login" >
+    <div class="m_denglv">
+        <label for="mobile">手机号</label>
+        <input type="text" value="<% $n %>" name="mobile" class="required" />
+        
+    </div>
+    <div class="m_denglv">
+        <label for="pwd">密码</label>
+        <input type="password" value="" name="pwd" class="required" />
+    </div>
+    <div class="m_denglvbut">
+        <input type="submit" value="登陆" class="submit"/>
+    </div>
+</form>
+    <div class="m_denglvtext" style="color:red;"><% $tipMsg %></div>
+   <% include file="/public/tip.html" %>
+</div>
+</body>
+</html>

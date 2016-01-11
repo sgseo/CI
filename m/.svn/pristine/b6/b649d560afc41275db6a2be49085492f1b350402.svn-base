@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>手机M站</title> 
+<link href="style/css.css" type="text/css" rel="stylesheet"/>
+</head>
+
+<body> 
+<div id="m_base"> 
+<div class="m_zctitle">测试8张女士上海房屋抵押标借款35万</div> 
+
+<div id="m_prolist">
+<div class="m_ktje">可投金额
+<span>0.00</span>
+<i>每月还息到期还本</i>
+</div> 
+<div class="m_tbjd"><div class="m_tbjd1"><span>12.00</span>%</div></div>
+</div> 
+
+<div id="m_prolv"> 
+<div class="m_prosy"><span>12.00</span> 收益率(%)</div> 
+<div class="m_prosy"><span>6</span> 期限(月)</div> 
+<div class="m_prosy"><span>10.00</span> 借款总额(万)</div> 
+</div>
+ 
+<div class="m_sysj">剩余时间：  <span>6</span>天<span>1</span>小时<span>57</span>分<span>3</span>秒</div>
+
+<div id="m_xqlist">
+<div class="m_xqlistnav">
+<ul>
+<li><a href="chanpxiangq.html">产品详情</a></li>
+<li><a href="jiekuanrenxx.html">借款人信息</a></li>
+<li><a href="diyawuxx.html">抵押物信息</a></li>
+<li><a href="zichanaq.html">资产安全</a></li>
+<li><a href="toubiaojl.html">标的投标记录</a></li>
+</ul>
+</div> 
+</div>
+
+<div class="m_lijiqianggou"><a href="lijieqianggou.html">立即抢购</a></div>  
+
+<div class="clear"></div> 
+<div id="m_menu">
+<ul>
+<li class="home"><a href="index.html">精选推荐</a></li>
+<li class="pro"><a class="dqmenu" href="product.html">产品列表</a></li>
+<li class="zichan"><a href="zichan.html">我的资产</a></li> 
+<li class="more"><a href="more.html">更多</a></li> 
+</ul>
+</div> 
+</div>
+</body>
+</html>
+ 

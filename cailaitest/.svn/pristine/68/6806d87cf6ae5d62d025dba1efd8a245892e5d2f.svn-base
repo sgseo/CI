@@ -1,0 +1,26 @@
+<include file="Public:_header" />
+<tagLib name="htmlA" />
+<div class="so_main">
+
+<div class="page_tit">托管信息管理</div>
+<div class="page_tab"><span data="tab_1"  class="active">托管配置</span></div>
+<div class="form2">
+	<form method="post" action="__URL__/save" onsubmit="return subcheck();" enctype="multipart/form-data">
+	<!--tab1-->
+	<div id="tab_1">
+		<dl class="lineD"><dt>平台乾多多标识：</dt><dd><htmlA:input id="loan[pfmmm]" value="{$loan.pfmmm}" tip="开通乾多多平台账号时生成的 以p开头" /></dd></dl>
+		<!--dl class="lineD"><dt>网站自有乾多多标识：</dt><dd><htmlA:input id="loan[zmmm]" value="{$loan.zmmm}" tip="网站自有账户" /></dd></dl-->
+		<dl class="lineD"><dt>公钥：</dt><dd><htmlA:text id="loan[public_key]" value="{$loan.public_key}" tip="*" /></dd></dl>
+        <dl class="lineD"><dt>私钥：</dt><dd><htmlA:text id="loan[private_key]" value="{$loan.private_key}" tip="*" /></dd></dl>
+	</div>
+	<!--tab1-->
+	
+	
+	<div class="page_btm">
+	  <input type="submit" class="btn_b" value="确定" /><span style="color:#CCCCCC"></span>
+	</div>
+	</form>
+</div>
+
+</div>
+<include file="Public:_footer" />

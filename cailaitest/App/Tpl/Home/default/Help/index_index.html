@@ -1,0 +1,34 @@
+<include file="Public:_header_common" />
+<title>{$vo.type_name}-{$glo.web_name}</title>
+<meta http-equiv="keywords" content="{$vo.type_keyword}" />
+<meta http-equiv="description" content="{$vo.type_info}" />
+
+<style type="text/css">
+.artcontent li{
+list-style-type:disc;
+}
+.cjwt_a_01{text-indent:20px}
+</style>
+<include file="Public:_header_main" />
+
+<div class="cms_page"> 
+  <div class="cms_frame cf"> <include file="left" />
+    <div class="cms_content">
+     <!--  <div class="cms-title-1">
+        <h2>{$vo.type_name}</h2>
+      </div> -->
+      <div class="cms-details">
+        <div class="article-list-wrap mgt">
+          <table width="720" border="0" cellspacing="0" cellpadding="0">
+            
+            <tr>
+              <td>{$vo.type_content}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div style="clear:both"></div>
+  </div>
+</div>
+<include file="Public:_footer" />

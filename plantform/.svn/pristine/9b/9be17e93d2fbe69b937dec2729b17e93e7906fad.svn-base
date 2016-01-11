@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head> 
+<title>用APP如何注册财来网账户？</title> 
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<style>
+body {margin:0px auto; min-width:220px;}
+img{ max-width:100%;}
+.about_con{ background:#fff;padding:10px 35px 35px 35px; margin-top:0px; font-size:14px;}    
+.about_con h2{ font-size:18px; color:#f9963b; line-height:45px; border-bottom:1px solid #ededed;margin-bottom:28px;padding-bottom:5px;text-align:left;} 
+.about_con p{ color:#333; font-size:14px; line-height:23px;}  
+</style>
+</head>
+<body> 
+<div id="m_base"> 
+ 
+<div class="about_con"> 
+
+<h2>我可以用此APP做什么？</h2>
+
+<p>财来网是一个互联网投资理财平台，此APP就是它的手
+机客户端！
+</p><p>
+您可以轻松掌握投资理财APP的所以功能，并且稳稳享
+受到本息安全、回报丰厚的投资理财产品。</p>
+ 
+
+
+</div>
+</div>
+</body>
+</html>

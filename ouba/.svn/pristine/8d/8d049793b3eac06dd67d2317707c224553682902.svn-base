@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <link href="__PUBLIC__/bootstrap-datetimepicker/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="__PUBLIC__/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Css/bootstrap-responsive.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Css/style.css" />
+    <script type="text/javascript" src="__PUBLIC__/Js/jquery.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Js/amounttochinese.js"></script>
+   <link rel="stylesheet" type="text/css" href="__PUBLIC__/webuploader015/webuploader.css">
+
+<!--引入JS-->
+    <script type="text/javascript" src="__PUBLIC__/webuploader015/webuploader.js"></script>
+   <!-- 时间插件 -->
+    <script type="text/javascript" src="__PUBLIC__/bootstrap-datetimepicker/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="__PUBLIC__/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.fr.js" charset="UTF-8">
+    </script>
+    <!-- 时间插件结束 -->
+    <script type="text/javascript" src="__PUBLIC__/Js/bootstrap.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Js/ckform.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Js/common.js"></script>
+
+    <style type="text/css">
+        body {
+            padding-bottom: 40px;
+        }
+        .sidebar-nav {
+            padding: 9px 0;
+        }
+
+        @media (max-width: 980px) {
+            /* Enable use of floated navbar text */
+            .navbar-text.pull-right {
+                float: none;
+                padding-left: 5px;
+                padding-right: 5px;
+            }
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="table table-bordered table-hover definewidth m10" style='margin:auto auto'>
+       <!-- 项目录入 -->
+        <form  class="table table-bordered table-hover definewidth m10" action="__URL__/add" method="post" enctype="multipart/form-data" >
+        <!-- 基础文档模型 -->
+
+            <div class="controls">
+               <input type="text" class="text input-large" name="title" value="" placeholder="请输入借款标题" id='tt'></br>
+               <input type="text" class="text input-large" name="cstname" value="" placeholder="客户姓名"></br>
+               <input type="text" class="text input-large" name="idno" value="" placeholder="身份证号"></br>
+               <input type="text" class="text input-large" name="tel" value="" placeholder="手机号码"></br>
+               <input type="text" class="text input-large" name="borrowamt" data-ideny='num2ch' value="" placeholder="贷款金额" onblur='num2ch(this.value,this.name)'>(元)
+               <span id='borrowamt' style='display:none;color:red'></span>
+             </br>
+               <input type="text" class="text input-large" name="duration" value=""placeholder="贷款期限">(月)</br>
+               <input type="text" class="text input-large" name="rate" value=""placeholder="贷款利率">(%)</br>
+               <!-- <input type="radio" class="text input-large" name="wed" value=""placeholder="婚姻状况"></br> -->
+               <label class="radio" ><input checked="checked" type="radio" value="1" name="wed" />未婚</label>
+               <label class="radio" ><input  type="radio"  name="wed" value='2'  />已婚</label>
+               <label class="radio" ><input  type="radio"  name="wed" value='3'  />离异</label>
+             </br>
+              <input type="text" class="text input-large" name="capitalsource" value=""placeholder="资金来源"></br>
+               <input type="text" class="text input-large" name="source" value=""placeholder="客户来源"></br>
+               <input type="text" class="text input-large" name="price" value=""placeholder="业务员姓名"></br>
+               <input type="text" class="text input-large" name="riskearly" value=""placeholder="风控初审"></br>
+               <input type="text" class="text input-large" name="riskfinal" value=""placeholder="风控终审" required="required"></br>
+               <label class="textarea"> <textarea name="tip" placeholder="备注信息"></textarea></label></br>
+               <label class="radio" ><input checked="checked" type="radio" value="fang" name="category" id='fang' />房屋抵押</label>
+               <label class="radio"><input type="radio" value="car" name="category" id='car'>车辆抵押</label></br>
+         
+            <div id='house'>
+               <input type="text" class="text input-large" name="address" value=""placeholder="房屋地址"></br>
+
+               是否主城区<label class="radio" ><input  type="radio" value="1" name="iscity" />是</label>
+               <label class="radio" ><input  type="radio"  name="iscity" value='2' checked="checked" />否</label>
+
+              <select name="pledge">
+                <option value='0'>请选择抵押情况</option>
+                <option value="1">清房</option>
+                <option value="2">一抵</option>
+                <option value="3">按揭</option>
+              </select>
+            </br>
+               <input type="text" class="text input-large" name="price" value=""placeholder="房屋市场价" onblur='num2ch(this.value,this.name)'>(元)
+              <span id='price' style='display:none;color:red'></span></br>
+               <input type="text" class="text input-large" name="estimateprice" value=""placeholder="房屋评估价" onblur='num2ch(this.value,this.name)'>
+                <span id='estimateprice' style='display:none;color:red'></span>(元)</br>
+               <select name="housetype"  required>
+                 <option value="0">请选择房屋类型</option>
+                 <option value="1">商铺</option>
+                 <option value="2">办公楼</option>
+                 <option value="3">别墅</option>
+                 <option value="4">店铺</option>
+                 <option value="5">住宅</option>
+                 <option value="6">厂房</option>
+               </select>
+             </br>
+               <input type="text" class="text input-large" name="residence" value="" placeholder="房屋户口"></br>
+               <input type="text" class="text input-large" name="area" value="" placeholder="房屋面积">(平方米)</br>
+            </div>
+             <div id='ca' style="display:none">
+               <input type="text" class="text input-large" name="carbrand" value="" placeholder="车子品牌"></br>
+               <input type="text" class="text input-large" name="cartype" value="" placeholder="车子型号"></br>
+               <input type="text" class="text input-large" name="carestimate" value="" placeholder="车子估价" onblur='num2ch(this.value,this.name)'>(元)
+               <span id='carestimate' style='display:none;color:red'></span></br>
+               <!-- <input type="text" class="text input-large time" name="carbuytime" value="" placeholder="车子购买日期"></br> -->
+                <input type="date" class="text input-large" name='carbuytime'  placeholder="请选择车辆购买日期"/>
+             </div>
+               <input type="file"  name='pic1'><input type='button' id='AddFile' value='+' /></br>
+               <input type="file"  name='pic2'></br>
+               <input type="file"  name='pic3'></br>
+               <input type="file"  name='pic4' id='last'></br>
+
+
+            </div>
+              <p><button class="btn btn-large btn-primary btn btn-default" type="submit">确 定</button></p>
+    </form>
+</div>
+
+</body>
+</html>
+
+<script type="text/javascript">
+    $(function(){
+        $("#fang").click(function()
+        {
+            $("#house").show();
+            $("#ca").hide();
+        });
+        $("#car").click(function(){
+            $("#house").hide();
+            $("#ca").show();
+        });
+
+
+    });
+
+    var button="<div id='adder'><input type='file' id='upLoadFiles[]' name='upLoadFile' /><a href='javascript:void(0);'' onclick='del(this)'><input type='button' onlick='del(this)' value='-' /></div></a>";
+
+    $("#AddFile").click(function(){
+       $('#last').after(button);
+    });
+    function del(a)
+    {
+      $(a).parent().remove();
+    }
+
+    // function num2ch(v,i){
+    //   console.log(i);
+
+    //     $.ajax({
+    //       type:"post",
+    //       url:"__URL__/sz2hz",
+    //       data:{v:v},
+    //       datatype:"json",
+    //       success:function(d)
+    //       {
+    //         if(d!=1)
+    //         {
+    //           $("#"+i).text(d+'元').show();
+    //         }else{
+    //           $("#"+i).text("请输入纯数字").show();
+    //         }
+    //       }
+
+    //     })
+    // }
+    
+function num2ch(v,i) {
+
+  
+  var testreuslt = true;
+
+  if (testreuslt) {
+    showChineseAmount(v,i);
+  }
+  return testreuslt;
+}
+
+function showChineseAmount(v,i) {
+    // console.log(v,i);
+  var regamount = /^(([1-9]{1}[0-9]{0,})|([0-9]{1,}\.[0-9]{1,2}))$/;
+  var reg = new RegExp(regamount);
+  if (reg.test(v)) 
+  {
+    var amstr = v;
+    var leng = amstr.toString().split('.').length;
+    if (leng == 1) {
+      $("#"+v).val(v + ".00");
+    }
+    $("#"+i).text(Arabia_to_Chinese(amstr));
+    $("#"+i).show();
+    $("#"+i).css("color","red");
+  }else
+  {
+    $("#"+i).show();
+    $("#"+i).text("请输入纯数字");
+  }
+}
+
+</script>
+<!-- 图片上传 -->

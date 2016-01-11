@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>手机M站</title> 
+<link href="style/css.css" type="text/css" rel="stylesheet"/>
+</head>
+
+<body> 
+<div id="m_base"> 
+<div class="m_zctitle">修改登录密码</div> 
+
+<div id="m_logion"> 
+<div class="m_mima">新密码：  <span>请输入新密码</span></div>
+<div class="m_mima">确认密码：   <span>请再次输入密码</span></div>
+
+<p>密码不应该小于6位</p>
+
+<div class="m_goumaibut"><a href="">修改密码</a></div>
+
+</div> 
+</div>
+</body>
+</html>

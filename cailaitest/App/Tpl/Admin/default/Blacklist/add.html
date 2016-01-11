@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title> 
+<style>
+
+#container{ width:800px; margin:0 auto; display:block;}
+.input1{ width:260px;line-height:22px; min-height:22px;padding:3px;} 
+.input2{ width:260px;line-height:22px; min-height:22px;padding:3px;}  
+.table_100{width:99%;float:left;height:auto;background:#cecece;color:#000;margin:5px 0;}
+.table_100 tr{ background:#fff;} 
+.table_100 tr td{ padding:3px;}   
+.tdTitle { text-align: right; padding-left: 10px; font-size: 12px; height:80px; line-height: 40px; vertical-align: middle; width: 110px; color: #000; }
+.tdSubmit {height:40px; line-height:40px; vertical-align: middle;vertical-align: middle;}
+#submit{ width:100px; height:30px; line-height:30px;}
+
+</style> 
+</head>
+<body>
+ 
+<div class="clear"></div>
+ <h1 style="left:0px;">添加黑用户</h1>
+<div id="container">
+<form action="__URL__/add" method="post"> 
+    <table class="table_100" cellpadding="1" cellspacing="1">
+        <tr>
+            <td width="201"  class="tdTitle">姓名：</td>
+            <td><input name="name" type="text" class="input1"></td> 
+        </tr>
+        <tr>
+            <td width="201"  class="tdTitle">手机号：</td>
+            <td><input name="telephone" type="text" class="input1"></td> 
+        </tr> 
+        <tr>
+            <td  class="tdTitle">&nbsp;  </td>
+            <td colspan="3" class="tdSubmit"><input type="submit" id="submit" value="添加"> </td> 
+        </tr> 
+    </table>  
+ </form> 
+      
+</div>
+ 
+
+</body>
+</html>

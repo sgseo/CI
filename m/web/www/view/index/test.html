@@ -1,0 +1,13 @@
+
+<% include file="/public/header.html" %>
+
+ <% $word %>
+
+<img src="/statics/images/banner.jpg">
+
+<%foreach from=$d value=val %>
+
+id :<% $val[id] %>
+name :<% $val[name] %>
+<br>
+<%/foreach%>

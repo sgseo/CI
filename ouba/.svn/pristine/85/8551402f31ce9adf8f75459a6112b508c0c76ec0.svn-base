@@ -1,0 +1,782 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title> 
+<!-- <link rel="stylesheet" type="text/css" href="__PUBLIC__/Css/bootstrap.css" /> -->
+    <link id="skin" rel="stylesheet" href="__PUBLIC__/Images/Pink/jbox.css" />
+<!--     <link rel="stylesheet" type="text/css" href="__PUBLIC__/Css/bootstrap-responsive.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Css/style.css" /> -->
+  <script type="text/javascript" src="__PUBLIC__/Js/jquery.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Js/bootstrap.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Js/ckform.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Js/common.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Js/js/jquery-1.4.2.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Js/js/jquery.jBox.src.js"></script>
+<style> 
+.container{width:550px;height:auto; margin:0 auto; line-height:25px; font-size:13px; font-family:"宋体", "仿宋", "黑体";padding-bottom:50px;} 
+.clear{ clear:both;}
+button{ width:100px; height:auto; line-height:25px;}
+.title{font-weight:bold; text-align:center; font-size:24px; line-height:40px;}
+.title-dy{font-weight:bold; text-align:center; font-size:18px; line-height:40px;}
+.bianhao{ text-align:right; font-size:14px;line-height:40px;}
+.bianhao b{ font-family:Arial, Helvetica, sans-serif}
+.table{ line-height:20px; color:#000;font-family:"黑体"; font-size:14px; padding-left:20px;} 
+.top-30{ margin-top:30px; display:block; width:100%; float:left;}
+.top-50{ margin-top:50px;}
+.top-500{ margin-top:500px;}
+.top-100{ margin-top:100px;}
+p{font-family:"黑体"; font-size:14px; color:#333;margin:0; padding:0; line-height:28px; display:block; clear:both;}
+strong{color:#000;} 
+.table_100 {width:400px; margin:0 auto;height:auto;background:#333;color:#333; text-align:center;}
+.table_100 tr {background:#fff}
+.table_100 tr td {padding:2px 3px}
+.height-120{ height:120px; display:block;}
+.height-320{ height:320px; display:block;}
+@media print {   
+ .noprint{display:none;}  
+}  
+.table_tan{
+  background:#333;
+ 
+  width: 80%;
+  height: 80%;
+  margin:20px auto;
+}
+.table_tan tr {background:#fff}
+.table_tan tr td {padding:2px 3px}
+.bg-color{width:100px; height:auto; line-height:25px; background-color:#ff8b01; color:#fff;outline: none; border: 1px solid #f60;-webkit-tap-highlight-color:rgba(0,0,0,0);-webkit-user-modify:read-write-plaintext-only; border-radius:3px; margin:20px auto; display:block;}
+
+</style> 
+</head>
+<body>
+<div class="container">
+ 
+
+  
+  
+  
+<div class="title">信 托 贷 款 合 同</div> 
+<div class="bianhao">合同编号：<b>WX-SD-【201619003】-102-<span id='num'>【{$res.id}<span></b></div> 
+<table width="100%" class="table">
+  <tr>
+    <td width="2%">贷</td>
+    <td width="2%"></td>
+    <td width="2%">款</td>
+    <td width="2%"></td>
+    <td width="4%">人：</td>
+    <td width="77%">万向信托有限公司</td>
+  </tr>
+  <tr>
+    <td>法</td>
+    <td>定</td>
+    <td>代</td>
+    <td>表</td>
+    <td>人：</td>
+    <td>肖风</td>
+  </tr>
+  <tr>
+    <td>联</td>
+    <td>系</td>
+    <td></td>
+    <td>地</td>
+    <td>址：</td>
+    <td>杭州市体育场路429号天和大厦12层</td>
+  </tr>
+  <tr>
+    <td>联</td>
+    <td></td>
+    <td>系</td>
+    <td></td>
+    <td>人：</td>
+    <td>吕栋</td>
+  </tr>
+  <tr>
+    <td>电</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>话：</td>
+    <td>0571-85829677</td>
+  </tr>
+  <tr>
+    <td>邮</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>编：</td>
+    <td>310006</td>
+  </tr>
+  <tr>
+    <td>传</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>真：</td>
+    <td>0571-85179809</td>
+  </tr>
+</table>
+<div class="clear"></div>  
+<table width="100%" class="top-30 table">
+  <tr>
+    <td width="3%">借</td>
+    <td width="3%"></td>
+    <td width="3%">款</td>
+    <td width="3%"></td>
+    <td width="3%">人：</td>
+    <td width="3%"></td>
+    <td width="82%" id='cstname'>{$res.cstname}</td>
+  </tr>
+  <tr>
+    <td colspan="6">公民身份证号码：</td>
+    <td id='idno'>{$res.idno}</td>
+  </tr>
+  <tr>
+    <td>联</td>
+    <td>系</td>
+    <td></td>
+    <td>地</td>
+    <td>址：</td>
+    <td></td>
+    <td id='address'>{$res.address}</td>
+  </tr>
+  <tr>
+    <td>联</td>
+    <td>系</td>
+    <td></td>
+    <td>电</td>
+    <td>话：</td>
+    <td></td>
+    <td id='tel'>{$res.tel}</td>
+  </tr> 
+  <tr>
+    <td>邮</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>编：</td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>传</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>真：</td>
+    <td></td>
+    <td></td>
+  </tr>
+</table>   
+<div class="clear"></div>  
+ 
+<p class="top-50" style="text-indent:25px;"><strong>鉴于：</strong></p>
+<p style="text-indent:25px;">贷款人接受委托人的委托，同意设立本信托并以信托资金向借款人发放信托贷款。根据《中华人民共和国合同法》、《中华人民共和国信托法》等有关法律法规及监管规定，借款人、贷款人经协商一致，就贷款人向借款人发放贷款事宜，特订立如下合同，以资共同遵守。</p>
+
+ <div class="top-30">
+<p><strong>第1条 定义及解释</strong></p>
+<p>
+<span style="float:left;width:30px;">1.1</span>     
+<span style="float:left;width:520px;"><b>本合同/《信托贷款合同》：</b>指借款人与贷款人签署的本《信托贷款合同》及对该合同的任何有效修订和补充。</span>
+</p>
+<p>
+<span style="float:left;width:30px;">1.2</span>     
+<span style="float:left;width:520px;"><b>信托合同：</b>指贷款人与委托人签订的<b>《万向信托-沪房1号事务管理类单一资金信托合同》及对该合同的任何有效修订和补充</b>。</span>
+</p>
+<p>
+<span style="float:left;width:30px;">1.3</span>     
+<span style="float:left;width:520px;"><b>本信托：</b>指受托人根据信托合同的约定而设立的“<u>万向信托-沪房1号事务管理类单一资金信托</u>”。</span>
+</p> 
+<p>
+<span style="float:left;width:30px;">1.4</span>     
+<span style="float:left;width:520px;"><b>委托人、受益人、受托人：</b>本合同中所指的委托人、受益人、受托人与信托合同所指的委托人、受益人、受托人相一致。受托人即为本合同的贷款人。</span>
+</p>  
+
+<p>
+<span style="float:left;width:30px;">1.5</span>     
+<span style="float:left;width:520px;"><b>信托资金：</b>指委托人按照信托合同约定向受托人交付的资金。</span>
+</p>
+<p>
+<span style="float:left;width:30px;">1.6</span>     
+<span style="float:left;width:520px;"><b>贷款到期日：</b>如本合同无特别所指，该日期包括最后一期贷款期限届满日、贷款提前到期日、借款人提前还款日。贷款到期日，即各期存续贷款均同时到期。</span>
+</p>
+<p>
+<span style="float:left;width:30px;">1.7</span>     
+<span style="float:left;width:520px;"><b>贷款起始日：</b>即贷款划出贷款人信托财产专户之日。各期贷款起始日为各期贷款划出贷款人信托财产专户之日。</span>
+</p>
+<p>
+<span style="float:left;width:30px;">1.8</span>     
+<span style="float:left;width:520px;"><b>贷款本金余额：</b>指贷款人根据本合同向借款人实际发放的资金金额减去借款人按约已归还本金后的余额。</span>
+</p>
+<p>
+<span style="float:left;width:30px;">1.9</span>     
+<span style="float:left;width:520px;"><b>法律：</b>指由中国任何立法机关、国家机构或监管机构颁布的，适用并约束本合同任何一方的一切法律、法规、规章、规定、条例、指令等规范性文件。</span>
+</p>
+<p>
+<span style="float:left;width:30px;">1.10</span>     
+<span style="float:left;width:520px;"><b>元：</b>如无特别约定，指人民币元。</span>
+</p>
+<p>
+<span style="float:left;width:30px;">1.11</span>     
+<span style="float:left;width:520px;"><b>月：</b>除特别指明外，本合同所指的一月是指以某一日为起始日，自该起始日至下一自然月的对应日（如该月无对应的日期，则为该月的最后一日）计为一月，以此类推。</span>
+</p>
+<p>
+<span style="float:left;width:30px;">1.12</span>     
+<span style="float:left;width:520px;"><b>工作日：</b>指中华人民共和国国务院规定的金融机构正常的营业日。</span>
+</p></div>
+ 
+<div class="top-30"><p><strong>第2条 贷款金额</strong></p>
+<p>
+<span style="float:left;width:30px;">2.1</span>     
+<span style="float:left;width:520px;">本合同贷款总金额为：<span id='upperprice'>【 {$res.upperprice} 】</span>圆整。贷款总金额以贷款人累计实际划付至借款账户的金额为准</span>
+</p>
+<p>
+<span style="float:left;width:30px;">2.2</span>     
+<span style="float:left;width:520px;">贷款人有权分期或一次性发放贷款，贷款人有权调整各期贷款的具体金额。</span>
+</p></div>
+
+ 
+<div class="top-30"><p><strong>第3条 贷款用途</strong></p>
+<p><span style="float:left;width:30px;">3.1   </span>     
+<span style="float:left;width:520px;">本合同项下贷款用途为：<b><u>  □经营性周转     □个人消费   </u></b>。
+</span>
+</p>
+<p>
+<span style="float:left;width:30px;">3.2   </span>     
+<span style="float:left;width:520px;">未经贷款人书面同意，借款人不得改变贷款用途，不得将贷款用于国家和法律规定的禁止性和限制性领域和用途。如为流动资金贷款，则贷款不得用于房地产开发，不得用于固定资产、股权等投资，不得用于国家和法律禁止生产、经营的领域和用途。
+</span>
+</p></div>
+ 
+<div class="top-30">
+<p><strong>第4条 贷款期限</strong></p>
+<p>4.1   贷款期限按下列第（<u><b>2</b></u>）种方式确定：
+</p><p>
+<span style="float:right;width:520px;">（1） 本合同项下各期贷款期限均为<u> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </u>个月，自各期贷款起始日起算。首期贷款期限自<u> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </u> 年<u> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </u>月<u> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </u>日至<u> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </u>年<u> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </u>月<u> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </u>日止。如首期贷款发放的实际日期与上述起始日不一致的，则首期贷款起始日以首期贷款划出贷款人信托财产专户之日为准，首期贷款期限也相应调整。</span>
+</p>
+<p>
+<span style="float:right;width:520px;">（2） 本合同贷款期限为【&nbsp;{$res.duration}&nbsp;】个月，即自【  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;】年【 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;】月【 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;】日起至【 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;】年【 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;】月【 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;】日止。如首期贷款发放的实际日期与上述起始日期不一致的，则贷款起始日以首期贷款划出贷款人信托财产专户之日为准，贷款期限也相应调整。</span>
+</p><p>
+<span style="float:right;width:520px;">（3） 本合同项下贷款期限自<u> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u>年<u> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </u>月<u> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u>日至<u> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u>年<u> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </u>月<u> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u>日。如首期贷款发放的实际日期与上述起始日期不一致的，则贷款起始日以首期贷款划出贷款人信托财产专户之日为准，贷款期限届满日不变。</span>
+</p>
+</div>
+ 
+<div class="top-30"><p><strong>第5条 贷款利率</strong></p>
+<p>
+5.1   除本合同第6条另有约定外，本合同项下贷款利率按下列第（<u>1</u>）种方式确定：
+</p><p>
+<span style="float:right;width:520px;">（1） 固定利率，即贷款年利率为【 &nbsp;&nbsp;&nbsp;&nbsp; 】%，在贷款期限内，该利率保持不变。</span>
+</p>
+<div class="clear"></div>
+<p><span style="float:right;width:520px;">（2） 浮动利率，贷款年利率按下列方式确定：<u> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </u>。</span>
+</p>
+<div class="clear"></div>
+<p>
+5.2   本合同项下日利率折算方式为：日利率=年利率÷360=【 &nbsp;&nbsp;&nbsp;&nbsp; 】%。。
+</p><p>
+5.3   本合同项下月利率折算方式为：月利率=年利率÷12=【 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 】%。
+</p><p>
+5.4   本合同第23条中所述贷款利率为<span id='rate'>【 &nbsp;&nbsp;{$res.rate}&nbsp;&nbsp; 】</span>%/月。
+</p></div>
+
+<div class="top-30"><p><strong>第6条 利息的结算、支付和本金的偿还</strong></p>
+<p>6.1   本合同项下预付利息应按下列第（2）种方式确定：</p>
+<p><span style="float:right;width:520px;">（1） 借款人无需支付预付利息；</span></p>
+<div class="clear"></div>
+<p><span style="float:right;width:520px;">（2） 借款人应在各期贷款起始日起【10】个工作日内支付预付利息，预付利息=该期贷款金额×月利率【 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   】%×【 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    】个月</span></p>
+<div class="clear"></div>
+<p>6.2   贷款结息日按下列第（3）种方式确定，最后一期结息日为贷款到期日：</p>
+<p><span style="float:right;width:520px;">（1）    每个自然月第 21日</span></p>
+<div class="clear"></div> 
+<p><span style="float:right;width:520px;">（2）    每自然季度末月的第 21日;</span></p>
+<div class="clear"></div> 
+<p><span style="float:right;width:520px;">（3）    自贷款起始日起每满1个月之日，若当月无对应日，以该月最后一日为结息日。若借款人已经预付了N个月的预付利息，则首期贷款结息日为自贷款起始日起满N+1个月之日，若当月无对应日，以该月最后一日为结息日。</span></p>
+<div class="clear"></div>
+
+<p><span style="float:left;width:30px;">6.3</span>   <span style="float:right;width:520px;">贷款结息日应支付的利息=贷款本金余额×月利率×本期贷款结息期间的实际月份个数+贷款本金余额×日利率×本期贷款结息期间扣除整月份个数后剩余的天数-本期贷款结息期间内贷款本金偿还日借款人已归还的贷款利息（如有，不含借款人支付的预付利息）。本期贷款结息期间实际月份个数为自上一期贷款结息日（含该日）至本期贷款结息日（不含该日）包含的整月份个数;首期贷款结息期间的实际月份个数为自贷款起始日（含该日）满N个月之日（若当月无对应日，为该月最后一日）至首期贷款结息日（不含该日）包含的整月份个数。如贷款本金余额和贷款利率在当期贷款结息期间内发生变化的，则利息分段计算。</span>
+</p>
+
+<p>
+<span style="float:left;width:30px;">6.4 </span>  <span style="float:right;width:520px;">每个贷款本金偿还日，该贷款本金对应的应付利息等应当一并付清。每个贷款本金偿还日该贷款本金对应的应付的利息=借款人应偿还的贷款本金×月利率×自上一期贷款结息日（含该日）至当个贷款本金偿还日（不含该日）期间包含的整月份个数+借款人应偿还的贷款本金×日利率×自上一期贷款结息日（含该日）至当个贷款本金偿还日（不含该日）期间扣除整月个数后剩余的天数。如贷款利率在自上一期贷款结息日（含该日）至当个贷款本金偿还日（不含该日）期间发生变化的，则利息分段计算。</span></p>
+
+<div class="clear"></div>
+<p>6.5   借款人应按下列第<b><u>（1）</u></b>种方式偿还贷款本金：</p>
+<p><span style="float:right;width:520px;">（1） 借款人应于各期贷款到期日一次性偿还各期贷款本金；</span></p>
+<div class="clear"></div>
+<p><span style="float:right;width:520px;">（2） 具体还本金额和日期如下：</span></p>
+<div class="clear"></div>
+<table class="MsoNormalTable" border="1" cellspacing="0" cellpadding="0" style="margin-left:53.35pt;border:none;mso-border-alt:
+ solid windowtext .5pt;mso-yfti-tbllook:1184;mso-padding-alt:0cm 5.4pt 0cm 5.4pt;
+ mso-border-insideh:.5pt solid windowtext;mso-border-insidev:.5pt solid windowtext">
+ <tbody><tr style="mso-yfti-irow:0;mso-yfti-firstrow:yes">
+  <td width="167" style="width:125.1pt;border:solid windowtext 1.0pt;mso-border-alt:
+  solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+  <p class="MsoListParagraph" align="center" style="text-align:center;text-indent:
+  0cm;mso-char-indent-count:0"><span style="font-size:13px;font-family:仿宋_GB2312;
+  mso-hansi-font-family:仿宋;mso-font-kerning:0pt">贷款本金偿还日<span lang="EN-US"><o:p></o:p></span></span></p>
+  </td>
+  <td width="198" style="width:148.85pt;border:solid windowtext 1.0pt;border-left:
+  none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+  <p class="MsoListParagraph" align="center" style="text-align:center;text-indent:
+  0cm;mso-char-indent-count:0"><span style="font-size:13px;font-family:仿宋_GB2312;
+  mso-hansi-font-family:仿宋;mso-font-kerning:0pt">应偿还的贷款本金<span lang="EN-US"><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style="mso-yfti-irow:1">
+  <td width="167" style="width:125.1pt;border:solid windowtext 1.0pt;border-top:
+  none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+  <p class="MsoListParagraph" align="center" style="text-align:center;text-indent:
+  0cm;mso-char-indent-count:0"><span lang="EN-US" style="font-size:13px;
+  font-family:仿宋_GB2312;mso-hansi-font-family:仿宋;mso-font-kerning:0pt"><o:p>&nbsp;</o:p></span></p>
+  </td>
+  <td width="198" style="width:148.85pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+  <p class="MsoListParagraph" align="center" style="text-align:center;text-indent:
+  0cm;mso-char-indent-count:0"><span lang="EN-US" style="font-size:13px;
+  font-family:仿宋_GB2312;mso-hansi-font-family:仿宋;mso-font-kerning:0pt"><o:p>&nbsp;</o:p></span></p>
+  </td>
+ </tr>
+ <tr style="mso-yfti-irow:2">
+  <td width="167" style="width:125.1pt;border:solid windowtext 1.0pt;border-top:
+  none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+  <p class="MsoListParagraph" align="center" style="text-align:center;text-indent:
+  0cm;mso-char-indent-count:0"><span lang="EN-US" style="font-size:13px;
+  font-family:仿宋_GB2312;mso-hansi-font-family:仿宋;mso-font-kerning:0pt"><o:p>&nbsp;</o:p></span></p>
+  </td>
+  <td width="198" style="width:148.85pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+  <p class="MsoListParagraph" align="center" style="text-align:center;text-indent:
+  0cm;mso-char-indent-count:0"><span lang="EN-US" style="font-size:13px;
+  font-family:仿宋_GB2312;mso-hansi-font-family:仿宋;mso-font-kerning:0pt"><o:p>&nbsp;</o:p></span></p>
+  </td>
+ </tr>
+ <tr style="mso-yfti-irow:3;mso-yfti-lastrow:yes">
+  <td width="167" style="width:125.1pt;border:solid windowtext 1.0pt;border-top:
+  none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt">
+  <p class="MsoListParagraph" align="center" style="text-align:center;text-indent:
+  0cm;mso-char-indent-count:0"><span style="font-size:13px;font-family:仿宋_GB2312;
+  mso-hansi-font-family:仿宋;mso-font-kerning:0pt">贷款到期日<span lang="EN-US"><o:p></o:p></span></span></p>
+  </td>
+  <td width="198" style="width:148.85pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt">
+  <p class="MsoListParagraph" align="center" style="text-align:center;text-indent:
+  0cm;mso-char-indent-count:0"><span style="font-size:13px;font-family:仿宋_GB2312;
+  mso-hansi-font-family:仿宋;mso-font-kerning:0pt">剩余的贷款本金<span lang="EN-US"><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+</tbody></table>
+ 
+<div class="clear"></div>
+<p><span style="float:left;width:30px;">6.6</span>   <span style="float:right;width:520px;">贷款到期日借款人应一次性向贷款人支付累计未支付的所有款项（包括但不限于本金、利息、罚息、复利、违约金、赔偿金）。</span></p>
+</div>
+
+<div class="top-30">
+<p><strong>第7条 合同担保</strong></p>
+<p>7.1   为保障贷款人的利益，借款人提供以下担保：</p>
+<p>抵押人以其所有的位于<u> 1 </u>房屋所有权及对应土地使用权提供抵押担保[产权证号：<u id='pledgeno'> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$res.pledgeno}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </u> ]，具体以抵押人与受托人签署的《抵押合同》约定为准。</p>
+</div>
+ 
+<div class="top-30"><p><strong>第8条 款项划付</strong></p>
+<p><span style="float:left;width:30px;">8.1</span>   <span style="float:right;width:520px;">本合同中所指借款账户即借款人指定的用于接收贷款人划付的贷款资金的银行账户，账户信息如下：</span></p>
+<p><span style="float:right;width:520px;">
+户  名：                            
+<br>开户行：                            
+<br>账  号： 
+</span> </p>
+<div class="clear"></div>
+                           
+<p><span style="float:left;width:30px;">8.2</span>   
+<span style="float:right;width:520px;">本合同中所指信托财产专户即贷款人收付本信托项下有关资金的专用账户，借款人应按照本合同的约定将应付的所有款项（包括但不限于本金、利息、罚息、复利、违约金、赔偿金）支付至信托财产专户，该账户信息如下：</span></p>
+
+<p><span style="float:right;width:520px;">
+户  名：万向信托有限公司
+<br>开户行：兴业银行杭州分行            
+<br>账  号：<b>356980100100667803</b>
+</span></p>
+<div class="clear"></div>
+                            
+<p>8.3   借款人在本合同项下应偿还的所有款项应全额支付，不得附带任何抵销、索赔或限制，且不存在任何性质的费用减扣。</p>
+<p>8.4   借款人按本合同约定支付各款项时，应按以下顺序进行清偿：</p>
+<p><span style="float:right;width:500px; padding-right:20px;">
+（1） 贷款人为履行本合同而垫付的费用及为实现本合同项下债权而支出的费用；
+<br>（2） 赔偿金；
+<br>（3） 违约金；
+<br>（4） 罚息、复利；
+<br>（5） 利息；
+<br>（6） 本金。 
+<br>但贷款人有权单方变更上述清偿顺序，不足部分借款人应予以补足。
+</span></p>
+<div class="clear"></div>
+
+<p><span style="float:left;width:30px;">8.5</span>   <span style="float:right;width:520px;">本合同当事人支付款项的日期如遇法定节假日或公休日等非工作日的，可顺延至下一工作日。该非工作日计入贷款实际占用天数。</span></p>
+</div> 
+
+<div class="top-30"><p><strong>第9条 贷款的发放</strong></p>
+<p><span style="float:left;width:30px;">9.1</span>   <span style="float:right;width:520px;">除贷款人全部或部分放弃外，只有满足下列全部前提条件，贷款人才有义务发放各期贷款：</span></p>
+<p>
+<span style="float:right;width:520px;">（1）  本合同已经签署并生效；
+<br>（2）  贷款人与借款人及过桥放款人签订的《三方借款协议》（如有）已经签署并生效。
+<br>（3）  涉及贷款的抵押合同已经签署生效且已办理完毕抵押登记手续，委托人指定的资产管理人已将取得的他项权证明文件等担保证明（如有）扫描件提交贷款人或贷款人通过上海房地产交易中心962269电话查询已经确认抵押已经生效；
+<br>（4）  委托人指定的资产管理人将过桥放款人与借款人之间借款凭证扫描件（如有）已提交贷款人
+<br>（5）  没有出现任何因法律、政策及监管要求等原因，致使本信托被终止、或贷款人无法发放本合同项下贷款、或无法实现其在本合同项下目的之情形；
+<br>（6）  借款人没有发生本合同所约定的任一违约事项，也没有发生任何经营和财务状况不利变化可能危及贷款安全的情形；
+<br>（7）  信托合同中的委托人按约定交付了各期信托资金且本信托已成立；
+<br>（8）  借款人已满足了贷款人要求的其他贷款条件。</span>
+</p>
+<div class="clear"></div>
+
+<p><span style="float:left;width:30px;">9.2</span>   <span style="float:right;width:520px;">上述约定的前提条件全部满足后1个工作日内，贷款人将各期贷款资金从信托财产专户划入借款人指定的借款账户。</span></p>
+
+<p><span style="float:left;width:30px;">9.3</span>   <span style="float:right;width:520px;">贷款发放前，如因法律的修改或颁布、国家宏观调控政策的变化、贷款人监管部门提出新的监管要求或信托未成立等原因致使贷款人无法发放本合同项下贷款或实现其在本合同项下的目的，贷款人有权停止发放贷款和/或单方面解除本合同且无需承担责任，借款人对此无异议。</span></p>
+</div> 
+
+<div class="top-30"><p><strong>第10条 提前还款</strong></p>
+<p><span style="float:left;width:35px;">10.1</span> <span style="float:right;width:515px;">贷款期限未满3个月，借款人不得提前还款；贷款期限满3个月的，借款人提前还款的，需向委托人或资产管理人提出书面申请（注明提前还款日），并经委托人或资产管理人、贷款人同意方可提前还款。</span></p>
+<p><span style="float:left;width:35px;">10.2</span> <span style="float:right;width:515px;">如贷款人同意借款人提前还款的，借款人对提前归还的的借款金额，除按本合同约定的利率和实际贷款天数向贷款人支付利息外，还须向贷款人支付相当一个月利息的违约金。</span></p>
+<p><span style="float:left;width:35px;">10.3</span> <span style="float:right;width:515px;">若委托人向贷款人发出要求借款人提前还款的书面指令的，贷款人有权按照委托人的书面指令要求借款人提前还款，借款人应当根据委托人和贷款人的要求提前还款。</span></p>
+</div> 
+
+<div class="top-30"><p><strong>第11条 宣布贷款提前到期</strong></p>
+<p>11.1 如发生以下情况之一的，贷款人可以立即宣布贷款提前到期：</p>
+<p>
+<span style="float:right;width:520px;">（1） 借款人未按照本合同的约定归还贷款的本金或支付利息的；
+<br>（2） 借款人未按照本合同约定的贷款用途使用贷款资金的；
+<br>（3） 借款人在本合同项下的任何一项陈述或保证不真实、不准确、故意隐瞒，可能危及、损害贷款安全的；
+<br>（4） 借款人怠于行使其到期债权，或以无偿、明显不合理价格转移资产的；
+<br>（5） 借款人发生本合同第14.1条规定的情形，未及时通知贷款人，或虽通知但未提供贷款人认可的担保的；
+<br>（6） 如根据《信托业保障基金管理办法》后续实施细则等文件，要求贷款人为本合同项下贷款认购信托业保障基金的；
+<br>（7） 借款人实施本合同第15.1条规定的事项，未及时通知贷款人，或虽通知但未经贷款人同意，或未提供贷款人认可的担保的；
+<br>（8） 借款人或其它担保人所提供的担保发生本合同、担保合同项下的违约事项，可能危及、损害贷款安全的；
+<br>（9） 借款人发生危及、损害或可能危及、损害贷款安全的其它事项。</span>
+</p>
+<div class="clear"></div>
+<p><span style="float:left;width:35px;">11.2</span> <span style="float:right;width:515px;">贷款人依据第12.1条宣布贷款提前到期通知中确定的还款日期即为贷款提前到期日，借款人应在贷款提前到期日一次性偿还所有款项（包括但不限于本金、利息、罚息、复利、违约金、赔偿金），借款人还应在贷款提前到期日偿还贷款提前到期赔偿金（贷款提前到期赔偿金=贷款提前到期日贷款本金余额×贷款提前到期日（含）至贷款期限原届满日（不含）期间的天数×3%÷360）。</span></p>
+</div> 
+
+<div class="top-30">
+<p><strong>第12条 监督和检查</strong></p>
+<p><span style="float:left;width:35px;">12.1</span> <span style="float:right;width:515px;">贷款资金划付后，贷款人可随时通过现场与非现场方式检查本合同项下贷款资金使用情况，并有权了解、调查和检查借款人的生产经营和财务活动，借款人应按照贷款人要求提供相关资料（如借款人提供资料是复印件的应加盖公章）。借款人应当在收到贷款人通知之日起3个工作日内如实提供贷款人要求的相关文件资料，并配合贷款人的监督和检查。</span></p>
+
+<div class="clear"></div>
+<p>12.2 贷款人进行检查和监督的方式包括但不限于：</p>
+
+<p><span style="float:right;width:515px;">（1） 要求借款人向贷款人提交贷款资金使用的执行情况报告及相应的资金使用凭证，包括但不限于相关协议、支付凭证、权属证书等；
+<br>（2） 对贷款资金使用情况进行账户分析、凭证检验或现场调查；
+<br>（3） 要求借款人向贷款人提交生产经营、财务活动的情况报告及资料；
+<br>（4） 法律法规允许和贷款人要求的其他方式。</span></p>
+</div>
+<div class="clear"></div>
+ 
+<div class="top-30"><p><strong>第13条 信息披露</strong></p>
+<p><span style="float:left;width:35px;">13.1</span> <span style="float:right;width:515px;">发生如下情况之一的，借款人应当在发生之日起1个工作日内书面通知贷款人，并提供贷款人认可的足额担保：</span></p>
+
+<p><span style="float:right;width:515px;">（1） 借款人涉及重大经济纠纷、资产损失、重大亏损或经营状况恶化等，使贷款人债权实现受到严重影响或威胁的；
+<br>（2） 借款人发生破产、歇业、解散、清算、注销登记、被吊销营业执照等情形的；
+<br>（3） 借款人的控股股东及其他关联公司经营或财务方面出现重大危机，影响借款人正常运作的；
+<br>（4） 发生任何对借款人提起的或者借款人对他人提起的重大诉讼、仲裁、行政程序、司法或行政机关的执行、查封、扣押、留置、监管程序或具类似性质的其他法律程序的；
+<br>（5） 借款人变更住所、通讯地址、经营范围、法定代表人或财务负责人等事项，已影响到借款人还款能力的；
+<br>（6） 借款人的董事、法定代表人、高级管理人员发生异常变动、失踪或被司法机关依法调查或被限制人身自由等情形的；
+<br>（7） 借款人的任何其他贷款融资或类似协议项下的债务到期未付，或表示不能偿还债务的；
+<br>（8） 本合同项下保证人出现破产、歇业、解散、清算、注销登记、被吊销营业执照、提供超出其负担能力的担保、实质性增加债务融资以及财务状况恶化等情况，对其担保能力产生实质性不利影响的；或者作为本合同项下贷款担保的抵押物、质押物财产价值减少、意外毁损或灭失的；作为本合同项下贷款担保的抵押物、质押物所对应的担保物权未有效设立或消灭的；
+<br>（9） 借款人发生其他可能影响其偿债能力的重大事项。</span>
+</p>
+<div class="clear"></div>
+
+<p><span style="float:left;width:35px;">13.2</span> <span style="float:right;width:515px;">借款人授权贷款人在办理贷款申请、贷款发放、贷后管理等与本合同贷款有关的事宜时通过中国人民银行企业或个人信用信息基础数据库查询、打印借款人的信用报告等信息，同时授权贷款人将借款人履行本合同相关信用信息向中国人民银行企业或个人信用信息基础数据库报送。</span></p>
+</div> 
+
+<div class="top-30"><p><strong>第14条 权利限制</strong></p>
+<p><span style="float:left;width:35px;">14.1</span> <span style="float:right;width:515px;">借款人实施以下任一事项应提前20个工作日书面通知贷款人，并征得贷款人同意方可进行：</span></p>
+
+<p><span style="float:right;width:515px;">（1） 借款人进行承包、租赁、合并、分立、改制、重组、对外投资、减资、产权转让、实质性增加债务融资等足以影响贷款人贷款债权实现的事项；
+<br>（2） 借款人为第三人提供贷款或提供担保；
+<br>（3） 借款人与其控股股东或其他关联公司之间发生重大关联交易；
+<br>（4） 借款人自行解散、清算、注销登记、向法院申请破产或解散等。</span>
+</p>
+<div class="clear"></div>
+
+<p>
+<span style="float:left;width:35px;">14.2</span> <span style="float:right;width:515px;">贷款人同意借款人实施上条所列事项之一的，借款人同时应提供贷款人认可的担保。</span></p>
+</div> 
+
+<div class="top-30"><p><strong>第15条 贷款人的权利义务</strong></p>
+<p>15.1 贷款人的权利</p>
+<p><span style="float:right;width:515px;">（1） 有权要求借款人按本合同约定足额归还贷款本息；
+<br>（2） 有权按本合同约定对借款人贷款资金使用及经营情况进行监督、检查；
+<br>（3） 有权按本合同约定提前收回贷款；
+<br>（4） 法律规定的以及本合同约定的其他权利。</span></p>
+<div class="clear"></div>
+
+<p>15.2 贷款人的义务</p> 
+<p><span style="float:right;width:515px;">（1） 贷款人应当按照本合同约定的条件向借款人发放贷款；
+<br>（2） 法律规定的以及本合同约定的其他义务。</span></p>
+<div class="clear"></div>
+</div>
+ 
+<div class="top-30"><p><strong>第16条 借款人的权利义务</strong></p>
+<p>16.1 借款人的权利</p>
+<p>
+<span style="float:right;width:515px;">（1） 借款人有权要求贷款人按照本合同的约定发放贷款；
+<br>（2） 借款人有权按照本合同的约定使用全部贷款；
+<br>（3） 法律规定的以及本合同约定的其他权利。</span>
+</p>
+<div class="clear"></div>
+<p>16.2 借款人的义务</p>
+<p>
+<span style="float:right;width:515px;">（1） 借款人应当按照本合同约定的用途使用贷款；
+<br>（2） 借款人应当按照本合同的约定按时足额归还贷款本息；
+<br>（3） 借款人应当按合同约定接受贷款人对其使用贷款情况以及有关生产经营、财务活动的监督；
+<br>（4） 借款人应当按合同约定向贷款人披露信息；
+<br>（5） 承担与本合同及本合同项下担保有关的费用；
+<br>（6） 法律规定的以及本合同约定的其他义务。</span></p>
+<div class="clear"></div>
+</div> 
+
+<div class="top-30"><p><strong>第17条 陈述与保证</strong></p>
+<p>17.1 借款人就本合同的签署及履行向贷款人作出如下陈述与保证：</p>
+<p><span style="float:right;width:515px;">
+（1） 借款人是依法成立并有效存续的机构，拥有与签署本合同相应的民事权利能力和民事行为能力。
+<br>（2） 借款人在本合同的项下借款本息未全部清偿前，如客观上发生危及借款安全情况时，包括但不限于借款人从事违法活动、涉及重大经济诉讼活动、财务状况恶化等，应在事件发生后3日内书面通知贷款人，并保证借款本息的清偿或落实贷款人认可的债权保全措施；
+<br>（3） 在本合同项下的债务未清偿前，借款人为他人债务提供保证或以其主要财产向他人抵押、质押，可能影响其偿还本合同项下借款能力的，应当提前书面通知贷款人并征得贷款人书面同意；
+<br>（4） 借款人不得有抽逃资金、转移资产等行为，以逃避对贷款人的债务；
+<br>（5） 作为本合同项下借款担保的抵押房地产价值减小，借款人应当及时向贷款人提供其认可的其他担保措施；
+<br>（6） 借款人应配合贷款人做好借款担保的核实工作，配合贷款人采取合法措施对借款人提供信息进行查询，配合贷款人将抵押房地产交其认可的机构进行审计或评估。
+<br>（7） 借款人为签署本合同所需的外部批准和内部授权程序都已完成并合法有效，签署本合同的是借款人的有权签字人，并且本合同生效即对借款人具有法律约束力。
+<br>（8） 借款人签署本合同、履行其在本合同项下的义务，均不会与其现行章程、内部规章或对借款人具有约束力的任何合同、协议及其他文件相抵触。
+<br>（9） 借款人保证在签署本合同之前已经仔细阅读了本合同，对本合同当事人之间的有关权利、义务和责任条款的法律含义有准确的理解，并对本合同的所有条款均无异议。
+<br>（10）  借款人保证在经营活动中严格遵守国家各项法律，严格按照经核准的经营范围开展各项业务，按时办理企业年检等行政机关要求的各项手续。
+<br>（11）  借款人保证保持或提高现有的经营管理水平，确保现有资产的保值增值，不放弃任何债权，也不以无偿、明显低于市场价格或其他不当方式处分现有财产。
+<br>（12）  借款人保证在签署本合同时借款人没有发生任何影响本合同项下借款人义务履行的重大事件。
+<br>（13）  借款人保证向贷款人提供的财务报表及其他与本合同项下贷款相关的资料均真实、准确、合法、有效，所提交的复印件或扫描件均与原件相符。
+<br>（14）  借款人不存在危及贷款安全、影响借款人还款能力的民事、刑事、仲裁、争议、行政程序或其它法律程序。
+</span></p>
+<div class="clear"></div>
+</div> 
+ 
+<div class="top-30"><p><strong>第18条 权利义务的转让</strong></p>
+<p><span style="float:left;width:35px;">18.1</span> <span style="float:right;width:515px;">贷款人可以全部或部分转让本合同项下的权利或义务而无需征得借款人同意，在转让后贷款人或受让人应通知借款人。</span></p>
+<p><span style="float:left;width:35px;">18.2</span> <span style="float:right;width:515px;">未经贷款人书面同意，借款人不得转让其在本合同项下的任何权利或义务。</span></p>
+</div>
+ 
+<div class="top-30"><p><strong>第19条 费用承担</strong></p>
+<p>19.1 双方应根据我国法律的规定缴纳相应的税费。</p>
+<p><span style="float:left;width:35px;">19.2</span> <span style="float:right;width:515px;">为本合同及本合同的担保合同的谈判、起草、签署发生的有关费用，包括但不限于贷款印花税、邮递费、查询费、评估费、审计费、律师费、登记费、公证费、公告费等均由借款人承担。</span></p>
+</div> 
+
+<div class="top-30"><p><strong>第20条 合同公证</strong></p>
+<p><span style="float:left;width:35px;">20.1</span>   <span style="float:right;width:515px;">贷款人、借款人共同确认：本合同的债权债务关系明确，双方对所约定的有关给付内容无疑义，如贷款人提出要求办理强制执行公证的，借款人同意于贷款人提出要求之日起3个工作日内，共同将本合同提交公证机构办理具有强制执行效力的公证手续。</span></p>
+<p><span style="float:left;width:35px;">20.2</span>   <span style="float:right;width:515px;">本合同经公证后成为具有强制执行效力的债权文书。如借款人不履行或不完全履行其在本协议项下的义务时，贷款人可直接向有管辖权的人民法院申请强制执行，借款人愿意接受依法强制执行，并放弃抗辩权。</span></p>
+<p><span style="float:left;width:35px;">20.3</span>   <span style="float:right;width:515px;">如果借款人不履行或者不适当履行经公证的具有强制执行效力的债权文书，贷款人可以向公证机构申请出具执行证书，且借款人应于贷款人或公证机构通知的时间到公证机构配合完成公证机构的当面核实程序。借款人未能按时履行上述义务，则借款人特此确认：在借款人缺席的情况下，公证机构根据贷款人的申请按其内部流程履行完毕核实工作后，即等同于公证机构完成了当面核实程序，借款人对此产生的法律后果完全认可。</span></p>
+<p><span style="float:left;width:35px;">20.4</span>   <span style="float:right;width:515px;">本合同经公证处出具赋予强制执行效力的公证文书后，如借款人违约，致使未按期偿还欠款，贷款人可根据《中国人民共和国民事诉讼法》第二百三十八条的规定，非经诉讼程序，直接向有管辖权的人民法院申请强制执行，借款人、抵押人双方均自愿直接接受人民法院强制执行。本合同中约定的其他争议解决方法将不再适用。</span></p>
+</div> 
+
+<div class="top-30"><p><strong>第21条 保密</strong></p>
+<p><span style="float:left;width:35px;">21.1</span> <span style="float:right;width:515px;">双方对于本合同签署和履行过程中获得的关于本合同及相对方的商业秘密负有保密义务。除非出现下列情形之一者，任何一方不得向第三方披露该等商业秘密：</span></p>
+
+<p><span style="float:right;width:515px;">（1）诉讼、仲裁等法律程序之需要；
+<br>（2）履行本合同之需要；
+<br>（3）履行信托运作需要的信息披露义务，向委托人和受益人等进行的披露；
+<br>（4）配合相关司法、监管机构履行职责之需要；
+<br>（5）向与本合同有关而需要获知保密信息的律师、会计师、顾问和咨询人员披露；
+<br>（6）保密信息拥有方同意披露；
+<br>（7）法律规定的应当披露或可以免除保密义务的其他情形。</span></p>
+<div class="clear"></div>
+
+<p><span style="float:left;width:35px;">21.2</span> <span style="float:right;width:515px;">双方一致同意，无论本合同是否变更、解除、终止，保密义务对双方一直具有约束力。</span></p>
+</div> 
+
+<div class="top-30"><p><strong>第22条 通知和送达</strong></p>
+<p><span style="float:left;width:35px;">22.1</span> <span style="float:right;width:515px;">双方确认本合同文首列明的地址为双方互相发送书面通知、函件等的有效地址。一方的地址或联系方式如发生变动，应立即书面通知对方；如一方未及时通知，则另一方向原地址发送视为有效。因未及时通知而造成的损失由地址或联系方式变动方自行承担。</span></p>
+<p><span style="float:left;width:35px;">22.2</span> <span style="float:right;width:515px;">本合同当事人如需变更本合同项下的银行账户，应提前3个工作日向相对方发出书面通知。账户变更方怠于发出上述通知的，由此造成的损失由账户变更方承担。</span></p>
+</div> 
+
+<div class="top-30"><p><strong>第23条 违约责任</strong></p>
+<p><span style="float:left;width:35px;">23.1</span>   <span style="float:right;width:515px;">借款人未按期足额偿还贷款本金的，贷款人有权根据实际逾期天数，就逾期部分按日0.06%计收罚息，同时贷款人有权行使本合同第12.1条的权利。</span></p>
+
+<p><span style="float:left;width:35px;">23.2</span>   <span style="float:right;width:515px;">借款人未按期足额支付贷款利息的，贷款人有权根据实际逾期天数，就逾期支付的利息按日0.06%计收复利，同时贷款人有权行使本合同第12.1条的权利。</span></p>
+
+<p><span style="float:left;width:35px;">23.3</span>   <span style="float:right;width:515px;">借款人未按本合同约定期限归还借款本金或支付利息的，逾期超过五日，借款人除需归还借款本金、支付利息、罚息、复利、违约金外，还应依照本合同项下借款本金总额的10%向贷款人支付赔偿金。逾期超过十日，借款人除需归还借款本金、支付利息、罚息、违约金外，还应依照本合同项下借款本金总额的20%向贷款人支付赔偿金。</span></p>
+
+<p><span style="float:left;width:35px;">23.4</span> <span style="float:right;width:515px;">借款人未按本合同约定的用途使用贷款的，贷款人有权根据实际挪用天数，就挪用贷款部分按贷款利率的200%计收违约金，同时贷款人有权行使本合同第12.1条的权利。</span></p>
+
+<p><span style="float:left;width:35px;">23.5</span> <span style="float:right;width:515px;">如贷款中的同一部分资金同时发生付款逾期和未按本合同的约定使用贷款的情况，对该部分资金按上述约定中较高者计收罚息或违约金。遇本合同贷款利率调整的，自调整之日分段计算罚息、复利和违约金。</span></p>
+
+<p><span style="float:left;width:35px;">23.6</span> <span style="float:right;width:515px;">贷款到期（包括提前到期），借款人不偿付全部本金及利息的，按照第23.1条、第23.2条分别计算罚息、复利。</span></p>
+
+<p><span style="float:left;width:35px;">23.7</span> <span style="float:right;width:515px;">因任何一方违约致使相对方采取诉讼等方式实现债权的，违约方应承担相对方为此支付的合理费用，包括但不限于诉讼费、保全费、执行费、评估费、拍卖费、送达费、公告费、律师费、差旅费、复印费、资料费等。</span></p>
+</div> 
+
+<div class="top-30"><p><strong>第24条 法律适用与纠纷解决</strong></p>
+<p><span style="float:left;width:35px;">24.1</span> <span style="float:right;width:515px;">本合同的成立、生效、解释、履行、修改和终止等事项均适用中国现行法律。</span></p>
+
+<p><span style="float:left;width:35px;">24.2</span> <span style="float:right;width:515px;">凡因本合同引起的或与本合同有关的任何争议，可以通过协商解决，协商不成的，采取诉讼方式解决争议的，任何一方均应将争议提交贷款人住所地的有管辖权的法院解决。</span></p>
+
+<p><span style="float:left;width:35px;">24.3</span> <span style="float:right;width:515px;">在合同存在部分争议的情况下，解决争议期间，双方仍应继续履行与争议无关的合同条款。</span></p>
+</div> 
+
+<div class="top-30"><p><strong>第25条 合同的变更、解除和终止</strong></p>
+<p><span style="float:left;width:35px;">25.1</span> <span style="float:right;width:515px;">如遇国家法律或政策变化，致使本合同的全部或部分条款不再符合国家法律或政策的要求，贷款人和借款人应及时协商，尽快修改有关条款。</span></p>
+
+<p><span style="float:left;width:35px;">25.2</span> <span style="float:right;width:515px;">因不可归责于贷款人的原因发生本合同的解除，借款人应当自本合同解除之日一次性偿还贷款本金及付清利息、罚息、复利、违约金、赔偿金等所有款项。</span></p>
+
+<p><span style="float:left;width:35px;">25.3</span> <span style="float:right;width:515px;">如果本合同的任何约定依现行法律被确定为无效或无法实施，本合同的其它条款将继续有效。此种情况下，本合同各方将以有效的约定替换原约定，且该有效约定应尽可能接近原约定和本合同相应的目的和精神。</span></p>
+</div> 
+
+<div class="top-30"><p><strong>第26条 其他事项</strong></p>
+<p><span style="float:left;width:35px;">26.1</span> <span style="float:right;width:515px;">本合同未尽事宜或本合同需变更的，双方可以另行协商签订补充协议。补充协议作为本合同的组成部分，与本合同具有同等法律效力。</span></p>
+
+<p><span style="float:left;width:35px;">26.2</span> <span style="float:right;width:515px;">本合同如有附件，则附件（包括基于本合同或附件产生的其他法律文件）为本合同的组成部分，与本合同具有同等法律效力。</span></p>
+
+<p><span style="float:left;width:35px;">26.3</span> <span style="float:right;width:515px;">如本合同空格处手写的内容与本合同其他约定不一致的，以本合同其他约定为准。</span></p>
+
+<p><span style="float:left;width:35px;">26.4</span> <span style="float:right;width:515px;">本合同正文为打印文本（空格处除外），任何单方擅自增减或修改的文字和内容，除双方一致签字盖章认可外，均属无效。</span></p>
+
+<p><span style="float:left;width:35px;">26.5</span> <span style="float:right;width:515px;">本合同自双方法定代表人或授权代表签字或盖章并加盖双方公章后生效。自本合同签订之日起60日内，本合同约定的贷款发放条件仍未全部满足的，贷款人有权单方面解除本合同，并不承担责任。</span></p>
+
+<p><span style="float:left;width:35px;">26.6</span> <span style="float:right;width:515px;">本合同一式柒份，贰份用于办理房产抵押登记手续（壹份由房地产交易中心留底，壹份由借款人持有），伍份用于办理具有强制执行效力的公证（贰份公证处留底，壹份由贷款人持有，贰份由资产管理人持有），每份具有同等法律效力。</span></p>
+
+<p style="margin-top:20px;">（本页以下无正文）</p>
+</div>
+
+
+
+
+<div class="clear"></div>
+<div class="height-120"></div>
+<div class="clear"></div>
+<div class="top-500"><p>（本页为签署页，无正文）</p></div>  
+<div class="top-100"><p>贷款人（盖章）：<b><u>万向信托有限公司</u></b> </p></div> 
+<div class="top-100"><p>法定代表人或授权代理人（签字或盖章）： <u>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; </u></p></div>  
+<div class="top-100"><p>借款人（盖章）：  <u>  &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;  </u></p></div>      
+<div class="top-100"><p>法定代表人或授权代理人（签字或盖章）： <u>  &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; </u></p>   </div> 
+<div class="top-100"><p>签署日期： <u> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </u>年 <u> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </u> 月  <u> &nbsp;&nbsp;&nbsp;&nbsp; </u> 日</p></div>
+
+ 
+<div class="clear"></div>
+<div class="height-320"></div>
+<div class="clear"></div>
+
+
+<div class="title-dy top-50">抵押人声明：</div>
+
+<p class="top-30" style="text-indent:25px;">本抵押人确认，已对本《信托贷款合同》已清楚了解并知情。本抵押人对贷款人与借款人之间所存在的债权债务关系已清楚了解并知情，并自愿对债务人在《信托贷款合同》项下的债务履行提供相关担保。
+</p>
+ 
+<div class="clear"></div>
+<p class="top-50">抵押人签章处：</p>
+<div class="clear"></div>
+<!-- <span><button onclick='window.print()' class='noprint bg-color'>打印此合同</button></span>   -->
+</div>
+
+</body>
+</html>
+<script>
+  /* jBox 全局设置 */
+        var _jBoxConfig = {};
+        _jBoxConfig.defaults = {
+            id: null, /* 在页面中的唯一ID，如果为null则自动为随机ID,一个ID只会显示一个jBox */
+            top: '15%', /* 窗口离顶部的距离,可以是百分比或像素(如 '100px') */
+            border: 5, /* 窗口的外边框像素大小,必须是0以上的整数 */
+            opacity: 0.2, /* 窗口隔离层的透明度,如果设置为0,则不显示隔离层 */
+            timeout: 0, /* 窗口显示多少毫秒后自动关闭,如果设置为0,则不自动关闭 */
+            showType: 'fade', /* 窗口显示的类型,可选值有:show、fade、slide */
+            showSpeed: 'fast', /* 窗口显示的速度,可选值有:'slow'、'fast'、表示毫秒的整数 */
+            showIcon: true, /* 是否显示窗口标题的图标，true显示，false不显示，或自定义的CSS样式类名（以为图标为背景） */
+            showClose: true, /* 是否显示窗口右上角的关闭按钮 */
+            draggable: true, /* 是否可以拖动窗口 */
+            dragLimit: true, /* 在可以拖动窗口的情况下，是否限制在可视范围 */
+            dragClone: false, /* 在可以拖动窗口的情况下，鼠标按下时窗口是否克隆窗口 */
+            persistent: true, /* 在显示隔离层的情况下，点击隔离层时，是否坚持窗口不关闭 */
+            showScrolling: true, /* 是否显示浏览的滚动条 */
+            ajaxData: {},  /* 在窗口内容使用post:前缀标识的情况下，ajax post的数据，例如：{ id: 1 } 或 "id=1" */
+            iframeScrolling: 'auto', /* 在窗口内容使用iframe:前缀标识的情况下，iframe的scrolling属性值，可选值有：'auto'、'yes'、'no' */
+
+            title: 'jBox', /* 窗口的标题 */
+            width: 350, /* 窗口的宽度，值为'auto'或表示像素的整数 */
+            height: 'auto', /* 窗口的高度，值为'auto'或表示像素的整数 */
+            bottomText: '', /* 窗口的按钮左边的内容，当没有按钮时此设置无效 */
+            buttons: { '确定': 'ok' }, /* 窗口的按钮 */
+            buttonsFocus: 0, /* 表示第几个按钮为默认按钮，索引从0开始 */
+            loaded: function (h) { }, /* 窗口加载完成后执行的函数，需要注意的是，如果是ajax或iframe也是要等加载完http请求才算窗口加载完成，参数h表示窗口内容的jQuery对象 */
+            submit: function (v, h, f) { return true; }, /* 点击窗口按钮后的回调函数，返回true时表示关闭窗口，参数有三个，v表示所点的按钮的返回值，h表示窗口内容的jQuery对象，f表示窗口内容里的form表单键值 */
+            closed: function () { } /* 窗口关闭后执行的函数 */
+        };
+        _jBoxConfig.stateDefaults = {
+            content: '', /* 状态的内容，不支持前缀标识 */
+            buttons: { '确定': 'ok' }, /* 状态的按钮 */
+            buttonsFocus: 0, /* 表示第几个按钮为默认按钮，索引从0开始 */
+            submit: function (v, h, f) { return true; } /* 点击状态按钮后的回调函数，返回true时表示关闭窗口，参数有三个，v表示所点的按钮的返回值，h表示窗口内容的jQuery对象，f表示窗口内容里的form表单键值 */
+        };
+        _jBoxConfig.tipDefaults = {
+            content: '', /* 提示的内容，不支持前缀标识 */
+            icon: 'info', /* 提示的图标，可选值有'info'、'success'、'warning'、'error' */
+            top: '40%', /* 提示离顶部的距离,可以是百分比或像素(如 '100px') */
+            width: 'auto', /* 提示的高度，值为'auto'或表示像素的整数 */
+            height: 'auto', /* 提示的高度，值为'auto'或表示像素的整数 */
+            opacity: 0, /* 窗口隔离层的透明度,如果设置为0,则不显示隔离层 */
+            timeout: 2000, /* 提示显示多少毫秒后自动关闭,必须是大于0的整数 */
+            closed: function () { } /* 提示关闭后执行的函数 */
+        };
+        _jBoxConfig.messagerDefaults = {
+            content: '', /* 信息的内容，不支持前缀标识 */
+            title: 'jBox', /* 信息的标题 */
+            icon: 'none', /* 信息图标，值为'none'时为不显示图标，可选值有'none'、'info'、'question'、'success'、'warning'、'error' */
+            width: 350, /* 信息的高度，值为'auto'或表示像素的整数 */
+            height: 'auto', /* 信息的高度，值为'auto'或表示像素的整数 */
+            timeout: 3000, /* 信息显示多少毫秒后自动关闭,如果设置为0,则不自动关闭 */
+            showType: 'slide', /* 信息显示的类型,可选值有:show、fade、slide */
+            showSpeed: 600, /* 信息显示的速度,可选值有:'slow'、'fast'、表示毫秒的整数 */
+            border: 0, /* 信息的外边框像素大小,必须是0以上的整数 */
+            buttons: {}, /* 信息的按钮 */
+            buttonsFocus: 0, /* 表示第几个按钮为默认按钮，索引从0开始 */
+            loaded: function (h) { }, /* 窗口加载完成后执行的函数，参数h表示窗口内容的jQuery对象 */
+            submit: function (v, h, f) { return true; }, /* 点击信息按钮后的回调函数，返回true时表示关闭窗口，参数有三个，v表示所点的按钮的返回值，h表示窗口内容的jQuery对象，f表示窗口内容里的form表单键值 */
+            closed: function () { } /* 信息关闭后执行的函数 */
+        };
+        _jBoxConfig.languageDefaults = {
+            close: '关闭', /* 窗口右上角关闭按钮提示 */
+            ok: '确定', /* $.jBox.prompt() 系列方法的“确定”按钮文字 */
+            yes: '是', /* $.jBox.warning() 方法的“是”按钮文字 */
+            no: '否', /* $.jBox.warning() 方法的“否”按钮文字 */
+            cancel: '取消' /* $.jBox.confirm() 和 $.jBox.warning() 方法的“取消”按钮文字 */
+        };
+
+        $.jBox.setDefaults(_jBoxConfig);
+        // var title='抵押信息';
+
+        // function demo08(id) {
+        //      jBox.open("get:__URL__/impawn?id="+id, title, 300, 50, { buttons: { '关闭': true }, persistent: false });
+        // }
+
+
+  window.onload=function(){
+      var id={$res.id};
+      //联系地址 贷款金额 贷款用途 贷款利息 贷款期限 预收利息 收款人姓名 收款人账号 收款人开户行
+          // console.log(numtext,csttext,pledgeteltext,pledgeidnotext,upperpricetext,durationtext,carprivilgetext,houseaddresstext,areatext,pledgenotext);
+      var title='合同核心信息';
+        jBox.open("get:__URL__/hetong?id="+id,title, 600, 500, { buttons: { '关闭': true }, persistent: false });
+
+  };
+
+</script>
+   
+     
+      
+
+
+
+
+
+
+
+
+

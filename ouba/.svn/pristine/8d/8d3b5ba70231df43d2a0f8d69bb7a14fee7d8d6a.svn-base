@@ -1,0 +1,110 @@
+<include file='Public:_header'/>
+<script src="__PUBLIC__/Js/calendar/jquery.js"></script>
+<!-- 日期时间插件 -->
+<script type="text/javascript" src="__PUBLIC__/Js/calendar/kalendar.js" ></script>
+<link type="text/css"  rel="stylesheet" href="__PUBLIC__/Js/calendar/kalendar.css" ></link>
+<div class="form-inline definewidth m20">我的催收日历 &there4;</div>
+<!-- <div id="container" class="inv_charts"  style="width:450px; height: 250px; margin: 0 0;">your browser doesn't support the highcharts.</div> -->
+<div>
+<div id='wrap' style="text-align:center;font:normal 14px/24px 'MicroSoft YaHei';">
+  <!-- 因为日历初始显示的内容要根据js获得的日期-时间来确定，所以html中不写，在js中用另一种形式添加 -->
+</div>
+ <div class="list" style='width:270px;margin:20px auto;height:100px;'>
+      <div  id='jj' style='display:none'>
+         <a >预期收益&nbsp;&yen;<font color="#F45A00" id='tip'></font>元</a>
+      </div>
+  </div> <!-- list -->
+</div>
+<!-- 由于jschart 不支持IE 所以更换higcharts -->
+<style type='text/css'>
+  .selectChange{
+    font-size: 12px;
+
+  }
+</style>
+    </head>
+    <body>
+  <script type='text/javascript'>
+
+    $(function(){
+    var ali={$res};
+ 
+     //拆分数组
+     var fandp=ali.map(function(i){
+          return  i.split(',');
+     });
+
+     var newali=new Array();
+
+     for(var j in fandp)
+     {
+          newali.push(fandp[j][0].split('&'));
+     }
+
+           // 遍历数组(无法解决同一天有多笔还款)
+             newali.map(function(n){
+                    var date=n[2][8]+n[2][9];
+                    n[1]=n[1]?n[1]:"无";
+                    var bbQ="姓名"+":"+n[0]+"."+"电话"+":"+n[1]+":"+"应还日期"+n[2]+":"+"应还金额"+n[3];
+                    $("#"+parseInt(date)).attr('data-amount',bbQ);//如果日期相同 只会把最后一笔加上 所以要解决此问题
+                    });
+    
+
+    // newali=[[1,2,3],[3,4,5],[5,6,4],[7,8,2]];
+    // var len=newali.length;
+    // // console.log(len);
+    // var lj=[];
+    // for(var i=0;i<len;i++)
+    // {
+    //   for(var f=3;f>0;f--)
+    //   {
+    //     if(newali[i][2]==newali[f][2])
+    //     {
+    //      lj.push(newali[i]);
+    //     }
+    //   }
+
+    // }
+    // var ljlen=lj.length;
+
+    // for(var a=0;a<=ljlen;a++)
+    // {
+
+    // }
+    // console.log(lj);
+
+      $("#day ul li").each(function(){
+        var ea=$(this).attr('data-amount');
+        var html=$(this).html();
+        if(ea!=undefined)
+        {       $(this).addClass('active');
+              //解决 当天 有收款事件无法区别
+                if($(this).hasClass('today'))
+                {
+                  $(this).css('color',"#f9f9f9");
+                }
+                $(this).mouseover(function(){
+                $("#tip").html(ea);//这里应该填写催收人员名单和本期还款
+                $("#jj").show().addClass(tip);
+            }).mouseout(function(){
+               $("#jj").hide();
+            })
+        }else{
+            $(this).mouseover(function(){
+                $("#jj").hide();
+                //屏蔽空元素li出现mouseFloat样式
+                if(!html)
+                {
+                  if($(this).hasClass('mouseFloat'))
+                  {
+                    $(this).removeClass('mouseFloat');
+                  }
+                }
+            })
+        }
+      })
+
+    })
+
+
+</script>

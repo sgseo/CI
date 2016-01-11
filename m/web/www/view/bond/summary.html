@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<% include file="/public/head.html" %></head>
+
+<body> 
+<div id="m_base"> 
+<div class="m_zctitle"><label><% $recode[bname] %></label></div> 
+
+<div id="m_prolist">
+<div class="m_ktje">可投金额
+<span><% $recode[format_moneyAble] %></span>
+<i><% $recode[repayment_type] %></i>
+</div>
+<div class="ui-list-fields">
+		<!--canvas id="canvas" width="115"  height="115"></canvas-->
+		<div width="116"  height="116">
+		<svg width="100%" height="100%" version="1.1"
+	xmlns="http://www.w3.org/2000/svg" >
+			<circle cx='54' cy='54' r="50" fill="transparent"  stroke='#FF9C45' stroke-width='3px'/>
+			<text  id='weng' x='' y='58' style='fill:#fff;font-size:25px;' id='J'><% $recode[ratio] %>%</text>
+			<path id='arc' d='M58,8 A50,50,0,0,1,58,8' fill='transparent' stroke='#fff' stroke-width='3px'/>
+			<path  d='M30,76 A6,6,0,0,0,32,90 M30,76 L78,76 a6,6,0,0,1,0,14 L32,90' fill='transparent' stroke='#FF9C45' stroke-width='1px' />
+				<text x='34' y='87' style='fill:#fff;font-size:10px;'>投标进度</text>
+			<script type="text/javascript"><![CDATA[
+				(function(){
+					//1.计算角度
+					var number=<% $recode[ratio] %>;
+					if(number==100){ number=99.9999; }   //100% 同点Bug
+					var c=360*(number/100);
+					var hudu=(2*Math.PI/360)*c;
+					var x=54+Math.sin(hudu)*50;
+					var y=54-Math.cos(hudu)*50;
+					if(c<=180){               
+							var d=['M54,4 A50,50,0,0,1',x,y].join();
+					}else{                    
+							var d=['M54,4 A50,50,0,1,1',x,y].join();
+					}
+					var O=document.getElementById('arc');
+					O.setAttribute('d',d); 
+					//2.计算文本长度 %
+					if(number>=0&&number<=9){ 
+						var tViewLength=46;
+					}else if(number>=10&&number<=99){ 
+						var tViewLength=36;
+					}else{ 
+						var tViewLength=26;
+					}
+					var J=document.getElementById('weng');
+					J.setAttribute('x',tViewLength);
+				})();
+			]]></script>
+		</svg>
+		</div>
+		<div id='tzjdu' style='margin:0px;' >投标进度</div>
+</div> 
+</div>
+<div id="m_prolv"> 
+<div class="m_prosy"><span><% $recode[interest_rate] %></span> 收益率(%)</div> 
+<div class="m_prosy"><span><% $recode[borrow_duration] %></span> 期限(月)</div> 
+<div class="m_prosy"><span><% $recode[format_money] %></span> 借款总额(万)</div> 
+</div>
+ 
+<div class="m_sysj" Stime="<% $recode[remained_time] %>" ></div>
+
+<div id="m_xqlist">
+<div class="m_xqlistnav">
+<ul>
+<li><a href="/bond/detail?bid=<% $bid %>">产品详情</a></li>
+<li><a href="/bond/uinfo?bid=<% $bid %>">借款人信息</a></li>
+<li><a href="/bond/pact?bid=<% $bid %>">查看借款合同</a></li>
+<li><a href="/bond/detailpic?bid=<% $bid %>">抵押物信息</a></li> 
+<li><a href="/bond/safe">资产安全</a></li>
+<li><a href="/bond/invest?bid=<% $bid %>">标的投标记录</a></li>
+</ul>
+</div> 
+</div>
+
+<div class="<% $ButColor %>">
+    <a href='<% $href %>' ><% $Msgtag %></a>
+</div>  
+
+<div class="clear"></div> 
+<% include file="/public/foot.html" %>
+</div>
+</body>
+<script  type="text/javascript">
+//获取时间戳
+var timeStamp='<% $recode[remained_time] %>';
+var money_Able='<% $recode[format_moneyAble] %>';
+//初始化时间配置
+function B(){    
+	if(timeStamp<=0){
+		var init="招标已过期财来网";
+		 $('.m_sysj').html(init);
+	}
+
+	if(timeStamp>0&&timeStamp<=60){
+		var init="剩余时间:<span>--</span>天<span>--</span>小时<span>--</span>分<span>"+ timeStamp +"</span>秒";
+		 $('.m_sysj').html( init);
+	}
+	if(timeStamp>60&&timeStamp<=3600){
+		var f=parseInt(timeStamp/60);
+		var s=timeStamp%60;
+
+		var init="剩余时间:<span>--</span>天<span>--</span>小时<span>"+f+"</span>分<span>"+ s+"</span>秒";
+		$('.m_sysj').html( init);
+	}
+	if(timeStamp>3600&&timeStamp<=86400){
+		var t=parseInt(timeStamp/3600);
+		var f=parseInt((timeStamp%3600)/60);
+		var s=(timeStamp%3600)%60;
+		var init="剩余时间:<span>--</span>天<span>"+t+"</span>小时<span>"+f+"</span>分<span>"+ s+"</span>秒";
+		$('.m_sysj').html( init);
+	}
+	if(timeStamp>86400&&timeStamp<63072000){
+		var d=parseInt( timeStamp/86400  );
+		var t=parseInt((timeStamp%86400)/3600);
+		var f=parseInt(((timeStamp%86400)%3600)/60);
+		var s=(((timeStamp%86400)%3600)%60);
+		var init="剩余时间:<span>"+d+"</span>天<span>"+t+"</span>小时<span>"+f+"</span>分<span>"+ s+"</span>秒";
+		$('.m_sysj').html( init);
+	}
+   if(timeStamp>63072000){
+    	var d=parseInt( timeStamp/86400  );
+		var t=parseInt((timeStamp%86400)/3600);
+		var f=parseInt(((timeStamp%86400)%3600)/60);
+		var s=(((timeStamp%86400)%3600)%60);
+		var init="时间异常请确定";
+		$('.m_sysj').html( init);
+   } 
+   timeStamp=timeStamp-1;
+ }
+B();
+//定时器 
+ if(money_Able!=0){
+ 	 window.setInterval('B()',1000);
+ }else{
+ 	$('.m_sysj').html('已经结束');
+ }
+/*window.onload = function (){
+				var number=<% $recode[ratio] %>;
+				var canvas=document.getElementById('canvas');
+				var ctx   =canvas.getContext('2d');
+				var W = canvas.width;
+				var H = canvas.height;
+				ctx.fillStyle="#FF7200";
+				ctx.beginPath();
+			
+				ctx.lineWidth=4;
+
+				if(number!=0){
+					ctx.strokeStyle='#fff';
+					if(number>=100){ctx.strokeStyle='#fff';}
+					ctx.lineWidth=4;
+				ctx.arc(W/2,H/2,50,0,2*Math.PI*(number/100),false);
+				}else{
+					ctx.strokeStyle='#fff';
+					ctx.lineWidth=4;
+					//ctx.arc(W/2,H/2,50,0,2*Math.PI,false);
+				}
+				
+				ctx.stroke();	
+			
+
+				var cm=document.getElementById('m');
+				var cts=document.getElementById('ts');
+		
+			cm.style.top=getTop(canvas)+H/2+10+'px';
+			cm.style.left=getLeft(canvas)+W/2-30+'px';
+			cts.style.top=getTop(canvas)+H/2-25+'px';
+			cts.style.left=getLeft(canvas)+W/2-28+'px';
+			cm.style.display='block';
+			cts.style.display='block';
+			//获取元素的纵坐标 
+			function getTop(e){ 
+			var offset=e.offsetTop; 
+			if(e.offsetParent!=null) offset+=getTop(e.offsetParent); 
+			return offset; 
+			} 
+			//获取元素的横坐标 
+			function getLeft(e){ 
+			var offset=e.offsetLeft; 
+			if(e.offsetParent!=null) offset+=getLeft(e.offsetParent); 
+			return offset; 
+			} 
+
+}*/
+</script>
+</html>
+

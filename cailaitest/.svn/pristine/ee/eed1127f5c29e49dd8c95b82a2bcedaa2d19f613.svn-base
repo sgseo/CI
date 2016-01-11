@@ -1,0 +1,283 @@
+<?php
+// 全局设置
+class CapitalallAction extends ACommonAction
+{
+    /**
+    +----------------------------------------------------------
+    * 默认操作
+    +----------------------------------------------------------
+    */
+    public function index()
+    {
+		$map=array();
+		if(!empty($_REQUEST['start_time']) && !empty($_REQUEST['end_time'])){
+			$timespan = strtotime(urldecode($_REQUEST['start_time'])).",".strtotime(urldecode($_REQUEST['end_time']));
+			$map['add_time'] = array("between",$timespan);
+			$search['start_time'] = strtotime(urldecode($_REQUEST['start_time']));	
+			$search['end_time'] = strtotime(urldecode($_REQUEST['end_time']));	
+		}elseif(!empty($_REQUEST['start_time'])){
+			$xtime = strtotime(urldecode($_REQUEST['start_time']));
+			$map['add_time'] = array("gt",$xtime);
+			$search['start_time'] = $xtime;	
+		}elseif(!empty($_REQUEST['end_time'])){
+			$xtime = strtotime(urldecode($_REQUEST['end_time']));
+			$map['add_time'] = array("lt",$xtime);
+			$search['end_time'] = $xtime;	
+		}
+
+
+		$list = M("member_moneylog")->field('type,sum(affect_money) as money')->where($map)->group('type')->select();
+		$row=array();
+		$name = C('MONEY_LOG');
+		foreach($list as $v){
+			$row[$v['type']]['money']= ($v['money']>0)?$v['money']:$v['money']*(-1);
+			$row[$v['type']]['name']= $name[$v['type']];
+		}
+		$map['withdraw_status'] =2;
+		$tx = M('member_withdraw')->where($map)->sum("second_fee");
+		$row['tx']['name']= '提现手续费';
+		$row['tx']['money']= $tx;
+
+		
+		$add_time = $map['add_time'];
+		$map=array();
+		$map1['deadline'] = $add_time;
+		$map1['status'] = array("in","7,3,4,5");
+		$map2['deadline'] = $add_time;
+		$map2['status'] = array("in","3,4,5");
+		//逾期
+		$row['expired']['money'] = M('investor_detail')->where($map1)->sum('capital');
+		$row['expired']['re_money'] = M('investor_detail')->where($map2)->sum('capital');
+		//逾期
+		
+		//会员统计
+		$mm = M('members')->count("id");
+		$row['mm']['name']= '会员数';
+		$row['mm']['num']= $mm;
+
+		$ms_phone = M('members_status')->where("phone_status=1")->count("uid");
+		$ms_id = M('members_status')->where("id_status=1")->count("uid");
+		$ms_video = M('members_status')->where("video_status=1")->count("uid");
+		$ms_face = M('members_status')->where("face_status=1")->count("uid");
+		$ms_vip = M('members')->where("user_leve=1 AND time_limit>".time())->count("id");
+		$row['mm']['name']= '会员数';
+		$row['mm']['num']= $mm;
+		$row['mm']['ms_phone']= $ms_phone;
+		$row['mm']['ms_id']= $ms_id;
+		$row['mm']['ms_video']= $ms_video;
+		$row['mm']['ms_face']= $ms_face;
+		$row['mm']['ms_vip']= $ms_vip;
+		
+		$field = "sum(investor_capital) as investor_capital,sum(investor_interest) as investor_interest,sum(receive_capital) as receive_capital,sum(receive_interest) as receive_interest,sum(reward_money) as reward_money, sum(invest_fee) as invest_fee";
+		$transfer = M("transfer_borrow_investor")->field($field)->find();
+		
+		$this->assign("transfer", $transfer);
+		//会员统计
+		$this->assign("search",$search);
+		$this->assign('list',$row);
+        $this->display();
+    }
+
+        public function zwindex(){
+            if(!empty($_POST['start_time'])){           
+                $slavesTable = M("zwslaves_incentives")->field("id,rid,recommender,telephone")->select();
+                $memberTable = M("members m");
+                $huifuTable = M('huifulog h');
+                $borrowInvestorTable = M('borrow_investor bi');
+                $investorDetailTable = M('investor_detail di');
+//              $startTime = 1427817600;
+//                $endTime = 1430539199;
+                $startTime = strtotime($_POST['start_time']);
+                $endTime = strtotime($_POST['end_time']);
+                $pre = C('DB_PREFIX');
+                $fields = "m.id,m.user_name,m.reg_time,m.recommend_id,mi.uid,mi.real_name";
+                $data['cmdid'] = 'InitiativeTender';
+                $data['trxid'] = array('neq','');
+                $mfield = "m.id,m.user_name,m.reg_time,m.recommend_id,bi.add_time,bi.investor_capital,bi.id borrow_investor_id";
+
+                foreach($slavesTable as $skey=>$svalue){
+                            $investMoney = '';
+                            $investAllMoney = '';
+                    $membersInfos = array();
+                    $i = 0;
+                    //获得每个推荐人当月的所有投实名注册数
+                    $membersInfos = $memberTable->field($fields)->join("{$pre}member_info mi ON m.id = mi.uid ")->where("m.recommend_id={$svalue['rid']} AND mi.real_name !='' AND m.reg_time between {$startTime} AND {$endTime}")->select();
+                    $users[$skey]['id'] = $svalue['id'];
+                    $users[$skey]['recommender'] = $svalue['recommender'];
+                    //实名注册数
+                    $users[$skey]['register_number'] = count($membersInfos);           
+                    foreach($membersInfos as $zkey=>$zvalue){
+                        $data['addtime'] = array('between',array($startTime,$endTime));
+                        $data['uid'] = $zvalue['id'];   
+                        $data['investor_capital'] = array('egt',10000);
+                        $data['status'] = array('neq',0);
+                        $huiFuInfos = array();
+                        //根据推荐人 获得所有投资人
+                        $huiFuInfos = $huifuTable->field("h.addtime,h.cmdid,h.trxid,h.uid,bi.investor_capital")->join("{$pre}borrow_investor bi ON bi.investor_uid = h.uid ")->where($data)->select();
+                        if(!empty($huiFuInfos)){  
+                            $data['addtime'] = array('lt',$startTime); 
+                            unset($data['status']);
+                            unset($data['investor_capital']);
+                            $huiFuInfo = array();
+                            $huiFuInfo = $huifuTable->field("uid")->where($data)->select();
+                            if(!empty($huiFuInfo)){          
+                                continue;
+                            }else{                       
+                                     ++$i;    
+                                 }                     
+                            }
+                    }                  
+                    //根据推荐人获得当月所有投资人数 
+                    $investorMembersInfos = $memberTable->field($mfield)
+                    ->join("{$pre}borrow_investor bi ON bi.investor_uid = m.id ")
+                    ->where(" m.recommend_id={$svalue['rid']} AND bi.status!=0 AND bi.add_time between {$startTime} AND {$endTime}")->select();    
+                    //根据每个投资人获得他在这个月内的所有投资     $mfield = "m.id,m.user_name,m.reg_time,m.recommend_id,bi.add_time,bi.investor_capital borrow_investor_id"; 
+                    foreach($investorMembersInfos as $ikey=>$ivalue){
+                    $datadi['invest_id'] = $ivalue['borrow_investor_id'];
+                    $datadi['investor_uid'] = $ivalue['id'];
+                    $investorDetailInfo = $investorDetailTable->field("di.total")->where($datadi)->find();
+                    $investMoney += $ivalue['investor_capital'] * ($investorDetailInfo['total']/12);
+                    $investAllMoney += $ivalue['investor_capital'];        
+                    }                       
+                    //首次投标数
+                    $users[$skey]['first_invest'] = $i;
+                    $users[$skey]['investMoney'] = $investMoney;
+                    $users[$skey]['investAllMoney'] = $investAllMoney;
+                    }
+    //        echo "</br>";
+    //        print_r($users);
+    //        echo "</br>";
+    //        exit();
+                    $this->assign('recommenderInfo',$users);         
+        }
+         $this->display();
+     }   
+
+     public function test()
+     {      
+        //会员统计
+        $mm = M('members')->count("id"); //推荐人数
+        
+        $row['mm']['name']= '会员数';
+        $row['mm']['num']= $mm;
+
+        $ms_phone = M('members_status')->where("phone_status=1")->count("uid");
+        $ms_id = M('members_status')->where("id_status=1")->count("uid");//身份验证
+        $ms_video = M('members_status')->where("video_status=1")->count("uid");
+        $ms_face = M('members_status')->where("face_status=1")->count("uid");
+        $ms_vip = M('members')->where("user_leve=1 AND time_limit>".time())->count("id");
+        $row['mm']['name']= '会员数';
+        $row['mm']['num']= $mm;
+        $row['mm']['ms_phone']= $ms_phone;
+        $row['mm']['ms_id']= $ms_id;
+        $row['mm']['ms_video']= $ms_video;
+        $row['mm']['ms_face']= $ms_face;
+        $row['mm']['ms_vip']= $ms_vip;
+        //绑卡人数member_banks
+        $row['mm']['ms_mb']=M("member_banks")->count('uid');
+        //推荐人数
+      
+        $sql='select count(distinct recommend_id) as rid from lzh_members where recommend_id!=0 limit 1';
+         $res=M('members')->query($sql);
+        // $field = "sum(investor_capital) as investor_capital,sum(investor_interest) as investor_interest,sum(receive_capital) as receive_capital,sum(receive_interest) as receive_interest,sum(reward_money) as reward_money, sum(invest_fee) as invest_fee";
+        // $transfer = M("transfer_borrow_investor")->field($field)->find();
+         $row['mm']['ms_renum']=$res['0']['rid'];
+        // $this->assign("transfer", $transfer);
+        // //会员统计
+        // $this->assign("search",$search);
+        $this->assign('list',$row);
+        $this->display();
+     }
+
+     public function member()
+     {
+        $map['type']=array('in','3,29');
+        $map['m.user_type']='1';
+        //会员充值 提现
+        $list = M("member_moneylog as mm")->field('type,sum(affect_money) as money')->join('lzh_members as m on mm.uid=m.id','left')
+                ->where($map)->group('mm.type')->select();
+        //公司充值
+        $map['m.user_type']='2';
+         $list2 = M("member_moneylog as mm")->field('type,sum(affect_money) as money')->join('lzh_members as m on mm.uid=m.id','left')
+        ->where($map)->group('mm.type')->select();
+        $this->list=$list;
+        $this->list2=$list2;
+        $this->display();
+     }
+
+     public function loan()
+     {
+        $list = M("member_moneylog")->field('type,sum(affect_money) as money')->where($map)->group('type')->select();
+        $row=array();
+        $name = C('MONEY_LOG');
+        foreach($list as $v){
+            $row[$v['type']]['money']= ($v['money']>0)?$v['money']:$v['money']*(-1);
+            $row[$v['type']]['name']= $name[$v['type']];
+        }
+       //已还本金和利息
+        $bl=M('borrow_investor')->field('sum(id.receive_interest) as interest,sum(id.receive_capital) as capital')->join('lzh_investor_detail as id on id.borrow_id=lzh_borrow_investor.borrow_id','left')->where('lzh_borrow_investor.status=5')->select();
+         // echo M()->getLastSql().'<br/>';
+
+         // echo M()->getDbError();
+        // dump($bl);
+        $this->bl=$bl;
+        //会员统计
+        $this->assign("search",$search);
+        $this->assign('list',$row);
+        $this->display();
+     }
+
+      //网站收益
+     public function cast(){
+        //网站收益
+          $list = M("member_moneylog")->field('type,sum(affect_money) as money')->where($map)->group('type')->select();
+        $row=array();
+        $name = C('MONEY_LOG');
+        foreach($list as $v){
+            $row[$v['type']]['money']= ($v['money']>0)?$v['money']:$v['money']*(-1);
+            $row[$v['type']]['name']= $name[$v['type']];
+        }
+        //dump($row);
+        $total_fee=M('member_paylog')->sum('feeamt');//充值手续费
+        $total_ser=M('member_withdrawlog')->sum('servfee');//汇付提现手续费
+        $clfee=M('member_moneylog')->field('info')->where('type=29')->select();
+        //dump($clfee);
+        //
+
+        foreach ($clfee as $key => $value) {
+            foreach ($value as $k => $v) {
+                $ypos=stripos($v,'到');//到第一次出现的位置
+                $pos=stripos($v,'费');
+                $length=$ypos-$pos;
+                $pp[]=substr($v,$pos+3,$length-9);
+            }
+        }
+        $clfee=array_sum($pp);
+        //var_dump($clfee);
+        //echo M()->getLastSql();
+        $this->clfee=$clfee;
+        $this->feeamt=$total_fee;
+        $this->servfeeamt=$total_ser;
+        //dump($total_fee);
+        $this->assign('list',$row);
+        $this->display();
+     }
+
+     public function red()
+     {
+         //网站收益
+          $list = M("member_moneylog")->field('type,sum(affect_money) as money')->where($map)->group('type')->select();
+        $row=array();
+        $name = C('MONEY_LOG');
+        foreach($list as $v){
+            $row[$v['type']]['money']= ($v['money']>0)?$v['money']:$v['money']*(-1);
+            $row[$v['type']]['name']= $name[$v['type']];
+        }
+        //红包总额
+        $red=M('active_redpacket')->sum('facevalue');
+        $this->red=$red;
+        $this->assign('list',$row);
+        $this->display();
+     }
+}
+?>

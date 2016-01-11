@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<% include file="/public/head.html" %></head>
+
+<body> 
+<div id="m_base"> 
+<div class="m_zctitle"><i class='goBack'><?xml version="1.0" encoding="utf-8"?>
+<svg version="1.1" id="图形" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="25px" height="25px" viewBox="0 0 1024 1024" enable-background="new 0 0 1024 1024" xml:space="preserve">
+  <path id='back' fill="#000000" d="M874.690416 316.47523c0-11.2973-9.168824-20.466124-20.466124-20.466124l-604.773963 0 188.083679-188.083679c7.992021-7.992021 7.992021-20.947078 0-28.939099-4.001127-3.990894-9.240455-5.996574-14.46955-5.996574-5.239328 0-10.478655 1.995447-14.479783 5.996574l-223.00912 223.00912c-3.837398 3.837398-5.996574 9.046027-5.996574 14.46955 0 5.433756 2.159176 10.632151 5.996574 14.46955l223.019353 223.029586c7.992021 7.992021 20.957311 7.992021 28.949332 0 7.992021-8.002254 7.992021-20.957311 0-28.949332l-188.073446-188.073446 604.753497 0C865.521592 336.941354 874.690416 327.782763 874.690416 316.47523z" transform="translate(0, 812) scale(1, -1)"/>
+</svg></i>提现</div> 
+<form action="/consumer/withdrawals" method='POST' id="mf">
+    <input type="hidden" name="m"/>
+</form>
+<div class="m_goumai">提现金额  <input value="请输入提现金额" type="text"   class='clrtext format imoney' /></div>
+<div class="clear"></div>
+
+<div class="m_text_h"><img src="/statics/images/4.png" alt=""><span>账户资金由央行授权汇付天下托管</span></div>
+<p align="center" id="infoMsg"></p>
+<p align="center" style="color:#666; font-size:14px;">提现手续费为提现金额的千分之三,该费用由汇付天下收取</p>
+   
+ 
+<div class="m_goumaibut"><a>提现</a></div>
+
+ 
+</div>
+<% include file="/public/init.html" %></head>
+<script type="text/javascript">
+
+//格式化输入的文字
+$(document).ready(function(){
+      $(".format").blur(
+            function (){
+               if( volidateNum(this,'#infoMsg')){
+                this.value=this.value.toString().asCurrency();
+                $('.m_goumaibut').bind('click',sub);
+            }
+      });
+        function sub(){
+        if(isNaN(window.money)){
+                $('#infoMsg').html('亲,可能是填写金额不合法哟！ ^_^');
+                $('#infoMsg').css('color','red');
+             }else{
+               var mf=document.getElementById('mf');
+                mf.elements['m'].value=window.money;
+                mf.submit(); 
+             }
+        }
+        window.sub=sub;
+});
+
+
+</script>
+<script type="text/javascript" src="/statics/js/init.js"></script>
+</body>
+</html>

@@ -1,0 +1,383 @@
+<include file="Public:_header_common" />
+<title>{$glo.index_title}</title>
+<meta http-equiv="keywords" content="{$glo.web_keywords}" />
+<meta http-equiv="description" content="{$glo.web_descript}" />
+<link rel="stylesheet" href="__ROOT__/Style/H/css/yijinshunrong.css" />
+<script  type="text/javascript" src="__ROOT__/Style/H/js/backtotop.js"></script>
+<script  type="text/javascript" src="__ROOT__/Style/H/js/index.js"></script>
+<script type="text/javascript" src="__ROOT__/Style/H/js/common.js" language="javascript"></script>
+<script type="text/javascript" src="__ROOT__/Style/H/js/jquery.kinMaxShow-1.0.min.js"></script>
+<include file="Public:_header_main" />
+<tagLib name="htmlA" />
+
+<script type="text/javascript">
+var Transfer_invest_url = "__APP__/tinvest";
+</script>
+<script type="text/javascript">
+function LoginSubmit() {
+	$.jBox.tip("登陆中......",'loading');
+	$.ajax({
+		url: "__APP__/member/common/actlogin",
+		data: {"sUserName": $("#uname").val(),"sPassword": $("#upass").val(),"sVerCode": $("#vcode").val(),"Keep":$("#loginstate").val()},
+		timeout: 5000,
+		cache: false,
+		type: "post",
+		dataType: "json",
+		success: function (d, s, r) {
+			if(d){
+				if(d.status==0){
+					$.jBox.tip(d.message,"tip");	
+				}else{
+					window.location.href="/";
+				}
+			}
+		}
+	});
+}
+
+function jfun_dogetpass(){
+	var ux = $("#emailname").val();
+	if(ux==""){
+		$.jBox.tip('请输入用户名或者邮箱','tip');
+		return;
+	}
+	$.jBox.tip("邮件发送中......","loading");
+	$.ajax({
+		url: "__APP__/member/common/dogetpass/",
+		data: {"u":ux},
+		//timeout: 5000,
+		cache: false,
+		type: "post",
+		dataType: "json",
+		success: function (d, s, r) {
+			if(d){
+				if(d.status==1){
+					$.jBox.tip("发送成功，请去邮箱查收",'success');
+					$.jBox.close(true);
+				}else{
+					$.jBox.tip("发送失败，请重试",'fail');
+				}
+			}
+		}
+	});
+
+}
+
+function getPassWord() {
+	$.jBox("get:__APP__/member/common/getpassword/", {
+		title: "找回密码",
+		width: "auto",
+		buttons: {'发送邮件':'jfun_dogetpass()','关闭': true }
+	});   
+}
+
+</script>
+<script type="text/javascript">
+$(function(){
+	
+	$("#kinMaxShow").kinMaxShow({
+			//设置焦点图高度(单位:像素) 必须设置 否则使用默认值 500
+			height:330,
+			//设置焦点图 按钮效果
+			button:{
+			    //设置按钮上面不显示数字索引(默认也是不显示索引)
+                            showIndex:false,
+			    //按钮常规下 样式设置 ，css写法，类似jQuery的 $('xxx').css({key:value,……})中css写法。            
+			    //【友情提示：可以设置透明度哦 不用区分浏览器 统一为 opacity，CSS3属性也支持哦 如：设置按钮圆角、投影等，只不过IE8及以下不支持】            
+                            normal:{background:'url(/Style/H/__ROOT__/Style/H/images1/button.png) no-repeat -15px 0',marginRight:'8px',border:'0',right:'44%',bottom:'20px'},
+                            //当前焦点图按钮样式 设置，写法同上
+                            focus:{background:'url(/Style/H/__ROOT__/Style/H/images1/button.png) no-repeat 0 0',border:'0'}
+			},
+			//焦点图切换回调，每张图片淡入、淡出都会调用。并且传入2个参数(index,action)。index 当前图片索引 0为第一张图片，action 切入 或是 切出 值:fadeIn或fadeOut
+			//函数内 this指向 当前图片容器对象 可用来操作里面元素。本例中的焦点图动画主要就是靠callback实现的。
+			callback:function(index,action){
+				switch(index){
+					case 0 :
+							if(action=='fadeIn'){
+								$(this).find('.sub_1_1').animate({left:'70px'},600)
+								$(this).find('.sub_1_2').animate({top:'60px'},600)
+								
+							}else{
+								$(this).find('.sub_1_1').animate({left:'110px'},600)
+								$(this).find('.sub_1_2').animate({top:'120px'},600)
+								
+							};
+							break;
+							
+					case 1 :
+							if(action=='fadeIn'){
+								$(this).find('.sub_2_1').animate({left:'-100px'},600)
+								$(this).find('.sub_2_2').animate({top:'60px'},600)
+							}else{
+								$(this).find('.sub_2_1').animate({left:'-160px'},600)	
+								$(this).find('.sub_2_2').animate({top:'20px'},600)
+							};
+							break;
+							
+					case 2 :
+							if(action=='fadeIn'){
+								$(this).find('.sub_3_1').animate({right:'350px'},600)
+								$(this).find('.sub_3_2').animate({left:'180px'},600)
+							}else{
+								$(this).find('.sub_3_1').animate({right:'180px'},600)	
+								$(this).find('.sub_3_2').animate({left:'30px'},600)
+							};
+							break;	
+				}
+			}
+		});
+});
+
+</script>
+<script type="text/javascript">
+var url = window.location.href;
+if(url)var allargs = url.split("?")[1];
+if(allargs)var tab1= allargs.split("=")[1];
+if(tab1)var tab= tab1.split("&")[0];
+
+$(function(){ 
+    if(tab==9){
+        $('#a1').addClass("show_style");
+    }
+    if(tab==4){
+        $('#a2').addClass("show_style");
+        $('#a1').removeClass("show_style");
+    }
+    if(tab==6){
+        $('#a3').addClass("show_style");
+        $('#a1').removeClass("show_style");
+    };
+    if(tab==7){
+        $('#a4').addClass("show_style");
+        $('#a1').removeClass("show_style");
+    };
+    if(tab==10){
+        $('#a5').addClass("show_style");
+        $('#a1').removeClass("show_style");
+        $('#black').attr('style','display:block');
+        $('#con').attr('style','display:none');
+    };
+});
+
+</script>
+<script type="text/javascript">
+function buy_debt(invest_id)
+{
+    $.jBox("get:__URL__/buydebt?invest_id="+invest_id, {
+        title: "购买债权",
+        width: "auto",
+        buttons: {}
+    });
+}
+</script>
+
+<div class="bodyer">
+
+<div class="list_main main">
+   <div class="list_main_top">
+    <div class="wleft">
+      <h3 class="title_03"><p style="width:120px;height:42px;background-color:#cc3333; margin-top:0;padding-left:0;font-size:20px;color:#fff;text-align:center;line-height:42px;">企业直投</p></h3>
+    </div>
+  </div>
+  <style>
+  .touzibox td{text-align:left;}
+  </style>                        
+  <volist name="listTBorrow.list" id="vb">
+	  <table class="touzibox">
+				<tr>
+					<td rowspan="4" style="width:270px;">
+					<div class="biao_tu">
+						<if condition="$vb.topic eq ''">
+							<a href="/tinvest/{$vb.id}.html"title="{$vb.borrow_name}" class="BL_name">
+								<img width="224" height="146" src="__ROOT__/Style/H/images1/logotu.png" border="0" class="picborder"/>
+							</a>
+						<else/>
+							<a href="/tinvest/{$vb.id}.html"title="{$vb.borrow_name}" class="BL_name">
+								<img width="224" height="146" src="__ROOT__/{$vb.topic}" border="0" class="picborder"/>
+							</a>
+						</if>
+					</div>
+					</td>
+					<th colspan="3"><a href="/tinvest/{$vb.id}.html"title="{$vb.borrow_name}" class="BL_name">{$vb.borrow_name|cnsubstr=###,12}</a></th>                        
+	                   <td rowspan="4"> 
+						<if condition="$vb.borrow_status eq 3"> <a href="javascript:;"><img class="anNiuYLB" src="__ROOT__/Style/H/images/touM.gif" /></a>
+						<elseif condition="$vb.borrow_status eq 4"/>
+						<a href="javascript:;"><img class="anNiuDDFS" src="__ROOT__/Style/H/images/touM.gif" /></a>
+						<elseif condition="$vb.borrow_status eq 6"/>
+						<a href="javascript:;"><img  class="anNiuHKZ" src="__ROOT__/Style/H/images/touM.gif"  /></a>
+						<elseif condition="$vb.borrow_status gt 6"/>
+						<a href="/tinvest/{$vb.id}.html"><img class="anNiuYWC" src="__ROOT__/Style/H/images/touM.gif"  /></a>
+						<else/>
+						<a href="/tinvest/{$vb.id}.html"><img class="anNiuTB" src="__ROOT__/Style/H/images/touM.gif" /></a> </if>
+					</td>
+				</tr>
+				<tr>
+					<td>借款金额：<font color="#9d1f1f">{$vb.borrow_money|getMoneyFormt=###}元</font></td>
+					<td>年化利率：<font color="#9d1f1f">{$vb.borrow_interest_rate}%</font></td>
+					<td>还款日期：{$vb.deadline}</td>
+				</tr>
+				<tr>
+					<td>借款期限：{$vb.borrow_duration}个月</td>
+					<td>信用等级：{$vb.credits|getLeveIco=###,2}</td>
+					<td>还需金额：{$vb.need|getMoneyFormt=###}元</td>
+				</tr>
+				<tr>
+					<td colspan="2">担保公司：{$vb.danbao}</td>
+					<td>借款进度：<span class="progress"> <span class="precent" style="width:{$vb.progress}%"></span> </span>&nbsp;{$vb.progress}%</td>
+				</tr>
+			</table>
+			<div style="border-bottom:1px dotted #cbcbcb"></div>
+	  </volist>
+	   <div class="list_main_top">
+    <div class="wleft">
+      <h3 class="title_03"><p style="width:120px;height:42px;background-color:#cc3333; margin-top:0;padding-left:0;font-size:20px;color:#fff;text-align:center;line-height:42px;">散标投资</p></h3>
+    </div>
+  </div>
+	 <volist name="listBorrow.list" id="vb">
+  <table class="touzibox">
+				<tr>
+					<td rowspan="4" style="width:262px;"><div class="biao_tu">
+					<if condition="$vo.b_img eq ''">
+					<a href="{$vb.id|getInvestUrl=###}"title="{$vb.borrow_name}" class="BL_name"><img width="224" height="146" src="__ROOT__/Style/H/images1/logotu.png" border="0" class="picborder"/></a>
+					<else/>
+					<a href="{$vb.id|getInvestUrl=###}"title="{$vb.borrow_name}" class="BL_name"><img width="224" height="146" src="__ROOT__/{$vb.b_img}" border="0" class="picborder"/></a>
+					</if></div></td>
+					<th colspan="3"><a href="{$vb.id|getInvestUrl=###}"title="{$vb.borrow_name}" class="BL_name">{$vb.borrow_name|cnsubstr=###,12}</a></th>                        
+                    <td rowspan="4" align="right"> 
+						<if condition="$vb.borrow_status eq 3"> <a href="javascript:;"><img class="anNiuYLB" src="__ROOT__/Style/H/images/touM.gif" /></a>
+						<elseif condition="$vb.borrow_status eq 4"/>
+						<a href="javascript:;"><img class="anNiuDDFS" src="__ROOT__/Style/H/images/touM.gif" /></a>
+						<elseif condition="$vb.borrow_status eq 6"/>
+						<a href="javascript:;"><img  class="anNiuHKZ" src="__ROOT__/Style/H/images/touM.gif"  /></a>
+						<elseif condition="$vb.borrow_status gt 6"/>
+						<a href="{$vb.id|getInvestUrl=###}"><img class="anNiuYWC" src="__ROOT__/Style/H/images/touM.gif"  /></a>
+						<else/>
+						<a href="{$vb.id|getInvestUrl=###}"><img class="anNiuTB" src="__ROOT__/Style/H/images/touM.gif" /></a> </if>
+					</td>
+				</tr>
+				<tr>
+					<td>借款金额：<font color="#9d1f1f">{$vb.borrow_money|getMoneyFormt=###}元</font></td>
+					<td>年化利率：<font color="#9d1f1f">{$vb.borrow_interest_rate}%</font></td>
+					<td>还款日期：{$vb.deadline|date="Y-m-d",###}</td>
+				</tr>
+				<tr>
+					<td>借款期限：{$vb.borrow_duration}个月</td>
+					<td>信用等级：{$vb.credits|getLeveIco=###,2}</td>
+					<td>还需金额：{$vb['transfer_total']*$vb['per_transfer']-$vb['transfer_out']*$vb['per_transfer']|getMoneyFormt=###}元</td>
+				</tr>
+				<tr>
+					<td colspan="2">担保公司：{$vb.danbao}</td>
+					<td>借款进度：<span class="progress"> <span class="precent" style="width:{$vb.progress}%"></span> </span>&nbsp;{$vb.progress}%</td>
+				</tr>
+			</table>
+				<div style="border-bottom:1px dotted #cbcbcb"></div>
+		</volist>
+		
+		<div class="list_main_top">
+    <div class="wleft">
+      <h3 class="title_03"><p style="width:120px;height:42px;background-color:#cc3333; margin-top:0;padding-left:0;font-size:20px;color:#fff;text-align:center;line-height:42px;">债权转让</p></h3>
+    </div>
+  </div>
+    
+     <table border="0" style="padding:0 5px;">
+            <tr class="diyige borrowlistl">
+            <td width="286" align="center">借款标题</td>
+            <td class="dengji" width="124">信用等级</td>
+            <td class="dengji" width="124">借款利率</td>
+            <td class="dengji" width="100">转让价格</td>
+            <td class="dengji" width="100">待收本息</td>
+            <td class="dengji jindu" width="120">转让期数/总期数</td>
+            <td class="dengji" width="160">状态</td>
+          </tr>
+ <script type="text/javascript">
+					function buy_debt(invest_id)
+					{
+					    $.jBox("get:__URL__/buydebt?invest_id="+invest_id, {
+					        title: "购买债权",
+					        width: "auto",
+					        buttons: {}
+					    });
+					}
+				</script>
+ <volist name="list.data" id="vb">
+	    <tr height="80" class="borrowlist borrowlistl <if condition="($key+1)%10 eq 0">delline</if>">
+	    <td width="286" align="left" style="text-align:left;">&nbsp;&nbsp;{:getIco($vb)}<a href="{$vb.id|getInvestUrl=###}"title="{$vb.borrow_name}" class="BL_name">{$vb.borrow_name|cnsubstr=###,12}</a></td>
+	    <td class="dengji" width="124">{$vb.credits|getLeveIco=###,2}</td>
+	    <td class="dengji" width="124"><span class="BL_time">{$vb.borrow_interest_rate}</span>&nbsp;%</td>
+	    <td class="dengji" width="100"><span class="BL_time">{$vb.transfer_price|default=0}</span>&nbsp;元</td>
+	    <td class="dengji" width="100"><span class="BL_time">￥{$vb.money|default=0}</span>&nbsp;元</td>
+	    <td class="dengji jindu" width="100"> <span class="BL_time">{$vb.period}</span>期/<span class="BL_time">{$vb.total_period}</span>期
+</td>
+	    <td class="dengji" width="160">
+        
+        <if condition="$vb.status eq '2'"> <a href="javascript:;" onclick="buy_debt('{$vb.invest_id}')">
+								<img class="anNiuTB"  src="__ROOT__/Style/H/images/status/touM.gif" /></a>
+                            <elseif condition="$vb.status eq '4'"/>
+                            	<img  class="anNiuHKZ"  src="__ROOT__/Style/H/images/status/touM.gif"  /> 
+                        </if>
+                    
+                  <input id="hid{$vo.debt_id}" type="hidden" value="{$vo['valid']-time()}" />
+			  <script type="text/javascript">
+                var seconds{$vo.debt_id};
+                var timer{$vo.debt_id}=null;
+                function setLeftTime{$vo.debt_id}() {
+                    seconds{$vo.debt_id} = parseInt($("#hid{$vo.debt_id}").val(), 10);
+                    timer{$vo.debt_id} = setInterval(showSeconds{$vo.debt_id},1000);
+                }
+                
+                function showSeconds{$vo.debt_id}() {
+                    var day1{$vo.debt_id} = Math.floor(seconds{$vo.debt_id} / (60 * 60 * 24));
+                    var hour{$vo.debt_id} = Math.floor((seconds{$vo.debt_id} - day1{$vo.debt_id} * 24 * 60 * 60) / 3600);
+                    var minute{$vo.debt_id} = Math.floor((seconds{$vo.debt_id} - day1{$vo.debt_id} * 24 * 60 * 60 - hour{$vo.debt_id} * 3600) / 60);
+                    var second{$vo.debt_id} = Math.floor(seconds{$vo.debt_id} - day1{$vo.debt_id} * 24 * 60 * 60 - hour{$vo.debt_id} * 3600 - minute{$vo.debt_id} * 60);
+                    
+                    $("#loan_time{$vo.debt_id}").html(day1{$vo.debt_id} + " 天 " + hour{$vo.debt_id} + " 小时 " + minute{$vo.debt_id} + " 分 " + second{$vo.debt_id} + " 秒");
+                    
+                    seconds{$vo.debt_id}--;
+                    if(seconds{$vo.debt_id}==0){
+                       $("#endtime{$vo.debt_id}").html("已结束");
+                       $("#buy_button").html('<img  class="anNiuHKZ" src="__ROOT__/Style/H/images/ywc.gif"  />'); 
+                    }
+                }                
+                setLeftTime{$vo.debt_id}();
+            </script>
+
+</td>
+		
+	  </tr>
+         </volist>  </table> 
+    
+ 
+</div>
+</div>
+<div class="list_bottom">
+  <div class="list_bottom_right">
+    <ul>
+      {$list.page}
+    </ul>
+  </div>
+</div>
+  <script language="javascript">
+									$(function() {
+										$(".borrowlistp").bind("mouseover", function(){
+											$(this).css("background", "#fce8e1");
+										})
+
+										$(".borrowlistp").bind("mouseout", function(){
+											$(this).css("background", "#fff");
+										})
+
+
+										$(".borrowlistl").bind("mouseover", function(){
+											$(this).css("background", "#f8f8f8");
+										})
+
+										$(".borrowlistl").bind("mouseout", function(){
+											$(this).css("background", "#fff");
+										})
+									});
+				
+								</script>
+								
+<!--中部结束-->
+<include file="Public:_footer" />

@@ -1,0 +1,108 @@
+<?php
+namespace Home\Controller;
+use Think\Controller;
+ header("content-type:text/html;charset=utf8");
+ class UserController extends Controller
+ {
+ 	/*
+ 	用户管理-默认
+ 	time:20150707
+ 	by lj
+ 	*/
+ 	public function index()
+ 	{
+         $house=M('house');
+        //$status=I('get.status');
+        // if($status)
+        // {
+        //     $condition['status']=$status;
+        // }else{
+        //     $condition='1=1';
+        // }
+        $condition['status']=6;
+        $list=$house->where($condition)->select();
+        //echo M()->_sql();
+        $this->list=$list;
+        $this->display();
+ 	}
+    /**
+     * 贷后管理首页--
+     */
+    public function loanreturn()
+    {
+       $id=I('get.id',0);
+       $house=M('house');
+       $list=$house->find($id);
+       $this->list=$list;
+       $this->display();
+    }
+ 	/*
+ 	用户管理-添加
+ 	time:20150707
+ 	by lj
+ 	*/
+ 	public function add()
+ 	{
+ 		$this->show();
+ 	}
+ 	/*
+ 	用户管理-编辑
+ 	time:20150707
+ 	by lj
+ 	*/
+ 	public function eidt()
+ 	{
+ 		$this->show();
+ 	}
+    /**
+     * 贷后管理
+     */
+    public function save()
+    {
+        $data['hid']=I('post.id',0);//贷款id
+        $data['title']=I('post.title',0);
+        $data['cstname']=I('post.cstname',0);
+        $data['idno']=I('post.idno',0);
+        $data['tel']=I('post.tel',0);
+        $data['borrowamt']=I('post.borrowamt',0);
+        $data['duration']=I('post.duration',0);
+        $data['rate']=I('post.rate',0);
+        $data['category']=I('post.category',0);
+        $data['repayamt']=I('post.repayamt',0);
+        $data['repaytime']=I('post.repaytime',0);
+        $data['repaytype']=I('post.repaytype',0);
+        $data['add_time']=time();
+        $res=M('repay')->add($data);
+        if($res)
+        {
+            $op=array();
+            $op['opname']=session('username');
+            $op['optime']=time();
+            $op['opdata']=serialize($data);
+            $op['opip']=ip2long($_SERVER['REMOTE_ADDR']);
+            $op['optip']=$op['opname']."给项目id为：".$data['hid']."还款";
+            M('dts')->add($op);
+
+           $this->success('数据处理成功');
+        }else{
+            $this->error('数据处理失败');
+        }
+        
+     }
+
+     public function logop()
+     {
+        $opname=I('post.opname',0);
+        if($opname)
+        {
+            $condition['opname']=$opname;
+        }else{
+            $condition='1=1';
+        }
+        $list=M('dts')->where($condition)->select();
+        $this->empty="<td>暂时没有数据</td>";
+        $this->list=$list;
+        $this->display();
+     }
+
+ }//eof class 

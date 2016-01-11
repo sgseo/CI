@@ -1,0 +1,145 @@
+<script type="text/javascript">var bankimg = "__ROOT__/Style/M/";</script>
+<script type="text/javascript">var Himg = "__ROOT__/Style/H/";</script>
+<script type="text/javascript" src="__ROOT__/Style/M/js/recharge.js"></script>
+<style type="text/css">
+.dv_header_8 { background-image: url(); }
+.dv_account_0 { margin-top: 10px; }
+
+
+.cz dl{line-height: 200%;margin-bottom: 12px;}
+.cz dt{width: 160px;text-align: right; display: inline-block;}
+.cz dd{display: inline-block;}
+.cz dd input{width: 120px; 
+	border: 1px solid #D4D4D4;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+	color: #555555;
+    display: inline-block;
+    font-family: Tahoma,"微软雅黑","宋体";
+    font-size: 14px;
+    height: 20px;
+    line-height: 20px;
+    padding: 9px 6px; vertical-align: middle;
+}
+
+.submit{background: url("/Style/M/images/bank/fukan.jpg") repeat scroll 0 0 transparent;
+    border: 0 none;
+    cursor: pointer;
+    height: 28px;
+    width: 124px;
+    color: #FFFFFF;
+	font-family: Tahoma,微软雅黑,宋体;
+}
+.submit:hover {
+    background-position: 0 -28px;
+}
+
+
+</style>
+<!--资金输入-->
+<div class="cz" style="width: 705px;margin: 10px 0 10px 35px;padding: 8px 13px 8px 12px; border:1px #E9E8E7 solid;">
+	<form action="__URL__/pay" method="post">
+	<dl>
+		<dt style="float:left;">账户余额：</dt>
+		<dd style="width:500px;"><span style="color: Red;font-size: 24px;font-weight: bold;">{$account_money.account_money|default="0.00"}</span>&nbsp;&nbsp;元&nbsp;</dd>
+	</dl>
+	<dl>
+		<dt style="float:left;">充值金额：</dt>
+		<dd style="width:500px;"><input type="text" name="money" class="input_money" value="0.00"  id="t_money"  onblur="testAmount();">&nbsp;&nbsp;元&nbsp;&nbsp;<span class="rtu"></span></dd>
+		<dt style="float:left;">大写金额:</dt><dd style="width:500px; height:20px;"><span id="d_money_3"></span></dd>
+	</dl>
+	<dl>
+		<div style="text-align:center; width: 61%;">
+		<input class="submit" id="bank_submit" type="submit" value="">
+		</div>
+	</dl>
+	</form>
+    
+	
+	<script type="text/javascript">
+
+
+
+        //充值金额
+        $('.input_money').click(function(){
+            $('.rtu').html("<img style='margin:2px;' src='/Style/H/images/zhuce1.gif'/>&nbsp;请输入正确的金额，最小充值金额50元。");
+            return false;
+        });
+
+        $('.input_money').blur(function(){
+            BlurMoney();
+        });
+
+        function BlurMoney() {
+            var pat = /^[0-9]*(\.[0-9]{1,2})?$/;
+            var str = $('.input_money').val();
+
+            if (str == "") {
+                $('.rtu').html("<img style='margin:2px;' src='/Style/H/images/zhuce2.gif'/>&nbsp;输入的金额不能为空！");
+                return false;
+            }
+
+            // var m = parseInt(str);
+            var m = parseFloat(str);
+            // alert(m);
+
+            if (m < 50) {
+                $('.rtu').html("<img style='margin:2px;' src='/Style/H/images/zhuce2.gif'/>&nbsp;最低充值金额为50元！");
+                return false;
+            }
+
+            if (pat.test(str)) {
+                $('.rtu').html("<img style='margin:2px;' src='/Style/H/images/zhuce3.gif'/>&nbsp;");
+                return true;
+            }else {
+                $('.rtu').html("<img style='margin:2px;' src='/Style/H/images/zhuce2.gif'/>&nbsp;请输入正确的金额，小数点后最多2位数。");
+                return false;
+            }
+        }
+	</script>
+<script type="text/javascript" src="__ROOT__/Style/M/js/amounttochinese.js" language="javascript"></script>
+<script type="text/javascript">
+$(function() {
+	//$("#btnSendMsg").click(sendSMS);
+	$("#t_money").bind("keyup", function() {
+		$this = $(this);
+		$this.val($this.val().toString().replace(/[^(\d|\.)]+/, ""));
+	});
+	$("#t_money").focus(function() {
+		$("#d_money_3").css("display", "none");
+	});
+});
+function testAmount() {
+	
+	var testreuslt = true;
+
+	if (testreuslt) {
+		showChineseAmount();
+	}
+	return testreuslt;
+}
+
+function showChineseAmount() {
+	var regamount = /^(([1-9]{1}[0-9]{0,})|([0-9]{1,}\.[0-9]{1,2}))$/;
+	var reg = new RegExp(regamount);
+	if (reg.test($("#t_money").val())) {
+		var amstr = $("#t_money").val();
+		var leng = amstr.toString().split('.').length;
+		if (leng == 1) {
+			$("#t_money").val($("#t_money").val() + ".00");
+		}
+		$("#d_money_3").html(Arabia_to_Chinese($("#t_money").val()));
+		$("#d_money_3").css("display", "");
+		$("#d_money_3").css("color", "red");
+		$("#d_money_3").removeClass("reg_wrong");
+		
+	}
+	else {
+		$("#d_money_3").html("");
+	}
+}
+</script>
+</div>
+
+<div style="text-align:left; margin:auto; width:710px; margin-top:10px; color:#999; line-height:180%; ">
+<img style="float:left; display:inline;" src="__ROOT__/Style/M/images/minilogo.gif" alt=""><span style="float:left; display:inline; width:690px;">&nbsp;在您使用以上各家银行充值之前，请注意各个银行的支付金额的上限。<br/>具体各个银行的支付限额请参阅：<a style="text-decoration:underline;" target="_blank" href="/public/bank.html">各银行的网上银行支付限额总表</a>。</span>
+</div>

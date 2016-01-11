@@ -1,0 +1,588 @@
+<?php
+// 本类由系统自动生成，仅供测试用途
+class IndexAction extends HCommonAction {
+	
+	public function queryaccts()
+	{
+		import("ORG.Huifu.Huifu");
+		$huifu = new Huifu();
+		$res = $huifu->queryAccts();
+		echo "<pre>";print_r($res);echo "</pre>";exit;
+	}
+
+
+	public function card()
+	{
+		$merCustId = '6000060000758826';
+		$usrCustId = $_GET['usrCustId'] ? $_GET['usrCustId'] : '6000060019340536' ;
+		$usrCustId = '6000060000888124' ;
+		import("ORG.Huifu.Huifu");
+		$huifu = new Huifu();
+		$res = $huifu->zwqueryCardInfo($merCustId,$usrCustId,'');
+                echo "<pre>";print_r($res);echo "</pre>";
+	}
+
+	public function duizhang()
+	{
+		$usrid = isset($_GET['usrid']) ? $_GET['usrid'] : "6000060023304729";
+		$debug = $_REQUEST['debug']?$_REQUEST['debug']:'';
+		import("ORG.Huifu.Huifu");
+		$huifu = new Huifu();
+		$res = $huifu->queryBalanceBg($usrid);
+		if($debug!=''){
+			echo "<pre>";print_r($res);echo "</pre>";
+		}else{
+             echo json_encode($res);
+		}
+	}
+	
+	public function transstat()
+	{
+		$ordid = "201411141525192877";
+		$orddate = "20141114";
+		$querytype = "R";
+		
+		$ordid = "201502051323266408";
+		$orddate = "20150205";
+		$querytype = "C";
+
+		import("ORG.Huifu.Huifu");
+		$huifu = new Huifu();
+		$res = $huifu->queryTransStat($ordid,$orddate,$querytype);
+		echo "<pre>";print_r($res);echo "</pre>";exit;
+	}
+	//获取我的当前月的 总投资
+	public function test()
+	{	
+		//当前月的第一天和最后一天
+		$firstday=strtotime(date('Y-m-01 0:0:0'));
+		$endday = strtotime(date('Y-m-01 0:0:0',strtotime("+1 month")));
+		//查询这一个月的投资总额
+		$res=M("borrow_investor")->field("sum(investor_capital) as ic")->where("add_time>=".$firstday." and add_time<".$endday." and investor_uid=".$this->uid)->find();
+		//当前年月
+		$year=date('Y');
+		$cmonth=date('n');
+		//英文缩写
+		$month=array(jan,feb,mar,apr,may,jun,july,aug,sep,otm,nov,dec);
+		array_unshift($res,$cmonth);
+
+		$data['year']=$year;
+		$data[$month[$cmonth-1]]=$month['ic']?$month['ic']:0;
+		//数据更新
+
+		$save=M("month_detail")->where('user_id='.$this->uid)->save($data);
+	}
+	public function trf()
+	{
+		$begindate = "20150204";
+		$enddate = "20150205";
+		$pagenum = 1;
+		$pagesize = 20;
+		import("ORG.Huifu.Huifu");
+		$huifu = new Huifu();
+		$res = $huifu->trfReconciliation($begindate,$enddate,$pagenum,$pagesize);
+		echo "<pre>";print_r($res);echo "</pre>";exit;
+	}
+	
+	public function reconciliation()
+	{
+		$begindate = "20150205";
+		$enddate = "20150205";
+		$pagenum = 1;
+		$pagesize = 20;
+		//$querytype = "REPAYMENT";
+		$querytype = "R";
+		import("ORG.Huifu.Huifu");
+		$huifu = new Huifu();
+		$res = $huifu->reconciliation($begindate,$enddate,$pagenum,$pagesize,$querytype);
+		echo "<pre>";print_r($res);echo "</pre>";exit;
+	}
+	
+	public function cash()
+	{
+		$begindate = "20150205";
+		$enddate = "20150205";
+		$pagenum = 1;
+		$pagesize = 20;
+		import("ORG.Huifu.Huifu");
+		$huifu = new Huifu();
+		$res = $huifu->cashReconciliation($begindate,$enddate,$pagenum,$pagesize);
+		echo "<pre>";print_r($res);echo "</pre>";exit;
+	}
+	
+	public function save()
+	{
+		$begindate = "20150205";
+		$enddate = "20150205";
+		$pagenum = 1;
+		$pagesize = 20;
+		import("ORG.Huifu.Huifu");
+		$huifu = new Huifu();
+		$res = $huifu->saveReconciliation($begindate,$enddate,$pagenum,$pagesize);
+		echo "<pre>";print_r($res);echo "</pre>";exit;
+	}
+	
+	public function usrunfreeze()
+	{
+		$trxid = "201409290000201925";
+		import("ORG.Huifu.Huifu");
+		$huifu = new Huifu();
+		$huifu->usrUnFreeze($trxid);
+	}
+	
+    public function index()
+	{	 
+		//访问首页跳转到https
+		if($_SERVER['SERVER_PORT'] != '443'){
+			header('HTTP/1.1 301 Moved Permanently');
+			//$request_uri = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '';
+			//header('Location: https://www.cailai.com' . $_SERVER['PHP_SELF']  . $request_uri);
+			header('Location: https://www.cailai.com/');
+		 }
+		$per = C('DB_PREFIX');
+	        $Bconfig = require C("APP_ROOT")."Conf/borrow_config.php";
+		
+		//网站公告
+		$parm['type_id'] = 9;
+		$parm['limit'] =7;
+		$this->assign("noticeList",getArticleList($parm));
+		//网站公告
+    
+		//统计
+		//////一鸣惊人开始结束
+		// $transaction_volume = M("borrow_investor")->sum("investor_capital");
+		// $transaction_number = M("borrow_investor")->count();
+		// $investor_profit = M("borrow_investor")->sum("investor_interest");
+	
+		// $this->assign("transaction_volume", $transaction_volume);//成交总额
+		// $this->assign("transaction_number", $transaction_number);//成交笔数
+		// $this->assign("investor_profit", $investor_profit);//为客户赚取收益
+
+		//统计 2015 07 22		
+		$statictis=M('home_tongji')->find();
+		
+		$this->statictis=$statictis;
+
+		//投资达人列表
+
+		$daren = M("amount_top")->select();
+
+		$this->daren =$daren;
+
+		//echo "<pre/>";var_dump($daren);die;
+	
+		///////////////债权转让开始  gwf 2014-10-21//////////////
+		
+		
+		$map = array();
+		$map['d.status']=array("in","2,4");
+		$parm = array();
+		$parm['map'] = $map;
+		D("DebtBehavior");
+		$Debt = new DebtBehavior();
+		$lists = $Debt->listAll($parm ,3, true);
+		$this->assign("lists", $lists);
+		
+		///////////////债权转让结束  gwf 2014-10-21//////////////
+                //新手标开始
+    $newmatch = array();
+    $newmatch['b.borrow_status']=array("in",'2,4,6,7');
+    $newmatch['b.is_tuijian']=array("in",'0,1');
+    $newmatch['b.is_new']=array("eq",1);
+    $parm=array();
+    $parm['map'] = $newmatch;  
+    $parm['limit'] = 1;
+    $parm['orderby']="b.id DESC";
+    $listBorrowNew = getNewBorrowList($parm);
+    $this->assign("newList",$listBorrowNew);
+                	
+	//正在进行的贷款
+    $searchMap = array();
+    $searchMap['b.borrow_status']=array("in",'2,4,6,7');
+    $searchMap['b.is_tuijian']=array("in",'0,1');
+    $searchMap['b.borrow_type'] = array("neq",9);
+    $searchMap['b.is_new'] = array("eq",0);
+    $parm=array();
+    $parm['map'] = $searchMap;
+    $parm['limit'] = 10;
+    //$parm['orderby']="b.borrow_status ASC,b.id DESC";
+    $listBorrow = getBorrowList($parm);
+	//dump($listBorrow);die;
+    $this->assign("listBorrow",$listBorrow);
+
+		///////////////企业直投推荐开始  gwf 2014-10-21//////////////
+	
+		$parm = array();
+		$searchMap = array();
+		$parm['limit'] =1;
+		$parm['map'] = $searchMap;
+		$parm['orderby'] = "bi.is_tuijian desc,bi.id desc";
+		$listTBorrowa = getTBorrowList($parm);
+		$this->assign("listTBorrowa",$listTBorrowa);
+	 
+		///////////////企业直投推荐开始  gwf 2014-10-21//////////////	 	
+	
+		///////////////企业直投列表开始  gwf 2014-10-21//////////////
+		$parm = array();
+		$searchMap = array();
+		$searchMap['bi.borrow_status'] = array('neq','3');
+		$searchMap['bi.borrow_type'] = array("eq","9");
+		$parm['map'] = $searchMap;
+		$parm['limit'] = 4;
+		$parm['orderby'] = "bi.id DESC,bi.borrow_status ASC";
+		$listTBorrow = getTBorrowList($parm);
+	//dump($listTBorrow);die;
+		$this->assign("listTBorrow",$listTBorrow);
+		///////////////企业直投列表结束  gwf 2014-10-21//////////////
+    
+		$this->display();
+	
+
+	
+    /****************************募集期内标未满,自动流标 新增 2013-03-13****************************/
+    //流标返回
+    $mapT = array();
+    $mapT['collect_time']=array("lt",time());
+    $mapT['borrow_status'] = 2;
+    $tlist = M("borrow_info")->field("id,borrow_uid,borrow_type,borrow_money,first_verify_time,borrow_interest_rate,borrow_duration,repayment_type,collect_day,collect_time")->where($mapT)->select();
+    if(empty($tlist)) exit;
+    foreach($tlist as $key=>$vbx){
+    $borrow_id=$vbx['id'];
+    //流标
+    $done = false;
+    $borrowInvestor = D('borrow_investor');
+    $binfo = M("borrow_info")->field("borrow_type,borrow_money,borrow_uid,borrow_duration,repayment_type")->find($borrow_id);
+    $investorList = $borrowInvestor->field('id,investor_uid,investor_capital')->where("borrow_id={$borrow_id}")->select();
+    M('investor_detail')->where("borrow_id={$borrow_id}")->delete();
+    if($binfo['borrow_type']==1) $limit_credit = memberLimitLog($binfo['borrow_uid'],12,($binfo['borrow_money']),$info="{$binfo['id']}号标流标");//返回额度
+    $borrowInvestor->startTrans();
+    
+    $bstatus = 3;
+    $upborrow_info = M('borrow_info')->where("id={$borrow_id}")->setField("borrow_status",$bstatus);
+    //处理借款概要
+    $buname = M('members')->getFieldById($binfo['borrow_uid'],'user_name');
+    //处理借款概要
+    if(is_array($investorList)){
+    $upsummary_res = M('borrow_investor')->where("borrow_id={$borrow_id}")->setField("status",$type);
+    foreach($investorList as $v){
+    MTip('chk15',$v['investor_uid']);//sss
+    $accountMoney_investor = M("member_money")->field(true)->find($v['investor_uid']);
+    $datamoney_x['uid'] = $v['investor_uid'];
+    $datamoney_x['type'] = ($type==3)?16:8;
+    $datamoney_x['affect_money'] = $v['investor_capital'];
+    $datamoney_x['account_money'] = ($accountMoney_investor['account_money'] + $datamoney_x['affect_money']);//投标不成功返回充值资金池
+    $datamoney_x['collect_money'] = $accountMoney_investor['money_collect'];
+    $datamoney_x['freeze_money'] = $accountMoney_investor['money_freeze'] - $datamoney_x['affect_money'];
+    $datamoney_x['back_money'] = $accountMoney_investor['back_money'];
+    
+    //会员帐户
+    $mmoney_x['money_freeze']=$datamoney_x['freeze_money'];
+    $mmoney_x['money_collect']=$datamoney_x['collect_money'];
+    $mmoney_x['account_money']=$datamoney_x['account_money'];
+    $mmoney_x['back_money']=$datamoney_x['back_money'];
+    
+    //会员帐户
+    $_xstr = ($type==3)?"复审未通过":"募集期内标未满,流标";
+    $datamoney_x['info'] = "第{$borrow_id}号标".$_xstr."，返回冻结资金";
+    $datamoney_x['add_time'] = time();
+    $datamoney_x['add_ip'] = get_client_ip();
+    $datamoney_x['target_uid'] = $binfo['borrow_uid'];
+    $datamoney_x['target_uname'] = $buname;
+    $moneynewid_x = M('member_moneylog')->add($datamoney_x);
+    if($moneynewid_x) $bxid = M('member_money')->where("uid={$datamoney_x['uid']}")->save($mmoney_x);
+    }
+    }else{
+    $moneynewid_x = true;
+    $bxid=true;
+    $upsummary_res=true;
+    }
+    
+    if($moneynewid_x && $upsummary_res && $bxid && $upborrow_info){
+    $done=true;
+    $borrowInvestor->commit();
+    }else{
+    $borrowInvestor->rollback();
+    }
+    if(!$done) continue;
+    
+    
+    MTip('chk11',$vbx['borrow_uid'],$borrow_id);
+    $verify_info['borrow_id'] = $borrow_id;
+    $verify_info['deal_info_2'] = text($_POST['deal_info_2']);
+    $verify_info['deal_user_2'] = 0;
+    $verify_info['deal_time_2'] = time();
+    $verify_info['deal_status_2'] = 3;
+    if($vbx['first_verify_time']>0) M('borrow_verify')->save($verify_info);
+    else  M('borrow_verify')->add($verify_info);
+    
+    $vss = M("members")->field("user_phone,user_name")->where("id = {$vbx['borrow_uid']}")->find();
+    SMStip("refuse",$vss['user_phone'],array("#USERANEM#","ID"),array($vss['user_name'],$verify_info['borrow_id']));
+    //@SMStip("refuse",$vss['user_phone'],array("#USERANEM#","ID"),array($vss['user_name'],$verify_info['borrow_id']));
+    //updateBinfo
+    $newBinfo=array();
+    $newBinfo['id'] = $borrow_id;
+    $newBinfo['borrow_status'] = 3;
+    $newBinfo['second_verify_time'] = time();
+    $x = M("borrow_info")->save($newBinfo);
+    }
+    /****************************募集期内标未满,自动流标 新增 2013-03-13****************************/
+	
+    
+    }
+	/**
+        * 购买债权提示框
+        * 
+        */
+        public function buydebt()
+        {
+			if(!$this->uid)  ajaxmsg("请先登陆",0);
+            $invest_id = intval($_REQUEST['invest_id']);
+            !$invest_id && ajaxmsg(L('参数错误'),0);
+            $debt = M("invest_detb")->field("transfer_price, money")->where("invest_id={$invest_id}")->find();
+            $buy_user = M("member_money")->field("account_money, back_money")->where("uid={$this->uid}")->find();
+            $account =  $buy_user['account_money'] + $buy_user['back_money'];
+            
+            $this->assign('debt', $debt);
+            $this->assign('account', $account);
+            $this->assign('invest_id', $invest_id);
+            $d['content'] = $this->fetch();
+            echo json_encode($d);
+            
+        }
+        
+        /**
+        * 确认购买
+        * 流程： 检测购买条件
+        * 购买
+        */
+        public function buy()
+        {
+            $paypass = strval($_REQUEST['paypass']);
+            $invest_id = intval($_REQUEST['invest_id']);
+            
+            D("DebtBehavior");
+            $Debt = new DebtBehavior($this->uid);
+            // 检测是否可以购买  密码是否正确，余额是否充足
+            //$result = $Debt->buy($paypass, $invest_id);
+			$result = $Debt->buy($invest_id);
+
+            if($result === 'TRUE'){
+                ajaxmsg('购买成功');
+            }else{
+                ajaxmsg($result, 1);
+            }
+        }
+        
+
+
+      /**
+	 * 提前一天提醒
+     * 1、在每期还款期限前3天，检查借款人账号，是否有足够的余额，如果余额不足，则短信提醒借款人充值
+     * 2、借款人余额不足的情况下，同时还需要通知网站的业务员（目前暂定为22 u_group_id）
+     * 每天晚上10点检查
+     * add by zh 0319 
+     */
+    public function repaymentCron()
+    {
+		//今明2天的情况
+		$pre = 'lzh_';
+		$startDay = $_GET['start_time'] ? strtotime($_GET['start_time']) : strtotime(date('Y-m-d 00:00:00',time()));
+    	$endDay = $_GET['end_time'] ? strtotime($_GET['end_time']) : strtotime(date('Y-m-d 23:59:59',($startDay+1.0*24*3600)));
+		
+		$field = 'b.id,b.borrow_name,d.sort_order,mi.real_name,mi.cell_phone,mm.account_money,mm.back_money,sum(d.capital+d.interest) AS repayment_money,d.deadline';       
+        $list = M('investor_detail d')->field($field)->join("{$pre}member_info mi ON d.borrow_uid=mi.uid")->join("{$pre}borrow_info b ON d.borrow_id=b.id")
+        ->join("{$pre}member_money mm ON d.borrow_uid=mm.uid")->where("(d.repayment_time=0 AND d.deadline>".$startDay." AND d.deadline<=".$endDay." AND d.status=7 ) OR (d.status=6 AND d.repayment_time=0 AND d.deadline<= {$endDay} )")->group('d.borrow_id')->order("d.deadline,b.id")->select();
+		
+		file_put_contents('/tmp/repaymentCron',date('m-d H:i:s')."sql ".print_r(M('investor_detail d')->getLastSql(),true)."\n",FILE_APPEND);
+		file_put_contents('/tmp/repaymentCron',date('m-d H:i:s')."list ".print_r($list,true)."\n",FILE_APPEND);
+		
+		
+		if(is_array($list) && count($list)){	
+			
+			$day_flag = '';
+			$today = array();$tomorrow = array();
+			$today_result = array();$tomorrow_result = array();
+			//分为今天和明天
+			foreach($list as $k=>$v){
+				$deadDay = date('Y-m-d',$v['deadline']);
+				$dateMsg =  $deadDay == date('Y-m-d') ? '今天' : $deadDay ;
+				if($dateMsg=='今天'){
+					$today[] = $v;
+				}else{
+					$tomorrow[] = $v;
+					$day_flag = $dateMsg;
+				}
+			}
+			//按照人合并数据
+			if(is_array($today)){
+				foreach($today as $k=>$v){
+					$flag = 0;
+					foreach($today_result as $i=>$j){					
+						if($v['cell_phone']==$j['cell_phone'])
+							$flag = 1;						
+					}
+					if($flag==0){
+						$today_result[] = $today[$k];
+						foreach($today_result as $i=>$j){					
+							if($v['cell_phone']==$j['cell_phone']){
+								$today_result[$i]['message'] = "第{$v['id']}号标第{$v['sort_order']}期{$v['repayment_money']},";
+								$today_result[$i]['num'] = 1;
+							}					
+						}
+					}else{
+						foreach($today_result as $i=>$j){					
+							if($v['cell_phone']==$j['cell_phone']){
+								$today_result[$i]['repayment_money']+=$v['repayment_money'];
+								$today_result[$i]['message'].= "第{$v['id']}号标第{$v['sort_order']}期{$v['repayment_money']},";
+								$today_result[$i]['num']+=1;
+							}					
+						}
+					}
+				}
+				//拼接数据
+				$result = "";$num = "";$sum = "";$cztx = "";//充值提醒
+				foreach($today_result as $k=>$v){
+					$sum += $v['repayment_money'];		
+					$accountamt = $v['account_money']+$v['back_money'];
+					$message = substr($v['message'],0,strlen($v['message'])-1);
+					$result .= "{$v['real_name']}{$v['cell_phone']}余额{$accountamt},需还{$v['repayment_money']}元({$message});";
+					$num += $v['num'];
+					if($v['repayment_money']>$accountamt)
+						$cztx = "【充值提醒】";
+				}			
+				$result_today = "{$cztx}今天共有{$num}笔共{$sum}元还款:{$result}";
+			}
+			if(is_array($tomorrow)){
+				foreach($tomorrow as $k=>$v){
+					$flag = 0;
+					foreach($tomorrow_result as $i=>$j){					
+						if($v['cell_phone']==$j['cell_phone'])
+							$flag = 1;						
+					}
+					if($flag==0){
+						$tomorrow_result[] = $tomorrow[$k];
+						foreach($tomorrow_result as $i=>$j){					
+							if($v['cell_phone']==$j['cell_phone']){
+								$tomorrow_result[$i]['message'] = "第{$v['id']}号标第{$v['sort_order']}期{$v['repayment_money']},";
+								$tomorrow_result[$i]['num'] = 1;
+							}					
+						}
+					}else{
+						foreach($tomorrow_result as $i=>$j){					
+							if($v['cell_phone']==$j['cell_phone']){
+								$tomorrow_result[$i]['repayment_money']+=$v['repayment_money'];
+								$tomorrow_result[$i]['message'].= "第{$v['id']}号标第{$v['sort_order']}期{$v['repayment_money']},";
+								$tomorrow_result[$i]['num']+=1;
+							}					
+						}
+					}
+				}
+				//拼接数据
+				$result = "";$num = "";$sum = "";$cztx = "";//充值提醒
+				foreach($tomorrow_result as $k=>$v){
+					$sum += $v['repayment_money'];		
+					$accountamt = $v['account_money']+$v['back_money'];
+					$message = substr($v['message'],0,strlen($v['message'])-1);
+					$result .= "{$v['real_name']}{$v['cell_phone']}余额{$accountamt},需还{$v['repayment_money']}元({$message});";
+					$num += $v['num'];
+					if($v['repayment_money']>$accountamt)
+						$cztx = "【充值提醒】";
+				}			
+				$result_tommorrow = "{$cztx}{$day_flag}共有{$num}笔共{$sum}元还款:{$result}";
+			}
+			
+			if(!empty($today)){
+				file_put_contents('/tmp/repaymentCron',date('m-d H:i:s')."content ".print_r($result_today,true)."\n",FILE_APPEND);
+				sendsms(text('13818164082'),$result_today);
+			}
+			if(!empty($tomorrow)){
+				file_put_contents('/tmp/repaymentCron',date('m-d H:i:s')."content ".print_r($result_tommorrow,true)."\n",FILE_APPEND);
+				sendsms(text('13818164082'),$result_tommorrow);
+			}
+			
+		}
+    }
+
+
+
+	/**
+	 * 当天提醒
+     * 1、在每期还款期限前3天，检查借款人账号，是否有足够的余额，如果余额不足，则短信提醒借款人充值
+     * 2、借款人余额不足的情况下，同时还需要通知网站的业务员（目前暂定为22 u_group_id）
+     * 每天晚上10点检查
+     * add by zh 0319 
+     */
+    public function repaymentCronToday()
+    {
+    	$startDay=time();//3 days ago
+    	$endDay=$startDay+1.0*24*3600;//3 days ago    	
+    	$pre = C('DB_PREFIX');
+    	$field = "mm.account_money,mm.back_money,sum(d.capital+d.interest) as transamt,m.user_phone,b.borrow_uid";
+    	$list =M('investor_detail d')->distinct(true)->field($field)->join("{$pre}borrow_info b ON b.id=d.borrow_id")->join("{$pre}members m ON m.id=b.borrow_uid")->join("{$pre}member_money mm ON mm.uid=b.borrow_uid")->where("b.borrow_status=6 AND d.repayment_time=0 AND d.deadline>".$startDay." AND d.deadline<".$endDay)->group('d.borrow_uid,d.sort_order')->select();
+    	//$kefu=M('ausers')->distinct(true)->field('phone')->where('u_group_id=22')->find();
+		 file_put_contents('/tmp/repaymentCron',date('m-d H:i:s')."sql ".print_r(M('investor_detail d')->getLastSql(),true)."\n",FILE_APPEND);
+		// file_put_contents('/tmp/repaymentCron',date('m-d H:i:s')."list ".print_r($list,true)."\n",FILE_APPEND);
+    	foreach($list as $key=>$v)
+    	{
+			$transamt = $v['transamt'];//应还金额
+			$accountamt=$v['account_money']+$v['back_money'];//账户余额
+			if($transamt>$accountamt)
+			{
+				$borrow_user_infor = M('member_info')->field('real_name')->where("uid =".$v['borrow_uid'])->select();
+
+				$end = date('Y-m-d',$startDay);
+				$msg='截止到今日你账户余额为'.$accountamt.'元，'.$end.'您将累计还款'.$transamt.'元，请充值！';
+				//sendsms(text($v['user_phone']),$msg);
+				
+				$msgKefu='手机号'.$v["user_phone"].'【'.$borrow_user_infor[0]["real_name"].'】截止到今日账户余额为'.$accountamt.'元，'.$end.'(今天)将累计还款'.$transamt.'元，请提醒客户充值！';
+				sendsms(text('13818164082'),$msgKefu);
+				sendsms(text('15921558862'),$msgKefu);
+				sendsms(text('15000091668'),$msgKefu);
+			}
+		}
+    }
+
+     /**
+     * 3、在到还款期限时，以自动扣款方式进行还款。目前的系统只能由借款者手动触发还款操作
+     * 每天晚上11点55分自动还款
+     * add by zh 0319 
+     */
+    public function autorepaymentCron()
+    {
+    	$startDay=time();
+    	$endDay=$startDay+1.0*24*3600;//1 day ;endDay>deadline
+   	
+    	$pre = C('DB_PREFIX');
+    	$field = "d.borrow_id,d.borrow_uid,d.sort_order,sum(d.capital+d.interest) as transamt,m.user_phone";
+    	$list =M('investor_detail d')->distinct(true)->field($field)->join("{$pre}borrow_info b ON b.id=d.borrow_id")->join("{$pre}members m ON m.id=b.borrow_uid")->where("b.borrow_status=6 AND d.repayment_time=0 AND d.deadline>".$startDay." AND d.deadline<".$endDay)->group('d.borrow_id,d.sort_order')->select();
+    	$kefu=M('ausers')->distinct(true)->field('phone')->where('u_group_id=22')->find();
+		 file_put_contents('/tmp/autorepaymentCron',date('m-d H:i:s')."sql ".print_r(M('investor_detail d')->getLastSql(),true)."\n",FILE_APPEND);
+
+		file_put_contents('/tmp/autorepaymentCron',date('m-d H:i:s')."list ".print_r($list,true)."\n",FILE_APPEND);
+    	foreach($list as $key=>$v)
+    	{
+			$transamt = $v['transamt'];//应还金额
+			$account = M('member_money')->field('account_money,back_money')->where("uid=".$v['borrow_uid'])->find();
+			$accountamt = $account['account_money']+$account['back_money'];//账户余额
+			
+			if($transamt>$accountamt)
+			{
+				$msg='您今日将对标号为'.$v["borrow_id"].'的第'.$v["sort_order"].'期还款'.$transamt.'元。目前账户余额为'.$accountamt.'元'.'，余额不足无法自动还款，请充值！';
+				//echo text($v['user_phone']).$msg;
+				sendsms(text($v['user_phone']),$msg);
+				
+				$msgKefu='手机号'.$v['user_phone'].'今日将对标号为'.$v['borrow_id'].'第'.$v['sort_order'].'期还款'.$transamt.'元。目前账户余额为'.$accountamt.'元'.'，余额不足无法自动还款！';
+				sendsms(text($kefu['phone']),$msgKefu);
+			}
+			else
+			{
+				file_put_contents('/tmp/autorepaymentCron',date('m-d H:i:s')."v ".print_r($v,true)."\n",FILE_APPEND);
+				//自动还款
+				borrowRepayment($v['borrow_id'],$v['sort_order']);				
+			}
+			sleep(2);
+		}
+    }
+
+  }
+	

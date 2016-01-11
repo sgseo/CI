@@ -1,0 +1,50 @@
+<include file="Public:_header" />
+<script type="text/javascript" src="__ROOT__/Style/My97DatePicker/WdatePicker.js" language="javascript"></script>
+<tagLib name="htmlA" />
+<div class="so_main">
+  <div class="page_tit">取现对账</div>
+<form name="sdf" id="sdf" action="__URL__/querycash" method="post">
+  <htmlA:timer id="start_time" tip='' arg="{maxDate:'#F{$dp.$D(\\\\'end_time\\\\')||\\\\'2020-10-01\\\\'}',dateFmt:'yyyy-MM-dd HH:mm:ss',alwaysUseStartDate:true}"  class="Wdate" value="{$search.start_time|mydate='Y-m-d H:i:s',###}"/>
+  <htmlA:timer id="end_time" tip='' arg="{minDate:'#F{$dp.$D(\\\\'start_time\\\\')}',maxDate:'2020-10-01',dateFmt:'yyyy-MM-dd HH:mm:ss',alwaysUseStartDate:true}" class="Wdate" value="{$search.end_time|mydate='Y-m-d H:i:s',###}"/>
+  <input type="submit" value="查询">
+  </form>
+  <span>总条数：<span><span>{$totalitems}</span>
+  <div class="Toolbar_inbox" style="height:26px;">
+  	<div class="page right">{$pagebar}</div>
+  </div>
+  
+  <div class="list">
+  <table id="area_list" width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <!--<th class="line_l">ID</th>-->
+    <th class="line_l">订单号</th>
+    <th class="line_l">取款人客户号</th>
+	<th class="line_l">银行卡号</th>
+    <th class="line_l">取现金额</th>
+    <th class="line_l">取现状态</th>
+    <th class="line_l">汇付交易日期</th>
+    <th class="line_l">汇付交易流水</th>
+	<th class="line_l">手续费金额</th>
+  </tr>
+  <volist id="vo" name="list">
+      <tr overstyle='on' id="list_{$vo.id}">
+        <!--<td><input type="checkbox" name="checkbox" id="checkbox2" onclick="checkon(this)" value="{$vo.id}"></td>-->
+        <td>{$vo.OrdId}</td>
+        <td>{$vo.UsrCustId}</td>
+		<td>{$vo.CardId}</td>
+        <td>{$vo.TransAmt}元</td>
+        <td>{$vo.TransStat}</td>
+        <td>{$vo.PnrDate}</td>
+        <td>{$vo.PnrSeqId}</td>
+		<td>{$vo.ServFee|default=0.00}元</td>
+      </tr>
+  </volist>
+  </table>
+
+  </div>
+  
+  <div class="Toolbar_inbox" style="height:26px;">
+  	<div class="page right">{$pagebar}</div>
+  </div>
+</div>
+<include file="Public:_footer" />

@@ -1,0 +1,10 @@
+<div id="m_menu">
+<ul>
+<li class="home" ><a  href="/index/home">精选推荐</a></li>
+<li class="pro"><a href="/bond/list">产品列表</a></li>
+<li class="zichan"><a href="/consumer/personmoney">我的资产</a></li> 
+<li class="more"><a href="/index/more">更多</a></li> 
+</ul>
+<div style='display:none'><img src="/statics/images/mume/dqpoint1.png" style='display:none'><img src="/statics/images/mume/dqpoint3.png" style='display:none'><img src="/statics/images/mume/dqpoint2.png" style='display:none'><img src="/statics/images/mume/dqpoint4.png" style='display:none'> </div>
+</div>
+<script type="text/javascript" src="/statics/js/init.js"></script>

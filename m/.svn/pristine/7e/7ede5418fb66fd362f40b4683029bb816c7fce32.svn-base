@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<% include file="/public/head.html" %></head>
+
+<body> 
+<div id="m_base">
+<div class="m_zctitle">我的投标</div> 
+<div class="m_jxbd">
+<ul>
+<li><a href="/consumer/tending" class="dqbd">进行中的标</a></li>
+<li><a href="/consumer/tendbacking">回收中的标</a></li>
+</ul>
+</div>
+<div class="clear"></div>
+<%foreach from=$d value=val %>
+<div class="m_wdjk"> 
+<div class="m_tjtitle"><span>借款标号</span>  <i> <% $val[bid] %> </i></div>
+<div class="m_tjtitle"><span>借款标名称</span>  <i> <% $val[bname] %> </i></div>
+<div class="m_tjtitle"><span>借款人姓名</span>  <i><% $val[borrow_uname] %></i></div>
+<div class="m_tjtitle"><span>投资金额</span>  <i><% $val[invest_money] %></i></div> 
+<div class="m_tjtitle"><span>已还本息</span>  <i><% $val[repayment_money] %></i></div> 
+<div class="m_tjtitle"><span>年利率</span>  <i calss='a'><% $val[borrow_interest_rate] %>%</i></div>
+<div class="m_tjtitle"><span>总共期限</span>  <i><% $val[total_periods] %></i></div>
+<div class="m_tjtitle"><span>已还期数</span>  <i><% $val[payed_periods] %></i></div>
+<div class="m_tjtitle"><span>下一期还款时间</span>  <i><% $val[next_pay_date] %></i></div>
+</div>  
+<%/foreach%>
+<script>
+	$('.a').each(function (){
+	//	if(!isNaN(Number(this.innerHTML) ) ){
+	//		this.innerHTML=this.innerHTML+'%';
+	//	}});
+console.log('ss');
+</script>
+</div>
+</body>
+</html>

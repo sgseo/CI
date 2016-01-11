@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <link href="__PUBLIC__/bootstrap-datetimepicker/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="__PUBLIC__/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Css/bootstrap-responsive.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Css/style.css" />
+     <script type="text/javascript" src="__PUBLIC__/Js/jquery.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Js/amounttochinese.js"></script>
+   <link rel="stylesheet" type="text/css" href="__PUBLIC__/webuploader015/webuploader.css">
+<!--引入JS-->
+    <script type="text/javascript" src="__PUBLIC__/webuploader015/webuploader.js"></script>
+   <!-- 时间插件 -->
+    <script type="text/javascript" src="__PUBLIC__/bootstrap-datetimepicker/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="__PUBLIC__/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.fr.js" charset="UTF-8">
+    </script>
+    <!-- 时间插件结束 -->
+    <script type="text/javascript" src="__PUBLIC__/Js/bootstrap.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Js/ckform.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Js/common.js"></script>
+
+    <style type="text/css">
+        body {
+            padding-bottom: 40px;
+        }
+        .sidebar-nav {
+            padding: 9px 0;
+        }
+
+        @media (max-width: 980px) {
+            /* Enable use of floated navbar text */
+            .navbar-text.pull-right {
+                float: none;
+                padding-left: 5px;
+                padding-right: 5px;
+            }
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="table table-bordered table-hover definewidth m10" style='margin:auto auto'>
+      <!-- 还款计划 -->
+     <div class="form-inline definewidth m20" id='001'>还款计划 &there4;</div>
+<table class="table table-bordered table-hover definewidth m10" >
+    <thead>
+    <tr>
+     
+        <th>标号</th>
+        <th>计划日期</th>
+        <th>计划还款(元)</th>
+        <th>实际还款(元)</th>
+        <th>实还时间</th>
+        <th>当前期数</th>
+        <th>还款方式</th>
+        <th>财来操作人</th>
+        <th>操作时间</th>
+        <th>其他核对人</th>
+        <th>核对时间</th>
+        <th>还款凭证</th>
+    </tr>
+    </thead>
+    <volist  name='rplist' id='vo' key='k' >
+       <if condition='$vo.cursort eq 1'><tr><td colspan='13'>这是第{$vo.nci}次放款的计划</td></tr></if>
+       <tr>
+            <td>{$vo.cursort}</td>
+            <td>{$vo.shouldtime}</td>
+            <td>{$vo.shouldrepay}</td>
+            <td>{$vo.realrepay}</td>
+            <td><neq name='vo.donetime' value='0000-00-00'>{$vo.donetime}</neq></td>
+            <td>{$vo.cursort}</td>
+            <td><?php
+            if($vo['repaytype']==1)
+            {
+                echo "银行转账";
+            }else if($vo['repaytype']==2)
+            {
+                echo "现金还款";
+            }else if($vo['repaytype']==3){
+                echo "其他";
+            }else{
+                
+            }
+            ?></td>
+            <td>{$vo.operator}</td>
+            <td><neq name='vo.operatetime' value='0000-00-00 00:00:00'>{$vo.operatetime}</neq></td>
+            <td>{$vo.operator2}</td>
+            <td><neq name='vo.operator2time' value='0000-00-00 00:00:00'>{$vo.operator2time}</neq></td>
+            <td><neq name='vo.path' value=''><img src="/Uploads/{$vo.path}" width='40em' height='30em' class='scale' title='点击图片进行放大'/></neq></td>
+        </tr>
+    </volist>
+    </table>
+     <!-- 我的个人信息结束 -->
+     <div class='page' >
+          {$pager}
+    </div>
+  </div>
+  <!-- 计划结束 -->
+    <div class="form-inline definewidth m20" id='001' style='color:red'>请一次操作一笔还款 &there4;</div>
+<div class='every' style='width:100%;height:680px;margin:50px 0px;'>
+    <?php
+    for($i=1;$i<=$totaltimes;$i++){
+    ?>
+    <div style='float:left;width:350px;height:680px;margin-left:80px;'>
+      <div>这是第{$i}次还款</div>
+       <!-- 项目录入 -->
+         <if condition='$list.$i.shouldrepay eq 0'>2{$list.$i.shouldrepay}111</if>
+     
+        <form  class="m10" action="__URL__/save" method="post" enctype="multipart/form-data" >
+        <!-- 基础文档模型 -->
+            <div class="controls">
+               借款编号&nbsp;<input type="text" class="text input-large" name="id" value="{$list.$i.id}"  readonly='readonly'></br>
+               <input type="hidden" name='respid' value="{$list.$i.respid}">
+               借款标题&nbsp;<input type="text" class="text input-large" name="title" value="{$list.$i.title}"  readonly='readonly'></br>
+               客户姓名&nbsp;<input type="text" class="text input-large" name="cstname" value="{$list.$i.cstname}"  readonly='readonly'></br>
+               身份证号&nbsp;<input type="text" class="text input-large" name="idno" value="{$list.$i.idno}"  readonly='readonly'></br>
+               手机号码&nbsp;<input type="text" class="text input-large" name="tel" value="{$list.$i.tel}"  readonly='readonly'></br>
+               贷款金额&nbsp;<input type="text" class="text input-large" name="borrowamt" value="{$list.$i.borrowamt}" readonly='readonly'></br>
+               贷款期限&nbsp;<input type="text" class="text input-large" name="duration" value="{$list.$i.duration}" readonly='readonly'></br>
+               贷款利率&nbsp;<input type="text" class="text input-large" name="rate" value="{$list.$i.rate}" readonly='readonly'></br>
+               贷款抵押&nbsp;<input type="text" class="text input-large" name="category" value="{$list.$i.category}" readonly='readonly'></br>
+               当前次数&nbsp;<input type="text" class="text input-large" name="nci" value="{$list.$i.nci}" readonly='readonly' ></br>
+               当前期数&nbsp;<input type="text" class="text input-large" name="cursort" value="{$list.$i.cursort}" readonly='readonly' ></br>
+               应还金额&nbsp;<input type="text" class="text input-large" name="shouldrepay" value="{$list.$i.shouldrepay}" readonly='readonly'>（元）</br>
+               已还金额&nbsp;<input type='text' class='text input-large'  value='{$list.$i.realrepay}' readonly='readonly'/>（元）</br>
+               应还日期&nbsp;<input type="text" class="text input-large time" name="shouldtime" value="{$list.$i.shouldtime}" readonly='readonly'></br>
+               实还金额&nbsp;<input type="text" class="text input-large" name="realrepay"  onblur="num2ch(this.value,this.name+{$i})">（元）
+               <span id='realrepay{$i}' style='color:red;display:none;'></span>
+             </br>
+               实还时间&nbsp;<input type="date" class="text input-large " name="donetime"  value="{$time}" ></br>
+               还款方式&nbsp;<select class="text input-large time" name='repaytype'>
+                 <option  value='1'>银行转账</option>
+                 <option  value='2'>现金还款</option>
+                 <option  value='3'>其他</option>
+               </select>
+             </br>
+                 还款凭证&nbsp;<input type="file"  name='pic1'>
+            </div>
+              <p><button class="btn btn-large btn-primary btn btn-default" type="submit">确 定</button></p>
+    </form>
+
+</div>
+      <?php
+       }
+    ?>
+</div>
+<!-- every eof -->
+</body>
+</html>
+<script type="text/javascript">
+function num2ch(v,i) {
+  var testreuslt = true;
+  if (testreuslt) {
+    showChineseAmount(v,i);
+  }
+  return testreuslt;
+}
+function showChineseAmount(v,i) {
+    // console.log(v,i);
+  var regamount = /^(([1-9]{1}[0-9]{0,})|([0-9]{1,}\.[0-9]{1,2}))$/;
+  var reg = new RegExp(regamount);
+  if (reg.test(v)) 
+  {
+    var amstr = v;
+    var leng = amstr.toString().split('.').length;
+    if (leng == 1) {
+      $("#"+v).val(v + ".00");
+    }
+    $("#"+i).text(Arabia_to_Chinese(amstr));
+    $("#"+i).show();
+    $("#"+i).css("color","red");
+  }else
+  {
+    $("#"+i).show();
+    $("#"+i).text("请输入纯数字");
+  }
+}
+
+    
+</script>
+<!-- 图片上传 -->

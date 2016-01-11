@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<% include file="/public/head.html" %></head>
+
+<body> 
+<div id="m_base">
+<div class="m_zctitle">我的投标</div> 
+<div class="m_jxbd">
+<ul>
+<li><a href="/consumer/tending" >进行中的标</a></li>
+<li><a href="/consumer/tendbacking" class="dqbd" >回收中的标</a></li>
+</ul>
+</div>
+<div class="clear"></div>
+<%foreach from=$d value=val %>
+<div class="m_wdjk"> 
+<div class="m_tjtitle"><span>借款标号</span>  <i> <% $val[id] %> </i></div>
+<div class="m_tjtitle"><span>投资人姓名</span>  <i> <% $val[real_name] %> </i></div>
+<div class="m_tjtitle"><span>借款金额</span>  <i><% $val[borrow_money] %></i></div>
+<div class="m_tjtitle"><span>收益率</span>  <i><% $val[borrow_interest_rate] %> %</i></div> 
+<div class="m_tjtitle"><span>借款期限</span>  <i><% $val[borrow_duration] %></i></div> 
+<div class="m_tjtitle"><span>我的投资金额</span>  <i><% $val[investor_capital] %> </i></div>
+<div class="m_tjtitle"><span>预期本息</span>  <i><% $val[benxi] %></i></div>
+<div class="m_tjtitle"><span>投标日期</span>  <i><% $val[add_time] %></i></div>
+</div>  
+<%/foreach%>
+   
+</div>
+</body>
+</html>

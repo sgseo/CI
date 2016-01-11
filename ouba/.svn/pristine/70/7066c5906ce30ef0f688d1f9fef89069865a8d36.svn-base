@@ -1,0 +1,78 @@
+<include file='Public:_header'/>
+<form action="__URL__/manageadd" method="post" class="definewidth m20" enctype='multipart/form-data'>
+    <table class="table table-bordered table-hover definewidth m10">
+        <tr>
+            <td width="10%" class="tableleft">机构性质</td>
+            <td><select name="xingzhi" >
+                <option value="1">业务机构</option>
+                <option value="2">风控机构</option>
+                <option value="3">资金机构</option>
+            </select></td>
+        </tr>
+        <tr>
+            <td width="10%" class="tableleft">机构全称</td>
+            <td><input type="text" name="organization"/></td>
+        </tr>
+        <tr>
+            <td width="10%" class="tableleft">机构简称</td>
+            <td><input type="text" name="shortname"/></td>
+        </tr>
+         <tr>
+            <td width="10%" class="tableleft">营业执照号码</td>
+            <td><input type="text" name="licenseno"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">营业执照图片</td>
+            <td>
+                 <input type="file" name="licensepic" /> 
+            </td>
+        </tr>
+      
+        <tr>
+            <td class="tableleft">开户许可证照片</td>
+            <td>
+               <input type="file" name="admitpic" /> 
+            </td>
+        </tr>
+        <tr>
+            <td width="10%" class="tableleft">法人姓名</td>
+            <td><input type="text" name="lawname"/></td>
+        </tr>
+             <tr>
+            <td width="10%" class="tableleft">法人身份证照片</td>
+            <td><input type="file" name="lawidpic"/></td>
+        </tr>
+
+           <tr>
+            <td width="10%" class="tableleft">联系人姓名</td>
+            <td><input type="text" name="contactname"/></td>
+        </tr>
+           <tr>
+            <td width="10%" class="tableleft">联系方式</td>
+            <td><input type="text" name="contacttel"/></td>
+        </tr>
+           <tr>
+            <td width="10%" class="tableleft">银行账户户名</td>
+            <td><input type="text" name="bankaccountname"/></td>
+        </tr>
+           <tr>
+            <td width="10%" class="tableleft">账号</td>
+            <td><input type="text" name="bankaccount"/></td>
+        </tr>
+           <tr>
+            <td width="10%" class="tableleft">开户行</td>
+            <td><input type="text" name="bankaddress"/></td>
+        </tr>
+        <tr>
+            <td width="10%" class="tableleft">其他证照图片</td>
+            <td><input type="file" name="otherpic"/></td>
+        </tr>
+        <tr>
+            <td colspan='2'>
+            <button type="submit" class="btn btn-primary btn-large" type="button">添加</button> &nbsp;&nbsp;
+            </td>
+        </tr> 
+    </table>
+</form>
+</body>
+</html>

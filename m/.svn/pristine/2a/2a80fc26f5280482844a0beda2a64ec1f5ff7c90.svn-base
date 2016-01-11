@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<% include file="/public/head.html" %></head>
+
+<body> 
+<%foreach from=$d value=val %>
+<div id="m_base">
+<div class="m_zctitle">我的借款</div> 
+<div class="m_wdjk"> 
+<div class="m_tjtitle"><span>借款标号</span>  <i> <% $val[bid] %> </i></div>
+<div class="m_tjtitle"><span>借款标名称</span>  <i> <% $val[bname] %> </i></div>
+<div class="m_tjtitle"><span>借款人姓名</span>  <i><% $val[real_name] %></i></div>
+<div class="m_tjtitle"><span>投资金额</span>  <i> <% $val[repayment_money] %>元</i></div> 
+<div class="m_tjtitle"><span>已还本息</span>  <i> <% $val[repayment_money] %>元</i></div> 
+<div class="m_tjtitle"><span>年利率</span>  <i> <% $val[borrow_interest_rate] %>%</i></div>
+<div class="m_tjtitle"><span>总共期限</span>  <i><% $val[total_periods] %></i></div>
+<div class="m_tjtitle"><span>已还期数</span>  <i> <%$val[payed_periods] %> </i></div>
+<div class="m_tjtitle"><span>下一期还款时间</span>  <i> <% $val[next_pay_date] %> </i></div>
+</div>  
+ <%/foreach%>
+   
+</div>
+<script type="text/javascript" >
+var hidde=<% $display %>;
+if(hidde){
+     $('.m_wdjk').hide();
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<html>
+<% include file="/public/head.html" %></head>
+
+<body> 
+<div id="m_base">
+<div class="m_zctitle">借款人信息</div> 
+ 
+<div class="clear"></div>
+<div class="state_person">
+<table class="table_100" cellpadding="1"   cellspacing="1">
+  <tr class="top">
+    <td colspan="2">个人信息</td>
+    </tr>
+  <tr>
+    <td>性别： <% $d[sex] %></td>
+    <td>邮箱： <% $d[user_email]%></td>
+  </tr>
+  <tr>
+    <td>年龄： <% $d[age]%></td>
+    <td>所属客服： <% $d[customer_name]%></td>
+  </tr>
+  <tr>
+    <td>学历： <% $d[education]%></td>
+    <td>是否购车：<% $d[fin_car]%></td>
+  </tr>
+  <tr>
+    <td>婚姻状况： <% $d[marry]%></td>
+    <td>投资积分：<% $d[integral]%></td>
+  </tr>
+  <tr>
+    <td>月收入（元）： <% $d[fin_monthin]%></td>
+    <td>职位： <% $d[zy]%></td>
+  </tr>
+  <tr>
+    <td>户籍所在地： <% $d[location]%></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr class="top">
+    <td colspan="2">账户详情</td>
+    </tr>
+  <tr>
+    <td>资产总额：<% $d[zcze]%></td>
+    <td>待收总额：<% $d[dsze]%></td>
+  </tr>
+  <tr>
+    <td>待还总额：<% $d[dsze]%> </td>
+    <td>回款总额：<% $d[ysze]%> </td>
+  </tr>
+  <tr>
+    <td>已还总额：<% $d[yhze]%> </td>
+    <td>负债情况：<% $d[fz]%> </td>
+  </tr>
+  <tr>
+    <td>借出本金：<% $d[jcze]%></td>
+    <td>信用额度：<% $d[credit_limit]%></td>
+  </tr>
+  <tr class="top">
+    <td colspan="2">还款信用</td>
+    </tr>
+  <tr>
+    <td>成功借款次数： <% $d[jkcgcs]%></td>
+    <td>提前还款次数： <% $d[repayment2]%></td>
+  </tr>
+  <tr>
+    <td>正常还款次数：<% $d[repayment1]%></td>
+    <td>网站待还次数：<% $d[repayment4] %></td>
+  </tr>
+  <tr>
+    <td>迟还次数： <% $d[repayment3] %></td>
+    <td>逾期还款笔数：<% $d[repayment5] %></td>
+  </tr>
+</table>
+</div>   
+</div>
+</body>
+</html>
+
+

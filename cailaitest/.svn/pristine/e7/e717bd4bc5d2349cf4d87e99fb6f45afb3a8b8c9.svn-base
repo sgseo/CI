@@ -1,0 +1,50 @@
+<include file="Public:_header_common" />
+<title>{$glo.web_name}-安全保障</title>
+<meta http-equiv="keywords" content="{$vo.type_keyword}" />
+<meta http-equiv="description" content="{$vo.type_info}" />
+<include file="Public:_header_main" />
+<link href="__ROOT__/Style/About/css/base.css" rel="stylesheet" type="text/css" />
+<link href="__ROOT__/Style/About/css/global.css" rel="stylesheet" type="text/css" />
+<link href="__ROOT__/Style/About/css/style.all.css" rel="stylesheet" type="text/css" />
+<!--中间内容区-->
+<div class="me-aqbz">
+<div class="title-aqbz">安全保障</div>
+
+<div class="table-aqbz" >
+
+<div class="pleft">
+<span><b>01</b>  第三方托管</span>
+<p><font style="color:#f39700">财来网</font>第三方账户托管签约汇付天下。</p>
+
+汇付天下托管账户系统，是汇付天下为P2P平台提供的资金账户体系，全面管理平台资金，帮助平台实现收款 、付款、用户账户间资金划拨以及账户资金理财功能；同时，汇付天下保障用户账户中的资金独立存放，用户可通过P2P平台对本人汇付账户进行充值、提现，商户在未经用户的许可、授权或法律的规定的情况下，无权动用，从而保证投资人资金安全。</div>
+
+<div class="pright"><img src="__ROOT__/Style/H/images/invest/aqbz1.jpg" alt="" /></div>
+</div>
+
+<div class="table-aqbz">
+
+<div class="pleft"><img src="__ROOT__/Style/H/images/invest//aqbz2.jpg" alt="" /></div>
+<div class="prightss"><span><b>02</b>  本息担保</span>
+财来网平台拥有稳健的风控制度，对项目严格审查的同时，有专门的担保公司对项目进行百分百本息担保，通过自有资产、自有资金等不同的方式，层层独立的保护投资人的投资安全。财来网还在不断改进产品结构，完善体系，力求为投资人做的更好。
+</div>
+</div>
+
+<div class="table-aqbz">
+
+<div class="pleft"><span><b>03</b>  严格的风险审核</span>
+    公司拥有完善的内部控制机制，制定并实施风险识别、检测的制度，明确每个岗位的责任范围，确保内控的状况能被连续监控和掌握。审核方面通过对个人信息，公司情况，财务情况，企业情况，收入证明，资产状况等几十项数据对客户及其公司进行全面分析，严格的电征和实地考察标准有效的降低了风险。贷后管理部门对已放贷款的监控，定期或不定期结合对借款人的资信情况、收入情况、经营情况及担保人情况进行跟踪调查和检查,防止贷款风险的发生。
+</div>
+<div class="pright"><img src="__ROOT__/Style/H/images/invest//aqbz3.jpg" alt="" /></div>
+</div>
+
+<div class="table-aqbz">
+
+<div class="pleft"><img src="__ROOT__/Style/H/images/invest//aqbz4.jpg" alt="" /></div>
+<div class="prightss"><span><b>04</b>  交易安全</span>
+    网站使用国内领先加密技术，运用手机动态验证码，让您的交易更加安全。财来网采用行业标准惯例以保护您的资料。您因履行相应协议提供给财来网的信息，财来网不会共享给任何第三方。如借款人发生违约情况，我们将如实上报给征信机构并在平台上进行公示。<br />
+此外，财来网网站提供借款人, 抵押物及法律文件等相关信息电子档案; 公司提供原文件查询。</div>
+</div>
+
+</div> 
+<!--中间内容区/////////////////////////-->
+<include file="Public:_footer" />

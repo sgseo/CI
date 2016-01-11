@@ -1,0 +1,4 @@
+[ 2015-11-19T13:16:06+08:00 ] /hi | ERR: Cron:cron_1 Runat 2015-11-19 13:16:06 Use 0.016001 s
+
+[ 2015-11-19T13:16:06+08:00 ] /admin/index/verify | ERR: Cron:cron_1 Runat 2015-11-19 13:16:06 Use 0.002000 s
+

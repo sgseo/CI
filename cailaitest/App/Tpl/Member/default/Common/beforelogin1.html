@@ -1,0 +1,35 @@
+
+	<div class="yin_top">
+    	<div class="center">
+            <span>客服热线:400-400-4000</span>
+            <ul>
+                <li><a href="/member/common/register/">注册</a><a href="/member/common/login/">登录</a></li>
+                <li class="qq"><em>官方群号
+				<volist name=":get_qq(1)" id="vq">
+{$vq.qq_num}
+  </volist>
+  </em><i></i></li>
+                <li class="ke"><em>在线客服<volist name=":get_qq(0)" id="vq">
+ <a class="icoTc" href="tencent://Message/?Uin={$vq.qq_num}&amp;websiteName={$vq.qq_title}&amp;Menu=ye"><img border="0" src="http://wpa.qq.com/pa?p=2:{$vq.qq_num}:52" alt="点击这里给我发消息" title="点击这里给我发消息"/>&nbsp;{$vq.qq_title|cnsubstr=###,6,0,"utf-8",false}</a>
+        </volist></em><i></i></li>
+				<li><a>论坛</a></li>
+            </ul>
+        </div>
+    </div>
+	
+	
+
+<style  >
+
+.header .yin_top{ background-color:#646464; line-height:28px; height:28px;}
+.header .yin_top .center{ width:980px; height:28px; overflow:hidden;margin:auto;}
+.header .yin_top .center span{ display:block; background-image:url(__ROOT__/Style/H/images1/tag01.png); background-repeat:no-repeat; background-position:left center; color:#d0d0d0; text-indent:25px; float:left;}
+.header .yin_top .center ul{ float:right; color:#d0d0d0; height:28px;}
+.header .yin_top .center ul li{ float:left; margin-left:15px;cursor:pointer;}
+.header .yin_top .center ul li a{margin-left:10px; color:#d0d0d0;}
+.header .yin_top .center ul li i{ width:7px; height:28px; background-image:url(__ROOT__/Style/H/images1/tag04.png); background-repeat:no-repeat; background-position:left center; display:block; float:right;}
+.header .yin_top .center .qq{ background-image:url(__ROOT__/Style/H/images1/tag02.png); background-repeat:no-repeat; background-position:left center; padding-left:20px; overflow:hidden; }
+.header .yin_top .center .qq em{ float:left;font-style:normal;}
+.header .yin_top .center .ke{ background-image:url(__ROOT__/Style/H/images1/tag03.png); background-repeat:no-repeat; background-position:left center;padding-left:20px;overflow:hidden; }
+.header .yin_top .center .ke em{ float:left;font-style:normal;}
+</style>

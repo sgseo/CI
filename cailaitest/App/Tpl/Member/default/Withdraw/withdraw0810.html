@@ -1,0 +1,184 @@
+<script type="text/javascript" src="__ROOT__/Style/M/js/amounttochinese.js" language="javascript"></script>
+<script type="text/javascript">
+$(function() {
+	//$("#btnSendMsg").click(sendSMS);
+	$("#txt_Amount").bind("keyup", function() {
+		$this = $(this);
+		$this.val($this.val().toString().replace(/[^(\d|\.)]+/, ""));
+	});
+	$("#txt_Amount").focus(function() {
+		$("#d_money").css("display", "none");
+	});
+});
+var suretx = function(d,h,v){
+	if(d===true){
+			$.ajax({
+				url: "__URL__/actwithdraw",
+				type: "post",
+				dataType: "json",
+				data: {"pwd":$("#txtPassword").val(),"amount":$("#txt_Amount").val()},
+				success: function(d) {
+					if (d.status == 2) {
+						$.jBox.tip(d.message,'fail');
+					}
+					else if(d.status==1) {
+						$.jBox.tip(d.message, "success");
+					} else {
+						$.jBox.tip("支付密码错误！", 'fail');
+					}
+				}
+			});
+	}
+}
+var arrWrong = "<img  src='__ROOT__/Style/M/images/zhuce2.gif'/>&nbsp";
+function SetError(val, cont) {
+		$("#d_money").css("display", "block");
+		$("#d_money").html(val + cont);
+		$("#d_money").attr("class", "reg_wrong");
+}
+
+function drawMoney() {
+	if (testAmount()) {
+		if ($("#txtPassword").val().length < 1) {
+			$.jBox.tip("您好，请输入支付密码后再点击确认提现！", 'tip');
+			return;
+		}
+		if (parseFloat($("#txt_Amount").val()) <= parseFloat($("td.tdContent span").html()) && $("#txtPassword").eq(0).val().length > 0 && parseFloat($("#txt_Amount").val()) > 0) {
+			$.ajax({
+				url: "__URL__/validate",
+				type: "post",
+				dataType: "json",
+				data: {"pwd":$("#txtPassword").val(),"amount":$("#txt_Amount").val()},
+				success: function(d) {
+					if (d.status == 2) {
+						$.jBox.tip(d.message,'fail');
+					}
+					else if(d.status==1) {
+						$.jBox.confirm(d.message, "提现确认", suretx, { buttons: { '确认提现': true, '暂不提现': false} });
+					} else {
+						$.jBox.tip("支付密码错误！", 'fail');
+					}
+				}
+			});
+		} 
+	}
+}
+
+function testAmount() {
+	var testreuslt = true;
+	if ($("#txt_Amount").val() == '') {
+		SetError(arrWrong, "请输入提现金额，如1000.10。");
+		testreuslt = false;
+	}
+	if (!(/^\d+(.)?\d{1,2}$/.test($("#txt_Amount").val()))) {
+		SetError(arrWrong, "请输入正确的提现金额，如1001.30。");
+		testreuslt = false;
+	}
+	if (parseFloat($("#txt_Amount").val()) < 100) {
+		SetError(arrWrong, "提现金额不能小于100。");
+		testreuslt = false;
+	}
+	//return ;
+	//if (parseFloat($("#txt_Amount").val()) > 30000) {
+	//	SetError(arrWrong, "提现金额不能大于30000。");
+	//	testreuslt = false;
+	//}
+	if (parseFloat($("#currentMoeny").html()) < parseFloat($("#txt_Amount").val())) {
+		SetError(arrWrong, "您的账户余额不足以提现。");
+		testreuslt = false;
+	}
+	if (testreuslt) {
+		showChineseAmount();
+	}
+	return testreuslt;
+}
+
+function showChineseAmount() {
+	var regamount = /^(([1-9]{1}[0-9]{0,})|([0-9]{1,}\.[0-9]{1,2}))$/;
+	var reg = new RegExp(regamount);
+	if (reg.test($("#txt_Amount").val())) {
+		var amstr = $("#txt_Amount").val();
+		var leng = amstr.toString().split('.').length;
+		if (leng == 1) {
+			$("#txt_Amount").val($("#txt_Amount").val() + ".00");
+		}
+		$("#d_money").html(Arabia_to_Chinese($("#txt_Amount").val()));
+		$("#d_money").css("display", "");
+		$("#d_money").css("color", "red");
+		$("#d_money").removeClass("reg_wrong");
+	}
+	else {
+		$("#d_money").html("");
+	}
+}
+</script>
+<style type="text/css">
+        .btnEnable { width: 96px; height: 28px; line-height: 25px; text-align: center; cursor: pointer; background-image: url(__ROOT__/Style/M/images/sendMsg.jpg); }
+        a.btnEnable:hover { color: #F4FFFF; }
+        a.btnDisable { color: Gray; }
+        .tdTitle { text-align: right; padding-left: 10px; font-size: 16px; font-weight:normal; height:50px; line-height: 50px; vertical-align: middle; width: 110px; color: #222; font-family:"微软雅黑";}
+        .tdCon { text-align: left; padding-left: 10px; font-size: 14px; height:50px; line-height: 50px; vertical-align: middle; width: 535px; color: #666; }
+        .reg_wrong { font-size: 12px; background-color: #fff9dd; border: 1px solid #ff0000; color: #ff0000; height: 22px; line-height: 21px; }
+        #vtiplink, #bacctip { width: 115px; border: none; cursor: pointer; display: block; height: 5px; }
+        #formTb { width: 100%; margin: 0px; padding: 0px; border-collapse: collapse; text-align: left; }
+        #currentMoeny { color:#f39800; font-weight: bold; font-size: 12px; }
+        .titstrong { height: 30px; line-height: 30px; text-indent: 30px; padding-top: 20px; text-align: left; border-bottom: dashed 1px #ccc; margin-bottom: 10px; }
+        .listframe { width: 100%; overflow: hidden; padding: 0px 0px; }
+        .listframe td { border: 1px solid #dedede; }
+        .listframe a { color: #0000ff; }
+ 
+        .dv_header_8 { background-image: url(); }
+        .dv_account_0 { margin-top: 10px; }
+		
+		#submit{background-image: url(__ROOT__/Style/M/images/bank/tixian.jpg); width:168px; height:28px;}
+    </style>
+     
+    
+<div class="cz" style="width: 705px;margin: 10px 0 10px 35px;padding:18px 13px 18px 12px; border:1px #eaeaea solid;">
+<form action="/member/withdraw/dowithdraw" method="post" onsubmit="return testAmount();">
+	<table id="formTb" cellpadding="0" cellspacing="0" border="0">
+		<tbody>
+		<tr>
+			<td class="tdTitle">
+				账户余额：
+			</td>
+			<td class="tdCon tdContent">
+					<input name="cashChl" value="GENERAL" id="is_keyword_1" type="hidden">
+				<div style="float: left; line-height: 21px;"> 
+					<input  class="text" readonly='readonly' type="text" value="{$vo.all_money}" style="font-size:14px; color:#f39800; font-weight:bold">
+				</div>
+				
+			</td>
+		</tr>
+		<tr>
+			<td class="tdTitle">
+				提现金额：
+			</td>
+			<td class="tdCon tdContent">
+			
+				<input name="money" id="txt_Amount" class="text2" onblur="testAmount();" type="text">可提现金额[<span id="currentMoeny">{$vo.all_money}元</span>]
+				<span id="d_money" style="width:250px;height:20px;margin-top:15px;line-height:20px;float:right;display:inline-block">
+				</span>
+			</td>
+		</tr>
+		<tr>
+			<td class="tdTitle">您的真实姓名：</td>
+			<td class="tdCon tdContent">{$vo.real_name}（必须和您银行账户姓名一致）</td>
+		</tr> 
+		<tr>
+			<td class="tdTitle">&nbsp;
+				
+			</td>
+			<td class="tdCon"> 
+				<input type="submit" id= "submit" value="">
+			</td>
+		</tr>
+	</tbody></table></form>
+  
+</div>
+<div style="text-align:left; margin:auto; width:740px; padding-bottom:50px; float:right; margin-top:20px; color:#999; line-height:180%; color: #f39801;  line-height:28px;">
+<img style="float:left; display:inline; margin-top:6px" src="__ROOT__/Style/M/images/minilogo.gif" alt="">
+<div style="float:left; display:inline; width:690px; margin-left:5px; color:red;color: #f35a00; font-size:16px;  line-height:28px;" > 提现通知</div>
+
+<div style="float:left; display:inline; width:690px; margin-left:22px; color:red;color: #666; font-size:14px;  line-height:40px;" >提现手续费为提现金额的千分之三，该费用由<b style="color: #f39801; font-size:15px;">汇付天下</b>收取</div>
+</div>

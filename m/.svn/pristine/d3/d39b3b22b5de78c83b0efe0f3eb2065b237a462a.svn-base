@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<% include file="/public/head.html" %>
+<style>  
+#u3 {margin:0 auto; text-align:center; height:22%; } 
+#u5 { text-align:center;font-family:"微软雅黑"; font-size:16px; padding-bottom:25px;line-height:25px; } 
+#u5 p{ padding:10px 0px;}
+#u5 span{ font-size:14px;  }
+#u5 span i{ font-style:normal; color:#f39700;}
+#m2{/* Gecko browsers */
+-moz-border-radius: 5px; 
+/* Webkit browsers */
+-webkit-border-radius: 5px; 
+/* W3C syntax - likely to be standard so use for future proofing */
+border-radius:10px;
+border:1px #ccc solid;
+padding:0px 8px;
+margin:0 auto; width:80%;
+background:#fff;
+}
+</style>
+</head>
+
+<body> 
+<div id="base"> 
+<div id="u3"> </div>
+<div id='m2'>
+<div id="u5"><p><% $msg %></p>
+<span>请,等待<i>5秒钟</i>跳转</span></div>
+</div>
+</div>
+ <script type="text/javascript">
+   setTimeout('<%  $skip %>',<%  $BENNERTIME %>);
+ </script>
+
+</body>
+</html>

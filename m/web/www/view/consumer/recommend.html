@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<% include file="/public/head.html" %></head>
+
+<body> 
+<div id="m_base">
+<div class="m_zctitle">我的推荐</div> 
+
+<%foreach from=$d value=val %>
+<div class="m_tuijian"> 
+<div class="m_tjtitle"><span>姓名</span>  <i> <% $val[real_name] %> </i></div>
+<div class="m_tjtitle"><span>注册时间</span>  <i> <% $val[reg_date] %> </i></div>
+<div class="m_tjtitle"><span>贡献奖金</span>  <i> <% $val[bonus] %> </i></div>
+<div class="m_tjtitles"><span>电话号码</span>  <i> <% $val[mobile] %> </i></div> 
+</div> 
+<%/foreach%> 
+   
+</div>
+</body>
+</html>

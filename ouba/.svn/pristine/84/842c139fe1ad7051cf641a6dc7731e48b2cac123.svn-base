@@ -1,0 +1,76 @@
+<include file='Public:_header'/>
+    <div class="form-inline definewidth m20">行为列表 &there4;</div>
+  <!--   <a href='__URL__/allotlist?status=4' class="btn btn-primary">已分配</a>
+    <a href='__URL__/allotlist?status=2' class="btn btn-primary">待分配</a>
+    <a href='__URL__/allotlist?status=3' class="btn btn-primary">已拒绝</a> -->
+<form class="form-inline definewidth m20" action="__SELF__" method="post">  
+    行为对象：
+    <input type="text" name="opname"   class="abc input-default" placeholder="搜索行为对象" value="">&nbsp;&nbsp;  
+
+    <button type="submit" class="btn btn-primary">查询</button>&nbsp;&nbsp; 
+    <!-- <a href="__URL__/cl_to_excel" class="btn btn-success" id="addnew">下载</a>  -->
+</form>
+        <!-- 我的个人信息开始 -->
+
+<table class="table table-bordered table-hover definewidth m10" >
+    <thead>
+    <tr>
+     
+        <th>行为标号</th>
+        <th>行为对象</th>
+        <th>行为ip</th>
+        <th>行为时间</th>
+        <th>行为备注</th>
+       
+        <!-- 客户姓名，身份证号码，联系电话，贷款金额，期限，利率， -->
+    </tr>
+    </thead>
+    <volist name='list' id='vo' empty='$empty'>
+         <tr>
+           
+            <td>{$vo.id}</td>
+            <td>{$vo.opname}</td>
+            <td>{$vo.opip|long2ip=###}</td>
+            <td>{$vo.optime|date='Y-m-d H:i:s',###}</td>
+            <td>{$vo.optip}</td>
+           
+        </tr>
+    </volist>
+    
+    </table>
+     <!-- 我的个人信息结束 -->
+     <div class='table table-bordered table-hover definewidth m10' style='margin:0 auto;text-align:center;'>
+          {$page}
+    </div>
+  
+</body>
+</html>
+<script>
+    $(function () {
+        
+        $('#addnew').click(function(){
+
+                window.location.href="add.html";
+         });
+
+
+    });
+
+    function del(id)
+    {
+        
+        
+        if(confirm("确定要删除吗？"))
+        {
+        
+            var url = "index.html";
+            
+            window.location.href=url;       
+        
+        }
+    
+    
+    
+    
+    }
+</script>

@@ -1,0 +1,3 @@
+<?php
+//000000000000a:23:{s:12:"web_keywords";s:24:"P2P网贷  房屋抵押 ";s:12:"web_descript";s:21:"微盟贷网站描述";s:9:"is_manual";s:1:"0";s:8:"web_name";s:9:"微盟贷";s:11:"index_title";s:9:"微盟贷";s:6:"bottom";s:53:"www.weimengdai.com版权所有 沪ICP备1111111111号";s:11:"fee_expired";s:3:"1|1";s:9:"rate_lixi";s:5:"10|20";s:17:"fee_invest_manage";s:1:"0";s:19:"borrow_duration_day";s:4:"1|30";s:15:"borrow_duration";s:4:"1|36";s:13:"money_deposit";s:1:"0";s:13:"maxtenderrate";s:4:"0.29";s:17:"fee_borrow_manage";s:7:"3|3|3|6";s:8:"fee_tqtx";s:7:"0.3|0.3";s:13:"credit_borrow";s:10:"-3|-10|100";s:15:"invest_integral";s:1:"1";s:12:"award_invest";s:1:"1";s:12:"today_reward";s:5:"1|1|2";s:9:"admin_url";s:5:"nihao";s:8:"debt_fee";s:1:"1";s:10:"debt_audit";s:1:"1";s:12:"borrowerrate";s:4:"0.99";}
+?>

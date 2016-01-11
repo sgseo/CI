@@ -1,0 +1,74 @@
+@charset "utf-8";
+/* CSS Document */
+
+body{background:#f2f2f2; font-family:"微软雅黑";} 
+a{ text-decoration:none;} 
+.model{color:#333;font-weight:normal;font-size:18px; padding:5px 5px 5px 0; float:left;}  
+h2{color:#333;font-weight:normal;font-size:18px; padding:5px 0;}  
+h3{color:#333; font-size:14px; font-weight:bold;} 
+*{margin:0;padding:0;}
+p{ margin:6px 0 10px 0;} 
+img{ border:none;}
+.clear{ clear:both;} 
+a.mail{color:#d20000;text-decoration:underline;}  
+ul,li{ list-style:none;} 
+
+
+.novice_banner{ width:100%; height:330px; text-align:center; margin:0 auto; background:url(../images/novice/201503301534.jpg) no-repeat top center;}
+.novice_content{ width:992px; margin:0 auto; display:block; overflow:hidden;}
+.novice_content .novice_bt{ padding:20px 0; font-size:36px; text-align:center; font-weight:normal; color:#f39800;}
+.novice_content .novice_bt span{ font-size:48px;}
+
+.novice_line{ position:relative; margin-top:65px; width:980px; height:40px; background:url(../images/novice/novice_line.jpg) no-repeat top center}
+.icons-tit{ margin:0 auto; width:63px; height:71px; top:-30px; left:450px; position: absolute; background:url(../images/novice/tit.png) no-repeat; display:block; text-align:center;}
+.novice_line .col_1{ background-position:0 0}
+.novice_line .col_2{ background-position:0 -75px}
+.novice_line .col_3{ background-position:0 -150px} 
+
+
+.novice_desc{text-align:center;color:#666; padding:0 30px;}
+.novice_desc p{font-size:20px;line-height:32px; padding-bottom:15px;}
+ 
+
+.advantage{height:300px;width:992px; margin:25px auto; display:block;} 
+.advantage a:hover{ text-decoration:underline}
+.advantage li{width:205px; height:auto; padding-right:40px; overflow:hidden; float:left; display:inline; color:#666; font-size:20px;}
+.advantage li.aqbz{ width:220px;}
+.advantage li.wjsy{ width:200px;}
+.advantage li.xxtm{ width:200px;}
+.advantage li.jsbz{ width:200px; padding:0;}
+.advantage li .img{  overflow:hidden; margin:0 auto; text-align:center;}
+.advantage li .img img{ display:block;width:125px; height:125px; margin:0 auto;}
+.advantage li span{ font-size:30px; padding:15px 0; color:#666; font-weight:normal; text-align:center; display:block;} 
+ 
+ 
+ 
+ul.howInvest{ width:960px; height:80px; margin-bottom:50px; border:1px solid #349cd8; padding:0;}
+.howInvest li{ float:left; display:inline; margin-top:-1px; width:240px; height:82px; line-height:82px; font-size:18px; color:#349cd8; text-indent:-35px; background:url(../images/novice/how.png) no-repeat right 0; cursor:pointer;}
+.how-step-0 .step-1,.how-step-1 .step-2,.how-step-2 .step-3{ background:#349cd8 url(../images/novice/how.png) no-repeat right bottom; color:#fff}
+.how-step-0 .step-4,.how-step-1 .step-4,.how-step-2 .step-4{ background: none}
+.how-step-1 .step-1,.how-step-2 .step-2,.how-step-3 .step-3{ background:url(../images/novice/how.png) no-repeat right -83px}
+.how-step-3 .step-4{ background:#349cd8; color:#fff}
+
+.investMain { position:relative; height:680px; text-align:center}
+.investbox { width:693px; height:500px; margin:0 auto; position:relative;overflow:hidden}
+.invesSlider { position:absolute; top:0px; left:0px; width:2780px}
+.invesSlider li{ float:left; display:inline; position:relative; width:693px; height:447px}
+.invesSlider li p{ font-size:20px; line-height:40px; color:#666; padding-top:10px;}
+.investMain a{position:absolute; top:50%; width:57px; height:114px; margin-top:-20px; display:block; opacity:0.5;filter:alpha(opacity=50); background:url(../images/novice/guide.png) no-repeat; z-index:999}
+.investMain a.prev{ background-position:0 bottom; left:0px}
+.investMain a.next{ background-position:right bottom; right:28px}
+.investMain a:hover{opacity:1;filter:alpha(opacity=100)}
+.investMain a.disabled,.investMain a.disabled:hover{opacity:0.3;filter:alpha(opacity=30); cursor:default}
+ 
+.novice_btn{ margin:0 auto 100px; width:260px; height:65px; line-height:65px; display:block; text-align:center}
+.novice_btn a{background:#fc8936;font-size:32px; color:#fff; display:block; }
+.novice_btn a:hover{ background:#2fa8e1; color:#fff;}
+ 
+ 
+
+.wdzj_404{ position:absolute; top:50%; left:50%; margin-left:-324.5px; margin-top:-160px; height:305px; width:630px; background:url(../images/novice/404.jpg) no-repeat;}
+.wdzj_404 span{ display:block; text-align:center; padding-top:215px; padding-left:300px;}
+.wdzj_404 a{ text-decoration:none; color:#fff; background:#f49a05; display:block; height:55px; width:300px; line-height:55px;position:absolute; font-size:30px;}
+.wdzj_404 a:hover{ text-decoration:underline; background:#59b9e7; display:block;} 
+  

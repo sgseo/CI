@@ -1,0 +1,27 @@
+<include file="Public:_header" />
+<tagLib name="htmlA" />
+<div class="so_main">
+<style>
+.form2 {padding-top: 60px;position: relative;left: -100px;}
+.lineD dd span.tip {color: #FF0000;float: none;border: 0;background: white;padding-left: 10px;}
+.form2 dt{padding: 16px 0 0;}
+</style>
+<div class="page_tit">托管账户管理</div>
+<div class="page_tab"><span data="tab_1" class="active">汇付天下</span>
+<div class="form2">
+	<form method="post" action="__URL__/save" >
+	<div id="tab_1">
+		<dl class="lineD"><dt>商户号：</dt><dd><htmlA:input id="tuoguan[huifu][merId]" value="{$tuoguan.huifu.merId}" tip="*"/></dd></dl>
+		<dl class="lineD"><dt>商户客户号：</dt><dd><htmlA:input id="tuoguan[huifu][MerCustId]" value="{$tuoguan.huifu.MerCustId}" tip="*"/></dd></dl>
+		<dl class="lineD"><dt>商户客户号：</dt><dd><htmlA:input id="tuoguan[huifu][AcctId]" value="{$tuoguan.huifu.AcctId}" tip="*"/></dd></dl>
+		<dl class="lineD"><dt>公钥：</dt><dd><htmlA:text id="tuoguan[huifu][chinapnrPublicKey]" value="{$tuoguan.huifu.chinapnrPublicKey}" tip="*"/></dd></dl>
+		<dl class="lineD"><dt>私钥：</dt><dd><htmlA:text id="tuoguan[huifu][merchantPrivateKey]" value="{$tuoguan.huifu.merchantPrivateKey}" tip="*"/></dd></dl>
+	</div><!--tab1-->
+	
+	<div class="page_btm">
+	  <input type="submit" class="btn_b" value="确定" />
+	</div>
+	</form>
+</div>
+</div>
+<include file="Public:_footer" />

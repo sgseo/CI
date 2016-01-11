@@ -1,0 +1,24 @@
+<include file="Public:_header" />
+<tagLib name="htmlA" />
+<script type="text/javascript">
+function submit()
+{
+	busicode = $("#busicode").val();
+	data = {"busicode":busicode};
+	$.ajax({
+		type: "POST",
+		url: "__URL__/docorpquery",
+		data: data,
+		success: function(msg){
+			$("#res").html(msg);
+		}
+	});
+}
+</script>
+<div class="so_main">
+<input type="text" id="busicode" name="busicode" />
+<input type="button" value="提交" onclick="submit()" />
+<br />
+<span>结果：</span><div id="res"></div>
+</div>
+<include file="Public:_footer" />

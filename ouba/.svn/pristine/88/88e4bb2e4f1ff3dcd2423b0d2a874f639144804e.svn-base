@@ -1,0 +1,85 @@
+<include file='Public:_header'/>
+
+<form action="__URL__/riskadd" method="post" class="definewidth m20" enctype='multipart/form-data'>
+风控复核
+<table class="table table-bordered table-hover ">
+
+    <tr>
+        <td width="10%" class="tableleft">借款项目</td>
+        <td><input type="text" name="title" value="{$list.title}" readonly='readonly'/>
+            <input type="hidden" name="id" value="{$list.id}" readonly='readonly'/>
+        <!--     <input type="hidden" name="duration" value="{$list.duration}" />
+            <input type="hidden" name="borrowamt" value="{$list.borrowamt}" />
+            <input type="hidden" name="rate" value="{$list.rate}" /> -->
+        </td>
+    </tr>
+    <tr>
+        <td class="tableleft">借款人姓名</td>
+        <td ><input type="text" name="cstname" value="{$list.cstname}" readonly='readonly'/></td>
+    </tr>  
+      <tr>
+        <td class="tableleft">借款人身份证号</td>
+        <td ><input type="text" name="idno" value="{$list.idno}" readonly='readonly'/></td>
+    </tr>  
+      <tr>
+        <td class="tableleft">银行支行</td>
+        <td ><input type="text" name="bank" value="" placeholder='上海市东风路553号农业银行支行'/></td>
+    </tr> 
+    <tr>
+        <td class="tableleft">银行卡</td>
+        <td ><input type="text" name="bankcard" value="" maxlength='20'/></td>
+    </tr> 
+    
+    <tr>
+        <td class="tableleft">是否有过桥</td>
+        <td >
+            <input type="radio" name="bridge" value="1" /> 有
+            <input type="radio" name="bridge" value="0" checked="checked"/> 无
+        </td>
+    </tr>
+    <!-- 过桥人 -->
+        <tr class='bridge' style='display:none;'>
+        <td class="tableleft">过桥人</td>
+        <td >
+             <input type="text" name='bridgename' value=''/>
+        </td>
+        </tr>
+        <tr class='bridge' style='display:none;'>
+            <td class="tableleft">过桥卡号</td>
+        <td >
+       <input type="text" name='bridgecardno' value='' maxlength='20'/>
+        </td>
+        </tr>
+
+    <!-- 过桥人 结束-->
+     <tr>
+        <td class="tableleft">复核意见</td>
+        <td ><textarea name='checktip' placeholder='复核意见'></textarea></td>
+    </tr> 
+    <tr>
+        <td class="tableleft">复核人姓名</td>
+        <td ><input type="text" name="checkname" value="" required="required"/></td>
+    </tr> 
+    <tr>
+        <td class="tableleft"></td>
+        <td>
+            <button type="submit" class="btn btn-primary" type="button">保存</button> &nbsp;&nbsp;
+            <!-- <button type="button" class="btn btn-success" name="backid" id="backid">返回列表</button> -->
+        </td>
+    </tr>
+</table>
+</form>
+</body>
+</html>
+<script>
+    $(function () {       
+        var bridge=$('input[name=bridge][value=0]');
+        var bridgeis=$('input[name=bridge][value=1]');
+        bridge.click(function(){
+             $(".bridge").hide();
+        });
+        bridgeis.click(function(){
+            $(".bridge").show();
+        });
+    });
+</script>

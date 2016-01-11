@@ -1,0 +1,75 @@
+<include file='Public:_header'/>
+    <div class="form-inline definewidth m20">机构列表 &there4;</div>
+  <!--   <a href='__URL__/allotlist?status=4' class="btn btn-primary">已分配</a>
+    <a href='__URL__/allotlist?status=2' class="btn btn-primary">待分配</a>
+    <a href='__URL__/allotlist?status=3' class="btn btn-primary">已拒绝</a> -->
+<!-- <form class="form-inline definewidth m20" action="__SELF__" method="post">  
+    机构名字：
+    <input type="text" name="opname"   class="abc input-default" placeholder="搜索行为对象" value="">&nbsp;&nbsp;  
+
+    <button type="submit" class="btn btn-primary">查询</button>&nbsp;&nbsp; 
+</form> -->
+        <!-- 我的个人信息开始 -->
+
+<table class="table table-bordered table-hover definewidth m10" >
+    <thead>
+    <tr>
+        <th>编号</th>
+        <th>性质</th>
+        <th>全称</th>
+        <th>简称</th>
+        <th>联系人姓名</th>
+        <!-- <th>户口</th> -->
+        <th>银行账号户名</th>
+        <th>营业执照图片</th>
+    </tr>
+    </thead>
+    <volist name='list' id='vo' empty='$empty'>
+         <tr>
+            <td>{$vo.id}</td>
+            <td>{$vo.oxz}</td>
+            <td>{$vo.organization}</td>
+            <td>{$vo.shortname}</td>
+            <td>{$vo.contactname}</td>
+            <td>{$vo.bankaccountname}</td>
+            <td><img src="/Uploads{$vo.licensepic}" alt="" class='img-circle' width='100px' height='30px'></td>
+        </tr>
+    </volist>
+    
+    </table>
+     <!-- 我的个人信息结束 -->
+     <div class='page'>
+          {$page}
+    </div>
+  
+</body>
+</html>
+<script>
+    $(function () {
+        
+        $('#addnew').click(function(){
+
+                window.location.href="add.html";
+         });
+
+
+    });
+
+    function del(id)
+    {
+        
+        
+        if(confirm("确定要删除吗？"))
+        {
+        
+            var url = "index.html";
+            
+            window.location.href=url;       
+        
+        }
+    
+    
+    
+    
+    }
+</script>

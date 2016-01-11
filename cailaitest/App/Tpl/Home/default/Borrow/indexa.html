@@ -1,0 +1,124 @@
+﻿<include file="Public:_header_common" />
+<title>{$glo.index_title}</title>
+<meta http-equiv="keywords" content="{$glo.web_keywords}" />
+<meta http-equiv="description" content="{$glo.web_descript}" />
+<include file="Public:_header_main" />
+
+<link rel="stylesheet" href="__ROOT__/Style/H/css/yijinshunrong.css" />	
+
+
+
+
+
+<body>
+
+<div class="bodyer">
+	<div class="YJpagetitle">
+		<ul >
+			<li><a href="/index.html">首页</a></li>
+			<li>&gt;</li>
+			<li><a href="/invest/index.html">我要借款</a></li>
+			<li>&gt;</li>
+			<li><span>发布个人借款</span></li>
+		</ul>
+		
+	</div>
+	
+	
+	<div class="YJjiekuan">
+		<div class="YJchanp">
+			<ul>
+				<li style="background-image:none;"><span>产品：</span></li>
+				<li><a href="/rongzi/posta">宜融宝</a></li>
+				<li class="YJbgh" id="yir"><a href="/borrow/index.html" style="color:#fff;">顺融贷</a></li>
+				
+				
+			</ul>
+		</div>
+		<div class="YJfabu" id="qh_conn1">
+			<div style="overflow:hidden;margin-left:130px;">
+			<p style="width:260px;float:left;margin:0;padding:20px;border-top:1px dashed #ccc;border-bottom:1px dashed #ccc; margin-top:50px;line-height:30px;">顺融贷是宜境针对中小企业主等优质的个人借款群体，推出的一款抵押类全新融资产品，宜境根据借款人拥有的房产、汽车等资产及资信状况，合理划分等级，设置必要的抵押权限，为投资人与借款人提供安全可靠的短期网络借贷通道，高效地实现借贷双方的合作共赢。
+			</p>
+			<div style="overflow:hidden;float:left; margin-left:50px;">
+			<dl style="margin-top:26px;">
+				<dt style="text-indent:0;clear:both;width:122px;">适用人群</dt>
+				<dd style="clear:both;">个人</dd>
+			</dl>
+			<dl style="margin-top:10px;">
+				<dt style="text-indent:0;clear:both;width:122px;">借款金额区间</dt>
+				<dd style="clear:both;"><font size="5" color="#cd3939">10-300</font>万元</dd>
+			</dl>
+			<dl style="margin-top:10px;">
+				<dt style="text-indent:0;clear:both;width:122px;">借款利率区间</dt>
+				<dd style="clear:both;">年化12%-16% <font size="3" color="#969696">（不含评估费）</font></dd>
+			</dl>
+			<dl style="margin-top:10px;">
+				<dt style="text-indent:0;clear:both;width:122px;">借款期限</dt>
+				<dd style="clear:both;">1-9个月</dd>
+			</dl>
+			<dl style="margin-top:10px;">
+				<dt style="text-indent:0;">担保方式</dt>
+				<dd style="clear:both;width:350px;">资产抵押</dd>
+			</dl>
+			</div>
+			</div>
+			<a href="__ROOT__/borrow/post/mortgage.html"></a>
+		</div>
+		<div  id="qh_conn2" style="display:none;"  class="YJfaxin">
+		<p>宜融宝是宜境顺融平台依托省内大型投资担保公司安融投资担保有限公司的综合金融服务能力，以及实力雄厚的地方小贷公司，强强联手，共同推出的一项服务中小企业等实体经济的创新产品。该产品由省内知名投融资担保公司提供连带责任担保。</p>
+			<dl>
+				<dt>适用人群</dt>
+				<dd>小微企业</dd>
+			</dl>
+			<dl>
+				<dt>借款金额区间</dt>
+				<dd><font size="5" color="#cd3939">10-300</font>万元</dd>
+			</dl>
+			<dl>
+				<dt>借款利率区间</dt>
+				<dd>年化8%-11%<font size="3" color="#969696">（不含担保费）</font></dd>
+			</dl>
+			<dl>
+				<dt>借款期限</dt>
+				<dd>3-9个月</dd>
+			</dl>
+			<dl>
+				<dt>大型优质融资性担保公司</dt>
+				<dd>大型投资担保公司安融投资担保有限公司</dd>
+			</dl>
+				<a href="__ROOT__/rongzi/index"></a>
+		</div>
+	</div>
+
+
+</div>
+<script type="text/javascript">
+$(document).ready(function(){
+  $("#yir").click(function(){
+  $("#qh_conn1").show();
+  $("#qh_conn2").hide();
+  });
+  $("#xiny").click(function(){
+  $("#qh_conn2").show();
+  $("#qh_conn1").hide();
+  });
+});
+</script>
+<SCRIPT language=javascript>
+	function qiehuan1(num){
+		for(var id = 0;id<=5;id++)
+		{
+			if(id==num)
+			{
+				document.getElementById("qh_conn"+id).style.display="block";
+			    document.getElementById("ynav"+id).className = "current";
+			}
+			else
+			{
+				document.getElementById("qh_conn"+id).style.display="none";
+			    document.getElementById("ynav"+id).className = "";
+			}
+		}
+	}
+</SCRIPT>
+<include file="Public:_footer" />

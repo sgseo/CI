@@ -1,0 +1,4 @@
+<?php
+file_put_contents('/tmp/debugqq',date('m-d H:i:s')." ".print_r("cron run!",true)."\n",FILE_APPEND);
+//file_put_contents('/tmp/debugqq',date('m-d H:i:s')." ".print_r($_POST,true)."\n",FILE_APPEND);
+?>

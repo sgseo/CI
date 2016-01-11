@@ -1,0 +1,2 @@
+<?php
+return array ( 'BANK' => array ( 0 => array ( 'bank' => '中国银行', 'payee' => '张三', 'account' => '622700325632', 'address' => '山东省济南市高新开发区高新支行', ), 1 => array ( 'bank' => '建设银行', 'payee' => '李四', 'account' => '622700325632123', 'address' => '山东省济南市高新开发区高新支行', ), ), 'BANK_INFO' => 'sssaaa', ); ?>

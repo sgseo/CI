@@ -1,0 +1,63 @@
+<include file="Public:_header" />
+<script type="text/javascript" src="__ROOT__/Style/My97DatePicker/WdatePicker.js" language="javascript"></script>
+<tagLib name="htmlA" />
+<script type="text/javascript">
+    var delUrl = '__URL__/doDel';
+    var addUrl = '__URL__/add';
+    var editUrl = '__URL__/edit';
+    var editTitle = '修改会员类型';
+    var isSearchHidden = 1;
+    var searchName = "搜索/筛选";
+</script>
+<div class="so_main">
+  <div class="page_tit">邀请奖励</div>
+<!--搜索/筛选会员-->
+  <include file="search_invite" />
+<!--搜索/筛选会员-->
+
+  <div class="Toolbar_inbox">
+      <div class="page right">{$pagebar}</div>
+    <htmlA:commonBtn type="jsfun" action="dosearch();" value="搜索/筛选" style="search_action" />
+  </div>
+  
+  <div class="list">
+  <table id="area_list" width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+
+    <th class="line_l">ID</th>
+    <th class="line_l">用户名</th>
+    <th class="line_l">真实姓名</th>
+    <th class="line_l">会员类型</th>
+    <th class="line_l">奖励余额</th>
+    <th class="line_l">操作</th>
+  </tr>
+  <volist id="vo" name="list">
+      <tr overstyle='on' id="list_{$vo.id}">
+        <td>{$vo.id}</td>
+        <td><htmlA:user id="vo.id" uname="vo.user_name" /></td>
+        <td>{$vo.real_name|default="&nbsp;"}</td>
+        <td>{$vo.user_type}</td>
+        <td>{$vo.invite_money|default='0.00'}元</td> 
+        <td>
+            <a href="javascript:;" onclick="showurl('__URL__/inviteedit?id={$vo['id']}','调整奖励余额');">[调整奖励余额]</a>&nbsp;&nbsp; 
+			<a href="{:U('transfer/index',array('user_name'=>$vo['user_name']))}">[转账]</a>&nbsp;&nbsp;
+			<a href="javascript:;" onclick="showurl('__URL__/invitetotal?id={$vo['id']}','记录汇总');">[记录汇总]</a>&nbsp;&nbsp;
+        </td>
+      </tr>
+  </volist>
+  </table>
+
+  </div>
+  
+  <div class="Toolbar_inbox">
+      <div class="page right">{$pagebar}</div>
+    <htmlA:commonBtn type="jsfun" action="dosearch();" value="搜索/筛选" style="search_action" />
+  </div>
+</div>
+<script type="text/javascript">
+function showurl(url,Title){
+    ui.box.load(url, {title:Title});
+}
+</script>
+
+<include file="Public:_footer" />

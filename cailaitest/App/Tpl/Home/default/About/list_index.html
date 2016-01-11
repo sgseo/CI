@@ -1,0 +1,69 @@
+<include file="Public:_header_common" />
+<title>{$vo.type_name}-{$glo.web_name}财来学院</title>
+<meta http-equiv="keywords" content="{$vo.type_keyword}" />
+<meta http-equiv="description" content="{$vo.type_info}" />
+<link href="__ROOT__/Style/About/css/base.css" rel="stylesheet" type="text/css" />
+<link href="__ROOT__/Style/About/css/global.css" rel="stylesheet" type="text/css" />
+<link href="__ROOT__/Style/About/css/style.all.css" rel="stylesheet" type="text/css" />
+<include file="Public:_header_main" />
+<!--中部开始-->
+<div class="content2 clearfix mt20" style="margin-bottom: 20px;">
+  <!--边侧导航-->
+  <include file="About:left" />
+  <!--内容-->
+  <div class="fl-right room-right">
+    <div class="room-modify room-info" style="padding: 10px 20px 20px 20px;">
+        <div class="cms-title-1" style="padding-bottom: 10px;">
+          <h2 style="border: none;">{$vo.type_name}</h2>
+        </div>
+        <php>
+          if($is_zcfg){
+        </php>
+        <div class="zcfg" style="padding: 10px;">
+          为充分保障用户的利益，更好的进行自律监管，财来网商务顾问（北京）有限公司（以下简称“财来”）与招商银行股份有限公司上海分行（以下简称“招行上海分行”）就财来网风险备用金托管问题正式签署协议。招行上海分行会对财来网的风险备用金专户资金进行认真、独立的托管，并针对风险备用金专户资金的实际进出情况每月出具托管报告。自2014年1月1日开始，财来网将每月公布风险备用金的情况，供用户监督。
+        </div>
+        <php>
+          }
+        </php>
+        <div class="cms-details">
+          <div class="article-list-wrap mgt">
+            <div class="article-list mgt">
+              <ul>
+                <volist name="list" id="vl">
+                  <li class="changecolor"> <span class="item-title"><a href="{$vl.arturl}"  ><i class="icon icon-news-sign" style="margin-right: 10px;"></i>{$vl.title}</a></span> <span class="release-time">{$vl.art_time|date="Y.m.d",###}</span> </li>
+                </volist>
+              </ul>
+            </div>
+            <div class="list_bottom" style="width: auto;">
+              <div class="list_bottom_right">
+                <ul>
+                  {$pagebar}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+
+  </div>
+
+</div>
+<!--中部结束-->
+
+
+
+<include file="Public:_footer" />
+<script language="javascript">
+	$(function() {
+		$(".changecolor").bind("mouseover", function(){
+			$(this).css("background", "#f8f8f8");
+			$(this).css("color", "#007EB9");
+		})
+
+		$(".changecolor").bind("mouseout", function(){
+			$(this).css("background", "#fff");
+			$(this).css("color", "#737272");
+		})
+	});
+
+</script>

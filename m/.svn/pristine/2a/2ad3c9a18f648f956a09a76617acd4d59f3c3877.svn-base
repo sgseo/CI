@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>手机M站</title> 
+<link href="style/css.css" type="text/css" rel="stylesheet"/>
+</head>
+
+<body> 
+<div id="m_base">
+<div class="m_zctitle">我的推荐</div> 
+ 
+<div class="m_tuijian"> 
+<div class="m_tjtitle"><span>姓名</span>  <i>花大姐</i></div>
+<div class="m_tjtitle"><span>注册时间</span>  <i>2015-06-17 13:14:20</i></div>
+<div class="m_tjtitle"><span>贡献奖金</span>  <i>2.00</i></div>
+<div class="m_tjtitles"><span>电话号码</span>  <i>13512345678</i></div> 
+</div> 
+<div class="m_tuijian"> 
+<div class="m_tjtitle"><span>姓名</span>  <i>花大姐</i></div>
+<div class="m_tjtitle"><span>注册时间</span>  <i>2015-06-17 13:14:20</i></div>
+<div class="m_tjtitle"><span>贡献奖金</span>  <i>2.00</i></div>
+<div class="m_tjtitles"><span>电话号码</span>  <i>13512345678</i></div> 
+</div> 
+<div class="m_tuijian"> 
+<div class="m_tjtitle"><span>姓名</span>  <i>花大姐</i></div>
+<div class="m_tjtitle"><span>注册时间</span>  <i>2015-06-17 13:14:20</i></div>
+<div class="m_tjtitle"><span>贡献奖金</span>  <i>2.00</i></div>
+<div class="m_tjtitles"><span>电话号码</span>  <i>13512345678</i></div> 
+</div> 
+<div class="m_tuijian"> 
+<div class="m_tjtitle"><span>姓名</span>  <i>花大姐</i></div>
+<div class="m_tjtitle"><span>注册时间</span>  <i>2015-06-17 13:14:20</i></div>
+<div class="m_tjtitle"><span>贡献奖金</span>  <i>2.00</i></div>
+<div class="m_tjtitles"><span>电话号码</span>  <i>13512345678</i></div> 
+</div> 
+   
+</div>
+</body>
+</html>

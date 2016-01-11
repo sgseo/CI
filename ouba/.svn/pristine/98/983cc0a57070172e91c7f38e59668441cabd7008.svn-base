@@ -1,0 +1,66 @@
+<include file='Public:_header'/>
+    <div class="form-inline definewidth m20">打印合同 &there4;</div>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
+<!--     <a href='__URL__/allotlist?status=4' class="btn btn-primary">已分配</a>
+    <a href='__URL__/allotlist?status=1' class="btn btn-primary">刚录入</a>
+    <a href='__URL__/allotlist?status=2' class="btn btn-primary">已通过(未分配)</a>
+    <a href='__URL__/allotlist?status=3' class="btn btn-primary">已拒绝</a> -->
+<form class="form-inline definewidth m20" action="__URL__/admitshow" method="post">  
+    客户姓名：
+    <input type="text" name="cstname"   class="abc input-default" placeholder="搜索客户姓名" value="">&nbsp;&nbsp;  
+
+    <button type="submit" class="btn btn-primary">查询</button>&nbsp;&nbsp; 
+    <!-- <a href="__URL__/cl_to_excel" class="btn btn-success" id="addnew">下载</a>  -->
+</form>
+        <!-- 我的个人信息开始 -->
+
+<table class="table table-bordered table-hover definewidth m10" >
+    <thead>
+    <tr>
+     
+        <th>借款标号</th>
+        <th>借款标题</th>
+        <th>客户姓名</th>
+        <th>身份证号码</th>
+        <th>联系电话</th>
+        <th>贷款金额</th>
+        <th>贷款期限</th>
+        <th>贷款利率（%）</th>
+        <th>借款类型</th>
+        <th>状态</th>
+        <th>信托贷款合同打印</th>
+        <th>抵押合同</th>
+        <!-- 客户姓名，身份证号码，联系电话，贷款金额，期限，利率， -->
+    </tr>
+    </thead>
+    <volist name='list' id='vo'>
+         <tr>
+            <td>{$vo.id}</td>
+            <td><a href='__APP__/Home/Node/showlog?id={$vo.id}'>{$vo.title}</a></td>
+            <td>{$vo.cstname}</td>
+            <td>{$vo.idno}</td>
+            <td>{$vo.tel}</td>
+            <td>{$vo.borrowamt}</td>
+            <td>{$vo.duration}</td>
+            <td>{$vo.rate}</td>
+            <td><eq name='vo.category' value='car'>车抵押&nbsp;<input type="button" value="&nabla;" onclick="demo08({$vo.id});" /></eq><eq name='vo.category' value='fang'>房抵押&nbsp;<input type="button" value="&nabla;" onclick="demo08({$vo.id});" /></eq></td>
+            <td>{$vo.ostatus}</td>
+            <td><a href='__URL__/contract?id={$vo.id}'>预览合同</a><!-- &nbsp;&nbsp;&nbsp;<a href='javascript:void(0);' >打印</a> --></td>
+            <td><a href='__URL__/peldge?id={$vo.id}'>预览合同</a></td>
+        </tr>
+    </volist>
+    
+    </table>
+     <!-- 我的个人信息结束 -->
+     <div class='table table-bordered table-hover definewidth m10' style='margin:0 auto;text-align:center;'>
+          {$page}
+    </div>
+  
+</body>
+</html>
+<script type='text/javascript'>
+
+</script>
+
+
+ 

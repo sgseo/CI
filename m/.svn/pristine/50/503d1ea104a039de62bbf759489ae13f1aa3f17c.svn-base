@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<% include file="/public/head.html" %></head>
+
+<body> 
+<div id="m_base"> 
+<div class="m_zctitle">交易记录</div> 
+<div id="m_jyjl">
+<%foreach from=$d value=val %>
+<table width="100%" border="0">
+  <tr>
+    <td width="10%" rowspan="2"><img src="/statics/images/jyjl.jpg" alt=""></td>
+    <td width="63%" height="30" style="color:#000;"> <% $val[type] %> </td>
+    <td width="27%" align="right"><strong> <% $val[affect_money] %> </strong></td>
+  </tr>
+  <tr>
+    <td style="color:#808080; font-size:14px;"><% $val[date] %></td>
+    <td align="right" style="color:#808080;font-size:14px;">待收(<% $val[affect_money] %>)</td>
+  </tr>
+</table>
+<%/foreach%>
+</div> 
+ 
+   
+</div>
+</body>
+</html>

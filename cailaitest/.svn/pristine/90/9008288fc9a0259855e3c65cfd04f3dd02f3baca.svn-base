@@ -1,0 +1,229 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>投资P2P</title>
+<link rel="stylesheet" type="text/css" href="__ROOT__/Style/H/css/touzi.css" /> 
+<script type="text/javascript" src="/Style/Js/jquery.js"></script>
+</head>
+
+<body>
+<div id="header">
+<div id="head"><a href="index.html"><img src="__ROOT__/Style/H/images/touzi/logo.jpg" alt=""></a></div>
+<div id="banner"></div>
+</div>
+<div class="clear"></div>
+<div id="container">
+<div class="title">投资P2P专区</div>
+<div id="list_banner_left">
+  <form id="touziquery" action="/touzi" method="post">
+	<table class="table_100" border="0">
+	  <tr class="jianju">
+	    <td width="102">投资金额：</td>
+	    <td width="85"> <input name="a"  value="0" type="checkbox" style="display:none" checked="checked" /><span class="span_1 orange">不限</span></td>
+	    <td width="143"><input name="a"  value="1" type="checkbox" /> 0-5万元</td>
+	    <td width="153"><input name="a"  value="2" type="checkbox" /> 5-10万元</td>
+	    <td width="161"><input name="a"  value="3" type="checkbox" /> 10-20万元</td>
+	    <td width="149"><input name="a"  value="4" type="checkbox" /> 20-50万元</td>
+	    <td width="139"><input name="a"  value="5" type="checkbox" /> 50万以上</td>
+	  </tr>
+	  <tr>
+	    <td width="102">投资周期：</td>
+	    <td width="85"> <input name="b"  value="0" type="checkbox" style="display:none" checked="checked" /><span class="span_1 orange">不限</span></td>
+	    <td width="143"><input name="b"  value="1" type="checkbox" /> 1个月以内</td>
+	    <td width="153"><input name="b"  value="2" type="checkbox" /> 1-3个月</td>
+	    <td width="161"><input name="b"  value="3" type="checkbox" /> 3-6个月</td>
+	    <td width="149"><input name="b"  value="4" type="checkbox" /> 6个月-1年</td>
+	    <td width="139"><input name="b"  value="5" type="checkbox" /> 1年以上</td>
+	  </tr>
+	  <tr>
+	    <td width="102">年化收益：</td>
+	    <td width="85"> <input name="c0"  value="1" type="checkbox" style="display:none" checked="checked" /><span class="span_1 orange">不限</span></td>
+	    <td width="143"><input name="c1"  value="1" type="checkbox" /> 0-5%</td>
+	    <td width="153"><input name="c2"  value="1" type="checkbox" /> 5-10%</td>
+	    <td width="161"><input name="c3"  value="1" type="checkbox" /> 10-15%</td>
+	    <td width="149"><input name="c4"  value="1" type="checkbox" /> 15%以上</td>
+	    <td width="139"></td>
+	  </tr>
+	  <tr>
+	    <td width="102">平台背景：</td>
+	    <td width="85"> <input name="d0"  value="1" type="checkbox" style="display:none" checked="checked" /><span class="span_1 orange">不限</span></td>
+	    <td width="143"><input name="d1"  value="1" type="checkbox" /> 国资系</td>
+	    <td width="153"><input name="d2"  value="1" type="checkbox" /> 银行系</td>
+	    <td width="161"><input name="d3"  value="1" type="checkbox" /> 互联网系</td>
+	    <td width="149"><input name="d4"  value="1" type="checkbox" /> 其他</td>
+	    <td width="139"></td>
+	  </tr>
+	  <tr>
+	    <td width="102">抵押模式：</td>
+	    <td width="85"> <input name="e0"  value="1" type="checkbox" style="display:none" checked="checked" /><span class="span_1 orange">不限</span></td>
+	    <td width="143"><input name="e1"  value="1" type="checkbox" /> 信用贷</td>
+	    <td width="153"><input name="e2"  value="1" type="checkbox" /> 房屋抵押</td>
+	    <td width="161"><input name="e3"  value="1" type="checkbox" /> 车辆抵押</td>
+	    <td width="149"><input name="e4"  value="1" type="checkbox" /> 其他抵押</td>
+	    <td width="139"></td>
+	  </tr>
+	  <tr>
+	    <td width="102">资金模式：</td>
+	    <td width="85"> <input name="f0"  value="1" type="checkbox" style="display:none" checked="checked" /><span class="span_1 orange">不限</span></td>
+	    <td width="143"><input name="f1"  value="1" type="checkbox" /> 资金池</td>
+	    <td width="153"><input name="f2"  value="1" type="checkbox" /> 第三方托管</td>
+	    <td width="161"></td>
+	    <td width="149"></td>
+	    <td width="139"></td>
+	  </tr>
+  </form>
+</table> 
+</div>
+<div class="clear"></div> 
+<div id="left-content">
+<ul id="result-list">
+<volist name="touzi_list" id="vi">
+	<li class="list-item"> 
+	<div class="item-content-left">
+	<div class="item-title"><a href="{$vi.website}"><img src="__ROOT__/Style/H/images/touzi/platform_{$vi.p_id}.jpg" alt="{$vi.cname}"></a><a target="_blank" href="{$vi.links}" rel="nofollow">{$vi.title}</a></div> 
+	<div class="item-content-property">
+	<span><img src="__ROOT__/Style/H/images/touzi/icon.jpg" alt=""> 借款期限：{$vi.qixian}{$vi.qixian_type}</span>
+	<span><img src="__ROOT__/Style/H/images/touzi/icon.jpg" alt=""> 起投金额：{$vi.start_money}元</span> 
+	<span><img src="__ROOT__/Style/H/images/touzi/icon.jpg" alt=""> 投资进度：{$vi.progress}%</span>
+	</div>
+	<div class="item-content-property">
+	<span><img src="__ROOT__/Style/H/images/touzi/icon.jpg" alt=""> 还款方式：{$vi.repay_type}</span>
+	</div>
+	
+	<div class="item-content-supplier"><span class="item-content-supplier-name">借款金额：</span><span class="item-content-supplier-idea" >¥ {$vi.biaodi_money}</span></div>
+	<div class="product-type-label icon icon-flag">P2P</div>
+	</div>
+	
+	
+	<div class="item-content-right">
+	<div class="money">预期收益率</div>
+	<div class="money "><span class="returns">{$vi.shouyi}</span><span class="returns returns-character">%</span></div>
+	<a target="_blank" class="view-detail " href="{$vi.links}" rel="nofollow">详&nbsp;&nbsp;情</a></div>
+	</li>  
+</volist>
+</ul>
+<div class="list_bottom">
+<div class="list_bottom_right">
+	<ul>{$page}</ul>
+</div>
+</div>
+</div> 
+<div id="right_content">
+<div class="right_box">
+<div class="box_title">理财小工具</div>
+<div class="box_list">
+<ul>
+<li><a href="" target="_blank"><img src="__ROOT__/Style/H/images/touzi/jsj.jpg" alt=""> 理财收益计算器</a></li>
+<li><a href="" target="_blank"><img src="__ROOT__/Style/H/images/touzi/zs.jpg" alt=""> 理财风险自评</a></li>
+</ul>
+</div>
+</div> 
+<img src="__ROOT__/Style/H/images/touzi/pic.jpg" alt="" class="pic">
+<div class="clear"></div>
+
+<div class="right_box">
+<div class="box_titles">理财常见问题解答</div>
+<div class="box_content">
+<p><b>Q:什么是银行理财产品以及银行理财产品有哪些类型?</b><br>
+A:商业银行在对潜在目标客户群分析研究的基础上，针对特定目标客户群开发设计并销售的资金投资和管理计划。在理财产品这种投资方式中，银行只是接受客户的授权管理资金，投资收益与风险由客户或客户与银行按照约定方式承担。 一般根据预期收益的类型，我们将银行理财产品分为固定收益产品、浮动收益产品两类。另外按照投资方式与方向的不同，新股申购类产品、银信合作品、QDII产品、结构型产品等，也是我们经常听到和看到的说法。
+</p> 
+<p><b>Q:什么是银行理财产品以及银行理财产品有哪些类型?</b><br>
+A:商业银行在对潜在目标客户群分析研究的基础上，针对特定目标客户群开发设计并销售的资金投资和管理计划。 银行只是接受客户的授权管理资金，投资收益与风险由客户或客户与银行按照约定方式承担。  
+</p> 
+</div>
+</div>  
+<div class="clear"></div>
+<img src="__ROOT__/Style/H/images/touzi/pic.jpg" alt="" class="pic">
+</div>
+<div class="clear"></div> 
+<div class="main_content">
+<p>
+免责声明<br>
+理财产品信息均由第三方网站机构提供或系统自动收集得到，具体产品详情请咨询对应机构。<br>
+温馨提示<br>
+理财产品在投资运作过程中可能面临各种风险，包括外部市场风险、发行机构自身的管理风险、技术风险、合规风险等。投资者投资不同类型的理财产品将获得不同的收益预期，也将承担不同程度的风险。一般来说，理财产品的收益预期越高，投资者可能承担的风险越大。
+货币型基金、理财型基金产品展现产品的近7日年化收益，债券型基金、股票型基金和阳光私募产品展现产品历史年净值增幅，银行理财产品、集合信托计划及P2P理财产品展现预期收益率。<br>
+（基金数据由银河证券提供）
+</p>
+</div> 
+</div> 
+<div class="clear"></div>
+<div id="footer"> ©2015 Baidu 使用百度前必读 京ICP证030173号 </div>
+<script language="javascript">
+$(function(){	
+	$('.span_1').click(function(){
+		$(this).parent().parent().find("input").attr("checked",false);
+		$(this).prev().attr("checked",true);
+		$(this).css("color","#fff");
+		$(this).addClass("orange");
+		ajax();
+	});
+	
+	$('.table_100 input').click(function(){
+		var a = 0;
+		if($(this).attr("checked")=="checked"){
+			$(this).parent().parent().find('input').first().attr("checked",false);
+			$(this).parent().parent().find('input').first().next().removeClass("orange");
+			$(this).parent().parent().find('input').first().next().css("color","#000");
+		}else{
+			$(this).parent().parent().find("input").each(function(){				
+				if($(this).attr("checked")=="checked"){
+					a = 1;
+				}								
+			})
+			if(a==0){
+				$(this).parent().parent().find('input').first().attr("checked",true);
+				$(this).parent().parent().find('input').first().next().addClass("orange");
+				$(this).parent().parent().find('input').first().next().css("color","#fff");
+			}				
+		}
+		var name = $(this).attr("name");
+		var value = $(this).attr("value");
+		ajax(name,value);
+	})
+	
+	
+});
+
+function ajax(name1,value1){
+	
+	$.ajax({
+        url: '/touzi/ajax',
+        type: 'post',
+        dataType: 'json',
+        data: { name : name1,value: value1},
+        success: function(data) {
+        	
+        	var html = "";
+        	for (var i = 0; i < data.data.length; i++) { 
+                html = html + '<li class="list-item"><div class="item-content-left"><div class="item-title"><a target="_blank" href="" rel="nofollow"><img src="__ROOT__/Style/H/images/touzi/platform_'+data.data[i].id+'.jpg" alt="">'+data.data[i].title+'</a></div><div class="item-content-property"><span><img src="__ROOT__/Style/H/images/touzi/icon.jpg" alt=""> 借款期限：'+data.data[i].qixian+data.data[i].qixian_type+'</span><span><img src="__ROOT__/Style/H/images/touzi/icon.jpg" alt=""> 起投金额：'+data.data[i].start_money+'元</span><span><img src="__ROOT__/Style/H/images/touzi/icon.jpg" alt=""> 投资进度：'+data.data[i].progress+'%</span></div><div class="item-content-property"><span><img src="__ROOT__/Style/H/images/touzi/icon.jpg" alt=""> 还款方式：'+data.data[i].repay_type+'</span></div><div class="item-content-supplier"><span class="item-content-supplier-name">借款金额：</span><span class="item-content-supplier-idea" >¥ '+data.data[i].biaodi_money+'</span></div><div class="product-type-label icon icon-flag">P2P</div></div><div class="item-content-right"><div class="money">预期收益率</div><div class="money "><span class="returns">'+data.data[i].shouyi+'</span><span class="returns returns-character">%</span></div><a target="_blank" class="view-detail " href="'+data.data[i].links+'" rel="nofollow">详&nbsp;&nbsp;情</a></div></li>';
+
+            }
+        	$("#result-list").html(html);
+        },
+	});
+
+	
+}
+
+
+</script>
+
+</body>
+</html>
+
+
+
+	 
+     
+      
+
+
+
+
+
+
+
+
+

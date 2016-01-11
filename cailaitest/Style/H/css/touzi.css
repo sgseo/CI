@@ -1,0 +1,118 @@
+@charset "utf-8";
+ 
+body{ background:#eeefef; margin:0 auto; font:14px "Microsoft YaHei",Arial,Helvetica,sans-serif;color:#666; } 
+*{ margin:0; padding:0;}
+.clear{clear:both;}
+ul,li{ list-style:none;}
+a{ text-decoration:none;}
+.pic{ margin-bottom:20px; float:left;}
+
+#header{ width:100%; margin:0 auto; height:auto;}
+#head{ width:994px; margin:0 auto; height:65px; text-align:left; padding-top:15px;}
+#banner{ width:100%; height:337px; margin:0 auto; text-align:center; background:url(../images/touzi/banner.jpg) no-repeat top center;}
+
+#container{ width:994px; height:auto; margin:0 auto; overflow:hidden; display:block; padding-bottom:25px;}
+
+.title{ width:100%; height:50px; padding-top:20px; line-height:35px; display:block;  font-size:28px;}
+
+#list_banner_left{ width:962px;height:330px;padding:15px;border:1px solid #e5e5e5;background:#fff;margin-bottom:25px;} 
+
+.table_100{width:962px;float:left;height:auto;background:#fff;color:#000;font-size:16px;}
+.table_100 tr{background:#fff;color:#666;height:55px;border-bottom:1px solid #f1f1f1; display:block;} 
+.table_100 tr td{ padding:12px 3px 3px 3px;}
+
+.span_1{ width:50px; height:23px; line-height:23px;  display:block; color:#fff; text-decoration:none; font-size:14px; text-align:center;  cursor: pointer;}
+.orange{background:#e1872f;}
+.table_100 tr:last-child{background:#fff;color:#666;height:55px;border-bottom:none; display:block;} 
+
+
+/*右边目录*/
+#right_content{ width:290px; height:auto; float:right; overflow:hidden;} 
+.right_box{width:258px; border:1px solid #e5e5e5;background:#fff; margin-bottom:20px; padding:10px 15px;}
+.box_title{ width:243px;display:block;line-height:35px; background:url(../images/touzi/icon.jpg) no-repeat left;padding-left:15px;border-bottom:1px solid #e0e0e0;color:#222; font-weight:bold;}
+
+.box_list{width:160px; height:auto; display:block; margin:0px auto;}
+.box_list ul{ width:100%;}
+.box_list ul li{ width:158px; background:#eeefef; border:1px solid #dbdcdc; margin-top:10px; height:30px; line-height:30px;}
+.box_list ul li a{ color:#222; font-size:14px; font-weight:bold;}
+.box_list ul li a:hover{ color:#e1872f; text-decoration:underline;}
+.box_list ul li a img{ margin:4px 10px  0 15px; float:left;}
+
+
+.box_titles{ width:243px;display:block;line-height:35px; background:url(../images/touzi/icon.jpg) no-repeat left;padding-left:15px;color:#222; font-weight:bold;}
+.box_content{width:258px; height:auto; display:block; margin:0px auto; color:#666; line-height:25px;}
+.box_content p{ padding:15px; border-top:1px solid #e0e0e0; font-size:13px;}
+.box_content b{color:#555; font-weight:normal; font-size:14px;}
+
+
+/*左边目录*/
+#left-content{ width:670px; height:auto; float:left;} 
+#left-content .list-item {background: #fff; margin-bottom:25px;padding:15px 10px; border:1px solid #e5e5e5;clear: both;position: relative;*zoom:1}
+
+#left-content .list-item:after {visibility: hidden;display: block;font-size: 0;content: " ";clear: both;height: 0}
+#left-content .list-item .product-type-label {position: absolute;top: 0; width:50px; height:31px;right:10px;background:url(../images/touzi/p2p_icon.jpg) no-repeat; line-height: 24px;text-align: center;color: #FFF}
+#left-content .list-item .activity-tab-1 {position: absolute;width: 50px;height: 50px;top: 0;left: 680px; display: block}
+#left-content .list-item .item-title {border-bottom:1px solid #dbdbdb;margin-bottom: 4px;line-height: 32px; padding-bottom:8px;}
+#left-content .list-item .item-title a {vertical-align: top;font-size: 14px;color: #000;text-decoration: none;font-weight: 700;margin-right: 0;*vertical-align:-8px}
+
+#left-content .list-item .item-title a img {width:67px;height: 32px;display: inline-block;line-height: 32px;vertical-align: top;font-size: 15px;*display:inline;*zoom:1;margin-right: 10px}
+#left-content .list-item .item-title a:hover {color: #d92222;text-decoration: underline}
+#left-content .list-item .item-title .item-title-right {vertical-align: 2px;*vertical-align:-7px;font-size: 16px;color: #dedede;margin: 0 4px}
+
+#left-content .list-item .item-content-left {float: left;width: 650px}
+#left-content .list-item .item-content-right {padding:10px 15px;width:79px;position: absolute;right:10px;top:65px;background:#ececec;text-align: center}
+
+#left-content .list-item .item-content-right .money {position: relative;margin-bottom: 5px;font-size: 14px;color: #000; *zoom:1;text-align: center;}
+#left-content .list-item .item-content-right .money .returns {color: #e1872f;font-size: 30px;font-family: Arial; }
+#left-content .list-item .item-content-right .money .returns-character {font-size: 30px}
+
+#left-content .list-item .item-content-right .view-detail {color: #fff;background: #e1872f;display: inline-block;width: 87px;height: 27px;line-height: 27px;text-decoration: none;text-align: center}
+
+
+#left-content .trust-list-item-con {width: 598px;float: right;margin-top: 14px} 
+
+.item-content-property {margin-bottom: 8px;color: #333;*zoom:1}
+.item-content-property span{ width:auto; float:left; padding:10px 25px 0px 10px;}
+
+.item-content-property-label {float: left;display: block;width: 80px;height: 26px;line-height: 26px;text-align: center;}
+.item-content-property-risk {color: #61349f}
+.item-content-property:after, .item-content-property:before {display: table;content: ""}
+.item-content-property:after {visibility: hidden;display: block;font-size: 0;content: " ";clear: both;height: 0}
+
+.item-content-property .field-col-extend {width: auto}
+
+.item-content-property .risk-score {overflow: visible;position: relative}
+.item-content-property .risk-score-unknown .icon-bar-empty {background-position: 0 -105px}
+.item-content-property .risk-score-unknown .icon-bar-empty span {display: none}
+.item-content-property .risk-score em.icon, .item-content-property .risk-score label {float: left}
+.item-content-property .risk-score em.icon {position: relative;display: block;width: 110px;height: 10px;margin-top: 8px}
+.item-content-property .risk-score em.icon b {display: block;position: absolute;height: 10px}
+.item-content-property .risk-score em.icon b span {position: absolute;right: -4px;top: 13px}
+.item-content-property .risk-score .question {background: 0 0;top: 5px;right: -4px;position: absolute;left: auto}
+.item-content-property .risk-score .question .icon {cursor: pointer}
+.item-content-property .risk-score .question .question-list {width: 140px;word-break: break-all;white-space: normal}
+.item-content-property .text-disabled {color: #798391}
+.item-content-supplier {padding: 6px 0 10px 12px}
+.item-content-supplier-name{color: #e1872f;text-decoration: none}
+.item-content-supplier-img {display: inline-block;width: 20px;height: 11px;background: url(img/icons.png?v=i2ohyo87) 0 -1146px no-repeat; margin: 0 5px} 
+.item-content-supplier-idea {color: #666;text-decoration: none;padding-left: 10px}
+.item-content-supplier-idea:hover {color: #d92222;cursor: pointer;text-decoration: none}
+
+.list_bottom{width:670px;height:38px;margin: 0 auto;}
+.list_bottom_right{width:670px; float:left; }
+.list_bottom_right ul{height:26px;float:right; text-align:left;}
+.list_bottom_right ul a:hover {background-position: 0px 0px;color:#fff;text-decoration: none;}
+.list_bottom_right ul a {display: inline-block;height: 26px;line-height: 26px;padding: 0 3px;border: 1px solid #c9c9c9;color: #666;background: #fff;margin-left: 2px; }
+
+.list_bottom_right ul a:hover{color:#f39700;text-decoration:none;}
+
+.list_bottom_right ul li{float:left;width:34px;height:34px;text-align:center;line-height:30px;margin-left:10px;background:#fff;}
+.list_bottom_right ul li a{color:#888;}
+
+.list_bottom_right span.current {background: #f39700;border: 1px solid #eeefef;color: #fff;padding: 4px 8px;height: 21px;line-height: 21px;}
+
+
+
+.main_content{ width:994px; margin:0 auto; line-height:25px; font-size:14px; color:#666; padding:20px 0;}
+
+#footer{ background:#c4c4c4; margin:0 auto; padding:20px 0; font-size:14px; color:#666; text-align:center;}

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<% include file="/public/head.html" %>
+<% include file="/public/tiphead.html" %>
+</head>
+<body> 
+<div id="m_base"> 
+<div class="m_zctitle">购买</div> 
+  
+ 
+<div class="m_goumai">购买金额  <input type="text" value="最低<% $Min %>元,100元递增,最高不限" class='clrtext format imoney' /></div>
+<div class="clear"></div>
+<div class="m_goumaitext">
+
+<p>预计到期收益 <span class="expect"> 0</span> 元</p>
+ 
+<p>账户余额 <span><% $account_money %></span> 元</p>
+</div>
+<form action="/invset/comed" method='POST' id="mf">
+    <input type="hidden" name="m"/>
+    <input type="hidden" name="bid"/>
+</form>
+<div class="<% $mg %>"><a href="#" ><% $qg %></a></div>
+<div class="m_text"><img src="/statics/images/4.png" alt=""><span>账户资金由央行授权汇付天下托管</span></div>
+</div>
+<% include file="/public/tipbody.html" %>
+</body>
+
+<script type="text/javascript">
+var min=<% $Min %>;
+var max=<% $Max %>;
+var rate=<% $rate; %>;
+var moonf=<% $Moonf; %>;
+//格式化输入的文字
+$(document).ready(function(){
+      $(".format").blur(
+            function (){
+               if( volidateNum(this,'#infoMsg',min,max)){
+               // alert(this.value);
+                this.value=this.value.toString().asCurrency();
+                this.style.color='#000000';
+                $('.expect').html( ((window.money)*((rate*0.01)*moonf)).toFixed(2) );
+            }
+      });
+        function sub(){
+        if(isNaN(window.money)){
+                $('#infoMsg').html('亲,可能是你未填写金额 ^_^');
+                $('#infoMsg').css('color','red');
+             }else{
+               var mf=document.getElementById('mf');
+                mf.elements['m'].value=window.money;
+                  mf.elements['bid'].value =<% $bid %>;
+                  mf.submit(); 
+             }
+        }
+        window.sub=sub;
+});
+//预计到期收益
+
+</script>
+</html>

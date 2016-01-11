@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>手机M站</title> 
+<link href="style/css.css" type="text/css" rel="stylesheet"/>
+</head>
+
+<body> 
+<div id="m_base"> 
+<div class="m_zctitle">更多</div> 
+  
+<div id="m_morelist">
+<div class="m_morenav">
+<ul>
+<li><a href="wodezhanghu.html"><img src="images/u1.jpg" alt=""> 我的账户</a></li>
+<li><a href="liaojiecailai.html"><img src="images/u2.jpg" alt=""> 了解财来</a></li>
+<li><a href=""><img src="images/u3.jpg" alt=""> 财来公众号</a></li>
+<li><a href=""><img src="images/u4.jpg" alt=""> <i>检查更新</i>  <span>当前版本2.1.0</span></a></li>
+<li><a href=""><img src="images/u5.jpg" alt=""> <i>财来客服</i>  <span>400-079-8558</span></a></li>
+<li><a href=""><img src="images/u6.jpg" alt=""> 退出</a></li>
+</ul>
+</div> 
+</div>
+ 
+
+<div class="clear"></div> 
+<div id="m_menu">
+<ul>
+<li class="home"><a href="index.html">精选推荐</a></li>
+<li class="pro"><a href="product.html">产品列表</a></li>
+<li class="zichan"><a href="zichan.html">我的资产</a></li> 
+<li class="more"><a class="dqmenu" href="more.html">更多</a></li> 
+</ul>
+</div> 
+</div>
+</body>
+</html>

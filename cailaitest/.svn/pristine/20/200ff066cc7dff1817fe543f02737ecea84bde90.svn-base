@@ -1,0 +1,141 @@
+<tagLib name="htmlA" />
+<style type="text/css">
+.operaframe { width: 600px; text-align: left; overflow: hidden; margin-left: 20px; line-height: 27px; padding-left: 28px; float: left; margin-bottom:25px; }
+        .operaframe ul { padding: 0px; margin: 0px; text-align: left; overflow: hidden; line-height: 25px; }
+        .operaframe ul li { float: left; line-height: 25px; }
+	.tdTitle { text-align: right; padding-left: 10px; font-size: 12px; height: 40; line-height: 40px; vertical-align: middle; width: 160px; font-weight: bold; background-color: #F9F9F9; }
+	.tdContent1 { text-align: left; padding-left: 10px; font-size: 12px; height: 40; line-height: 40px; vertical-align: middle; width: 535px; }
+.tdHeard{border: solid 1px #e5e5e5; background:#f9f9f9; color:#222; font-size:14px; line-height:28px; padding:5px 0;}
+.tdContent { border: solid 1px #e5e5e5; font-size:12px; color:#666; }
+.txtInput{   background-color: #FFFFFF;
+                    background-position: right center;
+                    background-repeat: no-repeat;
+                    border: 1px solid #CCCCCC;
+                    font-size: 12px;
+                    height: 15px;
+                    margin-right: 4px;
+                    padding: 2px;
+                    text-align: left;
+                    vertical-align: middle;
+                    width: 95px;
+                }
+</style>
+
+<div style="height:25px; line-height: 25px;padding:16px;width:695px;margin:30px 0 30px 40px;text-align: left; color:#222; font-size:18px; float: left; border:1px solid #f39700; border-radius:8px;">
+	<php>if(!isset($_GET['start_time'])){</php>截止 <php>echo date("Y-m-d H:i:s",time());</php><php>}else{</php>从<span class="fontred"><php>echo date("Y-m-d",$_GET['start_time']);</php></span>到<span class="fontred"><php>echo date("Y-m-d",$_GET['end_time']);</php></span>期间<php>}</php>
+	您的充值金额是：<span class="fontred"> ￥{$total_money|default="0.00"}</span> 
+</div>
+
+
+<div class="operaframe">
+	<ul id="formTb"> 
+		<li style="width:85px;">起止日期： </li>
+		<li style="width:390px;">
+			<input type="text" id="start_time" value="<php>if($search['start_time']){echo date('Y-m-d',$search['start_time']);}</php>" readonly="readonly" class="Wdate timeInput_Day" onfocus="WdatePicker({maxDate:'#F{$dp.$D(\\\'end_time\\\')||\\\'2020-10-01\\\'}'})" style="width:160px; border:1px soild #c8c7c7" />
+			至
+			<input type="text" value="<php>if($search['end_time']){echo date('Y-m-d',$search['end_time']);}</php>" id="end_time" readonly="readonly" class="Wdate timeInput_Day" onfocus="WdatePicker({minDate:'#F{$dp.$D(\\\'start_time\\\')||\\\'2020-10-01\\\'}'})" style="width:160px; border:1px soild #c8c7c7" />
+		</li>
+		<li style="width:80px;">
+			<img alt="" src="__ROOT__/Style/M/images/chakan.jpg" id="btn_search" onclick="getBind()" style="cursor: pointer;">
+		</li> 
+	</ul>
+</div>
+
+<!--<div style="margin-top: 5px;margin-bottom: 5px;" class="operaframe">
+<table>
+<tbody>
+<tr><td></td>
+<td> 时间从：<input type="text" id="start_time" value="<php>if($search['start_time']){echo date('Y-m-d',$search['start_time']);}</php>" readonly="readonly" class="Wdate timeInput_Day" onFocus="WdatePicker({maxDate:'#F{$dp.$D(\\\'end_time\\\')||\\\'2020-10-01\\\'}'})"/>至<input type="text" value="<php>if($search['end_time']){echo date('Y-m-d',$search['end_time']);}</php>" id="end_time" readonly="readonly" class="Wdate timeInput_Day" onFocus="WdatePicker({minDate:'#F{$dp.$D(\\\'start_time\\\')||\\\'2020-10-01\\\'}'})"/>
+</td>
+<td><img style="cursor: pointer; margin-left:20px;" id="btn_search" src="__ROOT__/Style/M/images/chakan.jpg" onclick="getBind();" alt=""></td>
+</tr>
+<tr style="display:none">
+<td></td>
+<td>金额从：<input type="text" class="txtInput" onblur="NumberCheck(this)" id="moneyBegin">至<input type="text" onblur="NumberCheck(this)" class="txtInput" id="moneyEnd"></td>
+<td>
+		 <img style="cursor: pointer; margin-left:20px;" id="btn_search" src="__ROOT__/Style/M/images/chakan.jpg" onclick="getBind();" alt="">
+</td>
+</tr>
+</tbody></table>
+</div>-->
+<div style="width: 100%;" >
+	<table id="content" style="width: 723px; margin-left:44px; float: left; border-collapse: collapse;" cellspacing="0">
+		<tbody><tr id="tdHead">
+			<th scope="col" class="tdHeard" style="width: 180px;">
+				编号
+			</th>
+			<th scope="col" class="tdHeard" style="width: 180px;">
+				充值时间
+			</th>
+			<th scope="col" class="tdHeard" style="width: 180px;">
+				充值金额
+			</th>
+			<th scope="col" class="tdHeard" style="width: 180px;">
+				订单号
+			</th>
+		</tr>
+	
+	<volist name="list" id="vo" empty='暂时没有充值记录'>
+	<tr>
+	<td class="tdContent" style="width: 180px;">{$vo.id}</td>
+	<td class="tdContent" style="width: 180px;">{$vo.addtime|date="Y-m-d H:i",###}</td>
+	<td class="tdContent" style="width: 180px;">{$vo.transamt}</td>
+	<td class="tdContent" style="width: 180px;">{$vo.ordid}</td>
+	</tr>
+	</volist>
+	
+	</tbody></table>
+	<div style="clear: both; height: 0px;">
+	</div>
+	<div style=" float:left; margin:10px 30px 10px 25px;">
+	</div>
+	<div data="fragment-2" id="pager" style="float: right; text-align: right; width: 500px; padding-right:32px; margin-bottom:40px;" class="yahoo2 ajaxpagebar">{$pagebar}</div>
+	<div style="clear: both; height: 0px;">
+	</div>
+</div>
+<script type="text/javascript">
+//返回数字
+function NumberCheck(t){
+	var num = t.value;
+	var re=/^\d+\.?\d*$/;
+	if(!re.test(num)){
+		isNaN(parseFloat(num))?t.value=0:t.value=parseFloat(num);
+	}
+}
+
+function getBind(){
+	
+	x = makevar(['moneyBegin','moneyEnd','start_time','end_time']);
+	$.ajax({
+		url: "__URL__/chargelog",
+		data: x,
+		timeout: 5000,
+		cache: false,
+		type: "get",
+		dataType: "json",
+		success: function (d, s, r) {
+			if(d) $("#fragment-2").html(d.html);//更新客户端竞拍信息 作个判断，避免报错
+		}
+	});
+}
+
+$('.ajaxpagebar a').click(function(){
+	try{	
+		var geturl = $(this).attr('href');
+		var id = $(this).parent().attr('data');
+		var x={};
+        $.ajax({
+            url: geturl,
+            data: x,
+            timeout: 5000,
+            cache: false,
+            type: "get",
+            dataType: "json",
+            success: function (d, s, r) {
+              	if(d) $("#"+id).html(d.html);//更新客户端竞拍信息 作个判断，避免报错
+            }
+        });
+	}catch(e){};
+	return false;
+})
+</script>

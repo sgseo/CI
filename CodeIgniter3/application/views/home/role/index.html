@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="<?=base_url()?>application/views/Css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="<?=base_url()?>application/views/Css/bootstrap-responsive.css" />
+    <link rel="stylesheet" type="text/css" href="<?=base_url()?>application/views/Css/style.css" />
+    <script type="text/javascript" src="<?=base_url()?>application/views/Js/jquery.js"></script>
+    <script type="text/javascript" src="<?=base_url()?>application/views/Js/jquery.sorted.js"></script>
+    <script type="text/javascript" src="<?=base_url()?>application/views/Js/bootstrap.js"></script>
+    <script type="text/javascript" src="<?=base_url()?>application/views/Js/ckform.js"></script>
+    <script type="text/javascript" src="<?=base_url()?>application/views/Js/common.js"></script>
+
+    <style type="text/css">
+        body {
+            padding-bottom: 40px;
+        }
+        .sidebar-nav {
+            padding: 9px 0;
+        }
+
+        @media (max-width: 980px) {
+            /* Enable use of floated navbar text */
+            .navbar-text.pull-right {
+                float: none;
+                padding-left: 5px;
+                padding-right: 5px;
+            }
+        }
+
+
+    </style>
+</head>
+<body>
+<form class="form-inline definewidth m20" action="" method="post">  
+    我推荐的人员列表&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    推荐者手机：
+    <input type="text" name="mobile" id="rolename" class="abc input-default" placeholder="" value="">&nbsp;&nbsp;  
+    <button type="submit" class="btn btn-primary">查询</button>&nbsp;&nbsp; 
+    <!-- <button type="button" class="btn btn-success" id="addnew">新增角色</button> -->
+    <a class="btn btn-success" href="__URL__/cl_to_excel">下载</a>
+</form>
+<table class="table table-bordered table-hover definewidth m10" >
+    <thead>
+    <tr>
+        <th>推荐者id</th>
+        <th>推荐者姓名</th>
+        <th>推荐者电话</th>
+        <th>推荐者贡献额度</th>
+        <th>推荐者注册时间</th>    
+    </tr>
+    </thead>
+
+        <?php
+        foreach($result as $key => $value):
+        ?>
+          <tr>
+          <td><?=$value['id']?></td>
+          <td><?=$value['real_name']?></td>
+          <td><?=$value['mobile']?></td>
+          <td><?=$value['bonus']?></td>
+          <td><?=$value['reg_date']?></td>
+        </tr>
+        <?php
+        endforeach;
+        ?>
+        <tr><td colspan='6'> 对我的总贡献:<font color='red'><?=$total_bonus?></font>元</td></tr>
+  
+    </table>
+    <div class='table table-bordered table-hover definewidth m10' style='margin:0 auto;text-align:center;'>
+        
+    </div>
+    <!-- 今日投资的人 -->
+<div class="form-inline definewidth m20"><font color='red'>今日</font> 投资的人的投资记录：</div>
+
+<table class="table table-bordered table-hover definewidth m10" >
+    <thead>
+        <tr>
+            <th>借款标号</th>
+            <th>标的标题</th>
+            <th>电子合同</th>
+            <th>借款人姓名</th>
+            <th>投资人姓名</th>
+            <th>投资人电话</th>
+            <th>投资金额</th>
+            <th>年利率</th>
+            <th>投资时间</th>
+        </tr>
+    </thead>
+
+    <?php
+        if(count($tinvestors)):
+            foreach ($tinvestors as $key => $value):
+    ?>
+        <tr>
+            <td><?=$value['borrow_id']?></td>
+            <td><?=$value['borrow_name']?></td>
+            <td><a href="https://test.cailai.com/home/agreement/downfile?id=$value['borrow_id']">查看</a></td>
+            <td><?=$value['borrow_real_name']?></td>
+            <td><?=$value['real_name']?></td>
+            <td><?=$value['cell_phone']?></td>
+            <td><?=$value['investor_capital']?></td>
+            <td><?=$value['borrow_interest_rate']?></td>
+            <td><?=$value['add_time|date="Y-m-d H:i:s",###']?></td>
+        </tr>
+    <?php
+            endforeach;
+       else:
+    ?>
+        <div class="form-inline definewidth m20"><font color='red'>今日暂无投资人</font> </div> 
+    <?php
+        endif;
+    ?>
+    </table>
+	</body>
+	</html>
+
+<script>
+    $(function () {
+        
+		$('#addnew').click(function(){
+
+				window.location.href="add.html";
+		 });
+
+
+    });
+
+	function del(id)
+	{
+		
+		
+		if(confirm("确定要删除吗？"))
+		{
+		
+			var url = "index.html";
+			
+			window.location.href=url;		
+		
+		}
+	
+	
+	
+	
+	}
+</script>

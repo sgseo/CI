@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>手机M站</title> 
+<link href="style/css.css" type="text/css" rel="stylesheet"/>
+</head>
+
+<body> 
+<div id="m_base"> 
+ 
+<div id="new_novice"> 
+<div class="novice_title"><span><a href="prolist.html">蒋女士上海住宅抵押 ...</a></span> <i>每月还息到期还本</i></div>  
+<div class="novice_content_property">
+<div class="novice_bt"><i>12%</i> 收益率(%)</div>
+<div class="novice_bt"><span>30</span>期限(天)</div>
+<div class="novice_bts"><span>1000</span> 规模(万)</div>
+<div class="ui-list-field"> <span class="ui-progressbar-mid ui-progressbar-mid-80"><em>80%</em></span></div>
+<div class="m_toub"></div> 
+</div> 
+</div>
+
+<div id="new_novice"> 
+<div class="novice_title"><span>蒋女士上海住宅抵押 ...</span> <i>每月还息到期还本</i></div>  
+<div class="novice_content_property">
+<div class="novice_bt"><i>12%</i> 收益率(%)</div>
+<div class="novice_bt"><span>30</span>期限(天)</div>
+<div class="novice_bts"><span>1000</span> 规模(万)</div>
+<div class="ui-list-field"> <span class="ui-progressbar-mid ui-progressbar-mid-80"><em>80%</em></span></div>
+<div class="m_toub"></div> 
+</div> 
+</div>
+
+<div id="new_novice"> 
+<div class="novice_title"><span>蒋女士上海住宅抵押 ...</span> <i>每月还息到期还本</i></div>  
+<div class="novice_content_property">
+<div class="novice_bt"><i>12%</i> 收益率(%)</div>
+<div class="novice_bt"><span>30</span>期限(天)</div>
+<div class="novice_bts"><span>1000</span> 规模(万)</div>
+<div class="ui-list-field"> <span class="ui-progressbar-mid ui-progressbar-mid-80"><em>80%</em></span></div>
+<div class="m_toub"></div> 
+</div> 
+</div>
+
+<div id="new_novice"> 
+<div class="novice_title"><span>蒋女士上海住宅抵押 ...</span> <i>每月还息到期还本</i></div>  
+<div class="novice_content_property">
+<div class="novice_bt"><i>12%</i> 收益率(%)</div>
+<div class="novice_bt"><span>30</span>期限(天)</div>
+<div class="novice_bts"><span>1000</span> 规模(万)</div>
+<div class="ui-list-field"> <span class="ui-progressbar-mid ui-progressbar-mid-80"><em>80%</em></span></div>
+<div class="m_toub"></div> 
+</div> 
+</div>
+ 
+ 
+ 
+<div class="clear"></div> 
+<div id="m_menu">
+<ul>
+<li class="home"><a href="index.html">精选推荐</a></li>
+<li class="pro"><a class="dqmenu" href="product.html">产品列表</a></li>
+<li class="zichan"><a href="zichan.html">我的资产</a></li> 
+<li class="more"><a href="more.html">更多</a></li> 
+</ul>
+</div> 
+</div>
+</body>
+</html>

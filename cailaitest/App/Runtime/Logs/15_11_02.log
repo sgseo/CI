@@ -1,0 +1,20 @@
+[ 2015-11-02T13:17:07+08:00 ] /UF/Uploads/Ad/20150403111521289.jpg | ERR: Cron:cron_1 Runat 2015-11-02 13:17:07 Use 0.020001 s
+
+[ 2015-11-02T13:17:08+08:00 ] /member/common/login/ | ERR: Cron:cron_1 Runat 2015-11-02 13:17:08 Use 0.000000 s
+
+[ 2015-11-02T13:17:19+08:00 ] /member/index | ERR: Cron:cron_1 Runat 2015-11-02 13:17:19 Use 0.001000 s
+
+[ 2015-11-02T13:17:20+08:00 ] /favicon.ico | ERR: Cron:cron_1 Runat 2015-11-02 13:17:20 Use 0.000000 s
+
+[ 2015-11-02T13:17:29+08:00 ] /member/index | ERR: Cron:cron_1 Runat 2015-11-02 13:17:29 Use 0.001000 s
+
+[ 2015-11-02T13:17:33+08:00 ] /member/index | ERR: Cron:cron_1 Runat 2015-11-02 13:17:33 Use 0.002000 s
+
+[ 2015-11-02T13:18:16+08:00 ] /invest/index.html | ERR: Cron:cron_1 Runat 2015-11-02 13:18:16 Use 0.001000 s
+
+[ 2015-11-02T13:18:21+08:00 ] /invest/1392.html | ERR: Cron:cron_1 Runat 2015-11-02 13:18:21 Use 0.002000 s
+
+[ 2015-11-02T13:18:21+08:00 ] /invest/investRecord?borrow_id=1392&p=1 | ERR: Cron:cron_1 Runat 2015-11-02 13:18:21 Use 0.001000 s
+
+[ 2015-11-02T16:00:07+08:00 ] /invest/investRecord?borrow_id=1392&p=1 | ERR: Cron:cron_1 Runat 2015-11-02 16:00:07 Use 0.001000 s
+

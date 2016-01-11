@@ -1,0 +1,212 @@
+<?php
+/*array(菜单名，菜单url参数，是否显示)*/
+$i=0;
+$j=0;
+$menu_left =  array();
+$menu_left[$i]=array('全局','#',1);
+$menu_left[$i]['low_title'][$i."-".$j] = array('全局设置','#',1);
+$menu_left[$i][$i."-".$j][] = array('欢迎页',U('/admin/welcome/index'),1);
+$menu_left[$i][$i."-".$j][] = array('网站设置',U('/admin/global/websetting'),1);
+$menu_left[$i][$i."-".$j][] = array('友情链接',U('/admin/global/friend'),1);
+$menu_left[$i][$i."-".$j][] = array('广告管理',U('/admin/ad/'),1);
+//$menu_left[$i][$i."-".$j][] = array('客户端云推送',U('/admin/baidupush/'),1);
+//$menu_left[$i][$i."-".$j][] = array('登陆接口管理',U('/admin/loginonline/'),1);
+//$menu_left[$i][$i."-".$j][] = array("自动还款参数",U("/admin/auto/"),1);
+$menu_left[$i][$i."-".$j][] = array("后台操作日志",U("/admin/global/adminlog"),1);
+$menu_left[$i][$i."-".$j][] = array("短信发送日志",U("/admin/global/sendsmslog"),1);
+$menu_left[$i][$i."-".$j][] = array("短信发送",U("/admin/global/sendsms"),1);
+$j++;
+$menu_left[$i]['low_title'][$i."-".$j] = array('缓存管理','#',1);
+$menu_left[$i][$i."-".$j][] = array('所有缓存',U('/admin/global/cleanall'),1);
+
+$i++;
+$menu_left[$i]= array('借款管理','#',1);
+$menu_left[$i]['low_title'][$i."-".$j] = array('借款列表','#',1);
+$menu_left[$i][$i."-".$j][] = array('初审待审核借款',U('/admin/borrow/waitverify'),1);
+$menu_left[$i][$i."-".$j][] = array('复审待审核借款',U('/admin/borrow/waitverify2'),1);
+$menu_left[$i][$i."-".$j][] = array('招标中借款',U('/admin/borrow/waitmoney'),1);
+$menu_left[$i][$i."-".$j][] = array('还款中借款',U('/admin/borrow/repaymenting'),1);
+$menu_left[$i][$i."-".$j][] = array('已完成的借款',U('/admin/borrow/done'),1);
+$menu_left[$i][$i."-".$j][] = array('已流标借款',U('/admin/borrow/unfinish'),1);
+$menu_left[$i][$i."-".$j][] = array('初审未通过的借款',U('/admin/borrow/fail'),1);
+$menu_left[$i][$i."-".$j][] = array('复审未通过的借款',U('/admin/borrow/fail2'),1);
+$menu_left[$i][$i."-".$j][] = array('还款列表',U('/admin/borrow/repaylist'),1);
+
+$j++;
+$menu_left[$i]['low_title'][$i."-".$j] = array("企业直投管理","#",1);
+$menu_left[$i][$i."-".$j][] = array('添加企业直投',U('/admin/tborrow/add'),1);
+$menu_left[$i][$i."-".$j][] = array('投资中借款',U('/admin/tborrow/underway'),1);
+$menu_left[$i][$i."-".$j][] = array('待复审借款',U('/admin/tborrow/review'),1);
+$menu_left[$i][$i."-".$j][] = array('复审未通过',U('/admin/tborrow/reject'),1);
+$menu_left[$i][$i."-".$j][] = array('已流标借款',U('/admin/tborrow/turnoff'),1);
+$menu_left[$i][$i."-".$j][] = array("还款中借款",U("/admin/tborrow/repayment"),1);
+$menu_left[$i][$i."-".$j][] = array("已完成借款",U("/admin/tborrow/completed"),1);
+
+$j++;
+$menu_left[$i]['low_title'][$i."-".$j] = array("债权转让管理","#",1);
+$menu_left[$i][$i."-".$j][] = array('债权转让',U('/admin/debt/index'),1);
+
+$j++;
+$menu_left[$i]['low_title'][$i."-".$j] = array('融资申请管理','#',1);
+$menu_left[$i][$i."-".$j][] = array('融资申请',U('/admin/rongzi/index'),1);
+
+
+$j++;
+$menu_left[$i]['low_title'][$i."-".$j] = array('逾期借款管理','#',1);
+$menu_left[$i][$i."-".$j][] = array('逾期统计',U('/admin/expired/detail'),0);
+$menu_left[$i][$i."-".$j][] = array('已逾期借款',U('/admin/expired/index'),1);
+$menu_left[$i][$i."-".$j][] = array('逾期会员列表',U('/admin/expired/member'),1);
+
+$j++;
+$menu_left[$i]['low_title'][$i."-".$j] = array('商户还款管理','#',1);
+$menu_left[$i][$i."-".$j][] = array('待还款列表',U('/admin/repayment/index'),1);
+
+$i++;
+$menu_left[$i]= array('会员管理','#',1);
+$menu_left[$i]['low_title'][$i."-".$j] = array('会员管理','#',1);
+$menu_left[$i][$i."-".$j][] = array('会员列表',U('/admin/members/index'),1);
+$menu_left[$i][$i."-".$j][] = array('企业会员列表',U('/admin/members/corp'),1);
+$menu_left[$i][$i."-".$j][] = array('担保企业会员列表',U('/admin/members/danbao'),1);
+$menu_left[$i][$i."-".$j][] = array('会员资料列表',U('/admin/members/info'),1);
+$menu_left[$i][$i."-".$j][] = array('举报信息',U('/admin/jubao/index'),1);
+$menu_left[$i][$i."-".$j][] = array('会员对账',U('/admin/memberaccount/duizhang'),1);
+$menu_left[$i][$i."-".$j][] = array('会员推荐人补绑',U('/admin/memberaccount/memberrec'),1);
+$menu_left[$i][$i."-".$j][] = array('超标记录',U('/admin/memberaccount/chaobiao'),1);
+$j++;
+
+$menu_left[$i]['low_title'][$i."-".$j] = array('推荐人管理','#',1);
+$menu_left[$i][$i."-".$j][] = array('投资记录',U('/admin/refereeDetail/index'),1);
+$j++;
+
+$menu_left[$i]['low_title'][$i."-".$j] = array('黑名单管理','#',1);
+$menu_left[$i][$i."-".$j][] = array('添加黑名单',U('/admin/blacklist/add'),1);
+$menu_left[$i][$i."-".$j][] = array('黑名单列表',U('/admin/blacklist/index'),1);
+$j++;
+
+$menu_left[$i]['low_title'][$i."-".$j] = array('认证及申请管理','#',1);
+$menu_left[$i][$i."-".$j][] = array('手机认证会员',U('/admin/verifyphone/index'),1);
+//$menu_left[$i][$i."-".$j][] = array('视频认证申请',U('/admin/verifyvideo/index'),1);
+//$menu_left[$i][$i."-".$j][] = array('现场认证申请',U('/admin/verifyface/index'),1);
+//$menu_left[$i][$i."-".$j][] = array('VIP申请管理',U('/admin/vipapply/index'),1);
+//$menu_left[$i][$i."-".$j][] = array('会员实名认证申请',U('/admin/memberid/index'),1);
+$menu_left[$i][$i."-".$j][] = array('额度申请待审核',U('/admin/members/infowait'),1);
+$menu_left[$i][$i."-".$j][] = array('上传资料管理',U('/admin/memberdata/index'),1);
+$j++;
+$menu_left[$i]['low_title'][$i."-".$j] = array('评论管理','#',1);
+$menu_left[$i][$i."-".$j][] = array('评论列表',U('/admin/comment/index'),1);
+
+$i++;
+$menu_left[$i]= array('积分管理','#',1);
+$menu_left[$i]['low_title'][$i."-".$j] = array('投资积分管理','#',1);
+$menu_left[$i][$i."-".$j][] = array('投资积分操作记录',U('/admin/market/index'),1);
+//$menu_left[$i][$i."-".$j][] = array('商品兑换管理',U('/admin/market/getlog'),1);
+//$j++;
+//$menu_left[$i]['low_title'][$i."-".$j] = array('积分商城管理','#',1);
+//$menu_left[$i][$i."-".$j][] = array('商城商品列表',U('/admin/market/goods'),1);
+//$menu_left[$i][$i."-".$j][] = array('抽奖商品列表',U('/admin/market/lottery'),1);
+//$menu_left[$i][$i."-".$j][] = array('评论列表',U('/admin/market/comment'),1);
+
+$i++;
+$menu_left[$i]= array('充值提现','#',1);
+$menu_left[$i]['low_title'][$i."-".$j] = array('充值管理','#',1);
+//$menu_left[$i][$i."-".$j][] = array('在线充值',U('/admin/Paylog/paylogonline'),1);
+//$menu_left[$i][$i."-".$j][] = array('线下充值',U('/admin/Paylog/paylogoffline'),1);
+$menu_left[$i][$i."-".$j][] = array('充值记录列表',U('/admin/Paylog/index'),1);
+
+
+$j++;
+$menu_left[$i]['low_title'][$i."-".$j] = array('提现管理','#',1);
+//$menu_left[$i][$i."-".$j][] = array('待审核提现',U('/admin/Withdrawlogwait/index'),1);
+//$menu_left[$i][$i."-".$j][] = array('审核通过,处理中',U('/admin/Withdrawloging/index'),1);
+//$menu_left[$i][$i."-".$j][] = array('已提现 ',U('/admin/Withdrawlog/withdraw2'),1);
+//$menu_left[$i][$i."-".$j][] = array('审核未通过',U('/admin/Withdrawlog/withdraw3'),1);
+$menu_left[$i][$i."-".$j][] = array('提现记录列表',U('/admin/Withdrawlog/index'),1);
+
+$i++;
+$menu_left[$i]= array('文章管理','#',1);
+$menu_left[$i]['low_title'][$i."-".$j] = array('文章管理','#',1);
+$menu_left[$i][$i."-".$j][] = array('文章列表',U('/admin/article/'),1);
+$menu_left[$i][$i."-".$j][] = array('文章分类',U('/admin/acategory/'),1);
+$i++;
+$menu_left[$i]= array('菜单管理','#',1);
+$menu_left[$i]['low_title'][$i."-".$j] = array('菜单管理','#',1);
+$menu_left[$i][$i."-".$j][] = array('导航菜单',U('/admin/navigation/index'),1);
+
+$i++;
+$menu_left[$i]= array('资金统计','#',1);
+$menu_left[$i]['low_title'][$i."-".$j] = array('会员帐户','#',1);
+$menu_left[$i][$i."-".$j][] = array('会员帐户',U('/admin/capitalaccount/index'),1);
+//$j++;
+//$menu_left[$i]['low_title'][$i."-".$j] = array('充值提现','#',1);
+//$menu_left[$i][$i."-".$j][] = array('充值记录',U('/admin/capitalOnline/charge'),1);
+//$menu_left[$i][$i."-".$j][] = array('提现记录',U('/admin/capitalOnline/withdraw'),1);
+$j++;
+$menu_left[$i]['low_title'][$i."-".$j] = array('会员资金变动记录','#',1);
+$menu_left[$i][$i."-".$j][] = array('资金记录',U('/admin/capitaldetail/index'),1);
+$j++;
+$menu_left[$i]['low_title'][$i."-".$j] = array('网站资金统计','#',1);
+$menu_left[$i][$i."-".$j][] = array('网站资金统计',U('/admin/capitalall/index'),1);
+$menu_left[$i][$i."-".$j][] = array('财来网销售奖励',U('/admin/capitalall/zwindex'),1);
+
+$i++;
+$menu_left[$i]= array('权限','#',1);
+$menu_left[$i]['low_title'][$i."-".$j] = array('用户权限管理',"#",1);
+$menu_left[$i][$i."-".$j][] = array('管理员管理',U('/admin/Adminuser/'),1);
+$menu_left[$i][$i."-".$j][] = array('用户组权限管理',U('/admin/acl/'),1);
+
+
+$i++;
+$menu_left[$i]= array('数据库','#',1);
+$menu_left[$i]['low_title'][$i."-".$j] = array('数据库管理','#',1);
+$menu_left[$i][$i."-".$j][] = array('数据库信息',U('/admin/db/'),1);
+$menu_left[$i][$i."-".$j][] = array('备份管理',U('/admin/db/baklist'),1);
+$menu_left[$i][$i."-".$j][] = array('清空数据',U('/admin/db/truncate'),1);
+
+$i++;
+$menu_left[$i]= array('扩展管理','#',1);
+$menu_left[$i]['low_title'][$i."-".$j] = array('参数管理','#',1);
+$menu_left[$i][$i."-".$j][] = array('业务参数管理',U('/admin/bconfig/index'),1);
+$menu_left[$i][$i."-".$j][] = array('合同居间方资料上传',U('/admin/hetong/index'),1);
+$menu_left[$i][$i."-".$j][] = array('信用级别管理',U('/admin/leve/index'),1);
+$menu_left[$i][$i."-".$j][] = array('投资级别管理',U('/admin/leve/invest'),1);
+$menu_left[$i][$i."-".$j][] = array('会员年龄别称',U('/admin/age/index'),1);
+
+$j++;
+$menu_left[$i]['low_title'][$i."-".$j] = array('托管账户管理','#',1);
+$menu_left[$i][$i."-".$j][] = array('账户转账',U('/admin/tuoguan/zwtransfer'),1);
+$menu_left[$i][$i."-".$j][] = array('转账给个人',U('/admin/tuoguan/zwtoperson'),1);
+$menu_left[$i][$i."-".$j][] = array('托管账户设置',U('/admin/tuoguan/'),1);
+$menu_left[$i][$i."-".$j][] = array('商户充值',U('/admin/tuoguan/pay'),1);
+$menu_left[$i][$i."-".$j][] = array('商户取现',U('/admin/tuoguan/withdraw'),1);
+$menu_left[$i][$i."-".$j][] = array('商户托管登录',U('/admin/tuoguan/login'),1);
+$menu_left[$i][$i."-".$j][] = array('商户帐户信息',U('/admin/tuoguan/queryaccts'),1);
+$menu_left[$i][$i."-".$j][] = array('交易状态查询',U('/admin/tuoguan/transstat'),1);
+$menu_left[$i][$i."-".$j][] = array('商户扣款对账',U('/admin/tuoguan/trf'),1);
+$menu_left[$i][$i."-".$j][] = array('投标对账',U('/admin/tuoguan/reconciliation'),1);
+$menu_left[$i][$i."-".$j][] = array('取现对账',U('/admin/tuoguan/querycash'),1);
+$menu_left[$i][$i."-".$j][] = array('充值对账',U('/admin/tuoguan/querysave'),1);
+$menu_left[$i][$i."-".$j][] = array('企业开户状态查询',U('/admin/tuoguan/corpquery'),1);
+
+//$j++;
+//$menu_left[$i]['low_title'][$i."-".$j] = array('充值银行管理','#',1);
+//$menu_left[$i][$i."-".$j][] = array('线下充值银行管理',U('/admin/payoffline/'),1);
+//$menu_left[$i][$i."-".$j][] = array('线上支付接口管理',U('/admin/payonline/'),1);
+
+$j++;
+$menu_left[$i]['low_title'][$i."-".$j] = array('在线客服管理','#',1);
+$menu_left[$i][$i."-".$j][] = array('QQ客服管理',U('/admin/qq/index'),1);
+$menu_left[$i][$i."-".$j][] = array('QQ群管理',U('/admin/qq/qun'),1);
+$menu_left[$i][$i."-".$j][] = array('客服电话管理',U('/admin/qq/tel/'),1);
+
+$j++;
+$menu_left[$i]['low_title'][$i."-".$j] = array('在线通知管理','#',1);
+$menu_left[$i][$i."-".$j][] = array('通知信息接口管理',U('/admin/msgonline/'),1);
+$menu_left[$i][$i."-".$j][] = array('通知信息模板管理',U('/admin/msgonline/templet/'),1);
+
+$j++;
+$menu_left[$i]['low_title'][$i."-".$j] = array('安全检测','#',1);
+$menu_left[$i][$i."-".$j][] = array('文件管理',U('/admin/mfields/'),1);
+$menu_left[$i][$i."-".$j][] = array('木马查杀',U('/admin/scan/'),1);
+
+?>
+

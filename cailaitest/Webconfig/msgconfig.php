@@ -1,0 +1,2 @@
+<?php
+return array ( 'stmp' => array ( 'user' => 'service@qianhetou.com', 'pass' => 'qht2014', 'server' => 'smtp.exmail.qq.com', ), 'sms' => array ( 'type' => '1', 'user1' => 'DXX-WSS-108-06157', 'pass1' => '414121', 'user2' => 'DXX-WSS-10G-06157 ', 'pwd' => '520238 ', 'user3' => '', 'pass3' => '', 'pass2' => '9F58B519B88F5DF6DB8EFE7A88FD28DC', ), ); ?>

@@ -1,0 +1,246 @@
+<include file="default:Public:_header_common" group="Home" />
+<title>找回密码-- {$glo.web_name}</title> 
+<link rel="stylesheet" href="__ROOT__/Style/H/css/home.css" />
+<script type="text/javascript">
+var imgpath="__ROOT__/Style/M/";
+var curpath="__URL__";
+</script>
+<style>
+#container{
+        width: 938px;
+        border: 1px solid #e0e0e0;
+        min-height: 350px;
+        background: #fff;
+        padding: 20px;
+        margin:20px auto 20px auto;
+        border-top: 3px solid #f39800;
+    }
+.phc_navname {width:auto; float:right; padding-left:25px;padding-right:5px; font-size:26px; font-weight:normal; line-height:50px; text-align:right; color:#999; margin-top:10px ; border-left:1px solid #a1a1a1;}	
+
+#container h2{ font-size:18px; font-weight:bold; line-height:52px; text-align:center; display:block; color:#f39801; margin:0; padding:0 0 15px 0;}	
+	
+.wrap{ border:1px solid #F0F0F0; background:linear-gradient(to bottom, #FAFAFA 0%, #F6F6F6 100%) repeat scroll 0% 0% transparent;
+        width:370px; text-shadow:0px 1px 0px #FFF;border-radius:4px; box-shadow:0px 1px 1px rgba(0, 0, 0, 0.15), 0px 2px 1px rgba(0, 0, 0, 0.1), 0px 3px 1px rgba(0, 0, 0, 0.05);box-sizing:border-box;
+        margin: auto; padding:20px 0;
+}
+.wrap p{
+        margin-bottom: 15px;
+    }
+
+</style>
+<div class="first_top">
+		<div class="dv_header top "> 
+<div class="dw_bgx dw_mini">
+<div class="Cmml00" style="margin-top: 0;">
+<div class="fl dw_Cbg zuo">
+<div class="fl" >全国免费热线: 400-079-8558  (服务时间：09:00 — 18:00)  欢迎访问<b><a href="http://www.cailai.com">上海财来网</a></b>!</div>
+</div>
+<div class="fr">
+
+<div class="fl">
+    <a class="fl orangebg" href="/member/common/login/">立即登录</a>
+    <a href="/member/common/register/" class="fl orange" >免费注册</a>
+</div>
+<div class="fliphonebg"><div class="fliphone"><a href="/borrow/app.html" target="_blank">手机客户端</a></div></div>
+<div class="top_center">
+<ul> 
+<a target="_blank" href="http://weibo.com/cailaiwang"> 
+<li class="hover_sina"> 
+<div class="weibo_c"><img src="__ROOT__/Style/H/images/count/top_sina.png" /></div>
+</li></a>
+
+<li class="hover_weixin">
+<div class="weibo_c weixin_c"><img src="__ROOT__/Style/H/images/count/top_weixin.png" /></div>
+</li>
+</ul>
+</div> 
+
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="Nav">
+<div class="contain">
+    <div class="N_logo"><a href="/"><img class="ilogo"  src="/Style/H/img/logo.png" alt=""/></a></div>
+    <div class="phc_navname"> 
+找回密码
+    </div> 
+     
+  </div>
+</div>
+
+<div id="container">
+<h2>重置密码</h2>
+    <div class="wrap" id="step">
+        <p style="color: #f00; height: 24px;padding-left:80px;" id="errmsg"></p>
+        <p>
+            <span style="display: inline-block;width: 110px; text-align: right;">手机号：</span>
+            <input type="text" id="mobile" name="mobile"/>
+        </p>
+        <p >
+            <span style="display: inline-block;width: 110px;text-align: right;">验证码：</span>
+            <input type="text" id="smscode" name="smscode" style="width: 60px;"/><button style="margin: -4px 0 0 10px;" class="btn" id="sendSMS">发送短信验证码</button>
+        </p>
+        <p>
+            <span style="display: inline-block;width: 130px;text-align: right;">&nbsp;</span>
+            <button class="btn btn-yellow btn-large" id="btnsub">下一步</button>
+        </p>
+    </div>
+
+    <div class="wrap" id="step2" style="display: none;">
+        <p style="color: #f00; height: 24px; padding-left: 120px;" id="errmsg2"></p>
+        <p>
+            <span style="display: inline-block;width: 110px;text-align: right;">新密码：</span>
+            <input type="password" id="pass" name="pass"/>
+        </p>
+        <p >
+            <span style="display: inline-block;width: 110px;text-align: right;">确&nbsp;认：</span>
+            <input type="password" id="repass" name="repass"/>
+        </p>
+        <p>
+            <span style="display: inline-block;width: 130px;text-align: right;">&nbsp;</span>
+            <button class="btn btn-blue btn-large" id="btnsub2">提交修改</button>
+        </p>
+    </div>
+</div>
+
+<script>
+    $(function(){
+
+        $('body input').click(function(){
+            errmsg.html('');
+        });
+        var mobile = $('#mobile');
+        var smscode = $('#smscode');
+        var btnsub = $('#btnsub');
+        var errmsg = $('#errmsg');
+
+
+        var pass = $('#pass');
+        var repass = $('#repass');
+        var btnsub2 = $('#btnsub2');
+        var errmsg2 = $('#errmsg2');
+
+        btnsub2.click(function() {
+            if (pass.val() == '') {
+                errmsg2.html('请填写密码');
+                return false;
+            }
+            if (repass.val() == '') {
+                errmsg2.html('请填确认新密码');
+                return false;
+            }
+
+            if (repass.val() != pass.val()) {
+                errmsg2.html('两次密码不一致');
+                return false;
+            }
+
+            $.ajax({
+                type: "post",
+                url: "/member/common/changepwd/",
+                dataType: "json",
+                data: {"mobile":mobile.val(), "pass":pass.val(), "smscode":smscode.val()},
+                timeout: 3000,
+                success: function(data) {
+                    if(data.status == '1') {
+                        if(confirm('密码修改成功，请重新登录！')) {
+                            window.location.href = '/member/common/login/';
+                        }
+                    } else if(data.status == '0') {
+                        errmsg2.html('短信验证码错误，请重试！');
+                    } else {
+                        errmsg2.html('网络忙，请稍后重试！');
+                    }
+                }
+            });
+        });
+
+
+        btnsub.click(function(){
+            if(mobile.val() == '') {
+                errmsg.html('请填写手机号码');
+                return false;
+            }
+            if(smscode.val() == '') {
+                errmsg.html('请填写您手机收到的验证码');
+                return false;
+            }
+
+            $.ajax({
+                type: "post",
+                url: "/member/common/checkfindpwdsms/",
+                dataType: "json",
+                data: {"mobile":mobile.val(), "smscode":smscode.val()},
+                timeout: 3000,
+                success: function(data) {
+                    if(data.status == '1') {
+                        $('#step').hide();
+                        $('#step2').show();
+                    } else {
+                        errmsg.html('短信验证码错误！');
+                    }
+                }
+            });
+
+        });
+
+
+        // 发送短信验证码
+        $('#sendSMS').data('status', 0);
+        $('#sendSMS').click(function() {
+            //alert(111);
+            var txt = "#mobile";
+            var pat = new RegExp(/^1[3|4|5|8][0-9]\d{8}$/);
+            var str = $(txt).val();
+            if(pat.test(str))
+            {
+                if( $('#sendSMS').data('status') == 1) {
+                    return false;
+                }
+                ///alert(222);
+                $.ajax({
+                    type: "post",
+                    url: "/member/common/sendfindpwdsms/",
+                    dataType: "json",
+                    data: {"mobile":str},
+                    beforeSend:function(){
+                        $('#sendSMS').html('短信发送中…');
+                    },
+                    timeout: 3000,
+                    success: function(data) {
+                        if(data.status == '1') {
+                            $('#sendSMS').data('status', 1).attr('disabled', 'disabled');
+                            // 处理60秒后重发
+                            var i = 0;
+                            countTime = setInterval(function(){
+                                var tt = 60 - i;
+                                $('#sendSMS').html('('+tt+')'+'秒后重新发送' );
+                                //$('#sendSMS').html('('+tt+')'+'秒后重新发送' + data.smscode);
+                                if(i == 60) {
+                                    clearInterval(countTime);
+                                    $('#sendSMS').data('status', 0).attr('disabled', false).html('发送短信验证码');
+                                }
+                                i++;
+
+                            }, 1000);
+                        } else {
+                            errmsg.html('账号不存在或手机号码格式错误');
+                            $('#sendSMS').data('status', 0).attr('disabled', false).html('发送短信验证码');
+                        }
+                    }
+                });
+            }else
+            {
+                errmsg.html('手机号码不正确');
+            }
+
+        });
+
+
+
+    });
+</script> 
+<include file="default:Public:_footer" group="Home" />

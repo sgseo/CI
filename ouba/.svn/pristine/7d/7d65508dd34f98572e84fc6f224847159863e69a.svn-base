@@ -1,0 +1,249 @@
+<?php
+namespace Home\Controller;
+use Think\Controller;
+ header("content-type:text/html;charset=utf8");
+ class RoleController extends Controller
+ {
+   public $salt;
+   public function _initialize()
+   {
+	 $this->salt=C(SALT);
+   }
+ 	/*
+	*/
+	public function index(){
+		$this->show();
+	}
+	//添加会员
+	public function add()
+	{
+		$username=I('post.username');
+		$pwd=md5(sha1(I('post.pwd').$this->salt));
+		$mobile=I('post.mobile',0);
+		$data['username']=$username;
+		$data['password']=$pwd;
+		$data['mobile']=$mobile;
+		$data['status']=I('post.status');//1为启用0为禁用
+		$data['reg_time']=time();
+		$data['reg_ip']=ip2long($_SERVER['REMOTE_ADDR']);
+		$um=M('ucenter_member');
+		$hasthis=$um->getFieldByUsername($username,'id');
+		//echo M()->_sql();
+		if(!$hasthis)
+		{
+			$added=$um->add($data);
+			//操作日志表
+			if($added)
+			{
+			$op=array();
+			$op['opname']=session('username');
+			$op['optime']=time();
+			$op['opdata']=serialize($data);
+			$op['opip']=$data['reg_ip'];
+			$op['optip']=$op['opname']."添加了一个角色id为".$added;
+			$op['optbname']='ucenter_member';
+			$op['opthatid']=$added;
+			M('dts')->add($op);
+			$this->success('成员已经添加成功');
+			}
+		}else{
+			$this->error('嘿嘿，此账户已经存在');
+		}
+
+	}
+
+		//显示标的抵押物信息jbox块2015-11-02 lj
+	public function impawn()
+	{
+		$id=I('get.id',0);
+		$list=M('house')->field('category,carbrand,cartype,carestimate,carbuytime,address,area,price,residence')->where('id='.$id)->find($id);
+		// $this->list=$list;
+		if($list['category']=='car')
+		{
+		$html="<table border='1px'><tr><td>车品牌</td><td>车类型</td><td>车估价(元)</td><td>车购买时间</td></tr>";
+		$html.="<tr><td>".$list['carbrand']."</td><td>".$list['cartype']."</td><td>".$list['carestimate']."</td><td>".date('Ymd',$list['carbuytime'])."</td></tr></table>";
+		}else if($list['category']=='fang'){
+				$html="<table border='1px'><tr><td>房屋地址</td><td>房屋面积（平米）</td><td>房屋价格(元)</td><td>房屋户口</td></tr>";
+		$html.="<tr><td>".$list['address']."</td><td>".$list['area']."</td><td>".$list['price']."</td><td>".$list['residence']."</td></tr></table>";
+		}else{
+			$html='暂无数据';
+		}
+		echo $html;
+	}
+
+	
+	public function cl_to_excel()
+	{
+		import("Vendor.PhpExcel.PHPExcel");
+
+		$objPHPExcel=new \PhpExcel();
+	//	var_dump(cookie('role'));
+
+		$list=unserialize(cookie('role'));
+
+		$list = array_splice($list,2);
+
+		$row[0]=array('推荐者的id','推荐者姓名','推荐者电话','推荐者贡献额度','推荐者注册时间');
+
+		$objPHPExcel->setActiveSheetIndex(0);
+
+		//合并单元格：
+		//$objPHPExcel->getActiveSheet()->mergeCells('B1:F1');
+		//头部
+			foreach ($row[0] as $key => $value) 
+			{
+				$cwr=chr(65+$key).'1';
+				$objPHPExcel->getActiveSheet()->SetCellValue($cwr, $value);
+			}
+
+			foreach ($list['data'] as $key => $value) {
+					$arr[$key][]=$value['id'];
+					$arr[$key][]=$value['real_name'];
+					$arr[$key][]=$value['mobile'];
+					$arr[$key][]=$value['bonus'];
+					$arr[$key][]=date('Y-m-d',$value['reg_date']);
+			}
+
+		$total = count($arr);	
+
+		$cr = count($arr['0']);//获取每个数组有几个元素用来控制列
+
+		for($i=0;$i<=$cr;$i++)
+		{
+			$cwr2=chr(64+$i+1);
+			for($j=2;$j<=$total+2;$j++)
+			{
+				$cwr=$cwr2.$j;//abcdefg
+				$objPHPExcel->getActiveSheet()->SetCellValue($cwr,' '.$arr[$j-2][$i]);
+			}
+		}
+
+		$objWriter = new \PHPExcel_Writer_Excel5($objPHPExcel);
+		
+		$objWriter->save(str_replace('.php', '.xls', __FILE__));
+		
+		$filename='推荐人.xls';
+
+		header("Pragma: public");
+		header("Expires: 0");
+		header("Cache-Control:must-revalidate,post-check=0,pre-check=0");
+		header("Content-Type:application/force-download");
+		header("Content-Type:application/vnd.ms-execl");
+		header("Content-Type:application/octet-stream");
+		header("Content-Type:application/download");
+		header("Content-Disposition:attachment;filename=".$filename);
+		header("Content-Transfer-Encoding:binary");
+		$objWriter->save("php://output");
+	}
+	public function remember()
+	{	
+
+		$this->show();
+	}//eof rem
+
+	/**
+	 * 发送短信提醒
+	 */
+	public function sendsms()
+	{
+		$mobile = I('post.mobile');
+
+        $content = I('post.content');
+
+        $surl=$this->surl;;
+
+       	$data['secret_key']=$this->secret_key;
+
+  		$data['pname'] = $this->partner_name;
+
+  		$data['mobile']=$mobile;
+
+  		$data['content']= $content;
+
+  		//模拟post 请求
+	    $ch = curl_init() ;  
+	  	$fields = $data;
+		curl_setopt($ch, CURLOPT_URL,$surl);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);//控制返回结果不让自动输出
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);//对ssl 证书错误 不验证
+		curl_setopt($ch, CURLOPT_POST,count($fields)) ; // 启用时会发送一个常规的POST请求，类型为：application/x-www-form-urlencoded，就像表单提交的一样。  
+		curl_setopt($ch, CURLOPT_POSTFIELDS,$fields); // 在HTTP中的“POST”操作。如果要传送一个文件，需要一个@开头的文件名  		
+
+		$result = curl_exec($ch);//其值为 成功为1 不成功为 no auth
+	
+		if($result==1)
+		{
+			$json['status']='ok';
+			exit(json_encode($json));
+		}else{
+			$json['status']='no';
+			exit(json_encode($json));
+		}
+
+	}
+
+	/**
+	 * 我的任务--展示页
+	 */
+
+	public function mytask()
+	{
+		$username=session('username');
+		//->where('status=1')
+		$uid=M('ucenter_member')->getFieldByUsername($username,'id');
+		$list=M('house as h')->join('onethink_status as os on h.status=os.id')->where('h.respid='.$uid.' and h.status=4')->select();
+		$this->uid=$uid;
+		$this->list=$list;
+		$this->display();
+	}
+
+	/**
+	 * 任务完成确认--
+	 */
+	public function taskconfirm()
+	{
+		$uid=I('get.uid',0);//负责人id
+		$taskid=I('get.taskid',0);//任务id
+		$house=M('house');
+		$data['status']=5;//5为已完成
+		$data['finishtime']=time();
+		$res=$house->where('id='.$taskid.' and respid='.$uid)->save($data);
+		//echo M()->_sql();
+		if($res!==false)
+		{
+			$op=array();
+			$op['opname']=session('username');
+			$op['optime']=time();
+			$op['opdata']=serialize($data);
+			$op['opip']=ip2long($_SERVER['REMOTE_ADDR']);
+			$op['optip']=$op['opname']."完成了一个项目id为：".$taskid;
+			$op['optbname']='house';
+			$op['opthatid']=$taskid;
+			M('dts')->add($op);
+			$this->success('已经确认');
+		}else{
+			$this->error('确认失败');
+		}
+
+	}
+
+	/**
+	 * 已完成的任务
+	 */
+	public function donetask()
+	{
+		$house=M('house as h');
+		$data['status']=5;//5为已完成
+		$data['finishtime']=time();
+		$username=session('username');
+		$res=$house->join('onethink_ucenter_member as oum on h.respid=oum.id','left')
+		     ->join('onethink_status as os on h.status=os.id')
+		     ->field('h.*,oum.status as oums,os.status')->where('oum.username='."'".$username."'".' and h.status=5')->select();
+		// echo M()->_Sql();
+		// echo M()->getDbError();
+		$this->list=$res;
+		$this->display();
+
+	}
+
+ }//eof class role

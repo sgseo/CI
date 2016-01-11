@@ -1,0 +1,102 @@
+<include file='Public:_header'/>
+<!-- 当前位置:催收管理->催收列表 -->
+<form action="__URL__/debt" method="get" class="definewidth m20">
+     <table class="table table-bordered table-hover m10">
+    开始时间<input type="date" name="starttime" value='{$today}' />
+    结束时间<input type="date" name="endtime" value='{$a3days}'/>
+    还款情况
+    <select name='con'>
+        <option value="0" >全部</option>
+        <option value="1" >未还</option>
+        <option value="2" >已还</option>
+    </select></br>
+     业务来源<select name='source'>
+        <option value='0'>全部</option>
+        <volist name='source' id='so'>
+        <option value='{$so.id}'>{$so.organization}</option>
+        </volist>
+        <!-- <input type='hidden'  id='hsource' value='{$hsource}'/> -->
+    </select>
+       抵押业务员<select name='salesman'>
+        <option value='0'>全部</option>
+        <volist name='sales' id='sa'>
+        <option value='{$sa.id}' >{$sa.username}</option>
+        </volist>
+    </select>
+
+    客户姓名<input type="text" name='cstname' value='{$hcstname}'/>
+    <button type="submit" class="btn btn-success" name="backid"  >查询</button>
+</table>
+</form>
+    <table class="table table-bordered table-hover definewidth m10">
+    <thead>
+    <tr>
+        <th>借款标题</th>
+        <th>本期期数/总期数</th>
+        <th>客户</th>
+        <th>本期应还金额</th>
+        <th>本期应还时间</th>
+        <th>还款情况</th>
+        <th>抵押业务员</th>
+        <th>业务来源</th>
+        <th>资金来源</th>
+        <th>还款情况</th>
+    </tr>
+    </thead>
+    <volist name='list' id='vo' empty='$empty'>
+         <tr>
+            <!-- <td>{$vo.id}</td> -->
+            <td>{$vo.title}</td>
+            <td>{$vo.cursort}/{$vo.totalsort}</td>
+            <td>{$vo.cstname}/({$vo.tel})</td>
+            <td>{$vo.shouldrepay}</td>
+            <td>{$vo.shouldtime}</td>
+            <td>{$vo.realrepay}</td>
+            <td>{$vo.username}</td>
+            <td>{$vo.source}</td>
+            <td>{$vo.capitalsource}</td>
+            <td><a href='__MODULE__/node/showlog?id={$vo.id}#001'>查看</a></td>
+        </tr>
+    </volist>
+    </table>
+  <div class='table table-bordered table-hover definewidth m10' style='margin:20 auto;text-align:center;height:30px;line-height:30px;'>
+          {$page}
+    </div>
+</body>
+</html>
+<script>
+    $(function () {
+        var hsource="{$hsource}";
+        var hcon="{$hcon}";
+        var hsalesman="{$hsalesman}";
+        var name="{$name}";//谁登录就是谁。
+         $("select[name='salesman'] option").each(function(){
+            if($(this).val()== name)
+            {
+                $(this).attr('selected','selected');
+            }
+        });
+        //业务来源
+       $("select[name='source'] option").each(function(){
+            if($(this).val()==hsource)
+            {
+                $(this).attr('selected','selected');
+            }
+        });
+       //还款情况
+          $("select[name='con'] option").each(function(){
+            if($(this).val()== hcon)
+            {
+                $(this).attr('selected','selected');
+            }
+        });
+      //抵押业务员
+           $("select[name='salesman'] option").each(function(){
+            if($(this).val()== hsalesman)
+            {
+                $(this).attr('selected','selected');
+            }
+        });
+
+     });
+</script>

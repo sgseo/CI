@@ -1,0 +1,46 @@
+<include file="Public:_header" />
+<tagLib name="htmlA" />
+<div class="so_main">
+
+<div class="page_tit">转账管理</div>
+<div class="page_tab"><span data="tab_1"  class="active">向客户转账</span></div>
+<div class="form2">
+	<form method="post" id="transferForm" action="" enctype="multipart/form-data" target="_blank">
+	<!--tab1-->
+	<div id="tab_1">
+		<dl class="lineD"><dt>用户名：</dt><dd><htmlA:input id="user" value="{$user_name}" tip="* 注册用户名" /></dd></dl>
+		<dl class="lineD"><dt>金额：</dt><dd><htmlA:input id="money" value="" tip="* 转账金额" /></dd></dl>
+		<dl class="lineD"><dt>备注：</dt><dd><htmlA:text id="remark" value="" tip="* 转账金额" /></dd></dl>
+	</div>
+	<!--tab1-->
+	
+	
+	<div class="page_btm">
+	  <input type="button" class="btn_b" value="确定" /><span style="color:#CCCCCC"></span>
+	</div>
+	</form>
+</div>
+
+</div>
+<script type="text/javascript">
+$(function(){
+	$(".btn_b").click(function(){
+		var user = $("#user").val();
+		var money = $("#money").val();
+		var remark = $("#remark").val();
+		if(!user){
+			ui.error("请输入转向的用户名!"); return false;
+		}
+		if(money<=0.00){
+			ui.error("请输入金额!");return false;
+		}
+		if(!remark){
+			ui.error("备注不能为空!");return false;
+		}
+
+		$("#transferForm").submit()
+		
+	})
+})
+</script>
+<include file="Public:_footer" />

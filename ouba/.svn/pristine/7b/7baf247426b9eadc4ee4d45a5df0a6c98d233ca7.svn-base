@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <link href="__PUBLIC__/bootstrap-datetimepicker/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="__PUBLIC__/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Css/bootstrap-responsive.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Css/style.css" />
+    <script type="text/javascript" src="__PUBLIC__/Js/jquery.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Js/amounttochinese.js"></script>
+   <link rel="stylesheet" type="text/css" href="__PUBLIC__/webuploader015/webuploader.css">
+
+<!--引入JS-->
+    <script type="text/javascript" src="__PUBLIC__/webuploader015/webuploader.js"></script>
+   <!-- 时间插件 -->
+    <script type="text/javascript" src="__PUBLIC__/bootstrap-datetimepicker/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="__PUBLIC__/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.fr.js" charset="UTF-8">
+    </script>
+    <!-- 时间插件结束 -->
+    <script type="text/javascript" src="__PUBLIC__/Js/bootstrap.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Js/ckform.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Js/common.js"></script>
+
+    <style type="text/css">
+        body {
+            padding-bottom: 40px;
+        }
+        .sidebar-nav {
+            padding: 9px 0;
+        }
+
+        @media (max-width: 980px) {
+            /* Enable use of floated navbar text */
+            .navbar-text.pull-right {
+                float: none;
+                padding-left: 5px;
+                padding-right: 5px;
+            }
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="table table-bordered table-hover definewidth m10" style='margin:auto auto'>
+       <!-- 项目录入 -->
+        <form  class="table table-bordered table-hover definewidth m10" action="__URL__/add" method="post" enctype="multipart/form-data" >
+        <!-- 基础文档模型 -->
+
+            <div class="controls">
+               <input type="text" class="text input-large" name="title" value="" placeholder="请输入借款标题" id='tt'></br>
+               <input type="text" class="text input-large" name="cstname" value="" placeholder="借款人姓名"></br>
+               <input type="text" class="text input-large" name="age" value="" placeholder="年龄" maxlength='66'></br>
+               <input type="text" class="text input-large" name="native" value="" placeholder="户籍" maxlength='66'></br>
+               <input type="text" class="text input-large" name="idno" value="" placeholder="身份证号" maxlength='40'></br>
+               <input type="text" class="text input-large" name="tel" value="" placeholder="手机号码" maxlength='66'></br>
+               <input type="text" class="text input-large" name="work" value="" placeholder="职业" maxlength='66'></br>
+               <input type="text" class="text input-large" name="bank" value="" placeholder="开户行" maxlength='66'></br>
+               <input type="text" class="text input-large" name="bankcard" value="" placeholder="银行卡号" maxlength='66'></br>
+               <input type="text" class="text input-large" name="borrowamt" data-ideny='num2ch' value="" placeholder="贷款金额" onblur='num2ch(this.value,this.name)'>(元)
+               <span id='borrowamt' style='display:none;color:red'></span>
+             </br>
+               <!-- <input type="text" class="text input-large" name="loanstart" value=""placeholder="贷款开始日期">(月)</br> -->
+               <input type="text" class="text input-large" name="duration" value=""placeholder="贷款期限">(月)</br>
+               <input type="text" class="text input-large" name="rate" value="" placeholder="贷款利率(0.8-2之间)" onblur="number(this.value,this.name)" >(%)
+               <span id='rate' style='display:none;color:red'></span></br>
+               <!-- <input type="radio" class="text input-large" name="wed" value=""placeholder="婚姻状况"></br> -->
+               <label class="radio" ><input checked="checked" type="radio" value="1" name="wed" />未婚</label>
+               <label class="radio" ><input  type="radio"  name="wed" value='2'  />已婚</label>
+               <label class="radio" ><input  type="radio"  name="wed" value='3'  />离异</label>
+             </br>
+                        
+            <!--   <input type="text" name="bank"  placeholder='开户行'/>
+             </br>
+              <input type="text" name="bankcard"  placeholder='银行卡' maxlength='20'/>
+            </br> -->
+            过桥
+             <label  >
+              <input type="radio" name="bridge" value="1" /> 有
+            </label>
+            <label>
+              <input type="radio" name="bridge" value="0" checked="checked"/> 无
+            </label>
+            </br>
+              <span class='bridge' style='display:none;'>
+             <!--  <input type="text" name='bridgename' placeholder='过桥人'/></br>
+              <input type="text" name='bridgename' placeholder='过桥人身份证号'/></br>
+              <input type="text" name='bridgename' placeholder='过桥人联系方式'/></br>
+              <input type="text" name='bridgename' placeholder='过桥人婚姻状况'/></br>
+              <input type="text" name='bridgename' placeholder='过桥人年龄'/></br>
+              <input type="text" name='bridgename' placeholder='过桥人职业'/></br> -->
+              <select name="bridgename">
+                <option value='0'>请选择过桥人</option>
+                <volist name='blist' id='vo' key='k'>
+                    <option value="{$vo.uid}">{$vo.nickname}</option>
+                </volist>
+                <!-- <option value="3">财来</option> -->
+              </select>
+              </br>
+              </span>
+              <span class='bridge' style='display:none;'>
+              <input type="text"  placeholder='开户行' id='bank' maxlength='20' readonly='readonly'/></br>
+              </span>
+              <span class='bridge' style='display:none;'>
+              <input type="text"  placeholder='账号'  id='account' maxlength='20' readonly='readonly'/></br>
+              </span>
+              <span class='bridge' style='display:none;'>
+              <input type="text"  placeholder='开户名' id='nickname' maxlength='20' readonly='readonly'/></br>
+              </span>
+              <select  name="capitalsource">
+                    <option value="0">请选择资金来源</option>
+                <volist name='list' id='vo' key='k'>
+                    <option value="{$vo.id}">{$vo.organization}</option>
+                </volist>
+             </select>
+
+              </br>
+              <select name="loandest" >
+                <option value="0">请选择借款用途</option>
+                <option value="1">经营性周转</option>
+                <option value="2">个人消费</option>
+                <option value="3">其他</option>
+              </select>
+              </br>
+               <!-- <input type="text" class="text input-large" name="source" value=""placeholder="业务来源单位"></br> -->
+               <select name="source">
+                <option value='0'>请选择业务来源单位</option>
+                <volist name='list' id='vo' key='k'>
+                    <option value="{$vo.id}">{$vo.organization}</option>
+                </volist>
+   
+              </select>
+            </br>
+               <!-- <input type="text" class="text input-large" name="price" value=""placeholder="业务员姓名"></br> -->
+            <select name="salesman">
+                <option value='0'>请选择业务员</option>
+                <volist name='plist' id='vo'>
+                <option value="{$vo.id}">{$vo.username}</option>
+                </volist>
+              </select>
+            </br>
+         <!--       <input type="text" class="text input-large" name="price" value=""placeholder="业务员联系方式"></br>
+               <input type="text" class="text input-large" name="price" value=""placeholder="业务员身份证号"></br> -->
+               <!-- <input type="text" class="text input-large" name="riskearly" value=""placeholder="风控初审"></br> -->
+            <select name="riskearly">
+                <option value='0'>请选择风控初审</option>
+               <volist name='elist' id='vo'>
+                <option value="{$vo.id}">{$vo.username}</option>
+                </volist>
+              </select>
+            </br>
+               <!-- <input type="text" class="text input-large" name="riskfinal" value=""placeholder="风控终审" required="required"></br> -->
+              <select name="riskfinal">
+                <option value='0'>请选择风控终审</option>
+                 <volist name='flist' id='vo'>
+                <option value="{$vo.id}">{$vo.username}</option>
+                </volist>
+                <!-- <option value="3">王忠</option> -->
+              </select>
+            </br>
+              
+               <label class="radio" ><input checked="checked" type="radio" value="fang" name="category" id='fang' />房屋抵押</label>
+               <label class="radio"><input type="radio" value="car" name="category" id='car'>车辆抵押</label></br>
+         
+            <div id='house'>
+              是否主城区<label class="radio" ><input  type="radio" value="1" name="iscity" />是</label>
+               <label class="radio" ><input  type="radio"  name="iscity" value='2'  />否</label>
+                是否有租赁<label class="radio" ><input  type="radio" value="2" name="isloan" />是</label>
+               <label class="radio" ><input  type="radio"  name="isloan" value='1'  checked='checked' />否</label>
+              <input type="text" class="text input-large" name="address" value="" placeholder="房屋地址"></br>
+              <select name="pledge">
+                <option value='0'>请选择抵押情况</option>
+                <option value="1">清房</option>
+                <option value="2">一抵</option>
+                <option value="3">按揭</option>
+              </select>
+            </br>
+               <input type="text" class="text input-large" name="price" value=""placeholder="房屋市场价" onblur='num2ch(this.value,this.name)'>(元)
+              <span id='price' style='display:none;color:red'></span></br>
+               <input type="text" class="text input-large" name="estimateprice" value=""placeholder="房屋评估价" onblur='num2ch(this.value,this.name)'>(元)
+                <span id='estimateprice' style='display:none;color:red'></span></br>
+                <!-- upperprice -->
+                <input type="hidden" name='upperprice' value="" id='upperprice'/>
+               <select name="housetype"  required>
+                 <option value="0">请选择房屋类型</option>
+                  <volist name='htlist' id='vo'>
+                <option value="{$vo.id}">{$vo.housetype}</option>
+                </volist>
+               </select>
+             </br>
+               <input type="text" class="text input-large" name="residence" value="" placeholder="房屋户口"></br>
+               <input type="text" class="text input-large" name="area" value="" placeholder="房屋面积">(平方米)</br>
+               <input type="text" class="text input-large" name="pledgeno" value=""placeholder="房地产权证号"></br>
+               <!-- <input type="text" class="text input-large" name="anthorhouse" value=""placeholder="备用房"></br> -->
+               <input type="text" class="text input-large" name="anthoradd" value=""placeholder="备用房地址"></br>
+               <input type="text" class="text input-large" name="anthorarea" value=""placeholder="备用房面积"></br>
+            </div>
+             <div id='ca' style="display:none">
+               <input type="text" class="text input-large" name="carbrand" value="" placeholder="车子品牌"></br>
+               <input type="text" class="text input-large" name="cartype" value="" placeholder="车子型号"></br>
+               <input type="text" class="text input-large" name="carestimate" value="" placeholder="车子估价" onblur='num2ch(this.value,this.name)'>(元)
+               <span id='carestimate' style='display:none;color:red'></span></br>
+               <!-- <input type="text" class="text input-large time" name="carbuytime" value="" placeholder="车子购买日期"></br> -->
+                <input type="date" class="text input-large" name='carbuytime'  placeholder="请选择车辆购买日期"/>
+             </div>
+              <input type="text" value='' name='pledgename' placeholder='抵押人姓名'></br>
+              <input type="text" value='' name='pledgetel' placeholder='抵押人电话'></br>
+              <input type="text" value='' name='pledgeidno' placeholder='抵押人身份证'></br>
+
+               房产证<input type="file"  name='1'><input type='button' id='1' value='+' />
+             </br>
+               身份证<input type="file"  name='2'><input type='button' id='2' value='+' /></br>
+               户口本<input type="file"  name='3'><input type='button' id='3' value='+' /></br>
+               房屋图<input type="file"  name='4' ><input type='button' id='4' value='+' /></br>
+               结婚证<input type="file" name="20"><input type='button' id='20' value='+' /></br>
+               借款收据<input type="file" name="13"><input type='button' id='13' value='+' /></br>
+               他项权证<input type="file" name="15"><input type='button' id='15' value='+' /></br>
+               三方借款协议<input type="file" name="12"><input type='button' id='12' value='+' /></br>
+               房屋土地查购单<input type="file" name="11"><input type='button' id='11' value='+' /></br>
+               房屋抵押收件收据<input type="file" name="10"><input type='button' id='10' value='+' /></br>
+               发给借款人的转账凭证<input type="file" name="17"><input type='button' id='17' value='+' /></br>
+               发给过桥人的转账凭证<input type="file" name="18"><input type='button' id='18' value='+' /></br>
+               我司抵押人员填写贷款合同<input type="file" name="5"><input type='button' id='5' value='+' /></br>
+               我司抵押人员填写抵押合同<input type="file" name="6"><input type='button' id='6' value='+' /></br>
+               拍公证是双方照片（自拍合影）<input type="file" name="9"><input type='button' id='9' value='+' /></br>
+               我司抵押人员填写三方借款协议<input type="file" name="7"><input type='button' id='7' value='+' /></br>
+               拍公证受理通知书（强制、全委）<input type="file" name="8"><input type='button' id='8' value='+' /></br>
+              <label class="textarea"> <textarea name="tip" placeholder="备注信息"></textarea></label></br>
+            </div>
+              <p><button class="btn btn-large btn-primary btn btn-default" type="submit">确 定</button></p>
+    </form>
+</div>
+
+</body>
+</html>
+
+<script type="text/javascript">
+    $(function(){
+        $("#fang").click(function()
+        {
+            $("#house").show();
+            $("#ca").hide();
+        });
+        $("#car").click(function(){
+            $("#house").hide();
+            $("#ca").show();
+        });
+
+
+    });
+
+
+
+    $("input:button").click(function(){
+      var name=$(this).attr("id");
+      // console.log()
+      var button="<div class='adder'><input type='file'  name='"+name+"[]' />"
+                  +"<a href='javascript:void(0);'' onclick='del(this);'>"
+                  +"<input type='button' onlick='del(this)' value='-' />"
+                  +"</div></a>";
+       $(this).after(button);
+    });
+    function del(a)
+    {
+      $(a).parent().remove();
+    }
+    
+function num2ch(v,i) {
+
+  
+  var testreuslt = true;
+
+  if (testreuslt) {
+    showChineseAmount(v,i);
+  }
+  var newv=$("#"+i).text();
+  $('#upperprice').val(newv);
+  return testreuslt;
+}
+
+function showChineseAmount(v,i) {
+    // console.log(v,i);
+  var regamount = /^(([1-9]{1}[0-9]{0,})|([0-9]{1,}\.[0-9]{1,2}))$/;
+  var reg = new RegExp(regamount);
+  if (reg.test(v)) 
+  {
+    var amstr = v;
+    var leng = amstr.toString().split('.').length;
+    if (leng == 1) {
+      $("#"+v).val(v + ".00");
+    }
+    $("#"+i).text(Arabia_to_Chinese(amstr));
+    $("#"+i).show();
+    $("#"+i).css("color","red");
+  }else
+  {
+    $("#"+i).show();
+    $("#"+i).text("请输入纯数字");
+  }
+}
+
+function number(i,n)
+{
+  if(i>2||i<0.8)
+  {
+    $("#"+n).text('贷款利率介于0.8-2之间').show();
+  }
+}
+
+$(function () {       
+        var bridge=$('input[name=bridge][value=0]');
+        var bridgeis=$('input[name=bridge][value=1]');
+        bridge.click(function(){
+             $(".bridge").hide();
+        });
+        bridgeis.click(function(){
+            $(".bridge").show();
+        });
+
+        //当选择不同的过桥人的时候显示相应的信息
+        $("select[name=bridgename]").change(function(){
+          var id=$(this).val();
+          // console.log(id);
+          $.ajax({
+                    type:'POST',
+                    url:"__URL__/bridgecontent",
+                    data:{id:id},
+                    dataType:"json",
+                    success:function(b){
+                        $('#bank').val(b[0]['bridgeaddress']);
+                        $('#nickname').val(b[0]['nickname']);
+                        $("#account").val(b[0]['bridgeaccount']);
+                    }
+                });
+        })
+    });
+
+</script>
+<!-- 图片上传 -->

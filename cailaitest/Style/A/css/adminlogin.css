@@ -1,0 +1,41 @@
+@charset "utf-8";
+/* CSS Document */
+*{margin:0; padding:0;}
+ul,ol{ list-style:none}
+body{ margin:0; padding:0;/* background:url(./images/bbb.png) repeat-x 50% top; */MARGIN:0px 0px; width:100%; height:100%;}
+/* .content_right{margin:0; padding:0;width:500px;height:360px; background:#fff; top;MARGIN:0px 0px;border:5px solid #F8B33F;} */
+
+.login-box{ width:100%; height:500px; background:url(../images/bbb.png) 1px -300px repeat-x; position:relative;}
+.content_right{margin:0; padding:0;width:500px;height:360px; background:#fff; top;MARGIN:0px 0px;border:5px solid #F8B33F;
+  
+}
+ 
+
+.content_ht{width:100%;margin:0px auto;  height: auto;background:#F69B06;}
+.bgbg{width:500px;height:126px;}
+.bgbg img{ padding-left:0px; margin-top:-20px;}
+.bgbg1{width:200px;height:150px;float:left;margin:25px 30px 0 23px;}
+.LOGONEW{background:url(../images/) no-repeat 50% top; width:500px; margin:0px auto; height:300px}
+.LOGONEW1{ width:260px;color:#636363; text-align:center; float:right; clear:both; margin:-160px 20px 0 5px;font-size:15px;}
+.LOGONEW1 li input{ border:1px solid #636363;margin-top:10px;border-radius:5px;}
+.bodybox{ margin-left:100px;}
+.logn2 img{cursor:pointer; margin-bottom:-5px;}
+.lognAD5{padding:160px 50px 10px 10px;  *padding:10px 5px 10px 10px;}
+.lognAD5 input{width:70px;height:25px;background:#EB7D05;color:#FFFFFF;font-weight:bold;
+}
+.lognAD5 img{ margin-left:70px;}
+.unpa{height:22px; line-height:22px; font-size:16px; font-weight:bold; font-family:Arial, Helvetica, sans-serif;  width:146px; border:none;padding-left:4px;}
+.code{height:22px; line-height:22px; font-size:16px; font-weight:bold; font-family:Arial, Helvetica, sans-serif; padding-left:4px; width:79px;
+margin-right:10px;}
+.lognAD4 a{text-indent:-10000px; display:block;cursor: pointer;  width:83px; height:83px; overflow:hidden; }
+.footer{
+    text-align:center;
+    width:100%;
+    height:75px; 
+    padding-top:40px;
+   
+
+}
+.footer a{color:#FFFFFF; font-size:13px; margin:0px auto;font-weight:bold;}
+*html .logn3{padding:13px 143px 0px 300px;}
+*html .logn4{padding:20px 460px 0 20px;}

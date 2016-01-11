@@ -1,0 +1,121 @@
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://webservice.creditreport.p2p.sino.com/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="BatchCreditServiceService" targetNamespace="http://webservice.creditreport.p2p.sino.com/">
+<wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://webservice.creditreport.p2p.sino.com/" elementFormDefault="unqualified" targetNamespace="http://webservice.creditreport.p2p.sino.com/" version="1.0">
+<xs:element name="queryBatchCreditFile" type="tns:queryBatchCreditFile"/>
+<xs:element name="queryBatchCreditFileResponse" type="tns:queryBatchCreditFileResponse"/>
+<xs:element name="queryCredit" type="tns:queryCredit"/>
+<xs:element name="queryCreditResponse" type="tns:queryCreditResponse"/>
+<xs:element name="uploadBatchCreditFile" type="tns:uploadBatchCreditFile"/>
+<xs:element name="uploadBatchCreditFileResponse" type="tns:uploadBatchCreditFileResponse"/>
+<xs:complexType name="queryBatchCreditFile">
+<xs:sequence>
+<xs:element minOccurs="0" name="orgcode" type="xs:string"/>
+<xs:element minOccurs="0" name="secret" type="xs:string"/>
+<xs:element minOccurs="0" name="filename" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="queryBatchCreditFileResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="uploadBatchCreditFile">
+<xs:sequence>
+<xs:element minOccurs="0" name="orgcode" type="xs:string"/>
+<xs:element minOccurs="0" name="secret" type="xs:string"/>
+<xs:element minOccurs="0" name="filename" type="xs:string"/>
+<xs:element minOccurs="0" name="filebuff" type="xs:base64Binary"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="uploadBatchCreditFileResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="queryCredit">
+<xs:sequence>
+<xs:element minOccurs="0" name="orgcode" type="xs:string"/>
+<xs:element minOccurs="0" name="secret" type="xs:string"/>
+<xs:element name="plate" type="xs:int"/>
+<xs:element minOccurs="0" name="certtype" type="xs:string"/>
+<xs:element minOccurs="0" name="certno" type="xs:string"/>
+<xs:element minOccurs="0" name="name" type="xs:string"/>
+<xs:element minOccurs="0" name="reason" type="xs:string"/>
+<xs:element minOccurs="0" name="createtype" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="queryCreditResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>
+</wsdl:types>
+<wsdl:message name="queryCreditResponse">
+<wsdl:part element="tns:queryCreditResponse" name="parameters"></wsdl:part>
+</wsdl:message>
+<wsdl:message name="uploadBatchCreditFile">
+<wsdl:part element="tns:uploadBatchCreditFile" name="parameters"></wsdl:part>
+</wsdl:message>
+<wsdl:message name="queryCredit">
+<wsdl:part element="tns:queryCredit" name="parameters"></wsdl:part>
+</wsdl:message>
+<wsdl:message name="queryBatchCreditFile">
+<wsdl:part element="tns:queryBatchCreditFile" name="parameters"></wsdl:part>
+</wsdl:message>
+<wsdl:message name="uploadBatchCreditFileResponse">
+<wsdl:part element="tns:uploadBatchCreditFileResponse" name="parameters"></wsdl:part>
+</wsdl:message>
+<wsdl:message name="queryBatchCreditFileResponse">
+<wsdl:part element="tns:queryBatchCreditFileResponse" name="parameters"></wsdl:part>
+</wsdl:message>
+<wsdl:portType name="BatchCreditService">
+<wsdl:operation name="queryBatchCreditFile">
+<wsdl:input message="tns:queryBatchCreditFile" name="queryBatchCreditFile"></wsdl:input>
+<wsdl:output message="tns:queryBatchCreditFileResponse" name="queryBatchCreditFileResponse"></wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="uploadBatchCreditFile">
+<wsdl:input message="tns:uploadBatchCreditFile" name="uploadBatchCreditFile"></wsdl:input>
+<wsdl:output message="tns:uploadBatchCreditFileResponse" name="uploadBatchCreditFileResponse"></wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="queryCredit">
+<wsdl:input message="tns:queryCredit" name="queryCredit"></wsdl:input>
+<wsdl:output message="tns:queryCreditResponse" name="queryCreditResponse"></wsdl:output>
+</wsdl:operation>
+</wsdl:portType>
+<wsdl:binding name="BatchCreditServiceServiceSoapBinding" type="tns:BatchCreditService">
+<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+<wsdl:operation name="queryBatchCreditFile">
+<soap:operation soapAction="" style="document"/>
+<wsdl:input name="queryBatchCreditFile">
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output name="queryBatchCreditFileResponse">
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="queryCredit">
+<soap:operation soapAction="" style="document"/>
+<wsdl:input name="queryCredit">
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output name="queryCreditResponse">
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="uploadBatchCreditFile">
+<soap:operation soapAction="" style="document"/>
+<wsdl:input name="uploadBatchCreditFile">
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output name="uploadBatchCreditFileResponse">
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+</wsdl:binding>
+<wsdl:service name="BatchCreditServiceService">
+<wsdl:port binding="tns:BatchCreditServiceServiceSoapBinding" name="BatchCreditServicePort">
+<soap:address location="http://www.nfcstest.com:8080/webservice/batchcredit"/>
+</wsdl:port>
+</wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>手机M站</title> 
+<link href="style/css.css" type="text/css" rel="stylesheet"/>
+</head>
+
+<body> 
+<div id="m_base"> 
+<div class="m_zctitle">交易记录</div> 
+<div id="m_jyjl">
+<table width="100%" border="0">
+  <tr>
+    <td width="10%" rowspan="2"><img src="images/jyjl.jpg" alt=""></td>
+    <td width="63%" height="30" style="color:#000;">提现成功</td>
+    <td width="27%" align="right"><strong>-120.65</strong></td>
+  </tr>
+  <tr>
+    <td style="color:#808080; font-size:14px;">2015-06-17 13:14:20</td>
+    <td align="right" style="color:#808080;font-size:14px;">待收0</td>
+  </tr>
+</table>
+
+
+<table width="100%" border="0">
+  <tr>
+    <td width="10%" rowspan="2"><img src="images/jyjl.jpg" alt=""></td>
+    <td width="63%" height="30" style="color:#000;">利息管理费</td>
+    <td width="27%" align="right"><strong>0.00</strong></td>
+  </tr>
+  <tr>
+    <td style="color:#808080; font-size:14px;">2015-06-17 13:14:20</td>
+    <td align="right" style="color:#808080;font-size:14px;">待收0</td>
+  </tr>
+</table>
+ 
+
+<table width="100%" border="0">
+  <tr>
+    <td width="10%" rowspan="2"><img src="images/jyjl.jpg" alt=""></td>
+    <td width="63%" height="30" style="color:#000;">会员还款</td>
+    <td width="27%" align="right" style="color:#f39700;"><strong>+121</strong></td>
+  </tr>
+  <tr>
+    <td style="color:#808080; font-size:14px;">2015-06-17 13:14:20</td>
+    <td align="right" style="color:#808080;font-size:14px;">待收0</td>
+  </tr>
+</table>
+ 
+
+<table width="100%" border="0">
+  <tr>
+    <td width="10%" rowspan="2"><img src="images/jyjl.jpg" alt=""></td>
+    <td width="63%" height="30" style="color:#000;">投标成功代收利息</td>
+    <td width="27%" align="right" style="color:#f39700;"><strong>+1</strong></td>
+  </tr>
+  <tr>
+    <td style="color:#808080; font-size:14px;">2015-06-17 13:14:20</td>
+    <td align="right" style="color:#808080;font-size:14px;">待收101</td>
+  </tr>
+</table>
+ 
+
+<table width="100%" border="0">
+  <tr>
+    <td width="10%" rowspan="2"><img src="images/jyjl.jpg" alt=""></td>
+    <td width="63%" height="30" style="color:#000;">投标成功本金解冻</td>
+    <td width="27%" align="right" style="color:#f39700;"><strong>+100</strong></td>
+  </tr>
+  <tr>
+    <td style="color:#808080; font-size:14px;">2015-06-17 13:14:20</td>
+    <td align="right" style="color:#808080;font-size:14px;">待收100</td>
+  </tr>
+</table>
+ 
+
+<table width="100%" border="0">
+  <tr>
+    <td width="10%" rowspan="2"><img src="images/jyjl.jpg" alt=""></td>
+    <td width="63%" height="30" style="color:#000;">投标冻结</td>
+    <td width="27%" align="right"><strong>-100.00</strong></td>
+  </tr>
+  <tr>
+    <td style="color:#808080; font-size:14px;">2015-06-17 13:14:20</td>
+    <td align="right" style="color:#808080;font-size:14px;">待收0</td>
+  </tr>
+</table>
+ 
+
+<table width="100%" border="0">
+  <tr>
+    <td width="10%" rowspan="2"><img src="images/jyjl.jpg" alt=""></td>
+    <td width="63%" height="30" style="color:#000;">会员充值</td>
+    <td width="27%" align="right" style="color:#f39700;"><strong>+100</strong></td>
+  </tr>
+  <tr>
+    <td style="color:#808080; font-size:14px;">2015-06-17 13:14:20</td>
+    <td align="right" style="color:#808080;font-size:14px;">待收0</td>
+  </tr>
+</table>
+ 
+
+<table width="100%" border="0">
+  <tr>
+    <td width="10%" rowspan="2"><img src="images/jyjl.jpg" alt=""></td>
+    <td width="63%" height="30" style="color:#000;">推广奖励</td>
+    <td width="27%" align="right" style="color:#f39700;"><strong>+2</strong></td>
+  </tr>
+  <tr>
+    <td style="color:#808080; font-size:14px;">2015-06-17 13:14:20</td>
+    <td align="right" style="color:#808080;font-size:14px;">待收0</td>
+  </tr>
+</table>
+  
+</div> 
+ 
+   
+</div>
+</body>
+</html>

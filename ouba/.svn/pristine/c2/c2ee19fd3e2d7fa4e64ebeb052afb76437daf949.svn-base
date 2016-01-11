@@ -1,0 +1,123 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>后台管理系统</title>
+    <meta charset="UTF-8">
+   <link rel="stylesheet" type="text/css" href="__PUBLIC__/Css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Css/bootstrap-responsive.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Css/style.css" />
+    <script type="text/javascript" src="__PUBLIC__/Js/jquery.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Js/jquery.sorted.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Js/bootstrap.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Js/ckform.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Js/common.js"></script>
+    <style type="text/css">
+        body {
+            padding-top: 40px;
+            padding-bottom: 40px;
+            background-color: #f5f5f5;
+        }
+
+        .form-signin {
+            max-width: 300px;
+            padding: 19px 29px 29px;
+            margin: 0 auto 20px;
+            background-color: #fff;
+            border: 1px solid #e5e5e5;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+            -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+            -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+        }
+
+        .form-signin .form-signin-heading,
+        .form-signin .checkbox {
+            margin-bottom: 10px;
+        }
+
+        .form-signin input[type="text"],
+        .form-signin input[type="password"] {
+            font-size: 16px;
+            height: auto;
+            margin-bottom: 15px;
+            padding: 7px 9px;
+        }
+
+    </style>  
+</head>
+<body>
+<div class="container">
+
+    <form class="form-signin" method="post" action="__URL__/cl_login">
+        <h2 class="form-signin-heading">财来网OA登录系统</h2>
+        <input type="text" name="username" class="input-block-level" placeholder="用户名"/>
+        <input type="password" name="password" class="input-block-level" placeholder="密码"/>
+
+       
+        <p><button class="btn btn-large btn-primary" type="submit">登录</button></p>
+    </form>
+
+</div>
+</body>
+</html> -->
+
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>财来做单管理系统</title> 
+<style> 
+.container{width:630px;height:300px;position:absolute;top:50%;left:50%;margin:-250px 0 0 -408px;}
+.logo-left{width:260px; float:left; text-align:center; border-right:1px solid #bfbfbd; padding:30px 0;}
+.login-right{width:320px; float:right;padding-top:20px;}
+input{height:35px;line-height:35px;width:100%; margin-top:15px; border:0px; border-bottom:1px solid #bfc0bb;} 
+.login_btn .btn_one{float:right;height:46px; line-height:36px;width:100px;border-radius:5px;background:#3092cf;color:#fff;font-size:18px;cursor:pointer;}
+.login_btn .btn_two{float:right;height:46px;line-height:36px;width:100px;border-radius:5px;background:#9f9f9f;color:#fff;font-size:18px;cursor:pointer; margin-left:20px;}
+
+</style> 
+</head>
+<body>
+ 
+<div class="clear"></div> 
+<div class="container">
+    
+<div class="logo-left"><img src="__PUBLIC__/Images/logo.jpg" alt=""></div>
+<div class="login-right">
+<form class="form-signin" method="post" action="__URL__/cl_login"> 
+<input type="text" name="username" class="input-block-level" placeholder="用户名"/>
+<input type="password" name="password" class="input-block-level" placeholder="密码"/> 
+       
+  
+<p class="login_btn">
+<!-- <input value="重置"  placeholder="验证码" type="reset"> -->
+<button class="btn_two" type="reset">重置</button>
+<!-- <input value="登 录" class="btn_one" onclick="checkform()" placeholder="验证码" type="button"> -->
+<button class="btn_one" type="submit">登 录</button>
+</p>
+                           
+</form>
+</div>  
+ 
+      
+</div>
+ 
+
+</body>
+</html>
+
+
+
+     
+     
+      
+
+
+
+
+
+
+
+
+

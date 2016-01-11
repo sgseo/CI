@@ -1,0 +1,143 @@
+<!-- <extend name="Public/base" /> -->
+
+<block name="body">
+<script type="text/javascript" src="__STATIC__/uploadify/jquery.uploadify.min.js"></script>
+    <div class="main-title cf">
+        <h2>新增借款</h2>
+    </div>
+    <!-- 标签页导航 -->
+<div class="tab-wrap">
+
+    <div class="tab-content">
+    <!-- 表单 {:U('add?model='.$model['id'])}-->
+    <form id='form' action="__URL__/add" method="post"  enctype='form-data' class="form-horizontal">
+        <!-- 基础文档模型 -->
+        <div class="form-item cf">
+            <div class="controls">
+               <input type="text" class="text input-large" name="title" value="" placeholder="请输入借款标题" id='tt'></br>
+               <input type="text" class="text input-large" name="title" value="" placeholder="客户姓名"></br>
+               <input type="text" class="text input-large" name="title" value="" placeholder="身份证号"></br>
+               <input type="text" class="text input-large" name="title" value="" placeholder="手机号码"></br>
+               <input type="text" class="text input-large" name="title" value=""placeholder="贷款金额"></br>
+               <input type="text" class="text input-large" name="title" value=""placeholder="贷款期限"></br>
+               <input type="text" class="text input-large" name="title" value=""placeholder="贷款利率"></br>
+               <input type="text" class="text input-large" name="title" value=""placeholder="婚姻状况"></br>
+               <input type="text" class="text input-large" name="title" value=""placeholder="借款客户来源"></br>
+               <label class="textarea"> <textarea name="title" placeholder="备注信息"></textarea></label></br>
+               <label class="radio" ><input checked="checked" type="radio" value="fang" name="type" id='fang' />房屋抵押</label>
+               <label class="radio"><input type="radio" value="car" name="type" id='car'>车辆抵押</label></br>
+         
+            <div id='house'>
+               <input type="text" class="text input-large" name="title" value=""placeholder="房屋地址"></br>
+               <input type="text" class="text input-large" name="title" value=""placeholder="房屋市场价"></br>
+               <input type="text" class="text input-large" name="title" value=""placeholder="房屋户口"></br>
+               <input type="text" class="text input-large time" name="{$field.name}" value=""placeholder="房屋面积"></br>
+            </div>
+             <div id='ca' style="display:none">
+               <input type="text" class="text input-large" name="title" value=""placeholder="车子品牌"></br>
+               <input type="text" class="text input-large" name="title" value=""placeholder="车子型号"></br>
+               <input type="text" class="text input-large" name="title" value=""placeholder="车子估价"></br>
+               <input type="text" class="text input-large time" name="{$field.name}" value=""placeholder="车子购买日期"></br>
+             </div>
+
+               <div class="controls">
+                    <input type="file" id="upload_picture_{$field.name}">
+                    <input type="hidden" name="{$field.name}" id="cover_id_{$field.name}"/>
+                    <div class="upload-img-box">
+                    <notempty name="data[$field['name']]">
+                        <div class="upload-pre-item"><img src="__ROOT__{$data[$field['name']]|get_cover='path'}"/></div>
+                    </notempty>
+                    </div>
+               </div>
+
+            </div>
+        </div>
+   
+              <script type="text/javascript">
+                            $(function(){
+                                $("#fang").click(function()
+                                {
+                                    $("#house").show();
+                                    $("#ca").hide();
+                                });
+                                $("#car").click(function(){
+                                    $("#house").hide();
+                                    $("#ca").show();
+                                })
+                            })
+
+                                //上传图片
+                                /* 初始化上传插件 */
+                                $("#upload_picture_{$field.name}").uploadify({
+                                    "height"          : 30,
+                                    "swf"             : "__STATIC__/uploadify/uploadify.swf",
+                                    "fileObjName"     : "download",
+                                    "buttonText"      : "上传图片",
+                                    "uploader"        : "{:U('File/uploadPicture',array('session_id'=>session_id()))}",
+                                    "width"           : 120,
+                                    'removeTimeout'   : 1,
+                                    'fileTypeExts'    : '*.jpg; *.png; *.gif;',
+                                    "onUploadSuccess" : uploadPicture{$field.name},
+                                    'onFallback' : function() {
+                                        alert('未检测到兼容版本的Flash.');
+                                    }
+                                });
+                                function uploadPicture{$field.name}(file, data){
+                                    var data = $.parseJSON(data);
+                                    var src = '';
+                                    if(data.status){
+                                        $("#cover_id_{$field.name}").val(data.id);
+                                        src = data.url || '__ROOT__' + data.path;
+                                        $("#cover_id_{$field.name}").parent().find('.upload-img-box').html(
+                                            '<div class="upload-pre-item"><img src="' + src + '"/></div>'
+                                        );
+                                    } else {
+                                        updateAlert(data.info);
+                                        setTimeout(function(){
+                                            $('#top-alert').find('button').click();
+                                            $(that).removeClass('disabled').prop('disabled',false);
+                                        },1500);
+                                    }
+                                }
+                                </script>
+        <div class="form-item cf">
+            <input class="btn submit-btn ajax-post hidden"  id='submit' type="submit" target-form="form-horizontal" value='确 定'>
+            <!-- <a class="btn btn-return" href="javascript:;">返 回</a> -->
+        </div>
+    </form>
+    </div>
+</div>
+</block>
+
+<block name="script">
+<link href="__STATIC__/datetimepicker/css/datetimepicker.css" rel="stylesheet" type="text/css">
+<php>if(C('COLOR_STYLE')=='blue_color') echo '<link href="__STATIC__/datetimepicker/css/datetimepicker_blue.css" rel="stylesheet" type="text/css">';</php>
+<link href="__STATIC__/datetimepicker/css/dropdown.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="__STATIC__/datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+<script type="text/javascript" src="__STATIC__/datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+<script type="text/javascript">
+$('#submit').click(function(){
+    var geturl=$("#form").attr('action');
+    console.log(geturl);
+    var x=$("#tt").val();
+     $.ajax({
+        type:"POST",
+        url: geturl,
+        data: x,
+        dataType: "json",
+        success: function(d){console.log('wca');}
+        })       
+});
+
+$(function(){
+    $('.time').datetimepicker({
+        format: 'yyyy-mm-dd hh:ii',
+        language:"zh-CN",
+        minView:2,
+        autoclose:true
+    });
+    showTab();
+
+});
+</script>
+</block>

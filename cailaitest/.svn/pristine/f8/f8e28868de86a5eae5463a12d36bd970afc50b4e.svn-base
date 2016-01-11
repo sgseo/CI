@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="keywords" content="{$setting.web_keywords}" />
+<meta http-equiv="description" content="{$setting.web_descript}" />
+<link rel="stylesheet" type="text/css" href="/skin/common/css/init.css" />
+<link rel="stylesheet" type="text/css" href="/skin/member/common/css/share.css" />
+<link rel="stylesheet" type="text/css" href="{$this_css_href}" />
+<title>{$pagetitle} - {$setting.web_name}</title>
+</head>
+<body>
+<include file="Share:header"/>
+<div class="mainer">
+	<div class="inner">
+		<include file="Share:menu"/>
+		<div class="inner-main">
+			<include file="Share:main_tab"/>
+			<div class="common-list">
+				<div class="common-simple-tip">复制推荐地址，邀请注册，他投资你收益</div>
+				<div class="share-url">
+					<p id="shareurl">http://{$Think.server.SERVER_NAME}/join.html?token={$Think.session.user_id|sign_encode=###}</p>
+					<span id="copyshareurl">复制地址</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<include file="Share:footer"/>
+</body>
+</html>
+<script type="text/javascript" src="/skin/common/js/jquery.js"></script>
+<script type="text/javascript" src="/skin/common/js/lib.js"></script>
+<script type="text/javascript" src="/skin/common/js/ZeroClipboard/ZeroClipboard.js"></script>
+<script type="text/javascript">
+var clip = new ZeroClipboard.Client(); // 新建一个对象
+clip.setHandCursor( true );
+clip.setText($('#shareurl').html()); // 设置要复制的文本。
+clip.addEventListener( "mouseUp", function(client) {
+	ialert("成功复制推荐地址", 1, false);
+});
+clip.glue("copyshareurl");
+</script>

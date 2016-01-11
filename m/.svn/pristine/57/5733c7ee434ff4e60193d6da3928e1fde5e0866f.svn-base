@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+<% include file="/public/head.html" %>
+<style>
+    .pic{ height:450px;width:100%; }
+    .pic li img{ margin:0 auto; width:100%; height:450px; text-align:center }
+    .prev{ position:absolute; left: 20px; top:35%; display:block; width:30px; height:70px; background:url(/statics/images/arrow-left.png) no-repeat 50% #000; }
+    .next{ position:absolute; right: 20px; top:35%; display:block; width:30px; height:70px; background:url(/statics/images/arrow-right.png) no-repeat 50% #000;  }
+</style>
+ 
+</head>
+<body>  
+<div id="m_base">
+      <ul class="pic">
+        <li ><img src="" class="imgBut" /></a></li> 
+      </ul>
+      <a class="prev" href="javascript:void(0)" style='opacity:0.15;' ></a><a class="next" href="javascript:void(0)" style='opacity:0.15;' ></a>
+</div>
+
+<div class="dy_js">
+        <span class="kv_num"><label class="cur">1</label>/<label class="count">2</label></span>
+        <p class="kv_dis">房产抵押收件收据</p>
+</div>
+<script>
+    var data=<% $d %>;
+    var lenght=data.length-1;
+    var key=0;
+  (function(){
+   $('.imgBut')[0].src='<% $imgUrl %>'+data[0]['pic_url'];
+   $('.prev').mouseover( function () {this.style.opacity=0.6}).mouseout( function () {this.style.opacity=0.15}).click(
+       function (t){
+            keylenght=( key<=0 )?0:key-1;
+            key=keylenght;
+            $('.imgBut')[0].src='<% $imgUrl %>'+data[key]['pic_url'];
+            $('.kv_dis').html(data[key]['pic_desc']);
+            $('.cur').html(key);
+         }
+   );
+   $('.next').mouseover( function () {this.style.opacity=0.6}).mouseout( function () {this.style.opacity=0.15}).click(
+        function (t){
+            keylenght=(( key>=lenght )?lenght:1+key);
+            key=keylenght;
+            $('.imgBut')[0].src='<% $imgUrl %>'+data[key]['pic_url'];
+             $('.kv_dis').html(data[key]['pic_desc']);
+             $('.cur').html(key);
+        }
+   );
+   $('.count').html(lenght); 
+  })();
+
+</script>
+</body>
+</html>
+
+
+
+	 
+     
+      
+
+
+
+
+
+
+
+
+

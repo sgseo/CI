@@ -1,0 +1,8 @@
+<IfModule mod_rewrite.c>
+  Options +FollowSymlinks
+  RewriteEngine on
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond $1 !^(index\.php|images|styles|css|skin|captcha|ckeditor|ckfinder|uploadfile|fckeditor|robots\.txt|uc_client|config\.inc\.php|api|include|js|uploads)
+  RewriteRule ^(.*)$ /index.php/$1 [L]
+</IfModule>

@@ -1,0 +1,77 @@
+<include file="Public:_header_common" />
+<title>{$glo.web_name}-管理团队</title>
+<meta http-equiv="keywords" content="{$vo.type_keyword}" />
+<meta http-equiv="description" content="{$vo.type_info}" />
+<include file="Public:_header_main" />
+<link href="__ROOT__/Style/About/css/base.css" rel="stylesheet" type="text/css" />
+<link href="__ROOT__/Style/About/css/global.css" rel="stylesheet" type="text/css" />
+<link href="__ROOT__/Style/About/css/style.all.css" rel="stylesheet" type="text/css" />
+<!--中间内容区-->
+<div class="content clearfix mt20">
+    <!--边侧导航-->
+    <include file="left" />
+    <!--内容-->
+    <div class="fl-right room-right">
+        <div class="room-modify room-info">
+            <h1>管理团队</h1>
+            <ul class="team-list clearfix">
+                <li>
+                    <div class="fl-left team-member"><img src="__ROOT__/Style/About/images/team/wqs.jpg" alt="王群舜"/></div>
+                    <div class="fl-right team-member-info">
+                        <h6 class="clearfix"><span class="fl-left">王群舜</span><span class="fl-right">创始股东、CEO</span></h6>
+                        <p>上海交通大学物理学士，复旦大学MPA。曾任浦东新区政府公务员</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="fl-left team-member"><img src="__ROOT__/Style/About/images/team/jx.jpg" alt="姜兴"/></div>
+                    <div class="fl-right team-member-info">
+                        <h6 class="clearfix"><span class="fl-left">姜兴</span><span class="fl-right">创始股东</span></h6>
+                        <p>2001年入职阿里巴巴，曾任淘宝保险事业部总经理</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="fl-left team-member"><img src="__ROOT__/Style/About/images/team/jyf.jpg" alt="姜永芳"/></div>
+                    <div class="fl-right team-member-info">
+                        <h6 class="clearfix"><span class="fl-left">姜永芳</span><span class="fl-right">创始股东</span></h6>
+                        <p>上海博增投资管理股份有限公司董事长</p>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="fl-left team-member"><img src="__ROOT__/Style/About/images/team/wzj.jpg" alt="王中姜"/></div>
+                    <div class="fl-right team-member-info">
+                        <h6 class="clearfix"><span class="fl-left">王中江</span><span class="fl-right">独立董事</span></h6>
+                        <p>上海极元金融集团常务副总经理，智裕创赢基金董事长</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="fl-left team-member"><img width="135" src="__ROOT__/Style/About/images/team/zzx.png" alt="周子祥"/></div>
+                    <div class="fl-right team-member-info">
+                        <h6 class="clearfix"><span class="fl-left">周子祥</span><span class="fl-right">副总裁、CRO</span></h6>
+                        <p>曾长期在浙江人民银行工作</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="fl-left team-member"><img src="__ROOT__/Style/About/images/team/whh.jpg" alt="王红华"/></div>
+                    <div class="fl-right team-member-info">
+                        <h6 class="clearfix"><span class="fl-left">王红华</span><span class="fl-right">首席数据官</span></h6>
+                        <p>曾任上海铁友网络技术公司技术总监</p>
+                    </div>
+                </li>
+                
+                
+                <li>
+                    <div class="fl-left team-member"><img src="__ROOT__/Style/About/images/team/chai.jpg" width="135" height="135" alt="柴蕾"/></div>
+                    <div class="fl-right team-member-info">
+                        <h6 class="clearfix"><span class="fl-left">柴蕾</span><span class="fl-right">风控总监 </span></h6>
+                        <p>浙江大学新闻学士，10年典当、民间借贷风控管理从业经验</p>
+                    </div>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+
+</div>
+<!--中间内容区/////////////////////////-->
+<include file="Public:_footer" />

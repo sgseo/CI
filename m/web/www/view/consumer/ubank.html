@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html>
+<% include file="/public/head.html" %></head>
+<body> 
+<div id="m_base"> 
+<div class="m_zctitle">我的银行卡</div> 
+  
+<div class="m_toubjl">
+
+<table width="100%" border="0">
+  <tr> 
+    <td width="20%" rowspan="2" align="center"><img src="<% $d[bank_icon] %>"  id="bankImg" alt="" style="margin-top:8px;"width="40px"></td>
+    <td width="80%" height="30"  style="color:#000; font-size:16px; padding-top:8px;" id="bankName"> <% $d[bank_name] %> </td>
+  </tr>
+  <tr>
+    <td width="80%" style="color:#666; font-size:12px;"> <% $d[bank_number] %> </td>
+  </tr>
+</table>
+
+</div>
+<div class="clear"></div>
+<% $msg %>
+</div>
+</body>
+</html>

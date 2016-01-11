@@ -1,0 +1,57 @@
+
+<?php
+$postData[] = array('Version'=>20);
+$postData[] = array('Version'=>21);
+$url = "https://lab.chinapnr.com/muser/publicRequests";
+//$url = "http://mertest.chinapnr.com/muser/publicRequests";
+$ch = array();
+$options = array(CURLOPT_URL=>$url,
+				CURLOPT_HEADER=>0,
+				CURLOPT_RETURNTRANSFER=>1,
+				CURLOPT_RETURNTRANSFER=>1,
+				CURLOPT_SSL_VERIFYPEER=>false,
+				CURLOPT_SSL_VERIFYHOST=>false
+					 );
+foreach($postData as $k=>$v)
+{
+	$ch[$k] = curl_init();
+	$post_string = postArrayToString($v);
+	$options[CURLOPT_POST] = strlen($post_string);
+	$options[CURLOPT_POSTFIELDS] = $post_string;
+	curl_setopt_array($ch[$k], $options);
+}
+$mh = curl_multi_init();
+foreach($ch as $v)
+{
+	curl_multi_add_handle($mh,$v);
+}
+$active = null;
+// 执行批处理句柄
+do {
+    $mrc = curl_multi_exec($mh, $active);
+} while ($mrc == CURLM_CALL_MULTI_PERFORM);
+
+while ($active && $mrc == CURLM_OK) {
+    if (curl_multi_select($mh) != -1) {
+        do {
+            $mrc = curl_multi_exec($mh, $active);
+        } while ($mrc == CURLM_CALL_MULTI_PERFORM);
+    }
+}
+echo '1';
+
+
+
+
+
+
+	 function postArrayToString($req=array()){
+		$tmp= array();
+		foreach($req as $key => $value){
+			array_push($tmp,  "$key=".urlencode($value));
+		}
+		return implode("&", $tmp);
+	}
+
+
+?>

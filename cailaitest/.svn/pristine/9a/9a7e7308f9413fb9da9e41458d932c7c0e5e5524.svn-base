@@ -1,0 +1,58 @@
+<include file="default:Public:_header_common" group="Home" />
+<title>新用户注册-- {$glo.web_name}</title>
+<include file="default:Public:_header_main" group="Home"/>
+<link rel="stylesheet" href="__ROOT__/Style/H/css/register.css" />
+<script type="text/javascript">
+var imgpath="__ROOT__/Style/M/";
+var curpath="__URL__";
+</script>
+<script type="text/javascript" src="__ROOT__/Style/M/js/reg.js"></script>
+<div class="Yloginbox">
+	<div class="login_left">
+		<h3>
+			<em>账户注册</em>
+			<p>Hi，新朋友，欢迎注册宜境顺融</p>
+		</h3>
+		<strong><img src="__ROOT__/Style/H/images1/Ytitle_top1.png"></strong>
+		<div class="Ypbox">
+			<p>1. 宜境顺融使用了汇付天下的第三方资金托管系统，全方位监管保证您的资金安全</p>
+			<p>2. 系统将自动为您分配用户名（格式为xqtz_您的用户名）</p>
+			<p>3. 您的账户将被对应到宜境顺融账户，以标示在宜境顺融的投资</p>
+			<p>4. 账户所有权归属于您，汇付天下根据您的指令进行资金调拨</p>
+			<p>5. 您的登录密码和交易密码都独立于宜境顺融的密码体系</p>
+		</div>
+		<div class="tuogbtn">
+			<a href="/member/index/bind" style="width:187px;height:49px;background:url(/Style/H/images1/tuogbtn.png);margin-top:100px;margin-left:214px;display:block"></a>
+		</div>
+		<div class="Ypbox">
+			<p style="color:#cd3939">1. 您所有在宜境顺融的投资、资金进出都由这个账户归集</p>
+			<p style="color:#cd3939">2. 宜境顺融只获得账户流水信息，以保证您在宜境顺融的交易信息准确</p>
+			<p style="color:#cd3939">3. 宜境顺融根据账户流水信息协助您处理与汇付天下关于资金交易的相关问题</p>
+			<p>4. 汇付天下客服热线：400-821-3999 转2 转4</p>
+		</div>
+		<div class="Ypbox" style="margin-top:60px;">
+			<p>如果未收到短信验证码，有可能是您的手机软件将短信误识别为垃圾短信而拦截，请查看拦截短信。 此外，由于近期中国移动等运营商网络不稳定，造成大面积短信延迟，您可以选择重新发送验证码。</p>
+		</div>
+	</div>
+	<div class="login_right">
+		<ul>
+			<li>
+				<h4><img src="__ROOT__/Style/H/images1/login_right1.png"></h4>
+				<p>安全放心 风控典范</p>
+			</li>
+			<li>
+				<h4><img src="__ROOT__/Style/H/images1/login_right2.png"></h4>
+				<p>账户托管 资金安全</p>
+			</li>
+			<li>
+				<h4><img src="__ROOT__/Style/H/images1/login_right3.png"></h4>
+				<p>技术强大 数据安全 </p>
+			</li>
+			<li>
+				<h4><img src="__ROOT__/Style/H/images1/login_right4.png"></h4>
+				<p>隐私安全 安全放心</p>
+			</li>
+		</ul>
+	</div>
+</div>
+<include file="default:Public:_footer" group="Home" />

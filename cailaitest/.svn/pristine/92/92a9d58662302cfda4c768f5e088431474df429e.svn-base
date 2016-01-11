@@ -1,0 +1,206 @@
+								<include file="default:Public:_header_common" group="Home" />
+								<title>新用户注册-- {$glo.web_name}</title>
+								<link rel="stylesheet" href="__ROOT__/Style/H/css/home.css" />
+								<link rel="stylesheet" href="__ROOT__/Style/H/css/register.css" />
+								<script type="text/javascript">
+								var imgpath="__ROOT__/Style/M/";
+								var curpath="__URL__";
+								</script>
+								<script type="text/javascript" src="__ROOT__/Style/M/js/reg.js?v=20150301"></script>
+								<script type="text/javascript" src="__ROOT__/Style/js/strength.js"></script> 
+								<script type="text/javascript" src="__ROOT__/Style/js/autoMail.js"></script>
+								<style>
+								.reg_wrong { 
+								color: #f39800;
+								font-size: 12px;
+								height: 22px;
+								line-height: 22px;
+								margin-top:2px;}
+								
+								.phc_navname { width:auto; float:right; padding-left:25px; padding-right:5px; font-size:26px; font-weight:normal; line-height:50px; text-align:right; color:#999; margin-top:10px ; border-left:1px solid #a1a1a1;}
+								</style>
+								
+								<div class="first_top">
+								<div class="dv_header top "> 
+								<div class="dw_bgx dw_mini">
+								<div class="Cmml00" style="margin-top: 0;">
+								<div class="fl dw_Cbg zuo">
+								<div class="fl" >全国免费热线: 400-079-8558  (服务时间：09:00 — 18:00) 欢迎访问<b><a href="http://www.cailai.com">上海财来网</a></b>!</div> 
+								</div>
+								<div class="fr">
+								<div class="fl">
+								<a class="fl orangebg" href="/member/common/login/">立即登录</a>
+								<a href="/member/common/register/" class="fl orange" >免费注册</a>
+								</div>
+								<div class="fliphonebg"><div class="fliphone"><a href="/borrow/app.html" target="_blank">手机客户端</a></div></div>
+                                 
+<div class="top_center">
+<ul> 
+<a target="_blank" href="http://weibo.com/cailaiwang"> 
+<li class="hover_sina"> 
+<div class="weibo_c"><img src="__ROOT__/Style/H/images/count/top_sina.png" /></div>
+</li></a>
+
+<li class="hover_weixin">
+<div class="weibo_c weixin_c"><img src="__ROOT__/Style/H/images/count/top_weixin.png" /></div>
+</li>
+</ul>
+</div>
+								</div>
+								</div>
+								</div>
+								</div>
+								</div>
+								
+								<div class="Nav">
+								<div class="contain">
+								<div class="N_logo"><a href="/"><img class="ilogo"  src="/Style/H/img/logo.png" alt=""/></a></div>
+								<div class="phc_navname"> 
+								注册
+								</div> 
+								
+								</div>
+								</div>
+								
+								<div class="Yloginbox" >
+								<div class="login_left">
+								<div class="regist_left">
+								
+                                                                <dl>
+								<dt class="require">会员类型</dt>
+								<!--<dd><input id="txtUsertype" type="text" class="register_telephone" placeholder="请输入您的手机号码"/></dd>-->
+								<dd>
+                                                                    <div class="" style="width:300px;height:30px;color: #333;">
+                                                                        <label style="width:100px;height:30px;float:left;"><input id="user_type_person" type="radio" class="register_usertype" name="register_usertype" value="1" checked="checked" style="width:10px;height:30px;display: block;"/>普通会员</label>
+                                                                        <label style="width:100px;height:30px;float:left;"><input id="user_type_enterprise" type="radio" class="register_usertype" name="register_usertype" value="2" style="width:10px;height:30px;display:block;"/>企业会员</label>
+                                                                    </div>
+                                                                </dd>
+								<dd id="dvUserType" class="dv_r_4_3"></dd>
+								</dl>
+                                                                    
+								<dl>
+								<dt class="require">手机号码</dt>
+								<dd><input id="txtTelephone" type="text" class="register_telephone" placeholder="请输入您的手机号码"/></dd>
+								<dd id="dvTelephone" class="dv_r_4_3"></dd>
+								</dl>
+                                                                    
+                                                                <dl id="BusiCode" style="display:none;">
+								<dt class="require">企业营业执照注册号</dt>
+								<dd><input id="txtBusiCode" type="text" class="register_busicode" placeholder="请输入企业营业执照注册号"/></dd>
+								<dd id="dvBusiCode" class="dv_r_4_3"></dd>
+								</dl>
+                                                                    
+								<dl>
+								<dt class="require">登录密码</dt>
+								<dd><input id="txtPwd" type="password" class="register_pass" placeholder="请输入登录密码"  /></dd>
+								<dd id="dvPwd" class="dv_r_4_3">
+								</dd>
+								</dl>
+								
+								<dl>
+								<dt class="require">确认密码</dt>
+								<dd><input id="txtRepwd" type="password" class="register_pass" placeholder="请确认登录密码"/></dd>
+								<dd id="dvRepwd" class="dv_r_4_3">
+								</dd>
+								</dl>
+								
+								<dl>
+								
+								<dt class="require">验证码</dt>
+								<dd><input id="txtCode" type="text"  style="width:154px;"class="register_check" placeholder="请输入验证码"/></dd>
+								<dd style=" margin-left:10px; width:88px; height:34px; background:#fff; text-align:center; border-radius:3px; margin-right:2px;"><img src='__URL__/verify' style="width:86px;height:32px;" alt="点击换一个校验码" id="imVcode" onclick="this.src=this.src+'?t='+Math.random()" /></dd>
+								<!--<dd><a href="javascript:document.getElementById('imVcode').onclick();">换一张</a>&nbsp;</dd>-->
+								
+								<dd id="dvCode" class="dv_r_4_3"></dd>
+								</dl>
+								<dl>
+								<dt class="require">短信验证码</dt>
+								<dd><input id="txtSMS" style="width:154px;" type="text" class="txtSMS" placeholder="请输入短信验证码"/></dd>
+								<dd style="margin-top: -10px; margin-left:10px;"><button class="btn" id="sendSMS" style="padding-top:5px; padding-bottom:5px; background:#ececec; color:#f38900;margin-right:2px;">短信验证</button></dd>
+								<dd id="dvSMS" class="dv_r_4_3"></dd>
+								</dl>
+								
+								<dl>
+								<dt class="require">推荐人(选填)</dt>
+								<eq name="Think.session.tmp_invite_user" value="">
+								<dd><input type ="text" class="register_rec" id="txtRec" placeholder="请输入推荐人号码（可选）"/></dd>
+								<else />
+								<dd><input type="text" class="register_rec" id="txtRec" value="{$username}" readonly="readonly"/></dd>
+								</eq>
+								<!--<dd id="dvRec" class="dv_r_4_3"></dd>-->
+								</dl>
+								
+								<dl class="teshu" style="margin-left:150px;">
+								<dd class="require"></dd>
+								<dd><input type="checkbox" class="register_checkbox" checked="checked"/></dd>
+								<dd><a href="__APP__/bangzhu/fuwu.html" target="_blank"><font color="#666">我已经阅读并同意《注册服务协议》 </font></a></dd>
+								</dl>
+								<dl class="zhuce"> 
+								<dt>&nbsp;</dt>
+								<dd>
+								<input alt="" id="Img1" type="button" style="padding:10px 115px; font-size: 16px; font-weight: bold; margin-top: 0;" value="注 册" class="register_submit btn btn-blue" onclick="RegSubmit(this);" />
+								</dd>
+								</dl>
+								
+								</div>
+								</div>
+								<div class="login_right right_wpic" style="text-align: right; padding-right: 30px;">
+								<span>已有账号？</span>&nbsp;｜&nbsp;<a href="/member/common/login"><font color="#f35a00">请直接登录</font></a>
+								</div>
+								</div>
+								
+								<script type="text/javascript">
+								function closeAction(){
+								window.location.href="__APP__/member/";
+								}
+								function jfun_dogetpass(){
+								var ux = $("#emailname").val();
+								if(ux==""){
+								$.jBox.tip('请输入用户名或者邮箱','tip');
+								return;
+								}
+								$.jBox.tip("邮件发送中......","loading");
+								$.ajax({
+								url: "__APP__/member/common/dogetpass/",
+								data: {"u":ux},
+								//timeout: 5000,
+								cache: false,
+								type: "post",
+								dataType: "json",
+								success: function (d, s, r) {
+								if(d){
+								if(d.status==1){
+								$.jBox.tip("发送成功，请去邮箱查收",'success');
+								$.jBox.close(true);
+								}else{
+								$.jBox.tip("发送失败，请重试",'fail');
+								}
+								}
+								}
+								});
+								
+								}
+								
+								function getPassWord() {
+								$.jBox("get:__APP__/member/common/getpassword/", {
+								title: "找回密码",
+								width: "auto",
+								buttons: {'发送邮件':'jfun_dogetpass()','关闭': true }
+								});   
+								}
+								$(document).ready(function(){
+								$('#txtEmail').autoMail({
+								emails:['qq.com','163.com','126.com','sina.com','sohu.com','yahoo.cn','gmail.com','hotmail.com','live.cn']
+								});
+								});
+                                                                
+                                                                //会员类型 by zxm
+                                                                $("#user_type_person").click(function(){
+                                                                   $("#BusiCode").hide();
+                                                                });
+                                                                $("#user_type_enterprise").click(function(){
+                                                                   $("#BusiCode").show();
+                                                                });
+								</script>
+								 
+								<include file="default:Public:_footer" group="Home" />

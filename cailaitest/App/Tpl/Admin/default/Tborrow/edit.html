@@ -1,0 +1,106 @@
+<include file="Public:_header" />
+<style type="text/css">
+.albCt{height:200px}
+</style>
+<tagLib name="htmlA" />
+<div class="so_main">
+  <div class="page_tit">审核借款</div>
+  <div class="page_tab"><span data="tab_1" class="active">审核信息</span><span data="tab_2">基本信息</span></div>
+  <div class="form2">
+    <form method="post" action="__URL__/doEdit" id="formDoEdit{$xact}"enctype="multipart/form-data">
+      <input type="hidden" name="id" value="{$map.id}" />
+      <div id="tab_1">
+      	<dl class="lineD">
+            <dt>复审处理意见：</dt>
+            <dd>
+              <textarea name="deal_info" class="areabox"></textarea>
+            </dd>
+          </dl>
+           <dl class="lineD">
+          <dt>是否通过：</dt>
+          <dd id="checks">
+            <label for="yes_0"><input type="radio" name="borrow_status" value="5" id="yes_0"/> 复审未通过</label>
+            <label for="yes_1"><input type="radio" name="borrow_status" value="6" id="yes_1" /> 复审通过，还款中</label>
+           <!--  <label for="yes_2"><input type="radio" name="borrow_status" value="3" id="yes_2" /> 流标</label>-->
+          </dd>
+        </dl>
+      </div>
+      <div id="tab_2" style="display:none;">
+        <dl class="lineD">
+          <dt>借款标题：</dt>
+          <dd>{$map.borrow_name}</dd>
+        </dl>
+        <dl class="lineD">
+          <dt>还款方式：</dt>
+          <dd><php> echo $repayment_type[$map['repayment_type']]</php></dd>
+        </dl>
+        <dl class="lineD">
+          <dt>借款金额：</dt>
+          <dd>{$map.borrow_money}元</dd>
+        </dl>
+        <dl class="lineD">
+          <dt>年化利率：</dt>
+          <dd>{$map.borrow_interest_rate}%</dd>
+        </dl>
+        <dl class="lineD">
+          <dt>借款期限：</dt>
+          <dd><if condition="$map['repayment_type'] eq 1">
+							{$map.borrow_duration}天
+						<else/>
+							{$map.borrow_duration}个月
+						</if></dd>
+        </dl>
+        <dl class="lineD">
+          <dt>是否允许自动投标：</dt>
+          <dd><eq name="map.can_auto" value="1">允许<else />不允许</eq></dd>
+        </dl>
+		<dl class="lineD">
+          <dt>担保机构：</dt>
+          <dd>{$guarantee}</dd>
+        </dl>
+        <dl class="lineD">
+          <dt>募集天数：</dt>
+          <dd>{$map.collect_day}</dd>
+        </dl>
+      </div>
+      <div class="page_btm">
+        <input type="button" class="btn_b" value="确定" id="editpostbutton" />
+      </div>
+    </form>
+  </div>
+</div>
+<script type="text/javascript">
+$("#editpostbutton").click(function (){
+		if(!subcheck()){
+			return false;
+		}
+	var data = $("#formDoEdit{$xact}").serializeArray();
+	var uri = $("#formDoEdit{$xact}").attr("action");
+		ui.success("审核成功，页面即将跳转");
+		setTimeout(function (){ history.back();}, 3000);
+		$.post(uri, data, function (b){});
+});
+var cansub = true;
+function subcheck(){
+	if(!cansub){
+		ui.error("请不要重复提交，如网速慢，请等待！");
+		return false;	
+	}
+	
+	cansub = false;
+var deal_info = $('textarea[name="deal_info"]').val();
+var deal_status = $("#checks input:checked");
+	if(deal_info ==""){
+		ui.error("复审处理意见不能为空！");
+		cansub = true;
+		return false;
+	}
+	if(deal_status.length < 1){
+		ui.error("复审状态不能为空！");
+		cansub = true;
+		return false;
+	}
+	return true;
+};
+</script>
+<include file="Public:_footer" />

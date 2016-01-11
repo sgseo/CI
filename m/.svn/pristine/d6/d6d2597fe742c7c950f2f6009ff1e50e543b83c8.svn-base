@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<% include file="/public/head.html" %></head>
+<body> 
+<div id="m_base">
+    <div class="m_zctitle">产品详情</div> 
+     
+    <div class="clear"></div>
+    <div class="state_person">
+        <p style="font-size:14px; text-align:left; line-height:2em;"> &nbsp;&nbsp;&nbsp;&nbsp;<% $data[desc] %><br/></p>  
+    </div>
+</body>
+</html>

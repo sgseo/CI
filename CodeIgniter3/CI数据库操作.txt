@@ -1,0 +1,30 @@
+$this->db->get('tbname');
+
+$this->db->get_max('column','alias')//
+
+$this->db->get_min('column','alias')//
+
+$this->db->get_avg('column','alias')//平均值 average
+
+$this->db->get_sum('column','alias')//相加
+
+$this->db->insert_string('chengji',$data)//这样子只会输出语句而不是直接执行
+
+$this->db->get_compiled_insert()
+
+该方法和 $this->db->insert() 方法一样根据你提供的数据生成一条 INSERT 语句，但是并不执行
+$this->db->replace()
+
+
+
+x新手标修改文档
+cailaitest\App\Tpl\Home\default\Invest\newbie.html
+cailaitest\App\Lib\Action\Home\IndexAction.class.php
+cailaitest\App\Lib\Action\Home\ReturlAction.class.php
+cailaitest\App\Lib\Action\Home\InvestAction.class.php
+cailaitest\App\Lib\Action\Member\TendoutAction.class.php
+
+cailaitest\CORE\Extend\Library\ORG\Huifu\Huifu.class.php
+cailaitest\CORE\Extend\Library\ORG\Huifu\Chinapnr.class.php
+cailaitest\App\Tpl\Member\default\Tendout\index.html
+cailaitest\App\Tpl\Member\default\Tendout\newbietender.html

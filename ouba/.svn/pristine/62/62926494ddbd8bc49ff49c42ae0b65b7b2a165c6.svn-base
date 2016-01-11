@@ -1,0 +1,75 @@
+<include file='Public:_header'/>
+    <div class="form-inline definewidth m20">借款项目列表 &there4;</div>
+<form class="form-inline definewidth m20" action="__URL__/admitshow" method="post">  
+    客户姓名：
+    <input type="text" name="cstname"   class="abc input-default" placeholder="搜索客户姓名" value="">&nbsp;&nbsp;  
+    <button type="submit" class="btn btn-primary">查询</button>&nbsp;&nbsp; 
+    <!-- <a href="__URL__/cl_to_excel" class="btn btn-success" id="addnew">下载</a>  -->
+</form>
+        <!-- 我的个人信息开始 -->
+
+<table class="table table-bordered table-hover definewidth m10" >
+    <thead>
+    <tr>
+      
+        <th>业务编号</th>
+        <th>业务人员</th>
+        <th>业务量</th>
+        <th>最近业务</th>
+        <th>个人电话</th>
+        <th>操作</th>
+        <!-- 客户姓名，身份证号码，联系电话，贷款金额，期限，利率， -->
+    </tr>
+    </thead>
+    <volist name='list' id='vo'>
+         <tr>
+            <td>{$vo.id}</td>
+            <td>{$vo.username}</td>
+            <td>{$vo.hid}</td>
+            <td>{$vo.title}</td>
+            <td>{$vo.mobile}</td>
+            <!-- <td><if condition='$vo.area neq 0'>{$vo.area}<else/>-</if></td> -->
+            <td><span class='confirm'><a href='__URL__/allocated?respid={$vo.id}&propid={$propid}'>
+                分配给他</a></span></td>
+        </tr>
+    </volist>
+    
+    </table>
+     <!-- 我的个人信息结束 -->
+     <div class='table table-bordered table-hover definewidth m10' style='margin:0 auto;text-align:center;'>
+          {$page}
+    </div>
+  
+</body>
+</html>
+<script>
+    $(function () {
+        $('.confirm').click(function(){
+        
+            if(confirm("确定要分配给他吗"))
+            {       
+     
+            }else{
+                return false;
+            }
+         });
+    });
+
+    function del(id)
+    {
+        
+        
+        if(confirm("确定要删除吗？"))
+        {
+        
+            var url = "index.html";
+            
+            window.location.href=url;       
+        
+        }
+    
+    
+    
+    
+    }
+</script>

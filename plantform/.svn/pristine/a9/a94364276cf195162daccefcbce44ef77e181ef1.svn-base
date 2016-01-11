@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head> 
+<title>用APP如何注册财来网账户？</title> 
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<style>
+body {margin:0px auto; min-width:220px;}
+img{ max-width:100%;}
+.about_con{ background:#fff;padding:10px 35px 35px 35px; margin-top:0px; font-size:14px;}    
+.about_con h2{ font-size:18px; color:#f9963b; line-height:45px; border-bottom:1px solid #ededed;margin-bottom:28px;padding-bottom:5px;text-align:left;}  
+.about_con p{ color:#333; font-size:14px; line-height:23px;}  
+</style>
+</head>
+<body> 
+<div id="m_base"> 
+ 
+<div class="about_con"> 
+
+<h2>在手机客户端如何进行充值？</h2>
+
+<p>1. 完成注册后，登录账号，<font color="#f9963b">没有认证过的账号是不能进行
+   充值投资的</font>。点击 菜单栏“更多”，然后选择“我的账
+   户 ”--“身份认证”。</p>
+
+<img src="images/cz1.jpg" alt="">
+
+ 
+<p>2. 完成认证后，初次投资需要进行充值，打开“我的资产”
+   选择充值。在充值页面输入金额及选择充值方式，输入
+    交易密码完成充值。</p>
+<img src="images/cz2.jpg" alt="">
+ 
+
+
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>手机M站</title> 
+<link href="style/css.css" type="text/css" rel="stylesheet"/> 
+</head> 
+
+<body> 
+<div id="m_base">
+<div class="m_zctitle">标的投标记录</div> 
+ 
+<div class="clear"></div> 
+<div class="m_toubjl">
+<table width="100%" border="0">
+  <tr> 
+    <td width="61%" height="35" style="color:#000; font-size:16px;">188****1234</td>
+    <td width="39%" align="right" style="color:#000; font-size:16px;">200.00</td>
+  </tr>
+  <tr>
+    <td colspan="2" style="color:#808080; font-size:14px;">2015-06-17 13:14:20 </td>
+    </tr>
+</table>
+<table width="100%" border="0">
+  <tr> 
+    <td width="61%" height="35" style="color:#000; font-size:16px;">188****1234</td>
+    <td width="39%" align="right" style="color:#000; font-size:16px;">200.00</td>
+  </tr>
+  <tr>
+    <td colspan="2" style="color:#808080; font-size:14px;">2015-06-17 13:14:20 </td>
+    </tr>
+</table>
+<table width="100%" border="0">
+  <tr> 
+    <td width="61%" height="35" style="color:#000; font-size:16px;">188****1234</td>
+    <td width="39%" align="right" style="color:#000; font-size:16px;">200.00</td>
+  </tr>
+  <tr>
+    <td colspan="2" style="color:#808080; font-size:14px;">2015-06-17 13:14:20 </td>
+    </tr>
+</table>
+<table width="100%" border="0">
+  <tr> 
+    <td width="61%" height="35" style="color:#000; font-size:16px;">188****1234</td>
+    <td width="39%" align="right" style="color:#000; font-size:16px;">200.00</td>
+  </tr>
+  <tr>
+    <td colspan="2" style="color:#808080; font-size:14px;">2015-06-17 13:14:20 </td>
+    </tr>
+</table>
+<table width="100%" border="0">
+  <tr> 
+    <td width="61%" height="35" style="color:#000; font-size:16px;">188****1234</td>
+    <td width="39%" align="right" style="color:#000; font-size:16px;">200.00</td>
+  </tr>
+  <tr>
+    <td colspan="2" style="color:#808080; font-size:14px;">2015-06-17 13:14:20 </td>
+    </tr>
+</table>
+<table width="100%" border="0">
+  <tr> 
+    <td width="61%" height="35" style="color:#000; font-size:16px;">188****1234</td>
+    <td width="39%" align="right" style="color:#000; font-size:16px;">200.00</td>
+  </tr>
+  <tr>
+    <td colspan="2" style="color:#808080; font-size:14px;">2015-06-17 13:14:20 </td>
+    </tr>
+</table>
+</div>  
+</div>
+</body>
+</html>

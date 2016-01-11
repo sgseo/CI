@@ -1,0 +1,98 @@
+<link rel="stylesheet" href="__ROOT__/Style/H/css/cljf.css" />
+<div class="footer">
+    <div class="foot_box">
+ <div class="phc_footerbk">
+ <div class="foot_box01">
+        	<span>友情链接</span>
+            <ul>
+			<volist name=":get_home_friend(1)" id="vf">
+				<li><a href="{$vf.link_href}" class="xe007" target="_blank" rel="nofollow">{$vf.link_txt}</a></li> 
+			</volist>	
+			</ul>
+        </div> 
+        <div class="foot_box02">
+        
+			<div class="foot_right">
+			 
+			</div> 
+			<div class="foot_left">
+            <span>关于我们</span> 
+				<ul>
+					<li><a target="_blank" href="__ROOT__/about/intro">公司简介</a></li>
+					<li><a target="_blank" href="__ROOT__/cfkt/index.html">官方公告</a></li>
+					<li><a target="_blank" href="__ROOT__/about/team">管理团队</a></li>
+					<li><a target="_blank" href="__ROOT__/about/org">组织架构</a></li>
+					<li><a target="_blank" href="__ROOT__/about/transparent">透明交易</a></li>  
+					<li><a target="_blank" href="__ROOT__/about/parter">合作伙伴</a></li>
+					<li><a target="_blank" href="__ROOT__/about/invite">招贤纳士</a></li> 
+				</ul> 
+			</div>
+		</div>	
+</div> 
+<div class="phc_wexin">
+<table width="100%">
+  <tr>
+    <td><span style="font-size:14px">微信服务号</span></td>
+    <td><span style="font-size:14px">关注新浪微博</span></td>
+  </tr>
+  <tr>
+    <td><img src="__ROOT__/Style/H/pic/wexin.jpg" title="微信服务号" ></td>
+    <td><img src="__ROOT__/Style/H/pic/weibo.jpg" title="关注新浪微博" ></td>
+  </tr>
+</table> 
+</div>
+<div class="phc_phonekf">
+<span><b><a href="http://www.cailai.com">财来网</a></b>客服免费热线</span>
+<div class="clear"></div>
+<div class="phc_footer_tel">400-079-8558</div>
+<p>(工作时间 9：00-18：00)</p>
+
+<div class="clear"></div>
+<br />
+<span>官方QQ群</span>
+<div class="clear"></div>
+<div class="phc_footer_tel">253481952</div>
+
+
+</div>
+<div class="clear"></div>
+</div>
+
+<div id="footer_bg">
+<div class="foot_box06">Copyright © 2014 上海财来金融信息服务股份有限公司 版权所有 沪ICP备14053618号 
+<span>地址：上海市浦东新区世纪大道1090号斯米克大厦622室</span> <!-- {$glo.bottom}--></div> 
+<div class="foot_wlogo">
+ 
+			<img src="__ROOT__/Style/H/pic/xin_w.png" title="财来网荣获中国电子商务协会“诚信网站”认证殊荣">
+            <img src="__ROOT__/Style/H/pic/kex.png" title="财来网已通过中网权威数据库对比，获得“互联网金融行业认证”，您可放心使用。">
+            <img src="__ROOT__/Style/H/pic/xinlogo.png" title="财来网已经成为中国互联网信用评价中心网络诚信联盟成员，并且完成企业信用评级">
+			<img src="__ROOT__/Style/H/pic/norton.png" title="财来网已引入VeriSign SSL加密技术，您的隐私及个人资料安全已受最高级别的保护。">
+			<img src="__ROOT__/Style/H/pic/an_icon.png" title="财来网已经完成在公安机关的信息备案，您可了解网站相关备案信息。">
+			<img src="__ROOT__/Style/H/pic/icon6.png">
+		</div>
+</div>		
+</div>  
+<!--右侧工具箱-->
+<div class="toolBar" >
+	<a href="javascript:void(0);" onclick="jumpqq()" id="BizQQWPA" class="tbkf"></a>
+	<a href="http://weibo.com/cailaiwang" title="关注新浪微博" target="_blank" class="tbewm"></a> 
+</div>
+ 
+</body>
+</html>
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?22f91ed09d952501310eed8de7761492";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+
+ function jumpqq(){
+         window.open("http://wpa.b.qq.com/cgi/wpa.php?ln=2&uin=4000798558");
+    }
+
+</script>
+

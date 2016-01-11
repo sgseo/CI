@@ -1,0 +1,26 @@
+<?php
+class user_redpacket {
+
+    public $active_redpacket = "lzh_active_redpacket";
+
+    public function Dealred($redata) {
+        $db = core::db()->getConnect('CAILAI', true);
+        $redid=$redata['redid'];
+        $borrow_id=$redata['borrow_id'];
+        $usetime=$redata['usetime'];
+        $is_used=$redata['is_used'];
+        $transamt=$redata['transamt'];
+        $orderno=$redata['orderno'];
+        $redarr=explode(',',$redid);
+      foreach ($redarr as $key => $value) 
+      {
+         $sql[] = sprintf("update %s set borrow_id=%s,usetime=%s,is_used=%s,transamt=%s,orderno=%s WHERE id = %s",$this->active_redpacket,$borrow_id,$usetime,$is_used, $transamt,$orderno,$value);    
+            $zw[]= $db->query($sql[$key]);
+        // $sql=M()->getLastSql();
+        // file_put_contents('/tmp/zw2.txt',date('m-d H:i:s')."\$sql ".print_r($sql,true)."\n",FILE_APPEND);
+      }
+
+      return array($sql,$zw,$redarr);
+    }
+
+}

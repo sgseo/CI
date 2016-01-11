@@ -1,0 +1,30 @@
+[ 2015-10-29T09:16:44+08:00 ] /UF/Uploads/Ad/20150403111521289.jpg | ERR: Cron:cron_1 Runat 2015-10-29 09:16:44 Use 0.001000 s
+
+[ 2015-10-29T09:16:46+08:00 ] /member/common/login/ | ERR: Cron:cron_1 Runat 2015-10-29 09:16:46 Use 0.001000 s
+
+[ 2015-10-29T09:16:51+08:00 ] /hi | ERR: Cron:cron_1 Runat 2015-10-29 09:16:51 Use 0.001000 s
+
+[ 2015-10-29T09:16:52+08:00 ] /admin/index/verify | ERR: Cron:cron_1 Runat 2015-10-29 09:16:52 Use 0.002000 s
+
+[ 2015-10-29T09:17:02+08:00 ] /admin/index/login | ERR: Cron:cron_1 Runat 2015-10-29 09:17:02 Use 0.001000 s
+
+[ 2015-10-29T09:17:03+08:00 ] /Admin/index/index | ERR: Cron:cron_1 Runat 2015-10-29 09:17:03 Use 0.001000 s
+
+[ 2015-10-29T09:17:06+08:00 ] /admin/borrow/waitverify.html | ERR: Cron:cron_1 Runat 2015-10-29 09:17:06 Use 0.001000 s
+
+[ 2015-10-29T09:17:06+08:00 ] /admin/members/index.html | ERR: Cron:cron_1 Runat 2015-10-29 09:17:06 Use 0.002000 s
+
+[ 2015-10-29T09:17:07+08:00 ] /admin/borrow/waitverify.html | ERR: Cron:cron_1 Runat 2015-10-29 09:17:07 Use 0.001000 s
+
+[ 2015-10-29T09:19:22+08:00 ] /admin/capitalall/test.html | ERR: Cron:cron_1 Runat 2015-10-29 09:19:22 Use 0.001001 s
+
+[ 2015-10-29T09:19:26+08:00 ] /admin/capitalall/loan.html | ERR: Cron:cron_1 Runat 2015-10-29 09:19:26 Use 0.002000 s
+
+[ 2015-10-29T09:22:42+08:00 ] /admin/capitalall/cast.html | ERR: Cron:cron_1 Runat 2015-10-29 09:22:42 Use 0.001000 s
+
+[ 2015-10-29T09:22:47+08:00 ] /admin/capitalall/red.html | ERR: Cron:cron_1 Runat 2015-10-29 09:22:47 Use 0.000000 s
+
+[ 2015-10-29T13:25:17+08:00 ] /Admin/index/index | ERR: Cron:cron_1 Runat 2015-10-29 13:25:17 Use 0.001000 s
+
+[ 2015-10-29T13:25:19+08:00 ] /admin/welcome/index.html | ERR: Cron:cron_1 Runat 2015-10-29 13:25:19 Use 0.001000 s
+

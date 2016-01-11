@@ -1,0 +1,143 @@
+<include file='Public:_header'/>
+   <div class="form-inline definewidth m20">标的信息&there4;</div>
+   <table class="table table-bordered table-hover definewidth m10" >
+    <thead>
+    <tr>
+        <th>借款标号</th>
+        <th>借款标题</th>
+        <th>客户姓名</th>
+        <th>身份证号码</th>
+        <th>联系电话</th>
+        <th>贷款金额(元)</th>
+        <th>贷款期限(月)</th>
+        <th>贷款利率（%）</th>
+        <th>客户来源</th>
+        <th>贷款类型</th>
+        <!-- <th>图片</th> -->
+        <!-- 客户姓名，身份证号码，联系电话，贷款金额，期限，利率， -->
+    </tr>
+    </thead>
+   
+         <tr>
+            <td>{$hlist.id}</td>
+            <td>{$hlist.title}</td>
+            <td>{$hlist.cstname}</td>
+            <td>{$hlist.idno}</td>
+            <td>{$hlist.tel}</td>
+            <td>{$hlist.borrowamt}</td>
+            <td>{$hlist.duration}</td>
+            <td>{$hlist.rate}</td>
+            <td>{$hlist.source}</td>
+            <td>
+                <eq name='hlist.category' value='car'>车抵押&nbsp;<input type="button" value="&nabla;" onclick="demo08({$hlist.id});" /></eq>
+                <eq name='hlist.category' value='fang'>房抵押&nbsp;<input type="button" value="&nabla;" onclick="demo08({$hlist.id});" /></eq>
+            </td>
+            <!-- <td><a href='__URL__/showlog?id={$hlist.id}'>查看日志</a></td> -->
+        </tr>
+    </volist>
+    
+    </table>
+<!-- 图片上传 -->
+
+    <div class="form-inline definewidth m20">行为列表 &there4;</div>
+<table class="table table-bordered table-hover definewidth m10" >
+    <thead>
+    <tr>
+     
+        <th>操作标号</th>
+        <th>操作标题</th>
+        <th>操作者</th>
+        <th>操作ip</th>
+        <th>操作时间</th>
+        <!-- <th>行为备注</th> -->
+         <th>所在表id</th>
+       
+        <!-- 客户姓名，身份证号码，联系电话，贷款金额，期限，利率， -->
+    </tr>
+    </thead>
+    <volist name='list' id='vo' empty='$empty'>
+         <tr>
+            <td>{$vo.id}</td>
+            <td>{$vo.optip},<neq name='vo.oprespid' value='0'>负责人姓名：{$vo.username}。</neq>标题为：{$vo.title}。</td>
+            <td>{$vo.opname}</td>
+            <td>{$vo.opip|long2ip=###}</td>
+            <td>{$vo.optime|date='Y-m-d H:i:s',###}</td>
+            <!-- <td>{$vo.optip}</td> -->
+            <!-- <td>{$vo.optbname}</td> -->
+            <td>{$vo.opthatid}</td>
+           
+        </tr>
+    </volist>
+    
+    </table>
+     <!-- 我的个人信息结束 -->
+     <div class='table table-bordered table-hover definewidth m10' style='margin:0 auto;text-align:center;'>
+          {$page}
+    </div>
+
+    <!-- 图片展示区 -->
+      <div class="form-inline definewidth m20">图片展示 &there4;</div>
+<table class="table table-bordered table-hover definewidth m10" >
+    <thead>
+    <tr>
+     
+        <th>图片标号</th>
+        <th>图片标题</th>
+        <th>图片</th>
+        <th>上传时间</th>
+
+       
+        <!-- 客户姓名，身份证号码，联系电话，贷款金额，期限，利率， -->
+    </tr>
+    </thead>
+    <volist name='plist' id='vo' empty='$empty'>
+         <tr>
+            <td>{$vo.id}</td>
+            <td>{$vo.pictype}</td>
+            <td><img src="/Uploads/{$vo.path}" width='40em' height='30em'/></td>
+            <td>{$vo.create_time|date='Y-m-d H:i:s',###}</td>
+
+        </tr>
+    </volist>
+    
+    </table>
+     <!-- 我的个人信息结束 -->
+     <div class='table table-bordered table-hover definewidth m10' style='margin:0 auto;text-align:center;'>
+          {$pager}
+    </div>
+     <!-- 还款计划 -->
+     <div class="form-inline definewidth m20">还款计划 &there4;</div>
+<table class="table table-bordered table-hover definewidth m10" >
+    <thead>
+    <tr>
+     
+        <th>标号</th>
+        <th>应还日期</th>
+        <th>计划还款(元)</th>
+        <th>实际还款(元)</th>
+        <th>已还时间</th>
+        <th>当前期数</th>
+        <th>操作人</th>
+        <th>操作时间</th>
+    </tr>
+    </thead>
+    <volist  name='rplist' id='vo' >
+       <tr>
+            <td>{$vo.id}</td>
+            <td>{$vo.shouldtime}</td>
+            <td>{$vo.shouldrepay}</td>
+            <td>{$vo.realrepay}</td>
+            <td><neq name='vo.donetime' value='0000-00-00'>{$vo.donetime}</neq></td>
+            <td>{$vo.cursort}</td>
+            <td>{$vo.operator}</td>
+            <td><neq name='vo.operatetime' value='0000-00-00 00:00:00'>{$vo.operatetime}</neq></td>
+        </tr>
+    </volist>
+    </table>
+     <!-- 我的个人信息结束 -->
+     <div class='table table-bordered table-hover definewidth m10' style='margin:0 auto;text-align:center;'>
+          {$pager}
+    </div>
+
+</body>
+</html>

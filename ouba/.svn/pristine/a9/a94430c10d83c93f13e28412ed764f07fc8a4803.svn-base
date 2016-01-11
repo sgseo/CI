@@ -1,0 +1,174 @@
+<?php
+namespace Home\Controller;
+use Think\Controller;
+ header("content-type:text/html;charset=utf8");
+ class UserController extends Controller
+ {
+ 	/*
+ 	用户管理-默认
+ 	time:20150707
+ 	by lj
+ 	*/
+ 	public function index()
+ 	{
+        $User=M('house as h');
+        $condition['h.status']=6;
+         //查询满足要求的总记录数
+        $count=$User->where($condition)->count();
+        $Page       = new \Think\Page($count,10);// 实例化分页类 传入总记录数和每页显示的记录数(25)
+        $show       = $Page->show();// 分页显示输出
+        // 进行分页数据查询 注意limit方法的参数要使用Page类的属性
+        $list=$User->field('h.*,os.id as oid,os.status')->join('onethink_status as os on h.status=os.id','left')->where($condition)->limit($Page->firstRow.','.$Page->listRows)->order('h.add_time desc')->select();
+        // dump($list);
+        $this->assign('page',$show);// 赋值分页输出  
+        $this->list=$list;
+        $this->display();
+ 	}
+
+    //显示标的抵押物信息jbox块2015-11-02 lj
+    public function impawn()
+    {
+        $id=I('get.id',0);
+        $list=M('house')->field('category,carbrand,cartype,carestimate,carbuytime,address,area,price,residence')->where('id='.$id)->find($id);
+        // $this->list=$list;
+        if($list['category']=='car')
+        {
+        $html="<table border='1px'><tr><td>车品牌</td><td>车类型</td><td>车估价(元)</td><td>车购买时间</td></tr>";
+        $html.="<tr><td>".$list['carbrand']."</td><td>".$list['cartype']."</td><td>".$list['carestimate']."</td><td>".date('Ymd',$list['carbuytime'])."</td></tr></table>";
+        }else if($list['category']=='fang'){
+                $html="<table border='1px'><tr><td>房屋地址</td><td>房屋面积（平米）</td><td>房屋价格(元)</td><td>房屋户口</td></tr>";
+        $html.="<tr><td>".$list['address']."</td><td>".$list['area']."</td><td>".$list['price']."</td><td>".$list['residence']."</td></tr></table>";
+        }else{
+            $html='暂无数据';
+        }
+        echo $html;
+    }
+
+
+    /**
+     * 贷后管理首页--
+     */
+    public function loanreturn()
+    {
+       $id=I('get.id',0);
+       $list=M('house as h')
+            ->field("h.id,h.title,h.cstname,h.idno,h.tel,h.borrowamt,h.duration,h.rate,h.category,rp.shouldtime,rp.shouldrepay,rp.realrepay,min(rp.cursort) as cursort")
+            ->join('onethink_repayplan as rp on h.id=rp.hid','left')
+            ->where('h.id='.$id.' and rp.repaytype=0')
+            ->find();
+       // echo M()->_sql();
+       // dump($list);
+
+       $this->list=$list;
+       $this->display();
+    }
+ 	/*
+ 	用户管理-添加
+ 	time:20150707
+ 	by lj
+ 	*/
+ 	public function add()
+ 	{
+ 		$this->show();
+ 	}
+ 	/*
+ 	用户管理-编辑
+ 	time:20150707
+ 	by lj
+ 	*/
+ 	public function eidt()
+ 	{
+ 		$this->show();
+ 	}
+    /**
+     * 贷后管理-还款
+     */
+    public function save()
+    {
+        $data['hid']=I('post.id',0);//贷款id
+        // $data['title']=I('post.title',0);
+        // $data['cstname']=I('post.cstname',0);
+        // $data['idno']=I('post.idno',0);
+        // $data['tel']=I('post.tel',0);
+        // $data['borrowamt']=I('post.borrowamt',0);
+        $data['duration']=I('post.duration',0);
+        // $data['rate']=I('post.rate',0);
+        $data['cursort']=I('post.cursort',0);//期数
+        $data['realrepay']=I('post.realrepay',0);
+        $data['donetime']=I('post.donetime',0);
+        $data['repaytype']=I('post.repaytype',0);
+        $data['operatetime']=date("Y-m-d H:i:s",time());
+        $data['operator']=session('username');
+        $res=M('repayplan')->where('cursort='.$data['cursort'])->save($data);
+
+        if($res!==false)
+        {
+
+            if($data['cursort']==$data['duration'])
+            {   $last['status']=7;//已还完
+                M('house')->where('id='.$data['hid'])->save($last);
+            }else{
+                 $last['status']=8;//还款中
+                M('house')->where('id='.$data['hid'])->save($last);
+            }
+            $op=array();
+            $op['opname']=session('username');
+            $op['optime']=time();
+            $op['opdata']=serialize($data);
+            $op['opip']=ip2long($_SERVER['REMOTE_ADDR']);
+            $op['optip']=$op['opname']."给项目id为：".$data['hid']."第".$data['cursort']."/".$data['duration']."期进行还款";
+            //2015-11-03 每条具体操作日志
+            $op['optbname']='repay';
+            $op['opthatid']=$data['hid'];
+            M('dts')->add($op);
+
+           $this->success('数据处理成功');
+        }else{
+            $this->error('数据处理失败');
+        }
+        
+     }
+
+     public function logop()
+     {
+        $opname=I('post.opname',0);
+        if($opname)
+        {
+            $condition['opname']=$opname;
+        }else{
+            $condition='1=1';
+        }
+        $User=M('dts');
+        $count=$User->where($condition)->count();
+        $Page       = new \Think\Page($count,10);// 实例化分页类 传入总记录数和每页显示的记录数(25)
+        $show       = $Page->show();// 分页显示输出
+        // 进行分页数据查询 注意limit方法的参数要使用Page类的属性
+        $list=$User->where($condition)->limit($Page->firstRow.','.$Page->listRows)->order('optime desc')->select();
+        $this->assign('page',$show);// 赋值分页输出  
+
+        // $list=->where($condition)->order('optime desc')->select();
+        $this->empty="<td>暂时没有数据</td>";
+        $this->list=$list;
+        $this->display();
+     }
+
+        /*
+    贷款结束
+    time:201511-05
+    by lj
+    */
+    public function end()
+    {
+        $User=M('house as h');
+        $condition['h.status']=7;
+         //查询满足要求的总记录数
+        $count=$User->where($condition)->count();
+        $Page       = new \Think\Page($count,10);// 实例化分页类 传入总记录数和每页显示的记录数(25)
+        $show       = $Page->show();// 分页显示输出
+        // 进行分页数据查询 注意limit方法的参数要使用Page类的属性
+        $list=$User->where($condition)->field('h.*,os.id as oid,os.status')->join('onethink_status as os on h.status=os.id','left')->limit($Page->firstRow.','.$Page->listRows)->order('h.add_time desc')->select();
+        $this->assign('page',$show);// 赋值分页输出  
+        $this->list=$list;
+        $this->display();
+    }
+ }//eof class 

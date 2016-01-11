@@ -1,0 +1,9 @@
+[ 2015-07-17T12:34:27+08:00 ] 127.0.0.1 /thinkphp/Home/Index/test
+ERR: 非法操作:test
+
+[ 2015-07-17T13:25:18+08:00 ] 127.0.0.1 /thinkphp/Home/Role/cl_to_excel
+ERR: 非法操作:cl_to_excel
+
+[ 2015-07-17T14:07:31+08:00 ] 127.0.0.1 /thinkphp/Home/Node/cl_to_excel
+ERR: 非法操作:cl_to_excel
+

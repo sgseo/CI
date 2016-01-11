@@ -1,0 +1,188 @@
+<include file="Public:_header" />
+<link href="__ROOT__/Style/M/css/tab1.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="__ROOT__/Style/My97DatePicker/WdatePicker.js" language="javascript"></script>
+<tagLib name="htmlA" />
+<style type="text/css">
+.text2{border:0 none; height:25px; line-height:25px}
+</style>
+<div class="so_main">
+
+<div class="page_tit">查看会员资料</div>
+<div class="page_tab">
+    <span data="tab_8" class="active">解冻资金</span>
+</div>
+<div class="form2">
+    <form method="post" action="__URL__/userunfreeze" enctype="multipart/form-data">
+ <!-- onsubmit="return subcheck();" -->
+    <div id="tab_8">
+        <dl class="lineD"><dt>申请解冻：</dt><dd>{$aType[$vx['apply_type']]}</dd></dl>
+        解冻单号：<input type="text" name="unfreezeno" value="" maxlength='18' placeholder='请输入要解冻的单号'/>
+        <div class="page_btm">
+          <input type="submit" class="btn_b" value="确定" />
+        </div>
+    </div>
+    </form>
+    
+   <!--  <div id="tab_1" style="display:none">
+<table cellspacing="0" cellpadding="0" id="formTb" style="width: 100%;margin: 0px;padding: 0px; border-collapse: collapse; text-align: left;">
+    <tbody><tr class="trBg">
+        <td class="tdTitle">
+            真实姓名：
+        </td>
+        <td class="tdContent">
+            {$vo.real_name|default="未填写"}
+        </td>
+        <td id="dv_realname" class="tdTip">
+        </td>
+    </tr>
+    
+    </tbody></table>
+    </div>
+    <div id="tab_2" style="display:none">
+<table cellspacing="0" cellpadding="0" id="formTb" style="width: 100%;margin: 0px;padding: 0px; border-collapse: collapse; text-align: left;">
+        <tbody><tr class="trBg">
+            <td class="tdTitle">
+                现居住地址：
+            </td>
+            <td class="tdContent">
+                {$vo.address|default="未填写"}
+            </td>
+            <td id="dv_homeAdress" class="tdTip">
+            </td>
+        </tr>
+        <tr>
+            <td class="tdTitle">
+                住宅电话：
+            </td>
+            <td class="tdContent">
+                {$vo.tel|default="未填写"}
+            </td>
+            <td id="dv_homeTel" class="tdTip">
+            </td>
+        </tr>
+        <tr class="trBg">
+            <td class="tdTitle">
+                第一联系人：
+            </td>
+            <td class="tdContent">
+                {$vo.contact1|default="未填写"}
+            </td>
+            <td id="dv_firstname" class="tdTip">
+            </td>
+        </tr>
+        <tr>
+            <td class="tdTitle">
+                关系：
+            </td>
+            <td class="tdContent">
+            <htmlA:radio id="contact1_re" default="家庭成员|家庭成员,朋友|朋友,商业伙伴|商业伙伴" value="key|vo.contact1_re" />
+            </td>
+            <td id="dv_firstrelation" class="tdTip">
+            </td>
+        </tr>
+        <tr class="trBg">
+            <td class="tdTitle">
+                手机号码：
+            </td>
+            <td class="tdContent">
+                {$vo.contact1_tel|default="未填写"}
+            </td>
+            <td id="dv_firstmobile" class="tdTip">
+            </td>
+        </tr>
+        <tr>
+            <td class="tdTitle">
+                其他：
+            </td>
+            <td class="tdContent">
+                {$vo.contact1_other|default="未填写"}
+            </td>
+            <td id="dv_qq" class="tdTip">
+            </td>
+        </tr>
+        <tr class="trBg">
+            <td class="tdTitle">
+                第二联系人：
+            </td>
+            <td class="tdContent">
+                {$vo.contact2|default="未填写"}
+            </td>
+            <td id="dv_secondname" class="tdTip">
+            </td>
+        </tr>
+        <tr>
+            <td class="tdTitle">
+                关系：
+            </td>
+            <td class="tdContent">
+            <htmlA:radio id="contact2_re" default="家庭成员|家庭成员,朋友|朋友,商业伙伴|商业伙伴" value="key|vo.contact2_re" />
+            </td>
+            <td id="dv_secondrelation" class="tdTip">
+            </td>
+        </tr>
+        <tr class="trBg">
+            <td class="tdTitle">
+                手机号码：
+            </td>
+            <td class="tdContent">
+                {$vo.contact2_tel|default="未填写"}
+            </td>
+            <td id="dv_secondmobile" class="tdTip">
+            </td>
+        </tr>
+        <tr style=" border-bottom:1px solid #dedede;">
+            <td class="tdTitle">
+                其他：
+            </td>
+            <td class="tdContent">
+                {$vo.contact2_other|default="未填写"}
+            </td>
+            <td id="dv_msn" class="tdTip">
+            </td>
+        </tr>
+        </tbody>
+        </table>     -->
+    </div><!--tab1-->
+    
+  
+   
+   
+    </div>
+</div>
+
+</div>
+// <script type="text/javascript">
+// //获取会员用户名
+// function downfile(url){
+//     window.open("/"+url);
+// }
+// getusername();
+// function getusername(){
+//     var uid = $("#borrow_uid").val();
+//     $(".userinfo").html("加载中...");
+
+//     var datas = {'uid':uid};
+//     $.post("__URL__/getusername", datas, uidResponse,'json');
+// }
+
+// function uidResponse(res){
+//     $(".userinfo").html(res.uname);
+// }
+
+// function addone(){
+//     var htmladd = '<dl class="lineD"><dt>资料名称：</dt>';
+//         htmladd+= '<dd><input type="text" name="updata_name[]" value="" />&nbsp;&nbsp;更新时间:<input type="text" name="updata_time[]" onclick="WdatePicker();" class="Wdate" /></dd>';
+//         htmladd+= '</dl>';
+//     $(htmladd).appendTo("#tab_3");
+// }
+// function subcheck(){
+//     var credit_money = $('#credit_money').val();
+//     var apply_status = $('input[name=apply_status]:checked').val();
+//     if(apply_status=='1' && credit_money==''){
+//         ui.error('请填写审核额度!');
+//         return false;
+//     }
+//     return true;
+// }
+// </script>
+<include file="Public:_footer" />

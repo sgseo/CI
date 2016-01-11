@@ -1,0 +1,41 @@
+<include file="Public:_header_common" />
+<title>{$glo.web_name}-安全保障</title>
+<meta http-equiv="keywords" content="{$vo.type_keyword}" />
+<meta http-equiv="description" content="{$vo.type_info}" />
+<include file="Public:_header_main" />
+<link href="__ROOT__/Style/About/css/base.css" rel="stylesheet" type="text/css" />
+<link href="__ROOT__/Style/About/css/global.css" rel="stylesheet" type="text/css" />
+<link href="__ROOT__/Style/About/css/style.all.css" rel="stylesheet" type="text/css" />
+<!--中间内容区-->
+<div class="content clearfix mt20">
+    <!--边侧导航-->
+    <include file="left" />
+    <!--内容-->
+    <div class="fl-right room-right">
+        <div class="room-modify room-info">
+            <h1>安全保障</h1>
+            <h5>100%本金保障计划</h5><div class="clear"></div>
+            <div class="border-demo">
+                <p><strong>什么是本金保障计划？</strong><br/>“本金保障计划”是财来网(www.cailai.com)为保护平台全体理财人的共同权益而建立的信用风险共担机制。平台的所有理财人经过平台身份认证后，在平台的投资行为均适用于“本金保障计划”，理财人无需为此支付任何费用。</p>
+                <p><strong>本金保障计划是如何运作的？</strong><br/>平台每笔借款成交时，提取一定比例的金额放入“风险备用金账户”。<br/>借款出现严重逾期时（即逾期超过30天），根据“风险备用金账户使用规则”，通过“风险备用金”向理财人垫付此笔借款的剩余出借本金或本息（具体情况视投资标的类型的具体垫付规则为准）。出借本金或本息（具体情况视投资标的类型的具体垫付规则为准）。出借本金或本息（具体情况视投资标的类型的具体垫付规则为准）。出借本金或本息（具体情。
+                </p>
+            </div>
+            <h5>账户及信息安全保障</h5><div class="clear"></div>
+            <div class="border-demo">
+                <p><strong>什么是本金保障计划？</strong><br/>“本金保障计划”是财来网(www.cailai.com)为保护平台全体理财人的共同权益而建立的信用风险共担机制。平台的所有理财人经过平台身份认证后，在平台的投资行为均适用于“本金保障计划”，理财人无需为此支付任何费用。</p>
+                <p><strong>本金保障计划是如何运作的？</strong><br/>平台每笔借款成交时，提取一定比例的金额放入“风险备用金账户”。<br/>借款出现严重逾期时（即逾期超过30天），根据“风险备用金账户使用规则”，通过“风险备用金”向理财人垫付此笔借款的剩余出借本金或本息（具体情况视投资标的类型的具体垫付规则为准）。出借本金或本息（具体情况视投资标的类型的具体垫付规则为准）。出借本金或本息（具体情况视投资标的类型的具体垫付规则为准）。出借本金或本息（具体情。
+                </p>
+            </div>
+            <h5>政策法规保障</h5><div class="clear"></div>
+            <div class="border-demo">
+                <p><strong>什么是本金保障计划？</strong><br/>“本金保障计划”是财来网(www.cailai.com)为保护平台全体理财人的共同权益而建立的信用风险共担机制。平台的所有理财人经过平台身份认证后，在平台的投资行为均适用于“本金保障计划”，理财人无需为此支付任何费用。</p>
+                <p><strong>本金保障计划是如何运作的？</strong><br/>平台每笔借款成交时，提取一定比例的金额放入“风险备用金账户”。<br/>借款出现严重逾期时（即逾期超过30天），根据“风险备用金账户使用规则”，通过“风险备用金”向理财人垫付此笔借款的剩余出借本金或本息（具体情况视投资标的类型的具体垫付规则为准）。出借本金或本息（具体情况视投资标的类型的具体垫付规则为准）。出借本金或本息（具体情况视投资标的类型的具体垫付规则为准）。出借本金或本息（具体情。
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+<!--中间内容区/////////////////////////-->
+<include file="Public:_footer" />

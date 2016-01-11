@@ -1,0 +1,70 @@
+<include file="Public:_header_common_borrow" />
+<include file="Public:_header_main" />
+<link href="__ROOT__/Style/H/css/cljf.css" rel="stylesheet" type="text/css" />
+<style>
+.phc_shenqing{ width:80%; padding:20px 20px 20px 36px; font-size:16px; height:auto; line-height:44px; font-family:"Microsoft YaHei",Arial,Helvetica,sans-serif;}
+.phc_shenqing span{ font-size:18px; font-weight:normal;}
+.img_center{ margin:10px auto; display:block; text-align:center;} 
+</style>
+
+<div class="bodyer">
+<div class="zhiying borrowZhiying">
+<div class="zybox">
+<div class="yuebox diy" >
+<div class="phc_dy">发布抵押标</div>
+<div class="phc_shenqing">
+<span>申请条件: </span> 20-55周岁的中国公民、有固定工作、有稳定收入 <br />
+<span>必要申请资料: </span> 二代身份证、个人信用报告、无法院诉讼信息定收入 
+</div>
+ 
+</div>
+
+</div>
+</div>
+<div class="jiek_box">
+<div class="jiek_top">借款流程</div>
+<img src="__ROOT__/Style/H/pic/jiekuanliucheng.jpg" class="img_center"> 
+<div class="clear"></div>  
+<a href="__ROOT__/borrow/post/mortgage.html" class="jiek_btn">申请借款</a>   
+</div>
+    
+<div class="tis_box">
+		温馨提示：以下描述适用于所有借款产品。
+	</div>
+	<div class="jiek_box">
+		<div class="jiek_top">借款方式</div>
+		<div class="JK_box">
+			<dl>
+				<dt>借款额度：</dt>
+				<dd>10,000-1000,000</dd>
+			</dl>
+			<dl>
+				<dt>借款年利率：</dt>
+				<dd>10%-24%<img src="__ROOT__/Style/H/pic/jisuanqi.png"></dd>
+			</dl>
+			<dl>
+				<dt>借款期限：</dt>
+				<dd>3、6、9、12、18、24、36个月</dd>
+			</dl>
+			<dl>
+				<dt>审核时间：</dt>
+				<dd>1-3个工作日</dd>
+			</dl>
+			<dl>
+				<dt>还款方式：</dt>
+				<dd>>先息后本，等额本息，一次性还款</dd>
+			</dl>
+		</div>
+	</div>
+	<div class="jiek_box" style="margin-bottom:25px;">
+		<div class="jiek_top">费用说明</div>
+		<div class="JK_box JK_box1"> 
+			<h5>每月还款额</h5>
+			<p>本金及利息支付给投资人</p>
+			<p>借款管理费由财来网收取</p>
+		</div>
+	</div>
+</div>
+
+
+<include file="Public:_footer" />

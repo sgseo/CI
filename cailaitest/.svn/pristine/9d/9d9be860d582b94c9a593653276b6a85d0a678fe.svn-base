@@ -1,0 +1,15 @@
+
+<script src="__ROOT__/Style/About/js/common.js"></script>
+<div class="fl-left room-left">
+    <ul class="nav-aside-list">
+        <li><a class="<php>if($active_bar=='intro'){</php>cur<php>}</php>" href="/about/intro">公司简介</a></li>
+        <li><a class="<php>if($active_bar=='cfkt' || $active_bar=='gwgg'){</php>cur<php>}</php>" href="/cfkt/index.html">官方公告</a></li>
+        <li><a class="<php>if($active_bar=='team'){</php>cur<php>}</php>" href="/about/team">管理团队</a></li>
+        <li><a class="<php>if($active_bar=='org'){</php>cur<php>}</php>" href="/about/org">组织架构</a></li>
+        <li><a class="<php>if($active_bar=='transparent'){</php>cur<php>}</php>" href="/about/transparent">透明交易</a></li>
+        <li><a class="<php>if($active_bar=='parter'){</php>cur<php>}</php>" href="/about/parter">合作伙伴</a></li> 
+        <li><a class="<php>if($active_bar=='invite'){</php>cur<php>}</php>" href="/about/invite">招贤纳士</a></li> 
+        <li><a class="<php>if($active_bar=='index'){</php>cur<php>}</php>" href="/about/index">财来学院</a></li>
+        <li><a class="<php>if($active_bar=='contact'){</php>cur<php>}</php>" href="/about/contact">联系我们</a></li>
+    </ul>
+</div>

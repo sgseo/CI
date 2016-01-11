@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <link href="__PUBLIC__/bootstrap-datetimepicker/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="__PUBLIC__/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Css/bootstrap-responsive.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Css/style.css" />
+      <link rel="stylesheet" type="text/css" href="__PUBLIC__/Css/index.css" />
+     <script type="text/javascript" src="__PUBLIC__/Js/jquery.js"></script>
+   <!-- <script type="text/javascript" src="__PUBLIC__/Js/jquery.sorted.js"></script>-->
+   <link rel="stylesheet" type="text/css" href="__PUBLIC__/webuploader015/webuploader.css">
+
+<!--引入JS-->
+    <script type="text/javascript" src="__PUBLIC__/webuploader015/webuploader.js"></script>
+   <!-- 时间插件 -->
+    <script type="text/javascript" src="__PUBLIC__/bootstrap-datetimepicker/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="__PUBLIC__/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.fr.js" charset="UTF-8">
+    </script>
+    <!-- 时间插件结束 -->
+    <script type="text/javascript" src="__PUBLIC__/Js/bootstrap.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Js/ckform.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Js/common.js"></script>
+
+    <link id="skin" rel="stylesheet" href="__PUBLIC__/Images/Pink/jbox.css" />
+    <script type="text/javascript" src="__PUBLIC__/Js/js/jquery-1.4.2.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Js/js/jquery.jBox.src.js"></script>
+    <!-- 图片放大 -->
+    <link rel="stylesheet" href="__PUBLIC__/Css/click.css">
+    <script type="text/javascript" src="__PUBLIC__/Js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Js/jquey-bigic.js"></script>
+
+    <style type="text/css">
+        body {
+            padding-bottom: 40px;
+        }
+        .sidebar-nav {
+            padding: 9px 0;
+        }
+        @media (max-width: 980px) {
+            /* Enable use of floated navbar text */
+            .navbar-text.pull-right {
+                float: none;
+                padding-left: 5px;
+                padding-right: 5px;
+            }
+        }
+      
+    </style>
+</head>
+<body>
+    <div  style='margin:auto auto'>
+        <!-- <button onClick="window.print()" class="btn btn-primary">打印此页</button>&nbsp;&nbsp;  -->
+       <!-- 项目录入 -->
+        <form  class="table table-bordered table-hover definewidth m10" action="__URL__/modify" method="post" enctype="multipart/form-data" >
+        <!-- 基础文档模型 -->
+          <div class='title'>借款核心信息</div>
+            <div class="coretop">
+              <!-- 这个修改的id -->
+              <input type="hidden" name='id' value='{$list.id}'>
+              <!-- 金额利率类型期限标题借款人 -->
+               <div class='every'>
+                <span>借款标题</span>
+                <input type="text"  name="title" value="{$list.title}"  required='required'>
+                </div>
+
+                <div class='every'>
+                <span>贷款金额(元)</span>
+                <input type="text"  name="borrowamt" data-ideny='num2ch' value="{$list.borrowamt}" onblur='num2ch(this.value,this.name)'>
+               <span id='borrowamt' style='display:none;color:red'></span>
+                </div>
+
+                <div class='every'>
+                  <span>贷款期限(月)</span>
+                  <input type="text"  name="duration" value="{$list.duration}" >
+                </div>
+                <div class='every'>
+                  <span>贷款利率(0.8%-2%之间)</span>
+                  <input type="text"  name="rate" value="{$list.rate}"  onblur="number(this.value,this.name)" >
+                  <span id='rate' style='display:none;color:red'></span>
+              </div>
+
+               <div class='every'>
+                <div class='son'>
+                <p><input  type="radio" value="fang" name="category" id='fang' <eq name='list.category' value='fang'>checked='checked'</eq>/><span>房屋抵押</span></p>
+                <p><input type="radio" value="car" name="category" id='car' <eq name='list.category' value='car'>checked='checked'</eq>><span>车辆抵押</span></p>
+                </div>
+               </div> <!---->
+           </div>
+           <!-- 核心 -->
+            <!-- 借款人信息 -->
+              <div class='title'>借款人信息</div>
+           <div class='coretop' style='height:400px;'>
+            <!-- name age work tel huji wed -->
+               <div class='every'>
+                <span>借款人姓名</span>
+                <input type="text"  name="cstname" value="{$list.cstname}" ></div>
+               <div class='every'>
+                  <span>年龄</span>
+                <input type="text"  name="age" value="{$list.age}"  maxlength='66'>
+               </div>
+
+               <div class='every'>
+                <span>户籍</span>
+                <input type="text"  name="domicile" value="{$list.domicile}"  maxlength='66'>
+              </div>
+               <div class='every'>
+                <span>身份证号</span>
+                <input type="text"  name="idno" value="{$list.idno}"  maxlength='40'>
+              </div>
+               <div class='every'>
+                <span>手机号码</span>
+                  <input type="text"  name="tel" value="{$list.tel}"  maxlength='66'></div>
+               <div class='every'>
+                <span>职业</span>
+                <input type="text"  name="work" value="{$list.work}"  maxlength='66'>
+              </div>
+              <!--  
+               <input type="date"  name="loanstart" value="{$list.}"<span>"贷款开始日期">
+              -->
+              <div class='every'>
+               <div class='info'>
+               <p><input  type="radio" name="wed"  value="1" <eq name='list.wed' value='1'>checked='checked'</eq>/>未婚</p>
+               <p><input  type="radio"  name="wed" value='2' <eq name='list.wed' value='2'>checked='checked'</eq>/>已婚</p>
+               <p><input  type="radio"  name="wed" value='3' <eq name='list.wed' value='3'>checked='checked'</eq>/>离异</p>
+               </div>
+             </div>
+            </div>
+           <!-- 借款人信息 -->
+           <!-- 借款人账户信息 -->
+             <div class='title'>借款人账户信息</div>
+             <div class="coretop" style='height:150px;'>
+              <div class='every'>
+                <span>开户行</span>
+                <input type="text"  name="bank" value="{$list.bank}" maxlength='66'>
+              </div>
+              <div class='every'>
+                <span>银行卡号</span>
+               <input type="text"  name="bankcard" value="{$list.bankcard}"  maxlength='66'>
+             </div>
+             </div>
+            <!-- 借款人账户信息 -->
+             <!-- 过桥人信息 -->
+            <div class='title'>是否有过桥</div>
+             <div class="corebridge ">  
+             
+                  <div class="every" >
+                    <div class='info'>
+                     <p><input type="radio" name="bridge" value="1" <eq name='list.bridge' value='1'>checked='checked'</eq>/>有</p>
+                     <p><input type="radio" name="bridge" value="0" <eq name='list.bridge' value='0'>checked='checked'</eq>/>无</p>     
+                    </div>
+                  </div> 
+                   <span class='bridge'> 
+                    <div class='every'>
+                      <span>请选择过桥人</span>
+                    <select name="bridgename">
+                      <option value='0'>请选择过桥人</option>
+                      <volist name='blist' id='vo' key='k'>
+                          <option value="{$vo.uid}" <eq name='list.bridgename' value='$vo.uid'>selected="selected"</eq>>{$vo.nickname}</option>
+                      </volist>
+                    </select>
+                    </div>
+                    <div class='every'>
+                    <span>开户行</span>
+                    <input type="text" id='bank' maxlength='20' readonly='readonly'/>
+                    </div>
+                    <div class='every'>
+                    <span>账号</span>
+                    <input type="text"  id='account' maxlength='20' readonly='readonly'/>
+                    </div>
+                    <div class='every'>
+                    <span>开户名</span>
+                    <input type="text"  id='nickname' maxlength='20' readonly='readonly'/>
+                    </div>
+                  </span>
+                </div>
+               <!-- 过桥人信息结束 -->
+              
+               <!-- 抵押人信息 -->
+              <div class='title'>抵押人信息</div>
+              <div class="coretop" style='height:250px;'>
+                <!-- 姓名电话身份证 -->
+                <div class='every'>
+                  <span>抵押人姓名</span>
+                  <input type="text" value='pledgename' name='pledgename' />
+                </div>
+                <div class='every'>
+                  <span>抵押人电话</span>
+                  <input type="text" value='pledgetel' name='pledgetel' />
+                </div>
+                <div class='every'>
+                  <span>抵押人身份证号码</span>
+                  <input type="text" value='pledgeidno' name='pledgeidno' />
+                </div>
+              </div>
+              <!-- 抵押人信息 -->
+              <div class='title'>抵押物信息</div>
+               <div class="coretop" style='height:600px;'>
+                  <!-- 房子抵押 -->
+                  <span id='house' >
+                    <div class="every">
+                      <div class='for'>
+                      <p><input  type="radio" name="iscity" value="1" <eq name='list.iscity' value='1'>checked='checked'</eq> />主城区</p>
+                      <p><input  type="radio"  name="iscity" value='2'  <eq name='list.iscity' value='2'>checked='checked'</eq>/>非主城区</p>
+                      <p><input  type="radio" value="2" name="isloan"  <eq name='list.isloan' value='2'>checked='checked'</eq>/>有租赁</p>
+                      <p><input  type="radio"  name="isloan" value='1'  <eq name='list.isloan' value='1'>checked='checked'</eq> />无租赁</p>
+                      </div>
+                    </div>
+                     <div class="every">
+                      <span>请选择抵押情况</span>
+                       <select name="pledge">
+                        <option value='0'>请选择</option>
+                        <volist name='pllist' id='vo'>
+                        <option value="{$vo.sort}" <eq name='list.pledge' value='$vo.sort'>selected=selected</eq>>{$vo.condition}</option>
+                        </volist>
+                      </select>
+                     </div>
+                     <div class="every">
+                       <span>请选择房屋类型</span>
+                        <select name="housetype"  required>
+                         <option value="0">请选择</option>
+                          <volist name='htlist' id='vo'>
+                           <option value="{$vo.id}" <eq name='list.housetype' value='$vo.id'>selected=selected</eq> >{$vo.housetype}</option>
+                          </volist>
+                       </select>
+                      </div>
+                      <div class="every">
+                         <span>房屋地址</span>
+                      <input type="text"  name="address" value="{$list.address}" placeholder="">
+                      </div>
+                     <div class='every'>
+                      <span>房屋市场价(元)</span>
+                       <input type="text"  name="price" value="{$list.price}" placeholder="" onblur='num2ch(this.value,this.name)'>
+                      <span id='price' style='display:none;color:red;border:1px solid red;'></span>
+                     </div>
+                     <div class="every">
+                      <span>房屋评估价(元)</span>
+                       <input type="text"  name="estimateprice" value="{$list.estimateprice}"placeholder="" onblur='num2ch(this.value,this.name)'>
+                        <span id='estimateprice' style='display:none;color:red'></span>
+                      </div>
+                        <!-- <input type="hidden" name='upperprice' value="{$list.}" id='upperprice'/> -->
+                     <div class="every">
+                      <span>房屋户口</span>
+                       <input type="text"  name="residence" value="{$list.residence}" placeholder="">
+                     </div>
+                       <div class="every">
+                        <span>房屋面积(平方米)</span>
+                       <input type="text"  name="area" value="{$list.area}" placeholder="">
+                       </div>
+                       <div class="every">
+                        <span>房地产权证号</span>
+                       <input type="text"  name="pledgeno" value="{$list.pledgeno}"placeholder="">
+                       </div>
+                       <div class="every">
+                        <span>备用房地址</span>
+                       <input type="text"  name="anotheradd" value="{$list.anotheradd}"placeholder="">
+                       </div>
+                       <div class="every">
+                        <span>备用房面积</span>
+                       <input type="text"  name="anotherarea" value="{$list.anotherarea}"placeholder="">
+                       </div>
+                  </span>
+                     <!-- 房子抵押 -->
+                      <!-- 车子抵押 -->
+                      <span id='ca' style="display:none">
+                        <div class='every'>
+                          <span>车子品牌</span>
+                       <input type="text"  name="carbrand" value="{$list.carbrand}" >
+                          </div>
+                           <div class='every'>
+                            <span>车子型号</span>
+                       <input type="text"  name="cartype" value="{$list.cartype}">
+                       </div>
+                        <div class='every'>
+                          <span>车子估价(元)</span>
+                       <input type="text"  name="carestimate" value="{$list.carestimate}" placeholder="" onblur='num2ch(this.value,this.name)'>
+                       <span id='carestimate' style='display:none;color:red'></span>
+                       </div>
+                        <div class='every'>
+                          <span>请选择车辆购买日期</span>
+                        <input type="date"  name='carbuytime' value=''/>
+                        </div>
+                      </span>
+                      <!-- 车子抵押 -->
+               </div>
+                
+                <!-- 其他信息 -->
+                 <div class='title'>其他信息</div>`
+               <div class="coretop" style='height:330px;'>
+                <div class='every'>
+                  <span>请选择资金来源</span>
+                  <select  name="capitalsource">
+                    <option value="0">请选择</option>
+                      <volist name='olist' id='vo' key='k'>
+                          <option value="{$vo.id}" <eq name='list.capitalsource' value='$vo.id'>selected=selected</eq>>{$vo.organization}</option>
+                      </volist>
+                 </select>
+               </div>
+
+                 <div class='every'>
+                 <span>请选择借款用途</span>
+              <select name="loandest" >
+                <option value="0">请选择</option>
+                <volist name='pllist2' id='vo'>
+                <option value="{$vo.sort}" <eq name='list.loandest' value='$vo.sort'>selected=selected</eq>>{$vo.condition}</option>
+                </volist>
+              </select>
+               </div>
+                 <div class='every'>
+                  <span>请选择业务来源单位</span>
+               <select name="source">
+                <option value='0'>请选择</option>
+                <volist name='olist' id='vo' key='k'>
+                    <option value="{$vo.id}" <eq name='list.source' value='$vo.id'>selected=selected</eq>>
+                      <!-- {$list.source} -->
+                      {$vo.organization}</option>
+                </volist>
+               </select>
+             </div>
+                 <div class='every'>
+                  <span>请选择业务员</span>
+            <select name="salesman">
+                <option value='0'>请选择</option>
+                <volist name='plist' id='vo'>
+                <option value="{$vo.id}" <eq name='list.salesman' value='$vo.id'>selected=selected</eq>>{$vo.username}</option>
+                </volist>
+              </select>
+               </div>
+
+                 <div class='every'>
+                  <span>请选择风控初审</span>
+            <select name="riskearly">
+                <option value='0'>请选择</option>
+               <volist name='elist' id='vo'>
+                <option value="{$vo.id}" <eq name='list.riskearly' value='$vo.id'>selected=selected</eq>>{$vo.username}</option>
+                </volist>
+              </select>
+               </div>
+            
+                 <div class='every'>
+                  <span>请选择风控终审</span>
+              <select name="riskfinal">
+                <option value='0'>请选择</option>
+                 <volist name='flist' id='vo'>
+                <option value="{$vo.id}" <eq name='list.riskfinal' value='$vo.id'>selected=selected</eq>>{$vo.username}</option>
+                </volist>
+              </select>
+               </div>
+             </div>
+            <!-- 已有的图片 -->
+          <div class='title' <eq name='is' value='0'> style="display:none"</eq>>已有图片</div>
+            <div id='sadf'  class='coretop' style="height:{$px}px;<eq name='is' value='0'>'display:none;border-bottom:1px solid red;'</eq>" >
+                <volist name='piclist' id='vo' key='k' >
+                  <span class='pic'>
+                  <span>{$vo.filetype}</span>
+                  <img src="/Uploads/{$vo.path}" style="width:100px;height:75px" border='0'/>
+                  <span><a href="javascript:void(0);"  onclick="unlink(this,{$vo.id},'{$vo.path}');" class='btn btn-default'>x</a></span>
+                  <if condition='($k)%3 eq 0'></br></if>
+                 </span>
+                </volist>
+                  <div></div>
+            </div>
+   
+    
+                <!-- 图片信息 -->
+        <div class='title'>添加图片</div>
+               <div class="coretop" style='height:650px;'>
+                <div class="pic">
+                     <span>房产证</span>
+                     <div>
+                      <input type="file"  name='1'><input type='button'  id='a' value='+'/>
+                     </div>
+                </div>
+                <div class="pic">
+                      <span>身份证</span>
+                      <div>
+                        <input type="file"  name='2'><input type='button'id='b' value='+'/>
+                      </div>
+               </div>
+                <div class="pic"><span>户口本</span><div><input type="file"  name='3'><input type='button'id='c' value='+' ></div></div>
+                <div class="pic"><span>房屋图</span><div><input type="file"  name='4' ><input type='button'id='d' value='+' ></div></div>
+                <div class="pic"><span>结婚证</span><div><input type="file" name="20"><input type='button'id='t' value='+' ></div></div>
+                <div class="pic"><span>借款收据</span><div><input type="file" name="13"><input type='button'id='m' value='+' ></div></div>
+                 <div class="pic"><span>备用房产证</span><div><input type="file" name="21"><input type='button'id='u' value='+' ></div></div>
+                <div class="pic"><span>他项权证</span><div><input type="file" name="15"><input type='button'id='o' value='+' ></div></div>
+                <div class="pic"><span>三方借款协议</span><div><input type="file" name="12"><input type='button'id='l' value='+' ></div></div>
+                <div class="pic"><span>房屋土地查购单</span><div><input type="file" name="11"><input type='button'id='k' value='+' ></div></div>
+                <div class="pic"><span>房屋抵押收件收据</span><div><input type="file" name="10"><input type='button'id='j' value='+' ></div></div>
+                <div class="pic"><span>发给借款人的转账凭证</span><div><input type="file" name="17"><input type='button'id='q' value='+' ></div></div>
+                <div class="pic"><span>发给过桥人的转账凭证</span><div><input type="file" name="18"><input type='button'id='r' value='+' ></div></div>
+                <div class="pic"><span>我司抵押人员填写贷款合同</span><div><input type="file" name="5"><input type='button'id='e' value='+' ></div></div>
+                <div class="pic"><span>我司抵押人员填写抵押合同</span><div><input type="file" name="6"><input type='button'id='f' value='+' ></div></div>
+                <div class="pic"><span>拍公证是双方照片（自拍合影）</span><div><input type="file" name="9"><input type='button'id='i' value='+' ></div></div>
+                <div class="pic"><span>我司抵押人员填写三方借款协议</span><div><input type="file" name="7"><input type='button'id='g' value='+' ></div></div>
+                <div class="pic"><span>拍公证受理通知书（强制、全委）</span><div><input type="file" name="8"><input type='button'id='h' value='+' ></div></div>
+               </div> 
+               <div class='clear'></div>
+                <div class='title'>备注信息</div>
+                <div class='coretop'>
+                   <textarea name="tip" placeholder="备注信息" rows='5' cols='100'>{$list.tip}</textarea>
+                </div>
+                <div class='title'>
+                <input class="btn btn-large btn-primary btn btn-default" type="submit"/ value='确 定'>
+                </div>
+             </div>
+        </form>
+    </div> 
+
+</body>
+</html>
+
+<script type="text/javascript">
+    $(function(){
+        $("#fang").click(function()
+        {
+            $("#house").show();
+            $("#ca").hide();
+        });
+        $("#car").click(function(){
+            $("#house").hide();
+            $("#ca").show();
+        });
+
+
+    });
+
+
+      var qf=1;
+    $("input:button").click(function(){
+      var name=$(this).attr("id");
+      qf+=1;
+      var button="<div class='adder'><input type='file'  name='"+name+qf+"' />"
+                  +"<a href='javascript:void(0);'' onclick='del(this);'>"
+                  +"<input type='button' onlick='del(this)' value='-' />"
+                  +"</div></a>";
+       $(this).after(button);
+    });
+    function del(a)
+    {
+      $(a).parent().remove();
+    }
+    
+function num2ch(v,i) {
+
+  
+  var testreuslt = true;
+
+  if (testreuslt) {
+    showChineseAmount(v,i);
+  }
+  var newv=$("#"+i).text();
+  $('#upperprice').val(newv);
+  return testreuslt;
+}
+
+function showChineseAmount(v,i) {
+    // console.log(v,i);
+  var regamount = /^(([1-9]{1}[0-9]{0,})|([0-9]{1,}\.[0-9]{1,2}))$/;
+  var reg = new RegExp(regamount);
+  if (reg.test(v)) 
+  {
+    var amstr = v;
+    var leng = amstr.toString().split('.').length;
+    if (leng == 1) {
+      $("#"+v).val(v + ".00");
+    }
+    $("#"+i).text(Arabia_to_Chinese(amstr));
+    $("#"+i).show();
+    $("#"+i).css("color","red");
+  }else
+  {
+    $("#"+i).show();
+    $("#"+i).text("请输入纯数字");
+  }
+}
+
+function number(i,n)
+{
+  if(i>2||i<0.8)
+  {
+    $("#"+n).text('贷款利率介于0.8-2之间').show();
+  }
+}
+
+$(function () {   
+
+        var bridge=$('input[name=bridge][value=0]');
+        var bridgeis=$('input[name=bridge][value=1]');
+        bridge.click(function(){
+             $(".bridge").hide();
+        });
+        bridgeis.click(function(){
+            $(".bridge").show();
+        });
+
+        //当选择不同的过桥人的时候显示相应的信息
+        $("select[name=bridgename]").change(function(){
+          var id=$(this).val();
+          // console.log(id);
+          $.ajax({
+                    type:'POST',
+                    url:"__URL__/bridgecontent",
+                    data:{id:id},
+                    dataType:"json",
+                    success:function(b){
+                        $('#bank').val(b[0]['bridgeaddress']);
+                        $('#nickname').val(b[0]['nickname']);
+                        $("#account").val(b[0]['bridgeaccount']);
+                    }
+                });
+        });
+
+        //为了能让修改的时候直接出现过桥人的卡号需要同步调用数据
+        // var 
+
+    });
+
+</script>
+<!-- 图片上传 -->
+<script type="text/javascript">
+    $(function(){
+        $('img').bigic();
+        //物理删除图片
+         function unlink(t,id,path)
+    {
+       jBox.tip("Loading...", 'loading');
+        // 模拟2秒后完成操作
+       $.ajax({
+             type: "POST",
+             url: "__URL__/unlink",
+             data: {id:id,pic:path},
+             dataType: "json",
+             success: function(data){
+                        if(data==1)
+                          { 
+                            $(t).parent().remove();
+                            jBox.tip('操作成功.','success');
+                          }else{
+                           jBox.tip('操作失败.','failure');
+                          }
+                      }
+         });
+    }
+
+    });
+     
+</script>

@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>手机M站</title> 
+<link href="style/css.css" type="text/css" rel="stylesheet"/>
+</head>
+
+<body> 
+<div id="m_base"> 
+<div class="m_zctitle">我的账户</div> 
+
+<div class="m_zhanghu">
+<table width="100%" border="0">
+  <tr>
+    <td width="31%" rowspan="2" align="center"><img src="images/zhaop.jpg" alt=""></td>
+    <td width="69%" height="55" style="color:#000;">花大姐</td>
+    </tr>
+  <tr>
+    <td style="color:#808080; font-size:14px;" valign="top">13512314567</td>
+    </tr>
+</table>
+</div>
+  
+<div id="m_morelist">
+<div class="m_morenav">
+<ul>
+<li><a href="">身份认证</a></li>
+<li><a href="wodeyinhangka.html">绑定银行卡</a></li>
+<li><a href="xgdenglumima.html">修改登录密码</a></li>
+<li><a href="">手势密码</a></li>
+</ul>
+</div> 
+</div>
+ 
+ 
+</div>
+</body>
+</html>

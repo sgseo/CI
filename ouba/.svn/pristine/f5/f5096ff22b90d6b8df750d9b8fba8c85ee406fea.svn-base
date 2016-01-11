@@ -1,0 +1,725 @@
+<include file='Public:_header'/>
+  <ol class="breadcrumb">
+  <li><a href="#">业务管理-></a></li>
+  <li><a href="#">财务审批-></a></li>
+  <li class="active">放款</li>
+
+  </ol>
+  <script type="text/javascript" src="__PUBLIC__/Js/amounttochinese.js"></script>
+<style type="text/css">
+        body {
+            padding-bottom: 40px;
+        }
+        .sidebar-nav {
+            padding: 9px 0;
+        }
+
+</style>
+
+<div style='margin:10px auto' >
+<!-- 项目录入 -->
+<!-- <form  class="table table-hover definewidth m10" style="padding-top:20px;" action="__URL__/riskadd" method="post" enctype="multipart/form-data" > -->
+<!-- 基础文档模型 -->
+<div class="sidebar-frame">  
+<div class='title_p'><span>一、借款核心信息</span></div> 
+<!-- 金额利率类型期限标题借款人 -->
+<div class='every_p'>
+<span>借款标题:</span>
+<input type="hidden" name='id' readonly='readonly' value="{$returndata.id}">
+<input type="text"  name="title" readonly='readonly' value="{$returndata.title}"  required='required'>
+</div>
+<div class='every_p'>
+<span>贷款金额 (元): </span>
+<input type="text" class="width_338"  name="borrowamt" data-ideny='num2ch' readonly='readonly' value="{$returndata.borrowamt}" onblur='num2ch(this.value,this.name)'>
+<div class="clear"></div>
+<span id='borrowamt' style='color:red; text-align:center; line-height:15px;'></span>
+</div>
+<div class='every_p'>
+<span>贷款期限 (月): </span>
+<input type="text"  name="duration" readonly='readonly' value="{$returndata.duration}" >
+</div>
+<div class='every_p'>
+<span>贷款利率 (0.8%-2%之间): </span>
+<input type="text" class="width"  name="rate" readonly='readonly' value="{$returndata.rate}"  onblur="number(this.value,this.name)" >
+<span id='rate' style='display:none;color:red'></span>
+</div>
+
+<span class="pledge_p"><div class='every_p'>
+<span>请选择借款用途: </span>
+<select name="loandest" >
+<option readonly='readonly' value="0">请选择</option>
+<volist name='pllist2' id='vo'>
+<option readonly='readonly' value="{$vo.sort}" <eq name='returndata.loandest'  readonly='readonly' value='$vo.sort'>selected='selected'</eq>>{$vo.condition}</option>
+</volist>
+</select>
+</div></span>
+
+<div class='every_p'>
+<div class='son_p'>
+<p><input type="radio" readonly='readonly' value="fang" name="category" id='fang' <eq name='returndata.category'  readonly='readonly' value='fang'>checked="checked"</eq>/><span>房屋抵押</span></p>
+<p><input type="radio" readonly='readonly' value="car" name="category" id='car' <eq name='returndata.category'  readonly='readonly' value='car'>checked="checked"</eq>><span>车辆抵押</span></p>
+</div>
+</div> <!---->
+</div>      
+
+<!-- 借款人信息 -->
+<div class="clear"></div>
+<div class="sidebar-frame">             
+<div class='title_p'><span>二、借款人信息</span></div> 
+<!-- name age work tel huji wed -->
+<div class='every_p'>
+<span>借款人姓名: </span>
+<input type="text" class="width_353"  name="cstname" readonly='readonly' value="{$returndata.cstname}" >
+</div>
+<div class='every_p'>
+<span>身份证号: </span>
+<input type="text"  name="idno" readonly='readonly' value="{$returndata.idno}"  maxlength='40'>
+</div>
+<div class='every_p'>
+<span>借款人户籍: </span>
+<input type="text" class="width_380"  name="domicile" readonly='readonly' value="{$returndata.domicile}"  maxlength='66'>
+</div>
+<div class='every_p'>
+<span>借款人年龄: </span>
+<input type="text" class="width_353"  name="age" readonly='readonly' value="{$returndata.age}"  maxlength='66'>
+</div>
+<div class='every_p'>
+<span>手机号码: </span>
+<input type="text"  name="tel" readonly='readonly' value="{$returndata.tel}"  maxlength='66'>
+</div>
+<div class='every_p'>
+<span>借款人职业: </span>
+<input type="text" class="width_380" name="work" readonly='readonly' value="{$returndata.work}"  maxlength='66'>
+</div>
+<div class='every_p'>
+<span>借款人行业: </span>
+<input type="text" class="width_380" name="work" readonly='readonly' value="{$returndata.hang}"  maxlength='66'>
+</div>
+<div class='every_p'>
+<span>借款人单位: </span>
+<input type="text" class="width_380" name="work" readonly='readonly' value="{$returndata.workadd}"  maxlength='66'>
+</div>
+<!--  
+<input type="date"  name="loanstart" readonly='readonly' value="{$returndata.}"<span>"贷款开始日期">
+-->
+<div class='every_p'>
+<div class='son_p'> 
+<span style="margin-left:10px;">婚姻状况: </span>
+<p><input  type="radio" readonly='readonly' value="1" name="wed" <eq name='returndata.wed'  readonly='readonly' value='1'>checked="checked"</eq>/>未婚</p>
+<p><input  type="radio"  name="wed" readonly='readonly' value='2' <eq name='returndata.wed'  readonly='readonly' value='2'>checked="checked"</eq>/>已婚</p>
+<p><input  type="radio"  name="wed" readonly='readonly' value='3' <eq name='returndata.wed'  readonly='readonly' value='3'>checked="checked"</eq>/>离异</p>
+</div>
+</div>
+</div>  
+<!-- 借款人信息 -->
+
+
+<!-- 抵押物信息 -->
+<div class="clear"></div>
+<div class="sidebar-frame"> 
+<div class='title_p'><span>三、抵押物信息</span></div>
+<!-- 房子抵押 -->
+<span id='house' >
+<div class="every_p">
+<span>房屋地址:</span>
+<input type="text"  name="address" readonly='readonly' value="{$returndata.address}" >
+</div>
+
+<div class="every_p">
+<span>房地产权证号:</span>
+<input type="text" class="width_363"  name="pledgeno" readonly='readonly' value="{$returndata.pledgeno}">
+</div>
+<div class="every_p">
+<span>房地产权人:</span>
+<input type="text" class="width_363"  name="pledgepri" readonly='readonly' value="{$returndata.pledgepri}">
+</div>
+<div class="every_p">
+<span>房屋面积(平方米):</span>
+<input type="text" class="width_321"  name="area" readonly='readonly' value="{$returndata.area}" >
+</div>
+<div class="every_p">
+<span>房龄(年):</span>
+<input type="text" class="width_321"  name="houseage" readonly='readonly' value="{$returndata.area}" >
+</div>
+
+<span class="pledge_ps">
+<div class="every_p">
+<span>房屋类型:</span>
+<select name="housetype"  required>
+<option readonly='readonly' value="0">请选择</option>
+<volist name='htlist' id='vo'>
+<option readonly='readonly' value="{$vo.id}" <eq name='returndata.housetype' readonly='readonly' value='$vo.sort'>selected='selected'</eq>>{$vo.housetype}</option>
+</volist>
+</select>
+</div>
+</span>
+
+<div class='every_p'>
+<span>市场价(元):</span>
+<input type="text" class="width_333"  name="price" readonly='readonly' value="{$returndata.price}" onblur='num2ch(this.value,this.name)'>
+<span id='price' style='display:none;color:red;'></span>
+</div>
+<div class="every_p">
+<span>评估价(元):</span>
+<input type="text" class="width_356"  name="estimateprice" readonly='readonly' value="{$returndata.estimateprice}"  onblur='num2ch(this.value,this.name)'>
+<span id='estimateprice' style='display:none;color:red'></span>
+</div>
+
+
+<div class="every_p">
+<div class='son_p'>
+<p><input  type="radio" readonly='readonly' value="1" name="iscity"  <eq name='returndata.iscity' readonly='readonly' value='1'>checked=checked</eq>/>内环</p>
+<p><input  type="radio"  name="iscity" readonly='readonly' value='2' <eq name='returndata.iscity' readonly='readonly' value='2'>checked=checked</eq>/>外环</p>
+<p><input  type="radio" readonly='readonly' value="2" name="isloan" <eq name='returndata.isloan' readonly='readonly' value='2'>checked=checked</eq>/>有租赁</p>
+<p><input  type="radio"  name="isloan" readonly='readonly' value='1'  <eq name='returndata.isloan' readonly='readonly' value='1'>checked=checked</eq> />无租赁</p>
+</div>
+</div>
+
+<div class="every_p">
+<span>产调情况:</span>
+<input type="text"  name="residence" readonly='readonly' value="{$returndata.chandiao}" >
+</div>
+
+<div class="every_p">
+<span>房屋户口:</span>
+<input type="text"  name="residence" readonly='readonly' value="{$returndata.residence}" >
+</div>
+
+<div class="every_p">
+<span>抵押金额:</span>
+<input type="text"  name="residence" readonly='readonly' value="{$returndata.pledgemoney}" >
+</div>
+
+<div class="every_p">
+<span>抵押成数:</span>
+<input type="text"  name="residence" readonly='readonly' value="{$returndata.pledgepercent}" >
+</div>
+
+<span class="pledge_p">
+<div class="every_p">
+<span>请选择抵押情况</span>
+<select name="pledge">
+<option readonly='readonly' value='0'>请选择</option>
+<volist name='pllist' id='vo'>
+<option readonly='readonly' value="{$vo.sort}" <eq name='returndata.pledge' readonly='readonly' value='$vo.sort'>selected='selected'</eq>>{$vo.condition}</option>
+</volist>
+</select>
+</div>
+</span>
+
+
+<div class="clear"></div>
+
+<input type="hidden" name='upperprice' readonly='readonly' value="{$returndata.upperprice}" id='upperprice'/>
+
+<div class="every_p">
+<span>备用房地址:</span>
+<input type="text" class="width_353"  name="anotheradd" readonly='readonly' value="{$returndata.anotheradd}">
+</div>
+<div class="every_p">
+<span>备用房面积:</span>
+<input type="text" class="width_380"  name="anotherarea" readonly='readonly' value="{$returndata.anotherarea}">
+</div>
+<div class="every_p">
+<span>产权证号:</span>
+<input type="text" class="width_380"  name="anotheridno" readonly='readonly' value="{$returndata.anotheridno}">
+</div>
+<div class="every_p">
+<span>市场价:</span>
+<input type="text" class="width_380"  name="anotherprice" readonly='readonly' value="{$returndata.anotherprice}">
+</div>
+<div class="every_p">
+<span>产调情况:</span>
+<input type="text" class="width_380"  name="anotherchandiao" readonly='readonly' value="{$returndata.anotherchandiao}">
+</div>
+<div class="every_p">
+<span>抵押金额:</span>
+<input type="text" class="width_380"  name="anotherpledgemoney" readonly='readonly' value="{$returndata.anotherpledgemoney}">
+</div>
+</span>
+<!-- 房子抵押 -->
+<!-- 车子抵押 -->
+<span id='ca' style="display:none">
+<div class='every_p'>
+<span>车子品牌:</span>
+<input type="text"  name="carbrand" readonly='readonly' value="{$returndata.carbrand}" >
+</div>
+<div class='every_p'>
+<span>车子型号:</span>
+<input type="text"  name="cartype" readonly='readonly' value="{$returndata.cartype}" >
+</div>
+<div class='every_p'>
+<span>车子估价(元):</span>
+<input type="text"  name="carestimate" readonly='readonly' value="{$returndata.carestimate}"  onblur='num2ch(this.value,this.name)'>
+<span id='carestimate' style='display:none;color:red'></span>
+</div>
+<div class='every_p'>
+<span>请选择车辆购买日期:</span>
+<input type="date"  name='carbuytime'  readonly='readonly' value='{$returndata.carbuytime}'/>
+</div>
+</span>
+<!-- 车子抵押 -->
+</div>
+<!-- 抵押物信息结束 -->
+ 
+ <!-- 借款人账户信息 -->
+<div class="clear"></div>
+<div class="sidebar-frame">  
+<div class='title_p'><span>四、银行卡信息：收款银行卡</span></div>
+<div class='every_p'>
+<span>开户名: </span>
+<input type="text" class="width_378"  name="bankname" readonly='readonly' value="{$returndata.bankname}" maxlength='66'>
+</div>
+<div class='every_p'>
+<span>开户行: </span>
+<input type="text" class="width_378"  name="bank" readonly='readonly' value="{$returndata.bank}" maxlength='66'>
+</div>
+<div class='every_p'>
+<span>账号: </span>
+<input type="text"  name="bankcard" readonly='readonly' value="{$returndata.bankcard}"  maxlength='66'>
+</div>
+</div>    
+<!-- 借款人账户信息 -->
+
+<div class="sidebar-frame"> 
+  <div class='title_p'><span>五、尽职调查信息</span></div> 
+  <div class='every_p'>
+  <span>还款来源:</span>
+  <input type="text" readonly='readonly' value='{$returndata.repaysource}' name='repaysource'  />
+  </div>
+  <div class='every_p'>
+  <span>征信逾期次数:</span>
+  <input type="text" readonly='readonly' value='{$returndata.credit}' name='credit'  />
+  </div>
+   <div class='every_p'>
+  <span>流水余额:</span>
+  <input type="text" readonly='readonly' value='{$returndata.watermoney}' name='watermoney'  />
+  </div>
+<div class="every_p">
+  <span>负债情况:</span>
+<div class='son_p'>
+<p><input type="radio" name="debt" readonly='readonly' value="1" <eq name='returndata.debt' readonly='readonly' value='1'>checked=checked</eq>/>抵押负债</p>
+<p><input type="radio" name="debt" readonly='readonly' value="2" <eq name='returndata.debt' readonly='readonly' value='2'>checked=checked</eq>/>无抵押负债</p>     
+</div>
+</div> 
+   <div class='every_p'>
+  <span>资产情况:</span>
+  <input type="text" readonly='readonly' value='{$returndata.capitalcon}' name='capitalcon'  />
+  </div>
+   <div class='every_p'>
+  <span>房产照片:</span>
+  <input type="text" readonly='readonly' value='{$returndata.credit}' name=''  />
+  </div>
+    <div class='every_p'>
+  <span>营业执照:</span>
+  <input type="text" readonly='readonly' value='{$returndata.credit}' name=''  />
+  </div>
+    <div class='every_p'>
+  <span>开户许可证:</span>
+  <input type="text" readonly='readonly' value='{$returndata.credit}' name=''  />
+  </div>
+    <div class='every_p'>
+  <span>行驶证:</span>
+  <input type="text" readonly='readonly' value='{$returndata.credit}' name=''  />
+  </div>
+    <div class='every_p'>
+  <span>涉法涉诉:</span>
+  <input type="text" readonly='readonly' value='{$returndata.law}' name='law'  />
+  </div>
+    <div class='every_p'>
+  <span>担保人姓名:</span>
+  <input type="text" readonly='readonly' value='{$returndata.dbname}' name='dbname'  />
+  </div>
+
+   <div class='every_p'>
+  <span>身份证号:</span>
+  <input type="text" readonly='readonly' value='{$returndata.dbidno}' name='dbidno'  />
+  </div>
+
+</div>     
+    <!-- 业务信息 -->
+<div class="clear"></div>
+<div class="sidebar-frame"> 
+<div class='every_p'>
+<span>业务来源: </span>
+<select name="source">
+<option readonly='readonly' value='0'>请选择</option>
+<volist name='list' id='vo' key='k'>
+<option readonly='readonly' value="{$vo.id}" <eq name='returndata.source'  readonly='readonly' value='$vo.id'>selected='selected'</eq>>{$vo.organization}</option>
+</volist>
+</select>
+</div>
+
+<div class='every_p '>
+<span>请选择业务员: </span>
+<select name="salesman">
+<option readonly='readonly' value='0'>请选择</option>
+<volist name='plist' id='vo'>
+<option readonly='readonly' value="{$vo.id}" <eq name='returndata.salesman' readonly='readonly' value='$vo.id'>selected='selected'</eq>>{$vo.username}</option>
+</volist>
+</select>
+</div>
+
+
+
+</div>
+<!-- 风控意见 -->
+
+<div class="clear"></div>
+<div class="sidebar-frame"> 
+<div class='title_p'><span>六、风控初审意见</span></div>
+ <div class='every_p'>
+  <span>风控人:</span>
+  <input type="text" readonly='readonly' value='{$returndata.riskearly}' name='riskearly'  />
+  </div>
+ <div class='every_p'>
+  <span>初审意见:</span>
+  <input type="text" readonly='readonly' value='{$returndata.tip}' name='tip'  />
+  </div>
+
+</div>
+
+<div class="clear"></div>
+<div class="sidebar-frame"> 
+<div class='title_p'><span>七、风控终审意见</span></div>
+ <div class='every_p'>
+  <span>借款人:</span>
+  <input type="text" readonly='readonly' value='{$returndata.cstname}' name='cstname'  />
+  </div>
+ <div class='every_p'>
+  <span>批准金额:</span>
+  <input type="text" readonly='readonly' value='{$returndata.aprovemoney}' name='aprovemoney'  />
+  </div>
+   <div class='every_p'>
+  <span>批准期限:</span>
+  <input type="text" readonly='readonly' value='{$returndata.aprovelimit}' name='aprovelimit'  />
+  </div>
+   <div class='every_p'>
+  <span>批准利率:</span>
+  <input type="text" readonly='readonly' value='{$returndata.aproverate}' name='aproverate'  />
+  </div>
+
+  <span class="pledge_p">
+<div class='every_p'>
+<span>请选择资金来源: </span>
+<select name="capitalsource">
+<option readonly='readonly' value="0">请选择</option>
+<volist name='list' id='vo' key='k'>
+<option readonly='readonly' value="{$vo.id}" <eq name='returndata.capitalsource'  readonly='readonly' value='$vo.id'>selected='selected'</eq>>{$vo.organization}</option>
+</volist>
+</select>
+</div>
+</span>
+  <div class='every_p'>
+  <span>客户画像:</span>
+  <input type="text" readonly='readonly' value='{$returndata.portrait}' name='portrait'  />
+  </div>
+</div>
+
+<!-- 房款方案 -->
+<!-- 过桥人信息 -->
+<div class="clear"></div>
+<div class="sidebar-frame">  
+<div class='title_p'><span>八、是否有过桥</span></div>
+<div class="every_p">
+<div class='son_p'>
+<p><input type="radio" name="bridge" readonly='readonly' value="1" <eq name='returndata.bridge'  readonly='readonly' value='1'>checked="checked"</eq> />有</p>
+<p><input type="radio" name="bridge" readonly='readonly' value="0" <eq name='returndata.bridge'  readonly='readonly' value='2'>checked="checked"</eq>/> 无</p>     
+</div>
+</div> 
+
+<span class='bridge_p bridge' > 
+<div class='every_p'>
+<span>过桥金额: </span>
+<input type="text" class="width_340"  maxlength='20' name='bridgemoney' readonly='readonly' value='{$returndata.bridgemoney}'/>
+</div>
+<div class='every_p'>
+<span>贷款人: </span>
+<input type="text"   maxlength='20' name='bridgedebtname' readonly='readonly' value='{$returndata.bridgedebtname}'/>
+</div>
+<div class='every_p'>
+<span>公证委托人: </span>
+<input type="text"   maxlength='20' name='bridgewtname' readonly='readonly' value='{$returndata.bridgewtname}'/>
+</div>
+<div class='every_p'>
+<span>贷款人账号: </span>
+<input type="text"   maxlength='20' name='bridgedebtaccount' readonly='readonly' value='{$returndata.bridgedebtaccount}'/>
+</div>
+<div class='every_p'>
+<span>开户行: </span>
+<input type="text"   maxlength='20' name='bridgedebtaccountbank' readonly='readonly' value='{$returndata.bridgedebtaccountbank}'/>
+</div>
+
+<div class='every_p'>
+<span>放款金额1: </span>
+<input type="text"  name='fk1'  readonly='readonly' value='{$res.fk1}' maxlength='20' />
+</div>
+
+<div class='every_p'>
+<span>放款条件: </span>
+<input type="text"  name='fkc1' readonly='readonly' value='{$res.fck1}' maxlength='20' />
+</div>
+
+<div class='every_p'>
+<span>放款金额2: </span>
+<input type="text"  name='fk2' readonly='readonly' value='{$res.fk2}' maxlength='20' />
+</div>
+
+<div class='every_p'>
+<span>放款条件2: </span>
+<input type="text" name='fkc2' readonly='readonly' value='{$res.fkc2}' maxlength='20' />
+</div>
+
+<div class='every_p '>
+<span>请选择过桥人: </span>
+<select name="bridgename">
+<option readonly='readonly' value='0'>请选择过桥人</option>
+<volist name='blist' id='vo' key='k'>
+<option readonly='readonly' value="{$vo.uid}" <eq name='returndata.bridgename'  readonly='readonly' value='$vo.uid'>selected='selected'</eq>>{$vo.nickname}</option>
+</volist>
+</select>
+</div>
+
+<div class="clear"></div>
+<div class='every_p'>
+<span>过桥人开户行: </span>
+<input type="text" class="width_340" id='bank' maxlength='20'  readonly='readonly'/>
+</div>
+<div class='every_p'>
+<span>过桥人账号: </span>
+<input type="text" class="width_353"  id='account' maxlength='20' readonly='readonly'/>
+</div>
+
+</span>
+</div>
+<!-- </form> -->
+</div> 
+
+
+<script type="text/javascript">
+    $(function(){
+        $("#fang").click(function()
+        {
+            $("#house").show();
+            $("#ca").hide();
+        });
+        $("#car").click(function(){
+            $("#house").hide();
+            $("#ca").show();
+        });
+
+
+    });
+
+    
+function num2ch(v,i) {
+
+  var testreuslt = true;
+  if (testreuslt) {
+    showChineseAmount(v,i);
+  }
+  var newdou=formatNum(v);
+  $('input[name='+i+']').val(newdou);
+  var newv=$("#"+i).text();
+  $('#upperprice').val(newv);
+  return testreuslt;
+}
+
+function formatNum(str){
+var newStr = "";
+var count = 0;
+ 
+if(str.indexOf(".")==-1){
+   for(var i=str.length-1;i>=0;i--){
+ if(count % 3 == 0 && count != 0){
+   newStr = str.charAt(i) + "," + newStr;
+ }else{
+   newStr = str.charAt(i) + newStr;
+ }
+ count++;
+   }
+   str = newStr + ".00"; //自动补小数点后两位
+   // console.log(str)
+}
+else
+{
+   for(var i = str.indexOf(".")-1;i>=0;i--){
+ if(count % 3 == 0 && count != 0){
+   newStr = str.charAt(i) + "," + newStr;
+ }else{
+   newStr = str.charAt(i) + newStr; //逐个字符相接起来
+ }
+ count++;
+   }
+   str = newStr + (str + "00").substr((str + "00").indexOf("."),3);
+   // console.log(str)
+ }
+ return str;
+}
+
+
+
+function showChineseAmount(v,i) {
+    // console.log(v,i);
+  var regamount = /^(([1-9]{1}[0-9]{0,})|([0-9]{1,}\.[0-9]{1,2}))$/;
+  var reg = new RegExp(regamount);
+  if (reg.test(v)) 
+  {
+    var amstr = v;
+    var leng = amstr.toString().split('.').length;
+    if (leng == 1) {
+      $("#"+v).val(v + ".00");
+    }
+    $("#"+i).text(Arabia_to_Chinese(amstr));
+    $("#"+i).show();
+    $("#"+i).css("color","red");
+  }else
+  {
+    $("#"+i).show();
+    $("#"+i).text("请输入纯数字");
+  }
+}
+
+function number(i,n)
+{
+  if(i>2||i<0.8)
+  {
+    $("#"+n).text('贷款利率介于0.8-2之间').show();
+  }
+}
+
+$(function () {       
+        var bridge=$('input[name=bridge] readonly='readonly'[value=0]');
+        var bridgeis=$('input[name=bridge] readonly='readonly'[value=1]');
+        bridge.click(function(){
+             $(".bridge").hide();
+        });
+        bridgeis.click(function(){
+            $(".bridge").show();
+        });
+
+        //当选择不同的过桥人的时候显示相应的信息
+        $("select[name=bridgename]").change(function(){
+          var id=$(this).val();
+          // console.log(id);
+          $.ajax({
+                    type:'POST',
+                    url:"__URL__/bridgecontent",
+                    data:{id:id},
+                    dataType:"json",
+                    success:function(b){
+                        $('#bank').val(b[0]['bridgeaddress']);
+                        $('#nickname').val(b[0]['nickname']);
+                        $("#account").val(b[0]['bridgeaccount']);
+                    }
+                });
+        })
+    });
+
+</script>
+<!-- 图片上传 -->
+<script type="text/javascript">
+
+
+      //过桥人信息要展示出来
+    var newid1=$("select[name=bridgename] option[selected]").val();
+    if(newid1){
+    $.ajax({
+                    type:'POST',
+                    url:"__URL__/bridgecontent",
+                    data:{id:newid1},
+                    dataType:"json",
+                    success:function(b){
+                        $('#bank').val(b[0]['bridgeaddress']);
+                        $('#nickname').val(b[0]['nickname']);
+                        $("#account").val(b[0]['bridgeaccount']);
+                    }
+                });
+      }
+
+    $(".confirm").click(function(){
+      var name=$(this).attr('name');
+      var val=$(this).val();
+      var id={$returndata.id};
+      $.ajax({
+              type:'POST',
+                    url:"__URL__/fsconfirm",
+                    data:{name:name,val:val,id:id},
+                    dataType:"json",
+                    success:function(b){
+                      jBox.tip('确认成功');                
+              }
+      })
+    })
+</script>
+
+<div class="clear"></div>
+<div class="sidebar-frame">  
+<div class='title_p'><span>九、具体还款</span></div>
+<form action="__URL__/loanadd" method="post" class="m10" enctype='multipart/form-data'>
+
+<table class="table table-hover" >
+
+<!--     <div class='every_p'>
+        <td width="10%" class="tableleft">借款项目</span>
+        <td><input type="text" name="title" value="{$returndata.title}" readonly='readonly'/>
+            <input type="hidden" name="id" value="{$returndata.id}" readonly='readonly'/>
+            <input type="hidden" name="duration" value="{$returndata.duration}" />
+            <input type="hidden" name="borrowamt" value="{$returndata.borrowamt}" />
+            <input type="hidden" name="rate" value="{$returndata.rate}" />
+
+        </span>
+    </div> -->
+      <div class='every_p'>
+      <span>借款项目: </span>
+          <input type="text" name="title" value="{$returndata.title}" readonly='readonly'/>
+            <input type="hidden" name="id" value="{$returndata.id}" readonly='readonly'/>
+            <input type="hidden" name="duration" value="{$returndata.duration}" />
+            <input type="hidden" name="borrowamt" value="{$returndata.borrowamt}" />
+            <input type="hidden" name="rate" value="{$returndata.rate}" />
+      </div>
+
+ <!--    <div class='every_p'>
+        <span>借款人姓名</span>
+        <td ><input type="text" name="cstname" value="{$returndata.cstname}" readonly='readonly'/></span>
+    </div>   -->
+        
+      <div class='every_p'>
+         <span>借款人姓名: </span>
+         <input type="text" name="cstname" value="{$returndata.cstname}" readonly='readonly'/>
+      </div>
+  
+
+<!--       <div class='every_p'>
+        <span>借款人身份证</span>
+        <td ><input type="text" name="idno" value="{$returndata.idno}" readonly='readonly'/></span>
+    </div>  --> 
+       <div class='every_p'>
+        <span>放款金额</span>
+        <input type="text" name="loanamt" value="" onblur='num2ch(this.value,this.name)'/>(元)
+        <span id='loanamt' style='display:none;color:red'></span></br>
+         </span>
+    </div>  
+       <div class='every_p'>
+        <span>具体放款时间</span>
+       <span><input type="date" name="loantime" value="{$time}"/></span>
+    </div> 
+      <div class='every_p'>
+        <span>打款凭证</span>
+       <input type="file" name="proof" value=""/>
+    </div> 
+    <div class='every_p'>
+        <span>标记人</span>
+
+            <input type="text" name="confirmer" value="{$Think.session.username}" readonly='readonly'/>
+
+    </div>
+    <div class='every_p'>
+            <button type="submit" class="btn btn-primary btn-large" type="button">保存</button> &nbsp;&nbsp;
+            <!-- <button type="button" class="btn btn-success" name="backid" id="backid">返回列表</button> -->
+   </div>
+</table>
+</form>
+</div>
+</body>
+</html>

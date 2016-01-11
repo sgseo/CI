@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>手机M站</title> 
+<link href="style/css.css" type="text/css" rel="stylesheet"/>
+</head>
+
+<body> 
+<div id="m_base"> 
+<div class="m_zctitle">了解财来</div> 
+  
+<div class="about_con"> 
+
+<h2>公司简介</h2>
+
+<p>财来网是上海财来金融信息服务股份有限公司旗下品牌及网站。财来网拥有一支以浙商为核心，融合互联网、金融、实业和政府背景的经营管理团队。我们为有闲散资金的理财客户和有资金需求的借款人提供审慎、透明、务实、合规的金融信息中介服务。</p>
+
+<h3>财来使命</h3>
+<p>我们致力于提高投资人风险识别能力</p>
+<p>我们致力于提高金融信息服务透明度</p>
+
+<h3>财来宗旨</h3>
+<p>人人都是银行家</p>
+
+
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<?php
+error_reporting(E_ERROR);
+/**
+ * Class act_huifu
+ */
+class act_huifu extends action
+{
+    /**
+     *
+     */
+    public function runFirst() {
+    	
+    	
+    }
+
+
+    /**
+     * 接受请求
+     */
+    public function _homeAct(){
+
+        
+    file_put_contents('/tmp/zw.txt',date('m-d H:i:s')."REQUEST ".print_r($_REQUEST,true)."\n",FILE_APPEND);
+    	   
+    	$params = $_REQUEST;
+    	extract($params);
+		
+		// api检测
+		if(empty($act)) {
+			return array('msg'=>'act参数为空');
+		}
+		
+		$obj = core::Singleton('huifu.huifu');
+    	switch($act) {
+    			
+    		/**
+    		 * 用户注册
+    		 */
+    		case "user.reg":
+//                    if(empty($username) ||empty($telephone) ||empty($email) ){
+    			if(empty($username) ||empty($telephone) ){
+    				return array('msg'=>'确实必要的参数');
+    			}
+    			echo  json_encode($obj->userRegister($username,$telephone,$email));
+    			break;
+    				
+    			/**
+    			 * 用户充值的参数获取，用户汇付的id号以及充值的金额
+    			 * 返回格式如：
+    			 */
+    		case "recharge.get":
+    			if(empty($usrid) || empty($amount)  ){
+    				return array('msg'=>'确实必要的参数');
+    			}
+    			echo  json_encode($obj->netSave($usrid,$amount));
+    			break;
+    			/**
+    			 * 用户取现的参数获取，用户汇付的id号以及取的金额，手续费
+    			 * 返回格式如：
+    			 */
+    		case "withdrawals.get":
+    			if(empty($usrid) || empty($amount)|| empty($fee)  ){
+    				return array('msg'=>'确实必要的参数');
+    			}
+    			echo  json_encode($obj->cash($usrid,$amount,$fee));
+    			break;
+               case "invest.money":       
+                   //echo "111111111111";exit;[borrowerid
+                   file_put_contents('/tmp/zw1.txt',date('m-d H:i:s')."borrowerid ".print_r($borrowerid,true)."\n",FILE_APPEND);
+    			echo json_encode($obj->initiativeTender($usrid,$transamt,$borrowerid,$borrowid));exit;
+    			break;
+               case "bind.bank":
+                       echo json_encode($obj->userBindCard($usrid));exit;
+    		       break;
+    	}
+        
+    	exit;
+	}
+	
+}
+
+
+
+?>

@@ -1,0 +1,12 @@
+<?php
+define('MODE_NAME','cli');
+if (PHP_SAPI === 'cli'){
+	$mysqllink=mysql_connect('115.29.245.207','test','cailai1234567890');
+      mysql_select_db('cailainew',$mysqllink);
+      $sql="insert into lzh_ls set name=1";
+     $data=mysql_query($sql,$mysqllink);
+}
+
+     
+    
+     exit;

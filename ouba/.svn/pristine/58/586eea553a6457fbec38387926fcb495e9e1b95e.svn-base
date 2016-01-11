@@ -1,0 +1,33 @@
+<include file='Public:_header'/>
+<form action="__URL__/manageadd" method="post" class="definewidth m20">
+    <table class="table table-bordered table-hover definewidth m10">
+        <tr>
+            <td width="10%" class="tableleft">机构名称</td>
+            <td><input type="text" name="organization"/></td>
+        </tr>
+      <!--   <tr>
+            <td width="10%" class="tableleft">角色密码</td>
+            <td><input type="text" name="pwd"/></td>
+        </tr>
+         <tr>
+            <td width="10%" class="tableleft">角色电话</td>
+            <td><input type="text" name="mobile"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">角色选择</td>
+            <td>
+                <input type="radio" name="status" value="8" checked='checked'/> 业务员  <input type="radio" name="status" value="2"/> 前台
+                <input type="radio" name="status" value="6"/> 合作机构
+            </td>
+        </tr> -->
+      
+        <tr>
+            <td class="tableleft"></td>
+            <td>
+                <button type="submit" class="btn btn-primary" type="button">添加</button> &nbsp;&nbsp;
+            </td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

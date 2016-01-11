@@ -1,0 +1,176 @@
+  /*核心信息*/
+      .title{
+        width: 50%;
+        margin: 63px auto 46px auto; 
+        text-align: center;
+        font-size: 16px;
+        font-family: "microsoft yahei";
+        color: #000;
+        font-weight: bold;
+        text-align: center;
+        /*border-top: 1px solid #000;*/
+      }
+      .coretop{
+        width: 1066px;
+        margin: 0px auto;
+        border-bottom: 1px solid #d6d6d6;
+        margin-bottom: 125px;
+        padding-bottom:40px;
+        height: 300px;
+      }
+      .coretop div{
+        width: 371px;
+        padding: 0px 0px;
+        /*line-height: 49px;*/
+      }
+        .coretop select{
+        height: 49px;
+        width: 371px;
+       }
+      .every{
+        /*border: 1px solid red;*/
+        float: left;
+        margin-top: 23px;
+        margin-left: 100px;
+        height: 65px;
+      }
+    
+      .every>input{
+        width: 365px;
+        height: 49px;
+        line-height: 49px;
+        float: left;
+        margin:0px auto;
+        padding-left: 5px;
+        font-size: 12px;
+        /*border: 1px solid blue;*/
+        
+      }
+      .every>span{
+        font-size: 14px;
+        /*margin-left:1px;*/
+        font-family: "microsoft yahei";
+        /*font-weight: bold;*/
+        padding-bottom: 0px;  
+      }
+      .son p{
+        width: 180px;
+        height: 20px;
+        float: left;
+        text-align: center;
+        line-height: 59px;
+        /*border: 1px solid red;*/
+      }
+
+    .son input{
+        width: 14px;
+        height: 14px;
+        margin-top: 23px;
+        float: left;
+      }
+
+    .son>span{
+      height: 20px;
+      width: 160px;
+      line-height: 20px;
+     }
+
+     .info{
+        width: 180px;
+        height: 20px;
+        float: left;
+        text-align: center;
+        line-height: 59px;
+      }
+    
+     .info p{
+        width: 120px;
+        height: 20px;
+        float: left;
+        text-align: center;
+        line-height: 59px;
+        /*border: 1px solid red;*/
+      }
+
+    .info input{
+        width: 14px;
+        height: 14px;
+        margin-top: 23px;
+        float: left;
+      }
+
+    .info>span{
+      width: 160px;
+      line-height: 20px;
+     }
+      
+      /*过桥*/
+      .corebridge{
+        width: 1066px;
+        margin: 0px auto;
+        border-bottom: 1px solid #d6d6d6;
+        margin-bottom: 125px;
+        padding-bottom:40px;
+        height: 300px;
+        /*border: 1px solid blue;*/
+      }
+      .corebridge div{
+        width: 375px;
+        padding: 0px 0px;
+        /*line-height: 49px;*/
+      }
+       .corebridge select{
+        height: 49px;
+        width: 371px;
+       }
+
+      .bridge{
+        width: 1066px;
+        margin: 0px auto;
+        /*border-bottom: 1px solid #d6d6d6;*/
+        margin-bottom: 125px;
+        padding-bottom:40px;
+        height: 300px;
+        /*border: 1px solid blue;*/
+      }
+
+       .bridge select{
+        height: 49px;
+        width: 371px;
+       }
+     
+
+     /*抵押物信息*/
+     .pledge>p{
+       float: left;
+     }
+    .for{
+      width: 371px;
+      height: 49px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      line-height: 49px;
+    }
+    .for p{
+      float: left;
+      margin: 5px 15px;
+    }
+
+  /*   .corepic{
+        width: 371px;
+        margin: 50px auto;
+        height:600px;
+        border-bottom: 1px solid #ccc;
+        margin-top: 50px;
+        padding-bottom:40px;
+      }*/
+      .pic{
+        display: inline;
+        float: left;
+        margin: 10px auto;
+        /*border: 1px solid red;*/
+      }
+     textarea{
+      width: 100%;
+      margin: 0 auto;
+     }

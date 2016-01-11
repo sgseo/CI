@@ -1,0 +1,54 @@
+[ 2015-09-06T13:46:12+08:00 ] 127.0.0.1 /Home/Index/redpacket
+ERR: 非法操作:redpacket
+
+[ 2015-09-06T13:48:17+08:00 ] 127.0.0.1 /Home/Index/redpacket
+ERR: 非法操作:redpacket
+
+[ 2015-09-06T13:49:27+08:00 ] 127.0.0.1 /Home/Index/redpacket
+ERR: 非法操作:redpacket
+
+[ 2015-09-06T13:49:43+08:00 ] 127.0.0.1 /Home/Index/reds
+ERR: 非法操作:reds
+
+[ 2015-09-06T13:50:17+08:00 ] 127.0.0.1 /Home/Index/reds
+ERR: 非法操作:reds
+
+[ 2015-09-06T13:51:24+08:00 ] 127.0.0.1 /Home/Index/red
+ERR: 非法操作:red
+
+[ 2015-09-06T13:51:27+08:00 ] 127.0.0.1 /Home/Index/reds
+ERR: 非法操作:reds
+
+[ 2015-09-06T13:51:57+08:00 ] 127.0.0.1 /Home/Index/reds
+ERR: 非法操作:reds
+
+[ 2015-09-06T13:51:57+08:00 ] 127.0.0.1 /Home/Index/reds
+ERR: 非法操作:reds
+
+[ 2015-09-06T13:51:57+08:00 ] 127.0.0.1 /Home/Index/reds
+ERR: 非法操作:reds
+
+[ 2015-09-06T13:52:09+08:00 ] 127.0.0.1 /home/index/reds
+ERR: 非法操作:reds
+
+[ 2015-09-06T13:52:21+08:00 ] 127.0.0.1 /Home/Index/reds
+ERR: 非法操作:reds
+
+[ 2015-09-06T13:52:22+08:00 ] 127.0.0.1 /Home/Index/red
+ERR: 非法操作:red
+
+[ 2015-09-06T13:52:23+08:00 ] 127.0.0.1 /Home/Index/reds
+ERR: 非法操作:reds
+
+[ 2015-09-06T13:52:23+08:00 ] 127.0.0.1 /Home/Index/redpacket
+ERR: 非法操作:redpacket
+
+[ 2015-09-06T13:52:42+08:00 ] 127.0.0.1 /Home/Index/reds
+ERR: 非法操作:reds
+
+[ 2015-09-06T13:53:01+08:00 ] 127.0.0.1 /Home/Index/reds
+ERR: 非法操作:reds
+
+[ 2015-09-06T13:53:09+08:00 ] 127.0.0.1 /Home/Index/cl_reds
+ERR: 非法操作:cl_reds
+

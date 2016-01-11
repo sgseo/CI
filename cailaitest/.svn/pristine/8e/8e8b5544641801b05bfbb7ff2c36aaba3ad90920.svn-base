@@ -1,0 +1,67 @@
+<include file="Public:_header" />
+<tagLib name="htmlA" />
+<script type="text/javascript">
+	var delUrl = '__URL__/doDel';
+	var addUrl = '__URL__/add';
+	var addTitle = '添加分类';
+</script>
+<div class="so_main">
+  <div class="page_tit">通知地址状态</div>
+
+  <div class="Toolbar_inbox" style="height:25px;">
+  	<div class="page right">{$pagebar}</div>
+  </div>
+  
+  <div class="list">
+  <table id="area_list" width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <th style="width:30px;">
+        <input type="checkbox" id="checkbox_handle" onclick="checkAll(this)" value="0">
+        <label for="checkbox"></label>
+    </th>
+    <th class="line_l">ID</th>
+    <th class="line_l">接口类型</th>
+    <th class="line_l">交易时间</th>
+    <th class="line_l">上次返回时间</th> 
+    <th class="line_l">返回地址</th> 
+    <th class="line_l">数据包</th>
+	<th class="line_l">次数</th>
+    <th class="line_l">状态</th>
+  </tr>
+  <volist id="vo" name="list">
+      <tr overstyle='on' id="list_{$vo.id}">
+        <td><input type="checkbox" name="checkbox" id="checkbox2" onclick="checkon(this)" value='{$vo.id}'>
+            <input type="hidden" id="data_{$vo.id}" value='{$vo.data}'>
+        </td>
+        <td>{$vo.id}</td>
+        <td>{$vo.type}</td>
+        <td>{$vo.addtime|date='Y-m-d H:i:s',###}</td>      
+        <td>{$vo.last_time|date='Y-m-d H:i:s',###}</td>
+        <td>{$vo.notify_url}</td>
+        <td>{$vo.data|cnsubstr=###,15}<a href="#" onclick="copyText('data_{$vo.id}')">复制</a></td> 
+		<td>{$vo.num}</td> 
+        <td>{$vo.status}</td> 
+       
+      </tr>
+  </volist>
+  </table>
+
+  </div>
+  
+  <div class="Toolbar_inbox" style="height:25px;">
+  	<div class="page right">{$pagebar}</div>
+  </div>
+</div>
+<script type="text/javascript"> 
+function copyText(id) 
+{ 
+var obj=document.getElementById(id);
+obj.select();
+js=obj.createTextRange();
+js.execCommand("Copy")
+alert("复制成功!");   
+
+} 
+</script> 
+
+<include file="Public:_footer" />

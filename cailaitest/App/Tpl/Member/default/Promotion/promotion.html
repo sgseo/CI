@@ -1,0 +1,81 @@
+<include file="Public:_header_common"/>
+<title>我的账户-- {$glo.web_name}</title>
+<!--{$uclogin}-->
+<include file="default:Public:_header_main" group="Home"/>
+<!--中部开始-->
+<div class="Cmm" > 
+<include file="Public:_left" />
+<div id="hy_right" style="position:relative;"> 
+
+<div class="box">
+      <div class="Menubox1" id="rotate">
+        <ul class="menu ajaxdata">
+       <li><a href="#fragment-1" ajax_href="__URL__/promotion/">邀请好友</a></li> 
+       <!--    <li><a href="#fragment-2" ajax_href="__URL__/promotionlog/">奖金记录</a></li>-->
+          <!--<li><a href="#fragment-3" ajax_href="__URL__/promotionfriend/">推广明细</a></li>-->
+        </ul>
+      </div>
+      <div class="contentright">
+        <div id="fragment-1" style="display:none">
+          <div class="yqhy_t">
+<p><strong>方法一：</strong> 您可以通过介绍好友扫描我们的微信二维码或者财来理财App二维码 邀请好友</p>
+<img src="__ROOT__/Style/H/images/new/eweima.jpg" alt="" class="img_left"   />
+
+
+<p id="contentText" ><strong class="ccontent" >方法二：</strong> 可以通过发送个人定制二维码，扫描注册即可。</p>
+<img src="__ROOT__/Style/H/images/erwei/qrcodeicon{$myid}.png" alt="我的二维码" class="img_left img_left BSHARE_IMAGE"  />
+
+
+<style>
+.bshare li{float:left;list-style-type:none;color: #999999;margin-right:5px;height:16px;line-height:16px;font-size:12px;}
+.bshare img{border:none;}
+</style>
+
+<ul class="bshare" style="padding-bottom:20px;">
+<li>分享到:</li>
+<li><a title="分享到微信"  onclick="shareTo('weixin')" href="javascript:void(0);" ><img src="http://static.bshare.cn/frame/images/logos/s4/weixin.gif "/></a></li>
+<li><a title="分享到搜狐微博"  onclick="shareTo('sohuminiblog')" href="javascript:void(0);" ><img src="http://static.bshare.cn/frame/images/logos/s4/sohuminiblog.gif "/></a></li>
+<li><a title="分享到新浪微博"  onclick="shareTo('sinaminiblog')" href="javascript:void(0);" ><img src="http://static.bshare.cn/frame/images/logos/s4/sinaminiblog.gif "/></a></li>
+<li><a title="分享到一键通"  onclick="shareTo('bsharesync')" href="javascript:void(0);" ><img src="http://static.bshare.cn/frame/images/logos/s4/bsharesync.gif "/></a></li>
+<li><a title="分享到QQ空间"  onclick="shareTo('qzone')" href="javascript:void(0);" ><img src="http://static.bshare.cn/frame/images/logos/s4/qzone.gif"/></a></li>
+<li><a title="分享到人人网"  onclick="shareTo('renren')" href="javascript:void(0);" ><img src="http://static.bshare.cn/frame/images/logos/s4/renren.gif "/></a></li>
+<li><a title="分享到豆瓣"  onclick="shareTo('douban')" href="javascript:void(0);" ><img src="http://static.bshare.cn/frame/images/logos/s4/douban.gif "/></a></li>
+
+
+</ul>
+
+
+<script  type='text/javascript'>
+  
+function shareTo(site){
+  var e = encodeURIComponent, s = screen, d = document, wd = 640, hg = 480, u = d.location;
+  var uuid = '5e7d8806-aed2-4505-b85a-4c89d424ad3d';
+  var title='分享我的发财之道';
+  var ig ="https://www.cailai.com/Style/H/images/erwei/qrcodeicon{$myid}.png";
+  // var ctxt = d.getElementById('contentText').getElementsByTagName('p').length>0?d.getElementById('contentText').getElementsByTagName('p')[0].innerHTML.replace(/<[^>].*?>/g,'').substr(0,120):'';
+
+  var ctxt="财来网，人人都是银行家,扫描二维码或者点击链接,从此走向人生巅峰";
+  var url = "http://api.bshare.cn/share/"+site+"?url="+e("https://www.cailai.com/member/common/register?invite={$myid}")+"&title="+e(title)+"&publisherUuid="+uuid+"&summary="+ctxt+"&pic="+ig;
+   window.open(url, 'bshare', ['toolbar=0,status=0,resizable=1,width='+ wd +',height='+ hg +',left='+ (s.width - wd) / 2+ ',top='+ (s.height - hg) / 2]); 
+}
+
+</script>
+
+
+</div>
+        </div>
+        <div id="fragment-2" style="display:none">
+          <!--自动投标-->
+        </div>
+        <div id="fragment-3" style="display:none">
+          <!--自动投标-->
+        </div>
+      </div>
+    </div>
+
+<!-- <div style="clear:both"></div> -->
+</div>
+</div> 
+
+
+<include file="default:Public:_footer" group="Home" />

@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="Style/A/css/adminlogin.css" rel="stylesheet" type="text/css" />
+<script language="javascript" type="text/javascript" src="Style/A/js/jquery.min.js"></script>
+<title>管理员登陆</title>
+</head>
+<script type="text/javascript">
+$(function(){
+    var t_height = $(document).height()-500;
+    $(".login-box").css('top',t_height+'px');
+})
+</script>
+<body>
+<div class="content_ht">
+<div class="content_left">
+<div class="left_weizi">
+
+    
+</div>
+   
+</div>
+<div class="login-box">
+<div class="content_right" style="width:500px;text-align:center; margin:0 auto;">
+	<div class="bgbg"><img src="Style/A/images/aa.png"></div>
+	<div class="bgbg1"><img src="Style/A/images/bb.gif"></div>
+	<form method="post" action="admin/index/login" name="form" id="form"> 
+		<div class="bodybox">  	
+			<ul class="LOGONEW1">
+				<li>用户名：<input type="text" class="unpa" id="admin_name" name="admin_name" /></li>            
+				<li>密&#12288;码：<input type="password" class="unpa" id="admin_pass" name="admin_pass" /></li>
+				<li>口&#12288;令：<input type="text" class="unpa" id="user_word" name="user_word" /></li>
+				<li class="logn2">验证码：<input type="text" class="code" id="code" name="code" maxlength="4" />
+				<img  src="admin/index/verify" width='55px' height='30px' onclick="javascript:this.src='admin/index/verify?'+new Date().getTime()" />
+				</li>            
+			</ul>
+				
+			<div class="lognAD5"><a id="btnReg" onclick="javascript:subform();" onfocus="this.blur();" title="登陆"><input  type="submit"  value="登录"/></a>&nbsp;&nbsp;<input  type="reset"  value="取消"/></div> 
+		</div>
+	</form>
+
+</div>
+<div class="footer">
+	  <a>CAILAI @ CAILAI.COM All Rights Reserved. 上海财来金融信息服务股份有限公司 版权所有 沪ICP备14053618号</a>
+       </br></br>
+      <a>公司地址：上海市浦东新区世纪大道 1090 号 斯米克大厦 622 室 网址：www.cailai.com E-mail：cailai@cailai.com </a>
+</div>
+
+</div>
+
+
+<script type="text/javascript">
+function subform(){
+		var frm = document.forms['form'];
+			frm.submit();
+	}
+
+function keyUp(e) {  
+        var currKey=0,e=e||event; 
+        currKey=e.keyCode||e.which||e.charCode;
+	if(currKey==13){
+	  document.getElementById("btnReg").click();
+	 }
+    } 
+ document.getElementById("form").onkeydown = keyUp;
+ </script>
+	
+</body>
+</html>

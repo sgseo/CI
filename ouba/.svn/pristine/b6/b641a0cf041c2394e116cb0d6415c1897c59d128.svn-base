@@ -1,0 +1,62 @@
+<include file='Public:_header'/>
+  <ol class="breadcrumb">
+  <li><a href="#">业务管理-></a></li>
+  <li><a href="#">财务审批-></a></li>
+  <li class="active">放款</li>
+
+  </ol>
+
+   <script type="text/javascript" src="__PUBLIC__/Js/amounttochinese.js"></script>
+<form action="__URL__/loanadd" method="post" class="definewidth m20" enctype='multipart/form-data'>
+
+<table class="table table-bordered table-hover ">
+
+    <tr>
+        <td width="10%" class="tableleft">借款项目</td>
+        <td><input type="text" name="title" value="{$list.title}" readonly='readonly'/>
+            <input type="hidden" name="id" value="{$list.id}" readonly='readonly'/>
+            <input type="hidden" name="duration" value="{$list.duration}" />
+            <input type="hidden" name="borrowamt" value="{$list.borrowamt}" />
+            <input type="hidden" name="rate" value="{$list.rate}" />
+
+        </td>
+    </tr>
+    <tr>
+        <td class="tableleft">借款人姓名</td>
+        <td ><input type="text" name="cstname" value="{$list.cstname}" readonly='readonly'/></td>
+    </tr>  
+      <tr>
+        <td class="tableleft">借款人身份证号</td>
+        <td ><input type="text" name="idno" value="{$list.idno}" readonly='readonly'/></td>
+    </tr>  
+       <tr>
+        <td class="tableleft">放款金额</td>
+        <td ><input type="text" name="loanamt" value="" onblur='num2ch(this.value,this.name)'/>(元)
+               <span id='loanamt' style='display:none;color:red'></span></br>
+           </td>
+    </tr>  
+       <tr>
+        <td class="tableleft">具体放款时间</td>
+        <td ><input type="date" name="loantime" value="{$time}"/></td>
+    </tr> 
+      <tr>
+        <td class="tableleft">打款凭证</td>
+        <td ><input type="file" name="proof" value=""/></td>
+    </tr> 
+    <tr>
+        <td class="tableleft">标记人</td>
+        <td >
+            <input type="text" name="confirmer" value="{$Think.session.username}" readonly='readonly'/>
+                 </td>
+    </tr>
+    <tr>
+        <td class="tableleft"></td>
+        <td>
+            <button type="submit" class="btn btn-primary" type="button">保存</button> &nbsp;&nbsp;
+            <!-- <button type="button" class="btn btn-success" name="backid" id="backid">返回列表</button> -->
+        </td>
+    </tr>
+</table>
+</form>
+</body>
+</html>

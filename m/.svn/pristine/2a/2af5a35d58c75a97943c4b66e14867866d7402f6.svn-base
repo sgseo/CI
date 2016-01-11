@@ -1,0 +1,57 @@
+<?php
+require_once(dirname(__FILE__).'/../../www/header.php');
+//统计我的每个月的收益
+$objDb = core::db()->getConnect('CAILAI');
+
+
+/*	//获取我的当前月的 总投资
+	public function test()
+	{	
+		//当前月的第一天和最后一天
+		$firstday=strtotime(date('Y-m-01 0:0:0'));
+		$endday = strtotime(date('Y-m-01 0:0:0',strtotime("+1 month")));
+		//查询这一个月的投资总额
+		$res=M("borrow_investor")->field("sum(investor_capital) as ic")->where("add_time>=".$firstday." and add_time<".$endday." and investor_uid=".$this->uid)->find();
+		//当前年月
+		$year=date('Y');
+		$cmonth=date('n');
+		//英文缩写
+		$month=array(jan,feb,mar,apr,may,jun,july,aug,sep,otm,nov,dec);
+		array_unshift($res,$cmonth);
+
+		$data['year']=$year;
+		$data[$month[$cmonth-1]]=$month['ic']?$month['ic']:0;
+		//数据更新
+
+		$save=M("month_detail")->where('user_id='.$this->uid)->save($data);
+	} */
+
+		//当前月的第一天和最后一天
+		$firstday=strtotime(date('Y-m-01 0:0:0'));
+		$endday = strtotime(date('Y-m-01 0:0:0',strtotime("+1 month")));
+
+		//查询这一个月的投资总额
+
+		$sql="select investor_uid,investor_capital as ic from lzh_borrow_investor where add_time>=".$firstday." and add_time<".$endday." group by investor_uid";
+		$res = $objDb->query($sql);
+		while($row = mysql_fetch_assoc($res))
+		{
+			$rows[] = $row;
+		}
+		
+			//当前年月
+		$year=date('Y');
+		$cmonth=date('n');
+		//英文缩写
+		$month=array('jan','feb','mar','apr','may','jun','july','aug','sep','otm','nov','dec');
+		foreach ($rows as $key => $value) 
+		{
+			$sql="update lzh_month_detail set year=".$year.",".$month[$cmonth]."=".$value['ic']." where user_id=".$value['investor_uid'];
+			$rs[]=$objDb->query($sql);
+		}
+		if(in_array($rs,"false"))
+		{
+			echo "更新失败";
+		}else{
+			echo "更新成功";
+		}

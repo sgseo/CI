@@ -1,0 +1,602 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title> 
+    <link id="skin" rel="stylesheet" href="__PUBLIC__/Images/Pink/jbox.css" />
+    <script type="text/javascript" src="__PUBLIC__/Js/jquery.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Js/bootstrap.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Js/ckform.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Js/common.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Js/js/jquery-1.4.2.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Js/js/jquery.jBox.src.js"></script>
+<style> 
+.container{width:550px;height:auto; margin:0 auto; line-height:25px; font-size:13px; font-family:"宋体", "仿宋", "黑体";padding-bottom:50px;} 
+.clear{ clear:both;}
+button{ width:100px; height:auto; line-height:25px;}
+.title{font-weight:bold; text-align:center; font-size:24px; line-height:40px;}
+.title-dy{font-weight:bold; text-align:center; font-size:18px; line-height:40px;}
+.bianhao{ text-align:right; font-size:14px;line-height:40px;}
+.bianhao b{ font-family:Arial, Helvetica, sans-serif}
+.table{ line-height:20px; color:#000;font-family:"黑体"; font-size:14px; padding-left:20px;} 
+.top-30{ margin-top:30px; display:block; width:100%; float:left;}
+.top-50{ margin-top:50px;}
+.top-500{ margin-top:500px;}
+.top-100{ margin-top:100px;}
+p{font-family:"黑体"; font-size:14px; color:#333;margin:0; padding:0; line-height:28px; display:block; clear:both;}
+strong{color:#000;} 
+.table_100 {width:400px; margin:0 auto;height:auto;background:#333;color:#333; text-align:center;}
+.table_100 tr {background:#fff}
+.table_100 tr td {padding:2px 3px}
+.height-120{ height:120px; display:block;}
+.height-320{ height:320px; display:block;}
+.text-right{ text-align:right;}
+@media print {   
+ .noprint{display:none;}  
+}  
+.table_tan{
+  background:#333;
+ 
+  width: 80%;
+  height: 80%;
+  margin:20px auto;
+}
+.table_tan tr {background:#fff}
+.table_tan tr td {padding:2px 3px}
+.bg-color{width:100px; height:auto; line-height:25px; background-color:#ff8b01; color:#fff;outline: none; border: 1px solid #f60;-webkit-tap-highlight-color:rgba(0,0,0,0);-webkit-user-modify:read-write-plaintext-only; border-radius:3px; margin:20px auto; display:block;}
+</style> 
+</head>
+<body>
+<div class="container">
+ 
+<span><button onclick='window.print()' class='noprint'>打印此合同</button></span>  
+  
+  
+  
+<div class="title">抵 押 合 同</div> 
+<div class="bianhao">合同编号：<b>WX-SD-【201619003】-103-【{$res.id}】</b></div> 
+<table width="100%" class="table">
+  <tr>
+    <td width="2%">抵</td>
+    <td width="2%"></td>
+    <td width="2%">押</td>
+    <td width="2%">权</td>
+    <td width="4%">人：</td>
+    <td width="77%">万向信托有限公司</td>
+  </tr>
+  <tr>
+    <td>法</td>
+    <td>定</td>
+    <td>代</td>
+    <td>表</td>
+    <td>人：</td>
+    <td>肖风</td>
+  </tr>
+  <tr>
+    <td>联</td>
+    <td>系</td>
+    <td></td>
+    <td>地</td>
+    <td>址：</td>
+    <td>杭州市体育场路429号天和大厦12层</td>
+  </tr>
+  <tr>
+    <td>联</td>
+    <td></td>
+    <td>系</td>
+    <td></td>
+    <td>人：</td>
+    <td>吕栋</td>
+  </tr>
+  <tr>
+    <td>电</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>话：</td>
+    <td>0571-85829677</td>
+  </tr>
+  <tr>
+    <td>邮</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>编：</td>
+    <td>310006</td>
+  </tr>
+  <tr>
+    <td>传</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>真：</td>
+    <td>0571-85179809</td>
+  </tr>
+</table>
+<div class="clear"></div>   
+<table width="100%" class="top-30 table">
+  <tr>
+    <td width="2%">抵</td>
+    <td width="2%"></td>
+    <td width="2%">押</td>
+    <td width="2%"></td>
+    <td width="4%">人：</td>
+    <td width="77%">{$res.pledgename}</td>
+  </tr>
+  <tr>
+    <td>身</td>
+    <td>份</td>
+    <td>证</td>
+    <td>号</td>
+    <td>码：</td>
+    <td>{$res.idno}</td>
+  </tr>
+  <tr>
+    <td>联</td>
+    <td>系</td>
+    <td></td>
+    <td>地</td>
+    <td>址：</td>
+    <td>{$res.address}</td>
+  </tr>
+  <tr>
+    <td>联</td>
+    <td></td>
+    <td>系</td>
+    <td></td>
+    <td>人：</td>
+    <td>{$res.address}</td>
+  </tr>
+  <tr>
+    <td>电</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>话：</td>
+    <td>{$res.tel}</td>
+  </tr>
+  <tr>
+    <td>邮</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>编：</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>传</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>真：</td>
+    <td></td>
+  </tr>
+</table>
+<div class="clear"></div>  
+ 
+<p class="top-50" style="text-indent:25px;"><strong>鉴于：</strong></p>
+<p style="text-indent:25px;">抵押权人（贷款人）与债务人签订了主合同，为确保主合同的履行，抵押人愿意作为债务人的担保人，以自己合法持有的抵押物向抵押权人提供抵押担保。为明确抵押权人与抵押人双方的权利、义务，根据我国有关法律法规及监管部门的规定，经协商一致，特订立如下合同，以资共同遵守。</p>
+
+ <div class="top-30">
+<p><strong>第1条 定义</strong></p>
+<p>
+<span style="float:left;width:30px;">1.1</span>     
+<span style="float:left;width:520px;"><b>主合同：</b>抵押权人（贷款人）与债务人签订的编号为 <b>WX-SD-【201619003】-102-【{$res.id}】</b>的《信托贷款合同》及对该合同的任何修订与补充。</span>
+</p>
+<p>
+<span style="float:left;width:30px;">1.2</span>     
+<span style="float:left;width:520px;"><b>本合同：</b> 指抵押权人与抵押人双方签署的本《抵押合同》。</span>
+</p>
+<p>
+<span style="float:left;width:30px;">1.3</span>     
+<span style="float:left;width:520px;"><b>贷款人：</b> 指万向信托有限公司，即本合同的抵押权人。</span>
+</p> 
+<p>
+<span style="float:left;width:30px;">1.4</span>     
+<span style="float:left;width:520px;"><b>债务人：</b> 指<u>  &nbsp;&nbsp;&nbsp; {$res.cstname} &nbsp;&nbsp;&nbsp;  </u>。</span>
+</p>  
+
+<p>
+<span style="float:left;width:30px;">1.5</span>     
+<span style="float:left;width:520px;"><b>工作日：</b>指中华人民共和国国务院规定的金融机构正常的营业日。</span>
+</p>
+<p>
+<span style="float:left;width:30px;">1.6</span>     
+<span style="float:left;width:520px;">除本合同另有约定外，本合同中有关用语的定义与主合同相同。</span>
+</p>
+</div>
+ 
+<div class="top-30"><p><strong>第2条 主债权基本情况</strong></p>
+<p>
+<span style="float:left;width:30px;">2.1</span>     
+<span style="float:left;width:520px;">被担保的主债权的种类：<u>信托贷款</u>。</span>
+</p>
+<p>
+<span style="float:left;width:30px;">2.2</span>     
+<span style="float:left;width:520px;">被担保的主债权本金数额（大写）：<u>  &nbsp;&nbsp;&nbsp; {$res.upperprice} &nbsp;&nbsp;&nbsp;  </u>（小写：￥<u>  &nbsp;&nbsp;&nbsp;{$res.borrowamt} &nbsp;&nbsp;&nbsp;  </u> 元），具体金额以贷款人向债务人实际发放贷款金额为准。</span>
+</p>
+<p>
+<span style="float:left;width:30px;">2.3</span>     
+<span style="float:left;width:520px;">被担保的主债权期限为<u>  &nbsp;&nbsp;{$res.duration}&nbsp;&nbsp; </u>个月，即从<u>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </u>年<u> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </u>月 <u>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </u>日起至<u>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  </u>年<u>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </u>月 <u>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </u>日。若根据主合同的约定上述期限在履行中发生变化，则以实际履行日期为准。</span>
+</p>
+</div>
+
+ 
+<div class="top-30"><p><strong>第3条 抵押担保的范围</strong></p>
+<p><span style="float:left;width:30px;">3.1   </span>     
+<span style="float:left;width:520px;">本合同项下的抵押人的抵押担保范围包括：</span>
+</p>
+<p>   
+<span style="float:right;width:520px;">
+（1） 债务人在主合同项下应向抵押权人支付的被担保主债权本金及对应的利息、罚息、复利、违约金、赔偿金等。
+<br>（2） 抵押权人为实现主合同项下主债权和担保权利所需支出的费用，包括但不限于公证、公告、评估、鉴定、拍卖、处置、诉讼费、律师费、调查取证费、差旅费等。</span>
+</p>
+<p>
+<span style="float:left;width:30px;">3.2   </span>     
+<span style="float:left;width:520px;">若债务人不履行主合同约定的义务，无论债务人或其他人是否已向抵押权人提供了其他担保，抵押权人均有权首先要求抵押人就全部债务承担担保责任。抵押权人有权选择合适自己的债权实现方式（包括放弃其他担保权利），抵押人承诺仍提供担保并就全部债务承担担保责任。
+</span>
+</p>
+<p>
+<span style="float:left;width:30px;">3.3 </span>     
+<span style="float:left;width:520px;">抵押权人和债务人变更主合同及其项下相关附属合同的条款时，无需征得抵押人的同意，抵押人仍应继续对变更后的主合同承担担保责任，但延长主债权履行期限和增加主债权金额除外。
+</span>
+</p>
+</div>
+ 
+<div class="top-30">
+<p><strong>第4条 抵押物</strong></p>
+<p>4.1   本合同项下抵押物如下：</p>
+<p>抵押房地产：</p>
+<p>
+<span style="float:right;width:520px;">
+（1）房地产权利人：  <u>  &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; {$res.pledgename}&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u>           
+<br>（2）房地产坐落：<u>  &nbsp;&nbsp;&nbsp; {$res.address} &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u>           
+<br>（3）房地产面积：  <u>  &nbsp;&nbsp;&nbsp; {$res.area}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u>      
+<br>（4）《上海市房地产权证》编号：  <u>  &nbsp;&nbsp;&nbsp; {$res.pledgeno} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; </u>         
+<br>（5）抵押物价值（协议价）： <u>  &nbsp;&nbsp;&nbsp; {$res.estimateprice} &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; </u>             
+<br>（6）上述房地产现有抵押状况：<u>  &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </u>        
+<br>（7）上述房地产现有租赁状况： <u>  &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;</u>        
+</span>
+</p> 
+<p>
+<span style="float:left;width:30px;">4.2 </span>     
+<span style="float:left;width:520px;">抵押权的效力及于抵押物的从物、从权利、附属物、添附物、天然及法定孳息、抵押物的代位物,以及因抵押物毁损、灭失或被征收而产生的保险金、赔偿金、补偿金或其他形式的替代物。
+</span>
+</p>
+<p>
+<span style="float:left;width:30px;">4.3 </span>     
+<span style="float:left;width:520px;">本合同、相关附件及抵押登记文件等所载明的抵押物评估价值，仅为抵押物的参考价值，不作为抵押权人根据合同约定处置抵押物时的估价依据，对抵押权人实现抵押权不构成任何影响及限制。
+</span>
+</p>
+</div>
+ 
+<div class="top-30"><p><strong>第5条 押物的控制与监督</strong></p> 
+<p>
+<span style="float:left;width:30px;">5.1 </span>     
+<span style="float:left;width:520px;">本合同项下抵押物由抵押人控制和管理。
+</span>
+</p>
+<p>
+<span style="float:left;width:30px;">5.2 </span>     
+<span style="float:left;width:520px;">抵押人应对抵押物妥善控制和管理、合理使用、保证抵押物完好无损。抵押权人有权检查抵押物的管理情况。对抵押权人在检查中提出的以保证抵押物完好无损为目的的建议，抵押人应及时采纳并采取相应措施。
+</span>
+</p>
+<p>
+<span style="float:left;width:30px;">5.3 </span>     
+<span style="float:left;width:520px;">抵押人的行为足以使抵押物价值减少的，抵押权人有权要求抵押人立即停止行为。
+</span>
+</p>
+<p>
+<span style="float:left;width:30px;">5.4 </span>     
+<span style="float:left;width:520px;">抵押物毁损、灭失或被征收的，抵押人所获得的保险金、赔偿金或补偿金应首先保证用于承担主合同债务的担保责任，或经抵押权人同意用于恢复抵押物的价值，或存入抵押权人指定账户以担保主合同项下义务的履行。抵押物价值未减少的部分，仍应作为履行义务的担保。
+</span>
+</p>
+<p>
+<span style="float:left;width:30px;">5.5 </span>     
+<span style="float:left;width:520px;">抵押人如需出租抵押物的，或租赁期满后续租抵押物的，应事先征得抵押权人的书面同意。经抵押权人同意出租抵押物时，抵押人必须在租约内订明：（1）出租物已抵押给抵押权人；（2）抵押权人行使抵押权时，承租人须自抵押权人发函之日起三十日内搬离或返还抵押物。
+</span>
+</p>
+<p>
+<span style="float:left;width:30px;">5.6 </span>     
+<span style="float:left;width:520px;">抵押人出租抵押物所得的租金收入，作为债务人归还主合同项下债务的担保，不得挪作他用。
+</span>
+</p>
+</div>
+
+<div class="top-30"><p><strong>第6条 抵押登记和注销</strong></p> 
+
+<p><span style="float:left;width:30px;">6.1</span>   <span style="float:right;width:520px;">抵押人、抵押权人或其授权人应在本合同签订之日起3个工作日内共同前往所在区房地产交易中心办理房地产抵押登记手续，申领《上海市房地产登记证明》（抵押权登记），并将抵押房地产的《上海市房地产登记证明》（抵押权登记）的正本原件、抵押权凭证及其他有效证明文件和资料等原件交给抵押权人保管。</span>
+</p>
+
+<p>
+<span style="float:left;width:30px;">6.2 </span>  <span style="float:right;width:520px;">债务人履行完毕主合同项下全部义务后，抵押人的担保责任终止，抵押权人或其授权人、抵押人双方在主合同项下借款本息全部清偿之日起3个工作日内共同至房地产所在区房地产交易中心办理抵押房地产的抵押登记注销手续，依法注销抵押登记。</span></p>
+
+</div>
+
+<div class="top-30">
+<p><strong>第7条 抵押房地产的租赁</strong></p> 
+<p><span style="float:left;width:30px;">7.1</span>   <span style="float:right;width:520px;">在本合同签订时，若抵押房地产已经出租，抵押人应书面告知抵押权人；</span>
+</p> 
+<p>
+<span style="float:left;width:30px;">7.2 </span>  <span style="float:right;width:520px;">在抵押权存续期间，抵押人确需出租抵押房地产的，应事先征得抵押权人的书面同意，并将抵押的事实书面告知承租人。经抵押权人书面同意后方可出租抵押房地产，出租抵押房地产所得价款，应当优先向抵押权人清偿债务。抵押人在于承租人签订的租赁合同中应明确约定：债务人因未履行本合同义务而导致抵押权人行使抵押权时，承租人应在抵押权人发出通知之日起30日内迁离抵押房地产。
+</span></p> 
+</div>
+ 
+<div class="top-30"><p><strong>第8条 抵押人的陈述和保证</strong></p>
+<p><span style="float:left;width:30px;">8.1</span>   <span style="float:right;width:520px;">抵押人保证其为依法成立并有效存续的合法主体，具有完全的民事权利能力和民事行为能力，能以自己的名义履行本合同的义务并独立承担民事责任。</span></p>
+                           
+<p><span style="float:left;width:30px;">8.2</span>   
+<span style="float:right;width:520px;">抵押人已经就签署和履行本合同取得了其股东会、董事会授权或其他必要的授权、批准或同意。</span></p>
+  
+                           
+<p><span style="float:left;width:30px;">8.3</span>   
+<span style="float:right;width:520px;">抵押人已知悉所担保的主合同内容，抵押人也明确、清楚地知道作为抵押人的法律责任和义务。如债务人未按主合同的约定履行债务，则抵押人自愿承担本合同的抵押担保责任。</span></p>
+ 
+                           
+<p><span style="float:left;width:30px;">8.4</span>   
+<span style="float:right;width:520px;">抵押人承诺在签署和履行本合同过程中向抵押权人提供的全部文件、资料及信息等，都是真实、准确、完整和有效的。</span></p>
+   
+<p><span style="float:left;width:30px;">8.5</span>   <span style="float:right;width:520px;">抵押人合法拥有抵押物的所有权或处分权。抵押权人和抵押人在签署本合同时，该抵押房地产未被查封、扣押或监管，依法可设定抵押。如抵押物属于依法须经有关方面批准或同意方可抵押的财产，抵押人保证其已取得合法有效的批准或同意，并在签订本合同时向抵押权人提供已经得到有关方面合法有效的批准或同意的证明文件。</span></p>
+
+<p><span style="float:left;width:30px;">8.6</span>   <span style="float:right;width:520px;">除本合同设定的抵押，和抵押权人充分知情并确认同意的物权担保、租赁外，抵押物上不存在任何形式的物权担保、租赁、托管、被依法查封、扣押、监管等权利瑕疵情形；也不存在任何涉及抵押物的诉讼、仲裁、执行、申诉、复议等权属争议。</span></p>
+
+<p><span style="float:left;width:30px;">8.7</span>   <span style="float:right;width:520px;">抵押人保证抵押物本身的品质不存在导致抵押物价值明显下降并不足以作为主合同债务的担保的瑕疵。</span></p>
+
+<p><span style="float:left;width:30px;">8.8</span>   <span style="float:right;width:520px;">抵押人承诺，其签署本合同及履行本合同项下义务的行为不存在以下情形：</span></p>
+
+<p> <span style="float:right;width:520px;">（1） 与抵押人的成立协议、章程或内部文件的内容相违背；
+<br>（2） 构成任何违法或与政府授权或批准不符的情形；
+<br>（3） 违反其作为当事人一方（或受之约束）的其他任何合同的约定，导致其构成在该合同项下的违约；
+<br>（4） 在抵押权存续期间，未经抵押权人书面同意，抵押人不得对抵押房地产作出赠与、转让、再抵押或其他任何方式的处分；
+<br>（5） 在抵押权存续期间，若抵押房地产发生毁损、灭失或被征用（拆迁）的，抵押人应及时采取有效措施防止损失扩大，同时立即通知抵押权人，并向抵押权人提交有关主管机关出具的发生毁损、灭失或被征用（拆迁）文件。抵押权人有权就该抵押房地产的保险金、赔偿金、或补偿金优先受偿；
+<br>（6） 在抵押权存续期间，若抵押房地产价值减少的，抵押人应当恢复抵押房地产的价值或提供抵押权人认可的与减少价值相当的担保。在抵押权和抵押房地产受到来自任何第三方侵害时，抵押人有义务通知抵押权人并协助保护抵押权人的合法权益不受到侵害</span></p>
+
+<p><span style="float:left;width:30px;">8.9</span>   <span style="float:right;width:520px;">抵押人不存在影响本合同履行能力的、已经发生且尚未了结的诉讼、仲裁或其他司法或行政程序，而且据其所知无人将采取上述行动。</span></p>
+
+</div> 
+
+<div class="top-30"><p><strong>第9条 抵押人的责任和义务</strong></p>
+<p><span style="float:left;width:30px;">9.1</span>   <span style="float:right;width:520px;">未征得抵押权人事先书面同意，抵押人不得通过出售、交换、赠与、转让、租借、另行设置担保、以其作价入股出资、联营、合伙经营等任何方式处分抵押物。</span></p>
+ 
+<p><span style="float:left;width:30px;">9.2</span>   <span style="float:right;width:520px;">签订和履行本合同的费用，包括但不限于评估、登记、公证、公告、鉴定、保险、保管、维修、保养、提存、运输、差旅、律师代理费等所有费用，均由抵押人承担。</span></p>
+
+<p><span style="float:left;width:30px;">9.3</span>   <span style="float:right;width:520px;">抵押物权属发生争议,或者抵押权受到或可能受到来自任何第三方的不利影响时,抵押人应立即书面通知抵押权人,并根据抵押权人的指示或配合抵押权人采取有关措施。</span></p>
+
+<p><span style="float:left;width:30px;">9.4</span>   <span style="float:right;width:520px;">在债务人向抵押权人清偿完毕主合同项下全部债务之前，抵押人不得向债务人或其他担保人行使因履行本合同所享有的追偿权。</span></p>
+
+<p><span style="float:left;width:30px;">9.5</span>   <span style="float:right;width:520px;">主合同项下债权部分或全部转移给第三人的，抵押人应协助抵押权人及该第三人办理法律所要求的抵押变更登记手续，抵押人仍在本合同担保范围内向抵押权人和/或该第三人承担担保责任。</span></p>
+<p><span style="float:left;width:30px;">9.6</span>   <span style="float:right;width:520px;">抵押人如变更名称、法定代表人或财务负责人发生变化，或在经营、财务方面发生重大变化的，应于该重大变化发生后3日内书面通知抵押权人，并将有关资料报抵押权人备案。</span></p>
+
+
+</div> 
+
+<div class="top-30"><p><strong>第10条 抵押权人的权利和义务</strong></p>
+<p><span style="float:left;width:35px;">10.1</span> <span style="float:right;width:515px;">抵押权人有权要求由抵押权人认可的评估机构定期对抵押物进行价值评估，评估费用由抵押人承担。如抵押物价值已明显下降，不足以作为主合同债务的担保的，抵押权人有权要求抵押人提供抵押权人认可的其他担保。</span></p>
+<p><span style="float:left;width:35px;">10.2</span> <span style="float:right;width:515px;">抵押人在此同意，抵押权人以任何方式向第三方转让主债权的，抵押权人于本合同项下的权利义务随之转让给该第三方。抵押权人有权以书面通知抵押人的方式向第三方转让其在本合同项下的权利义务。抵押人同意与抵押权人和该第三方向抵押权登记部门办理抵押权变更登记。</span></p>
+<p><span style="float:left;width:35px;">10.3</span> <span style="float:right;width:515px;">抵押权人依据有关法律法规或其他规范性文件的规定或金融监管机构的要求，有权将有关本合同的信息和其他相关信息提供给中国人民银行信用信息基础数据库或其他依法设立的信用数据库，供具有资格的机构或个人查询和使用，抵押权人也有权为本合同订立和履行之目的，通过中国人民银行信用信息基础数据库或其他依法设立的信用数据库查询抵押人的相关信息。</span></p>
+</div> 
+
+<div class="top-30"><p><strong>第11条 抵押权的实现</strong></p>
+<p><span style="float:left;width:35px;">11.1 </span> <span style="float:right;width:515px;">发生下列情形之一的，抵押权人有权采取拍卖、变卖、折价等方式处分抵押物，并以所得价款优先受偿以实现主合同项下的债权：</span></p>
+<p>
+<span style="float:right;width:520px;">（1） 债务人未按时足额履行主合同项下的义务；
+<br>（2） 抵押人违反所作的保证与承诺或有其他不履行本合同义务的行为；
+<br>（3） 债务人、抵押人破产、歇业、解散、清算、注销登记、被吊销营业执照等；
+<br>（4） 债务人、抵押人涉及或可能涉及重大经济纠纷、诉讼、仲裁，或资产被查封、扣押或被强制执行，或被司法机关或行政机关依法立案查处或依法采取处罚措施，或因违反国家有关规定或政策被媒体曝光，已经或可能影响到其在主合同或本合同项下义务的履行的；
+<br>（5） 抵押物有毁损、降低使用功能或者价值明显减少的可能，足以危害抵押权人权利，债务人或抵押人又未能按抵押权人要求提供担保的；
+<br>（6） 抵押物价值减少的，抵押人未按抵押权人要求恢复抵押物的价值或提供与减少价值相应的担保的；
+<br>（7） 债务人有其他违反主合同约定的情形；
+<br>（8） 其他严重不利于主合同债权实现的情形及法律、法规规定的其他可以行使抵押权的情形。</span>
+</p>
+<div class="clear"></div>
+<p><span style="float:left;width:35px;">11.2</span> <span style="float:right;width:515px;">有下列情形之一时，抵押人应于情形发生之日的次日书面通知抵押权人，并向抵押权人提供经抵押权人认可的其他担保：</span></p>
+<p>
+<span style="float:right;width:520px;">（1） 抵押物有损坏或者价值明显减少的可能，足以危害抵押权人权利的；
+<br>（2） 抵押物损坏或者价值明显减少的；
+<br>（3） 抵押物发生保险事故的；
+<br>（4） 抵押物权属发生争议的；
+<br>（5） 抵押物被采取查封、扣押等强制措施的；
+<br>（6） 抵押物受到第三方侵害的；
+<br>（7） 抵押物的使用权被国家收回或其他抵押人失去抵押物合法权利的情况；
+<br>（8） 其他可能影响抵押权人抵押权行使的情形。</span>
+</p>
+<p><span style="float:left;width:35px;">11.3</span> <span style="float:right;width:515px;">就本合同第11.2条所述情形，抵押人未提供抵押权人认可的担保的，抵押权人有权提前宣布主合同项下债权提前到期。</span></p>
+
+<p><span style="float:left;width:35px;">11.4</span> <span style="float:right;width:515px;">抵押人同意自债务人或抵押人违约之日起的第【15】日后，抵押权人有权直接收取抵押物的孳息（包括但不限于租金、承包费、利息等）以清偿债务，抵押人应无条件予以配合。所收孳息首先用于清偿收取孳息的费用。</span></p>
+<p><span style="float:left;width:35px;">11.5</span> <span style="float:right;width:515px;">抵押权人根据本合同实现抵押权所得资金应按以下顺序（同一顺序按照各项金额比例）进行清偿：（1）实现债权和担保权利之费用；（2）赔偿金；（3）违约金；（4）复利；（5）罚息；（6）利息；（7）本金。抵押权人有权变更上述顺序。</span></p>
+<p><span style="float:left;width:35px;">11.6</span> <span style="float:right;width:515px;">抵押权人处分抵押财产时，抵押人应予积极配合。对本合同项下依法设定抵押的抵押人及其所抚养家属居住的房屋，在人民法院裁定的拍卖、变卖、或抵债后，抵押人应在1个月内主动腾空房屋。如抵押权人同意向抵押人提供临时住房，抵押人应当向抵押权人支付租金；已经产生的租金，应当从房屋拍卖或者变卖价款中扣除。</span></p>
+
+</div> 
+
+<div class="top-30">
+<p><strong>第12条 违约责任</strong></p>
+<p><span style="float:left;width:35px;">12.1</span> <span style="float:right;width:515px;">抵押人违反本合同约定擅自处分抵押物的，抵押权人有权要求抵押人恢复抵押物原状。</span></p>
+ 
+<p><span style="float:left;width:35px;">12.2</span> <span style="float:right;width:515px;">抵押人违反本合同的其他约定或抵押人在本合同中的任何陈述和保证被证明是不正确的或是隐瞒事实的，并因此给抵押权人造成损失的，抵押人应予赔偿。</span></p>
+<p><span style="float:left;width:35px;">12.3</span> <span style="float:right;width:515px;">抵押人违反或不完全履行本合同约定义务，致使抵押权未能有效设立，又未在抵押权人通知的时间内提供抵押权人认可的担保时，抵押人应当按照主合同约定的债务本金金额的【15】%向抵押权人支付违约金，抵押人并应对债务人在主合同项下的全部债务承担全额连带保证责任。</span></p>
+ 
+</div>
+<div class="clear"></div>
+ 
+<div class="top-30"><p><strong>第13条 费用承担</strong></p>
+<p><span style="float:left;width:35px;">13.1</span> <span style="float:right;width:515px;">与本合同及抵押房地产有关的评估、保险、公证、登记等费用均由债务人承担。</span></p>
+
+<p><span style="float:left;width:35px;">13.2</span> <span style="float:right;width:515px;">抵押权人在催讨本息及执行期间实际发生的费用（包括但不限于利息、逾期罚息、违约金、赔偿金和诉讼费、保全费、公证费、执行费、拍卖费、律师费、差旅费、抵押财产拍卖所产生的税，费等其他费用）均由债务人承担。</span></p>
+</div> 
+
+<div class="top-30"><p><strong>第14条 强制执行公证</strong></p>
+<p><span style="float:left;width:35px;">14.1</span> <span style="float:right;width:515px;">抵押权人、抵押人共同确认：本合同的债权债务关系明确，双方对所约定的有关给付内容无疑义，如抵押权人提出要求办理强制执行公证的，抵押人同意于抵押权人提出要求之日起3个工作日内，共同将本合同提交公证机构办理具有强制执行效力的公证手续。</span></p>
+ 
+<p>
+<span style="float:left;width:35px;">14.2</span> <span style="float:right;width:515px;">本合同经公证后成为具有强制执行效力的债权文书。如抵押人不履行或不完全履行其在本协议项下的义务时，抵押权人可直接向有管辖权的人民法院申请强制执行，抵押人愿意接受依法强制执行，并放弃抗辩权。</span></p>
+<p>
+<span style="float:left;width:35px;">14.3</span> <span style="float:right;width:515px;">如果抵押人不履行或者不适当履行经公证的具有强制执行效力的债权文书，抵押权人可以向公证机构申请出具执行证书，且抵押人应于抵押权人或公证机构通知的时间到公证机构配合完成公证机构的当面核实程序。抵押人未能按时履行上述义务，则抵押人特此确认：在抵押人缺席的情况下，公证机构根据抵押权人的申请按其内部流程履行完毕核实工作后，即等同于公证机构完成了当面核实程序，抵押人对此产生的法律后果完全认可。</span></p>
+<p>
+<span style="float:left;width:35px;">14.4</span> <span style="float:right;width:515px;">本合同经公证处出具赋予强制执行效力的公证文书后，如债务人违约，致使未按期偿还欠款，抵押权人可根据《中国人民共和国民事诉讼法》第二百三十八条的规定，非经诉讼程序，直接向有管辖权的人民法院申请强制执行，债务人、抵押人双方均自愿直接接受人民法院强制执行。本合同中约定的其他争议解决方法将不再适用。</span></p>
+</div> 
+
+<div class="top-30"><p><strong>第15条 法律适用和争议解决</strong></p>
+<p><span style="float:left;width:35px;">15.1</span> <span style="float:right;width:515px;">本合同适用中国法律并依据中国法律解释。为本合同之目的，中国法律指中华人民共和国大陆地区的法律，不包括香港特别行政区、澳门特别行政区和台湾地区的法律。</span></p>
+ 
+<p>
+<span style="float:left;width:35px;">15.2</span> <span style="float:right;width:515px;">凡因本合同引起的或与本合同有关的任何争议，可以通过协商解决，协商不成的，抵押权人有权根据赋予强制执行效力的公证债权文书向有管辖权的人民法院申请强制执行。如果在争议发生之前，尚未办理强制执行公证的手续，或有管辖权的人民法院不予执行已公证的债权文书的，则双方同意采取诉讼方式解决争议，任何一方均应将争议提交抵押权人所在地的有管辖权的法院解决。</span></p>
+<p>
+<span style="float:left;width:35px;">15.3</span> <span style="float:right;width:515px;">除双方有争议的事项以外，双方应继续履行其他部分的义务。</span></p>
+  
+</div>
+ 
+<div class="top-30"><p><strong>第16条 通知</strong></p>
+<p><span style="float:left;width:35px;">16.1</span> <span style="float:right;width:515px;">双方确认本合同列明的地址为双方互相发送书面通知、函件等的地址，相关通知事项以书面形式发出的，从发出之日起满7日，视为对方已获悉。一方的地址或联系方式如发生变动，应立即书面通知对方；如一方未及时通知，则另一方向原地址发送视为有效。因未及时通知而造成的损失由地址或联系方式变动方自行承担。</span></p>
+ 
+</div> 
+
+<div class="top-30"><p><strong>第17条 合同独立性</strong></p>
+<p><span style="float:left;width:35px;">17.1</span> <span style="float:right;width:515px;">本合同效力独立于主合同，主合同或其部分条款无效不影响本合同的效力。对债务人在主合同无效后应承担的民事责任，抵押人仍应以本合同约定的抵押物承担连带责任。</span></p>
+<p><span style="float:left;width:35px;">17.2</span> <span style="float:right;width:515px;">主合同解除后，对债务人应当承担的民事责任，抵押人仍应以本合同约定的抵押物承担连带责任。</span></p>
+<p><span style="float:left;width:35px;">17.3</span> <span style="float:right;width:515px;">如本合同的某条款或某条款的部分内容现在是或将来成为无效，该无效条款或该无效部分并不影响本合同及本合同其它条款或该条款其它内容的有效性。</span></p>
+
+</div> 
+ 
+<div class="top-30"><p><strong>第18条 提示条款</strong></p>
+<p><span style="float:left;width:35px;">18.1</span> <span style="float:right;width:515px;">在签署本合同时，抵押权人和抵押人均对本合同的全部条款无疑义。对各方有关权利义务的法律含义有准确无误的理解，并承诺对本合同各条款所规定的权利义务不会以此为由行使抗辩权。抵押权人和抵押人保证本合同的真实性、合法性，并愿意对因本合同条款不实引起的所有法律后果承担全部经济和法律责任；</span></p>
+<p><span style="float:left;width:35px;">18.2</span> <span style="float:right;width:515px;">本合同的补充协议（若有）均为本合同的有效组成部分，与本合同具有同等法律效力。与本合同契约精神违背的其他合同或协议，均不产生对抗本合同的效力。</span></p>
+</div>
+ 
+<div class="top-30"><p><strong>第19条 合同生效及份数</strong></p> 
+<p><span style="float:left;width:35px;">19.1</span>   <span style="float:right;width:515px;">本合同附件（若有）为本合同不可分割的组成部分。</span></p>
+<p><span style="float:left;width:35px;">19.2</span>   <span style="float:right;width:515px;">若抵押房地产存在共有人，抵押人应在签署本合同时，安排所有共有人签署有效的同意抵押房地产按照本合同约定办理抵押登记并愿意受本合同的约束（包括但不限于具有强制执行效力公证等条款）的相关文书交由抵押权人。</span></p>
+<p><span style="float:left;width:35px;">19.3</span>   <span style="float:right;width:515px;">本合同自双方法定代表人或授权代表签字或盖章并加盖双方公章或合同专用章之日起生效。</span></p>
+<p><span style="float:left;width:35px;">19.4</span>   <span style="float:right;width:515px;">本合同正本一式柒份，贰份用于办理房产抵押登记手续（壹份由房地产交易中心留底，一份由抵押人持有），伍份用于办理具有强制执行效力的公证（贰份公证处留底，壹份由抵押权人持有，贰份由资产管理结构持有），每份具有同等法律效力。</span></p>
+</div> 
+
+  
+
+<p style="margin-top:20px;">（以下无正文）</p> 
+
+
+
+
+<div class="clear"></div>
+<div class="height-120"></div>
+<div class="clear"></div>
+
+<div class="top-500"><p>（本页为签署页，无正文）</p></div>  
+<div class="top-100"><p>抵押权人（盖章）：<b><u>万向信托有限公司</u></b> </p></div> 
+<div class="top-100"><p>法定代表人或授权代理人（签字或盖章）： <u>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </u></p></div>  
+<div class="top-100"><p>抵押人（盖章）：  <u>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; </u></p></div>      
+<div class="top-100"><p>法定代表人或授权代理人（签字或盖章）： <u>  &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u></p>   </div> 
+<div class="top-100 text-right"><p>签署日期： <u> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </u>年 <u> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </u> 月  <u> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </u> 日</p></div>
+
+<div class="clear"></div>
+<span><button onclick='window.print()' class='noprint bg-color'>打印此合同</button></span>  
+</div>
+</body>
+</html>
+
+
+<script>
+   /* jBox 全局设置 */
+        var _jBoxConfig = {};
+        _jBoxConfig.defaults = {
+            id: null, /* 在页面中的唯一ID，如果为null则自动为随机ID,一个ID只会显示一个jBox */
+            top: '15%', /* 窗口离顶部的距离,可以是百分比或像素(如 '100px') */
+            border: 5, /* 窗口的外边框像素大小,必须是0以上的整数 */
+            opacity: 0.2, /* 窗口隔离层的透明度,如果设置为0,则不显示隔离层 */
+            timeout: 0, /* 窗口显示多少毫秒后自动关闭,如果设置为0,则不自动关闭 */
+            showType: 'fade', /* 窗口显示的类型,可选值有:show、fade、slide */
+            showSpeed: 'fast', /* 窗口显示的速度,可选值有:'slow'、'fast'、表示毫秒的整数 */
+            showIcon: true, /* 是否显示窗口标题的图标，true显示，false不显示，或自定义的CSS样式类名（以为图标为背景） */
+            showClose: true, /* 是否显示窗口右上角的关闭按钮 */
+            draggable: true, /* 是否可以拖动窗口 */
+            dragLimit: true, /* 在可以拖动窗口的情况下，是否限制在可视范围 */
+            dragClone: false, /* 在可以拖动窗口的情况下，鼠标按下时窗口是否克隆窗口 */
+            persistent: true, /* 在显示隔离层的情况下，点击隔离层时，是否坚持窗口不关闭 */
+            showScrolling: true, /* 是否显示浏览的滚动条 */
+            ajaxData: {},  /* 在窗口内容使用post:前缀标识的情况下，ajax post的数据，例如：{ id: 1 } 或 "id=1" */
+            iframeScrolling: 'auto', /* 在窗口内容使用iframe:前缀标识的情况下，iframe的scrolling属性值，可选值有：'auto'、'yes'、'no' */
+
+            title: 'jBox', /* 窗口的标题 */
+            width: 350, /* 窗口的宽度，值为'auto'或表示像素的整数 */
+            height: 'auto', /* 窗口的高度，值为'auto'或表示像素的整数 */
+            bottomText: '', /* 窗口的按钮左边的内容，当没有按钮时此设置无效 */
+            buttons: { '确定': 'ok' }, /* 窗口的按钮 */
+            buttonsFocus: 0, /* 表示第几个按钮为默认按钮，索引从0开始 */
+            loaded: function (h) { }, /* 窗口加载完成后执行的函数，需要注意的是，如果是ajax或iframe也是要等加载完http请求才算窗口加载完成，参数h表示窗口内容的jQuery对象 */
+            submit: function (v, h, f) { return true; }, /* 点击窗口按钮后的回调函数，返回true时表示关闭窗口，参数有三个，v表示所点的按钮的返回值，h表示窗口内容的jQuery对象，f表示窗口内容里的form表单键值 */
+            closed: function () { } /* 窗口关闭后执行的函数 */
+        };
+        _jBoxConfig.stateDefaults = {
+            content: '', /* 状态的内容，不支持前缀标识 */
+            buttons: { '确定': 'ok' }, /* 状态的按钮 */
+            buttonsFocus: 0, /* 表示第几个按钮为默认按钮，索引从0开始 */
+            submit: function (v, h, f) { return true; } /* 点击状态按钮后的回调函数，返回true时表示关闭窗口，参数有三个，v表示所点的按钮的返回值，h表示窗口内容的jQuery对象，f表示窗口内容里的form表单键值 */
+        };
+        _jBoxConfig.tipDefaults = {
+            content: '', /* 提示的内容，不支持前缀标识 */
+            icon: 'info', /* 提示的图标，可选值有'info'、'success'、'warning'、'error' */
+            top: '40%', /* 提示离顶部的距离,可以是百分比或像素(如 '100px') */
+            width: 'auto', /* 提示的高度，值为'auto'或表示像素的整数 */
+            height: 'auto', /* 提示的高度，值为'auto'或表示像素的整数 */
+            opacity: 0, /* 窗口隔离层的透明度,如果设置为0,则不显示隔离层 */
+            timeout: 2000, /* 提示显示多少毫秒后自动关闭,必须是大于0的整数 */
+            closed: function () { } /* 提示关闭后执行的函数 */
+        };
+        _jBoxConfig.messagerDefaults = {
+            content: '', /* 信息的内容，不支持前缀标识 */
+            title: 'jBox', /* 信息的标题 */
+            icon: 'none', /* 信息图标，值为'none'时为不显示图标，可选值有'none'、'info'、'question'、'success'、'warning'、'error' */
+            width: 350, /* 信息的高度，值为'auto'或表示像素的整数 */
+            height: 'auto', /* 信息的高度，值为'auto'或表示像素的整数 */
+            timeout: 3000, /* 信息显示多少毫秒后自动关闭,如果设置为0,则不自动关闭 */
+            showType: 'slide', /* 信息显示的类型,可选值有:show、fade、slide */
+            showSpeed: 600, /* 信息显示的速度,可选值有:'slow'、'fast'、表示毫秒的整数 */
+            border: 0, /* 信息的外边框像素大小,必须是0以上的整数 */
+            buttons: {}, /* 信息的按钮 */
+            buttonsFocus: 0, /* 表示第几个按钮为默认按钮，索引从0开始 */
+            loaded: function (h) { }, /* 窗口加载完成后执行的函数，参数h表示窗口内容的jQuery对象 */
+            submit: function (v, h, f) { return true; }, /* 点击信息按钮后的回调函数，返回true时表示关闭窗口，参数有三个，v表示所点的按钮的返回值，h表示窗口内容的jQuery对象，f表示窗口内容里的form表单键值 */
+            closed: function () { } /* 信息关闭后执行的函数 */
+        };
+        _jBoxConfig.languageDefaults = {
+            close: '关闭', /* 窗口右上角关闭按钮提示 */
+            ok: '确定', /* $.jBox.prompt() 系列方法的“确定”按钮文字 */
+            yes: '是', /* $.jBox.warning() 方法的“是”按钮文字 */
+            no: '否', /* $.jBox.warning() 方法的“否”按钮文字 */
+            cancel: '取消' /* $.jBox.confirm() 和 $.jBox.warning() 方法的“取消”按钮文字 */
+        };
+
+        $.jBox.setDefaults(_jBoxConfig);
+        // var title='抵押信息';
+
+        // function demo08(id) {
+        //      jBox.open("get:__URL__/impawn?id="+id, title, 300, 50, { buttons: { '关闭': true }, persistent: false });
+        // }
+
+
+window.onload=function(){
+      var id={$res.id};
+      // console.log(id);
+      //联系地址 贷款金额 贷款用途 贷款利息 贷款期限 预收利息 收款人姓名 收款人账号 收款人开户行
+          // console.log(numtext,csttext,pledgeteltext,pledgeidnotext,upperpricetext,durationtext,carprivilgetext,houseaddresstext,areatext,pledgenotext);
+      var title='合同核心信息';
+        jBox.open("get:__URL__/peldgeload?id="+id, title, 600, 500, { buttons: { '关闭': true }, persistent: false });
+
+  };
+
+
+</script>
+
+
+
+   
+     
+      
+
+
+
+
+
+
+
+
+

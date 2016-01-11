@@ -1,0 +1,91 @@
+<include file="Public:_header_common" />
+<title>{$glo.web_name}-公司简介</title>
+<meta http-equiv="keywords" content="{$vo.type_keyword}" />
+<meta http-equiv="description" content="{$vo.type_info}" />
+<include file="Public:_header_main" />
+<link href="__ROOT__/Style/About/css/base.css" rel="stylesheet" type="text/css" />
+<link href="__ROOT__/Style/About/css/global.css" rel="stylesheet" type="text/css" />
+<link href="__ROOT__/Style/About/css/style.all.css" rel="stylesheet" type="text/css" />
+<!--中间内容区-->
+
+<style>
+.zhengshu_box{
+	width: 100%;
+}
+.zhengshu_box ul.pictures li{
+	padding-left: 7px;
+	padding-top: 7px;
+	width: 218px;
+	height: 163px;
+	float: left;
+	margin-right: 15px;
+	margin-bottom: 20px;
+}
+.zhengshu_box ul.pictures li a{
+	cursor: pointer;
+}
+.zhengshu_box ul.pictures li a img{
+	width: 218px;
+}
+
+
+</style>
+
+<div class="content clearfix mt20">
+    <!--边侧导航-->
+    <include file="left" />
+    <!--内容-->
+    <div class="fl-right room-right">
+        <div class="room-modify room-info">
+            <h1>公司简介</h1>
+            <p>财来网是上海财来金融信息服务股份有限公司旗下品牌及网站。财来网拥有一支以浙商为核心，融合互联网、金融、实业和政府背景的经营管理团队。我们为有闲散资金的理财客户和有资金需求的借款人提供审慎、透明、务实、合规的金融信息中介服务。</p>
+            <div class="phc_abt">财来使命</div>
+            <p>我们致力于提高投资人风险识别能力<br/>我们致力于提高金融信息服务透明度</p>
+            <div class="phc_abt">财来宗旨</div>
+            <p>人人都是银行家</p>
+            <div class="phc_abt">财来证件</div> 
+       
+<div class="box_detile">
+<div class="zhengshu_box"> 
+<ul class="pictures ul1">
+<li><a href="__ROOT__/Style/About/images/intro/c.png" rel="showmsg" class="fbox_img" ><img src="__ROOT__/Style/About/images/intro/c_s.jpg" alt="" /></a></li>
+<li><a href="__ROOT__/Style/About/images/intro/f.png" rel="showmsg" class="fbox_img" ><img src="__ROOT__/Style/About/images/intro/f_s.jpg" alt="" /></a></li>
+<li><a href="__ROOT__/Style/About/images/intro/e.png" rel="showmsg" class="fbox_img" ><img src="__ROOT__/Style/About/images/intro/e_s.jpg" alt="" /></a></li>
+<li><a href="__ROOT__/Style/About/images/intro/a.png" rel="showmsg" class="fbox_img" ><img src="__ROOT__/Style/About/images/intro/a_s.jpg" alt="" /></a></li>
+<li><a href="__ROOT__/Style/About/images/intro/b.png" rel="showmsg" class="fbox_img" ><img src="__ROOT__/Style/About/images/intro/b_s.jpg" alt="" /></a></li>
+</ul>
+</div>
+ </div>      
+       
+ <div class="clear"></div>
+  </div>
+    </div> 
+
+</div>
+ 
+<link rel="stylesheet" type="text/css" href="__ROOT__/Style/H/css/jquery.fancybox.css">
+<script type="text/javascript" src="__ROOT__/Style/M/js/jquery.fancybox.min.js"></script>
+<script type="text/javascript">
+    $('.fbox_img').fancybox({
+        padding: 10,
+        openEffect: 'elastic',
+        cyclic: true,
+        overlayShow:true,
+        helpers : {
+            title : {
+                type : 'inside'
+            },
+            //overlay : null,
+            buttons : {}
+        },
+        nextClick : false,
+        afterLoad : function() {
+
+            this.title = this.title ? this.title: '';
+
+        }
+    });
+</script>
+ 
+<!--中间内容区/////////////////////////-->
+<include file="Public:_footer" />

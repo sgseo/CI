@@ -1,0 +1,82 @@
+<include file="../Public/_header" />
+<script type="text/javascript" src="__ROOT__/Style/My97DatePicker/WdatePicker.js" language="javascript"></script>
+<style type="text/css">
+.tip{color:#F2F4F6}
+</style>
+<tagLib name="htmlA" />
+<div class="so_main">
+  <!--列表模块-->
+ 
+  
+  
+  
+<!--  <input id="d421" class="Wdate" type="text" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})">-->
+ 
+
+
+<style>
+
+#container{ width:800px; margin:0 auto; display:block; font-weight:b}
+
+.input1{ width:260px;line-height:22px; min-height:22px;padding:3px;} 
+.input2{ width:260px;line-height:22px; min-height:22px;padding:3px;}  
+
+.table_100{width:100%;float:left;height:auto;background:#cecece;color:#000;margin:5px 0;}
+.table_100 tr{ background:#fff;} 
+.table_100 tr td{ padding:6px 3px;}      
+.table_100 tr.top{background:#edecec; font-weight:bold;} 
+.table_100 tr:nth-of-type(odd){background:#edecec;} 
+
+.list_bottom_right { width:100%; float:right; height:30px; padding:10px 0;}
+.list_bottom_right ul{height:26px;margin-top:8px; float:right; text-align:right;}
+
+.list_bottom_right ul span.current {width:32px;height:30px;font-size: 16px;line-height:30px; display:block; float:left;
+border:#00b7ef solid 1px; background:#00b7ef;color: #fff;text-align: center;margin-right:5px;}
+
+.list_bottom_right ul a{width:32px;height:30px;font-size:14px;line-height:30px;color: #949494;float:left;display:block; text-align:center; border:1px solid #ccc;margin-right:8px; text-decoration:none;background:#fff;}
+.list_bottom_right ul a:hover {color:#00b7ef; border:#00b7ef solid 1px; background:#00b7ef;}
+.list_bottom_right ul a.prevnext{padding:0px 10px 0px 10px;border:1px solid #ccc;color:#666;width:50px;background:#fff;height:30px;line-height:30px;}
+.list_bottom_right ul a.prevnext:hover{color:#00b7ef;border:1px solid #00b7ef;background:#fff;}
+.list_bottom_right ul a:hover{color:#fff;}
+.list_bottom_right ul a.delcolor:hover{color:#00b7ef; border:#00b7ef solid 1px; background:#fff;}
+.list_bottom_right ul a.delcolor{padding:0px 10px 0px 10px;border:1px solid #ccc;color:#666;width:50px;background:#fff;height:30px;line-height:30px;}
+
+</style> 
+ <div class="list">
+    <form name="sdf" id="sdf" action="__SELF__" method="get">    
+            <table class="table_100" border="0" cellspacing="0" cellpadding="0">    
+            <div class="Toolbar_inbox">
+                   <div><a href="" onclick="window.history.go(-1);window.location.reload()"style="cursor:pointer;color:#949494;text-decoration:none;float:right;margin-right:18px;font-size:14px;">还款列表</a></div>
+            </div> 
+                <tr class="top">
+                    <td width="10%">id</td>                 
+                    <td width="10%">投标人真实姓名</td>
+                    <td width="10%">投标人手机号</td>
+                    <td width="10%">投标金额</td>
+                    <td width="10%">应获得总利息</td>
+                   
+                </tr>
+                <?php foreach($list as $key=>$value ){ ?>
+                    <tr>
+                        <td> <?php echo $value['borrow_id']; ?></td>                       
+                        <td><?php echo $value['real_name']; ?></td>
+                        <td><?php echo $value['cell_phone']; ?></td>
+                        <td><?php echo $value['investor_capital']; ?></td>
+                        <td><?php echo $value['investor_interest']; ?></td>
+                    </tr>
+                <?php } ?>
+            </table>
+    </form>
+<div class="clear"></div>  
+ 
+<div class="list_bottom">
+        <div class="list_bottom_right">
+            <ul>
+                {$page}
+            </ul>
+        </div>
+ </div>
+  </div>
+ 
+</div>
+<include file="Public:_footer" />

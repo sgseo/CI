@@ -1,0 +1,267 @@
+<include file='Public:_header'/>
+<style>
+        .ims img{
+          height: 170px;
+          margin: 10px auto;
+        }
+</style>
+<link rel="stylesheet" href="__PUBLIC__/Css/click.css">
+<script type="text/javascript" src="__PUBLIC__/Js/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Js/jquey-bigic.js"></script>
+   <div class="form-inline definewidth m20">标的信息&there4;</div>
+   <table class="table table-bordered table-hover definewidth m10" >
+    <thead>
+    <tr>
+        <th>借款标号</th>
+        <th>借款标题</th>
+        <th>客户姓名</th>
+        <th>身份证号码</th>
+        <th>联系电话</th>
+        <th>贷款金额(元)</th>
+        <th>贷款期限(月)</th>
+        <th>贷款利率（%）</th>
+        <th>客户来源</th>
+        <th>资金来源</th>
+        <th>贷款类型</th>
+        <!-- <th>图片</th> -->
+        <!-- 客户姓名，身份证号码，联系电话，贷款金额，期限，利率， -->
+    </tr>
+    </thead>
+   
+         <tr>
+            <td>{$hlist.id}</td>
+            <td>{$hlist.title}</td>
+            <td>{$hlist.cstname}</td>
+            <td>{$hlist.idno}</td>
+            <td>{$hlist.tel}</td>
+            <td>{$hlist.borrowamt}</td>
+            <td>{$hlist.duration}</td>
+            <td>{$hlist.rate}</td>
+            <td>{$hlist.source}</td>
+            <td>{$hlist.capitalsource}</td>
+
+            <td>
+           <eq name='hlist.category' value='car'>车抵押&nbsp;<input type="button" value="&nabla;" onclick="demo08({$hlist.id});" /></eq>
+           <eq name='hlist.category' value='fang'>房抵押&nbsp;<input type="button" value="&nabla;" onclick="demo08({$hlist.id});" /></eq>
+           </td>
+            <!-- <td><a href='__URL__/showlog?id={$hlist.id}'>查看日志</a></td> -->
+        </tr>
+    </volist>
+    
+    </table>
+
+<!-- 抵押信息 -->
+ <div class="form-inline definewidth m20">抵押信息 &there4;</div>
+   <table class="table table-bordered table-hover definewidth m10" >
+    <thead>
+    <tr>
+        <th>抵押类型</th>
+        <eq name='hlist.category' value='fang'>
+        <th>房屋地址</th>
+        <th>房屋面积（平米）</th>
+        <th>房屋价格（元）</th>
+        <th>房屋户口</th>
+        <th>是否为主城区</th>
+        <th>是否有租赁</th>
+        <th>抵押情况</th>
+        <th>评估价</th>
+        <th>产权证号</th>
+        <th>备用房地址</th>
+        <th>备用房面积</th>
+      
+        </eq>
+        <eq name='hlist.category' value='car'>
+        <th>车子品牌</th>
+        <th>车子型号</th>
+        <th>车辆价格（元）</th>
+        <th>购买日期</th>
+        </eq>
+        <!-- <th>贷款类型</th> -->
+        <!-- <th>图片</th> -->
+        <!-- 客户姓名，身份证号码，联系电话，贷款金额，期限，利率， -->
+    </tr>
+    </thead>
+   
+         <tr>
+            <eq name='hlist.category' value='fang'>
+            <td>房屋抵押</td>
+            <td>{$hlist.address}</td>
+            <td>{$hlist.area}</td>
+            <td>{$hlist.price}</td>
+            <td>{$hlist.residence}</td>
+            <td>
+                <eq name="hlist.iscity" value='2'>
+                是
+                </eq>
+                <eq name="hlist.iscity" value='1'>
+                否
+                </eq>
+            </td>
+            <td>  <eq name="hlist.isloan" value='2'>
+                是
+                </eq>
+                <eq name="hlist.isloan" value='1'>
+                否
+                </eq></td>
+            <td>  <eq name="hlist.pledge" value='1'>
+                清房
+                </eq>
+                <eq name="hlist.pledge" value='2'>
+                一抵
+                </eq>
+                 <eq name="hlist.pledge" value='3'>
+                按揭
+                </eq>
+                   <eq name="hlist.pledge" value='4'>
+                转单
+                </eq>
+            </td>
+            <td>{$hlist.estimateprice}</td>
+            <td>{$hlist.pledgeno}</td>
+            <td>{$hlist.anotheradd}</td>
+            <td>{$hlist.anotherarea}</td>
+
+            </eq>
+            <eq name='hlist.category' value='car'>
+            <td>车抵押</td>
+            <td>{$hlist.carbrand}</td>
+            <td>{$hlist.cartype}</td>
+            <td>{$hlist.carestimate}</td>
+            <td>{$hlist.carbuytime|date=Ymd,###}</td>
+            </eq>
+        </tr>
+    </volist>
+    
+    </table>
+
+<!-- 图片上传 -->
+    <!-- 图片展示区 -->
+      <div class="form-inline definewidth m20">图片展示 &there4;</div>
+       <div class='pic_strap definewidth m10 table-bordered' style='border:1px solid #ccc;width:100%;height:{$pheight}px;'>
+        <div class='nine' style='margin:0px auto;width:100%;height:100%;'>
+        <volist name='plist' id='vo' key='k' empty='$empty' >
+         <div class='ims' style=' float:left;width:25%;height:200px;border:1px solid #999;margin:20px 3% 0px 3%;overflow:hidden'>
+                <neq name='vo.file_type' value='2'>
+                   <img src="/Uploads/{$vo.path}" width='420px'  class='scale' title='点击图片进行放大'/>
+                </neq>
+                <eq name='vo.file_type' value='2' style=' float:left;width:25%;height:200px;border:1px solid #999;margin:20px 3% 0px 3%;overflow:hidden'>
+                    <video src="/Uploads/{$vo.path}" controls="controls" >
+                    您的浏览器不支持 video 标签。
+                    </video>
+                </eq>
+         </div>
+        </volist>
+      </div>
+  </div>
+
+     <!-- 我的个人信息结束 -->
+     <div class='page'>
+          {$pager}
+    </div>
+     <!-- 还款计划 -->
+     <div class="form-inline definewidth m20" id='001'>还款计划 &there4;</div>
+<table class="table table-bordered table-hover definewidth m10" >
+    <thead>
+    <tr>
+     
+        <th>标号</th>
+        <th>计划日期</th>
+        <th>计划还款(元)</th>
+        <th>实际还款(元)</th>
+        <th>实还时间</th>
+        <th>当前次数</th>
+        <th>当前期数</th>
+        <th>还款方式</th>
+        <th>财来操作人</th>
+        <th>操作时间</th>
+        <th>其他核对人</th>
+        <th>核对时间</th>
+        <th>还款凭证</th>
+    </tr>
+    </thead>
+    <volist  name='rplist' id='vo' key='k' >
+       <if condition='$vo.cursort eq 1'><tr><td colspan='13'>这是第{$vo.nci}次放款的计划</td></tr></if>
+       <tr style='border:{$vo.nci}px solid red;'>
+            <td>{$vo.cursort}</td>
+            <td>{$vo.shouldtime}</td>
+            <td>{$vo.shouldrepay}</td>
+            <td>{$vo.realrepay}</td>
+            <td><neq name='vo.donetime' value='0000-00-00'>{$vo.donetime}</neq></td>
+            <td>第{$vo.nci}次放款</td>
+            <td>{$vo.cursort}</td>
+            <td><?php
+            if($vo['repaytype']==1)
+            {
+                echo "银行转账";
+            }else if($vo['repaytype']==2)
+            {
+                echo "现金还款";
+            }else if($vo['repaytype']==3){
+                echo "其他";
+            }else{
+                
+            }
+            ?></td>
+            <td>{$vo.operator}</td>
+            <td><neq name='vo.operatetime' value='0000-00-00 00:00:00'>{$vo.operatetime}</neq></td>
+            <td>{$vo.operator2}</td>
+            <td><neq name='vo.operator2time' value='0000-00-00 00:00:00'>{$vo.operator2time}</neq></td>
+            <td><neq name='vo.path' value=''><img src="/Uploads/{$vo.path}" width='40em' height='30em' class='scale' title='点击图片进行放大'/></neq></td>
+        </tr>
+        <!--  <tr><td colspan='13'><if condition='$vo.totalsort eq $k'>这是第{$k}次放款的计划</if></td></tr> -->
+    </volist>
+    </table>
+     <!-- 我的个人信息结束 -->
+     <div class='page' >
+          {$pager}
+    </div>
+
+    <!-- 行为列表 -->
+    <div class="form-inline definewidth m20">行为列表 &there4;</div>
+<table class="table table-bordered table-hover definewidth m10" >
+    <thead>
+    <tr>
+     
+        <th>操作标号</th>
+        <th>操作标题</th>
+        <th>操作者</th>
+        <th>操作ip</th>
+        <th>操作时间</th>
+        <!-- <th>行为备注</th> -->
+         <th>所在表id</th>
+       
+        <!-- 客户姓名，身份证号码，联系电话，贷款金额，期限，利率， -->
+    </tr>
+    </thead>
+    <volist name='list' id='vo' empty='$empty' >
+         <tr>
+            <td>{$vo.id}</td>
+            <td>{$vo.optip},<neq name='vo.oprespid' value='0'>负责人姓名：{$vo.username}。</neq>标题为：{$vo.title}。</td>
+            <td>{$vo.opname}</td>
+            <td>{$vo.opip|long2ip=###}</td>
+            <td>{$vo.optime|date='Y-m-d H:i:s',###}</td>
+            <!-- <td>{$vo.optip}</td> -->
+            <!-- <td>{$vo.optbname}</td> -->
+            <td>{$vo.opthatid}</td>
+           
+        </tr>
+    </volist>
+    
+    </table>
+     <!-- 我的个人信息结束 -->
+     <div class='page' >
+          {$page}
+    </div>
+
+</body>
+</html>
+<script type="text/javascript">
+  $(function(){
+        $('img').bigic();
+    });
+</script>
+<style type="text/css">
+    img{
+        vertical-align: bottom;
+    }
+</style>

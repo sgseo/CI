@@ -1,0 +1,1079 @@
+<?php
+	/**
+    * 汇付天下 托管接口类
+    * @time 2014-09-5
+    * @author  943242261@qq.com
+    * 
+    */
+	class Huifu
+	{
+		public static $chinapnr = null;
+		public static $merCustId = null;
+		
+		public $temp = array();//用于生成订单号临时数据
+		public $tempcopy = array();//用于生成订单号临时数据（副本）
+		
+		const HTTP ="https://";
+		const USER_REG = "/home/returl/usrreg";//用户开户回调地址
+		const USER_REG_BACK = "/home/returl/userregister";//用户开户后台回调地址
+		const CORP_REG_BACK = "/home/returl/corpregister";//企业开户后台回调地址
+		const BIND_CARD_BACK = "/home/returl/bindcard";//用户绑卡后台回调地址
+		const NET_SAVE = "/home/returl/netreturn";//网银充值回调地址
+		const NET_SAVE_BACK = "/home/returl/netsave";//网银充值后台回调地址
+		const INI_TENDER = "/home/returl/initiativetender";//主动投标回调地址
+		const INI_TENDER_BACK = "/home/returl/initiativetenderreturn";//主动投标后台回调地址
+		const NEW_TENDER='/home/returl/ininewbietender';//新手标回调地址 2015-09-14 lj
+		const NEW_TENDER_BACK = '/home/returl/ininewbietenderreturn';//新手标后台回调 2015-09-15 l4
+		const USER_FREEZE = "/";//资金（货款）冻结回调地址
+		const USER_FREEZE_BACK = "/home/returl/usrfreeze";//资金（货款）冻结后台回调地址
+		const CASH = "/home/returl/quxian";//取现回调地址
+		const CASH_BACK = "/home/returl/quxianreturn";//取现后台回调地址（cash为被禁字符串）
+		const CASH_AUDIT = "";//取现复核回调地址
+		const CASH_AUDIT_BACK = "/home/returl/auditreturn";//取现复核后台回调地址
+		const USER_UNFREEZE = "/home/index/res";//资金（货款）解冻回调地址
+		const USER_UNFREEZE_BACK ="/home/returl/usrunfreeze";//资金（货款）解冻后台回调地址
+		const LOANS_BACK = "/home/returl/loansreturn";//自动扣款（放款）后台回调地址
+		const NEWBIE_LOANS_BACK ='/home/returl/newbieloansreturn';//新手标自动扣款（放款）后台回调地址 2015-09-15 lj
+		const REPAYMENT_BACK = "/home/returl/repayment";//自动扣款（还款）后台回调地址
+		const CREDIT_ASSIGN = "/home/returl/creditassign";//债权转让回调地址
+		const CREDIT_ASSIGN_BACK = "/home/returl/creditassignret";//债权转让后台回调地址
+		const TRANSFER = "";//自动扣款转账（商户用）回调地址
+		const TRANSFER_BACK = "/home/returl/transferret";//自动扣款转账（商户用）后台回调地址
+		const TRANSFER_BACK2 = "/home/returl/transferret2";//自动扣款转账（商户用）后台回调地址
+		const TENDER_PLAN = "/home/returl/tenderplan";//自动投标计划回调地址
+		const AUTO_TENDER = "";//自动投标回调地址
+		const AUTO_TENDER_BACK = "/home/returl/autotenderret";//自动投标后台回调地址
+		const PLAN_CLOSE = "/home/returl/planclose";//自动投标关闭回调地址
+		const USR_PAY = "/home/returl/usrpay";//用户账户支付回调地址
+		const USR_PAY_BACK = "/home/returl/usrpayret";//用户账户支付后台回调地址
+		const USR_TRANSFER = "/home/returl/usrtransfer";//前台用户间转账回调地址
+		const USR_TRANSFER_BACK = "/home/returl/usrtransferret";//前台用户间转账后台回调地址
+		
+		public function __construct(){
+            $tuoguan = FS("Webconfig/tuoguanconfig");
+            
+            import("ORG.Huifu.lib.Chinapnr");
+			$params = array();
+			$params['merId'] = $tuoguan['huifu']['merId'];//商户号
+			$params['serverLocation'] = "http://mertest.chinapnr.com/muser/publicRequests";// 测试地址
+			//$params['serverLocation'] = "https://lab.chinapnr.com/muser/publicRequests";// 正式地址
+			$params['chinapnrPublicKey'] = $tuoguan['huifu']['chinapnrPublicKey'];//公钥
+			$params['merchantPrivateKey'] = $tuoguan['huifu']['merchantPrivateKey'];//私钥
+
+			$this->merCustId = $tuoguan['huifu']['MerCustId'];//商户客户号
+			$this->chinapnr= Chinapnr::getInstance($params);
+		}
+
+		
+		//托管登录
+		/*
+		**$usrid 用户客户号
+		*/
+		public function userLogin($usrid)
+		{
+			$merCustId = $this->merCustId;//商户客户号
+			$usrCustId = $usrid;//用户客户号
+			
+			$this->chinapnr->userLogin($merCustId, $usrCustId);
+		}
+		
+		//账户明细查询【未使用】
+		/*
+		**$usrid 用户客户号
+		*/
+		public function queryAcctDetails($usrid)
+		{
+			$merCustId = $this->merCustId;//商户客户号
+			$usrCustId = $usrid;//用户客户号
+			
+			$this->chinapnr->queryAcctDetails($merCustId, $usrCustId);
+		}
+		
+		//账户信息修改【未使用】
+		/*
+		**$usrid 用户客户号
+		*/
+		public function acctModify($usrid)
+		{
+			$merCustId = $this->merCustId;//商户客户号
+			$usrCustId = $usrid;//用户客户号
+			
+			$this->chinapnr->acctModify($merCustId, $usrCustId);
+		}
+		
+		//用户开户
+		/*
+		** $username 用户名
+		** $telephone 手机号
+		** $email 邮件地址
+		*/
+		public function userRegister($username,$telephone,$email)
+		{
+			$email = '';
+			$merCustId = $this->merCustId;//商户客户号
+			$retUrl=Huifu::HTTP.$_SERVER["SERVER_NAME"].Huifu::USER_REG;//用户开户回调地址
+			$bgRetUrl = Huifu::HTTP.$_SERVER["SERVER_NAME"].Huifu::USER_REG_BACK;//用户开户后台回调地址
+			$usrId=$username;//用户名（即注册帐号）
+			$usrName = '';//真实姓名
+			$idType = '';//证件类型（身份证：00）
+			$idNo = '';//证件号码
+			$usrMp=$telephone;//手机号
+			$usrEmail=$email;//邮件地址
+			
+			$this->chinapnr->userRegister($merCustId,$bgRetUrl,$retUrl,$usrId,$usrName,$idType,$idNo,$usrMp,$usrEmail);
+		}
+		
+		//企业开户
+		/*
+		** $username 用户名
+		** $busicode 营业执照编号
+		** $guartype 担保类型（Y：是 N：否）
+		*/
+		public function corpRegister($username,$busicode,$guartype)
+		{
+			$merCustId = $this->merCustId;//商户客户号
+			$usrId = $username;//用户名（即注册帐号）
+			$usrName = '';//真实姓名
+			$instuCode = '';//组织机构代码
+			$busiCode = $busicode;//营业执照编号
+			$taxCode = '';//税务登记号
+			$merPriv = '';
+			$charSet = '';
+			$guarType = $guartype;//担保类型
+			$bgRetUrl = Huifu::HTTP.$_SERVER["SERVER_NAME"].Huifu::CORP_REG_BACK;//企业开户后台回调地址
+			
+			$this->chinapnr->corpRegister($merCustId,$usrId,$usrName,$instuCode,$busiCode,$taxCode,$merPriv,$charSet,$guarType,$bgRetUrl,$reqExt = '');
+		}
+		
+		//用户绑卡,页面浏览器方式
+		/*
+		**$usrid 用户客户号
+		*/
+		public function userBindCard($usrid)
+		{
+			$merCustId = $this->merCustId;//商户客户号
+			$usrCustId = $usrid;//用户客户号
+			$bgRetURL = Huifu::HTTP.$_SERVER["SERVER_NAME"].Huifu::BIND_CARD_BACK;//用户绑卡后台回调地址
+			$this->chinapnr->userBindCard($merCustId,$usrCustId,$bgRetURL);
+		}
+                
+                
+                
+                //银行卡信息
+		/*
+		**$usrid 用户客户号
+		*/
+		public function zwqueryCardInfo($merCustId,$usrCustId,$cardId)
+		{
+                    
+              
+//			$merCustId = $this->merCustId;//商户客户号
+//			$usrCustId = $usrid;//用户客户号
+			$bgRetURL = Huifu::HTTP.$_SERVER["SERVER_NAME"].Huifu::BIND_CARD_BACK;//用户绑卡后台回调地址
+			return $this->chinapnr->queryCardInfo($merCustId,$usrCustId,$cardId);
+		}
+                
+                
+                
+		
+		//用户绑卡【未使用】
+		/*
+		**$usrid 用户客户号
+		**$bankaccount 银行账号
+		**$bankcode 银行代号
+		**$bankprov 银行省份
+		**$bankarea 银行地区
+		*/
+		public function BgBindCard($usrid,$bankaccount,$bankcode,$bankprov,$bankarea)
+		{
+			$merCustId = $this->merCustId;
+			$usrCustId = $usrid;
+			$openAcctId = $bankaccount;
+			$openBankId = $bankcode;
+			$openProvId = $bankprov;
+			$openAreaId = $bankarea;
+			$openBranchName ="";
+			$isDefault = 'Y';
+			
+			$info = $this->chinapnr->bgBindCard($merCustId,$usrCustId,$openAcctId,$openBankId,$openProvId,$openAreaId,$openBranchName,$isDefault);
+			return $info;
+		}
+		
+		//用户删卡【未使用】
+		/*
+		**$usrid 用户客户号
+		**$bankaccount 银行账号
+		*/
+		public function delCard($usrid,$bankaccount)
+		{
+			$merCustId = $this->merCustId;
+			$usrCustId = $usrid;
+			$cardId = $bankaccount;
+			
+			$info = $this->chinapnr->delCard($merCustId,$usrCustId,$cardId);
+			return $info;
+		}
+		
+		//网银充值
+		/*
+		**$usrid 用户客户号
+		**$transamt 交易金额
+		*/
+		public function  netSave($usrid,$transamt)
+		{
+			$ord = $this->ord();
+			$merCustId = $this->merCustId;//商户客户号
+			$usrCustId = $usrid;//用户客户号
+			$ordId=$ord['id'];//订单号
+			$ordDate=$ord['date'];//订单日期
+			$gateBusiId="";//支付网关业务代号
+			$openBankId="";//开户银行代号
+			$dcFlag="";//借贷记标记
+			$transAmt=number_format($transamt,2,'.','');//交易金额
+			$retUrl = Huifu::HTTP.$_SERVER["SERVER_NAME"].Huifu::NET_SAVE;//网银充值回调地址
+			$bgRetUrl = Huifu::HTTP.$_SERVER["SERVER_NAME"].Huifu::NET_SAVE_BACK;//网银充值后台回调地址
+			
+			$this->chinapnr->netSave($merCustId,$usrCustId,$ordId,$ordDate,$gateBusiId,$openBankId,$dcFlag,$transAmt,$retUrl,$bgRetUrl);
+		}
+		
+		//取现
+		/*
+		**$usrid 用户客户号
+		**$transamt 取现金额
+		**$fee 手续费金额
+		**$cashChl 取现渠道
+		*/
+		public function cash($usrid,$transamt,$fee,$cashChl='')
+		{
+			$ord = $this->ord();
+			$merCustId = $this->merCustId;//商户客户号
+			$ordId = $ord['id'];//订单号
+			$usrCustId = $usrid;//用户客户号
+			$transAmt = number_format($transamt,2,'.','');//取现金额
+			$servFee = number_format($fee,2,'.','');//手续费金额
+			$servFeeAcctId = 'MDT000001';//手续费扣款子账户
+			$openAcctId = '';//开户银行帐号（即取现银行卡号）
+			$retUrl = Huifu::HTTP.$_SERVER["SERVER_NAME"].Huifu::CASH;//取现回调地址
+			$bgRetUrl = Huifu::HTTP.$_SERVER["SERVER_NAME"].Huifu::CASH_BACK;//取现后台回调地址
+			
+			$this->chinapnr->cash($merCustId,$ordId,$usrCustId,$transAmt,$servFee,$servFeeAcctId,$openAcctId,$retUrl,$bgRetUrl,'','','','',$cashChl);
+		}
+		
+		//取现复核
+		/*
+		**$usrid 用户客户号
+		**$transamt 取现金额
+		**$ordid 订单号（取现订单号）
+		**$auditflag 复核标识（R--拒绝 S--通过）
+		*/
+		public function cashAudit($usrid,$ordid,$transamt,$auditflag)
+		{
+			$merCustId = $this->merCustId;//商户客户号
+			$ordId = $ordid;//取现订单号
+			$usrCustId = $usrid;//用户客户号
+			$transAmt = number_format($transamt,2,'.','');//取现金额
+			$auditFlag = $auditflag;//复核标识
+			$retUrl = Huifu::HTTP.$_SERVER["SERVER_NAME"].Huifu::CASH_AUDIT;//取现复核回调地址
+			$bgRetUrl = Huifu::HTTP.$_SERVER["SERVER_NAME"].Huifu::CASH_AUDIT_BACK;//取现复核后台回调地址
+			
+			$ret = $this->chinapnr->cashAudit($merCustId,$ordId,$usrCustId,$transAmt,$auditFlag,$retUrl,$bgRetUrl);
+			return $ret;
+		}
+		
+		//资金（货款）冻结
+		/*
+		**$usrid 用户客户号
+		**$transamt 交易金额
+		**$borrowid 标ID
+		*/
+		public function usrFreezeBg($usrid,$transamt,$borrowid)
+		{
+			$ord = $this->ord();
+			$merCustId = $this->merCustId;//商户客户号
+			$usrCustId = $usrid;//用户客户号
+			$subAcctType = '';//子账户类型（默认为用户专属账户）
+			$subAcctId = '';//子账户号
+			$ordId = $ord['id'];//订单号
+			$ordDate = $ord['date'];//订单日期
+			$transAmt = number_format($transamt,2,'.','');//交易金额
+			$retUrl = Huifu::HTTP.$_SERVER["SERVER_NAME"].Huifu::USER_FREEZE;//资金（货款）冻结回调地址
+			$bgRetUrl = Huifu::HTTP.$_SERVER["SERVER_NAME"].Huifu::USER_FREEZE_BACK;//资金（货款）冻结后台回调地址
+			$info = array();
+			$info['borrowid'] = $borrowid;//标ID
+			$merPriv = base64_encode(json_encode($info));
+			
+			$this->chinapnr->usrFreezeBg($merCustId,$usrCustId,$subAcctType,$subAcctId,$ordId,$ordDate,$transAmt,$retUrl,$bgRetUrl,$merPriv);
+		}
+		
+		//资金（货款）解冻
+		/*
+		**$trxid 交易流水号
+		**$borrowid 标ID
+		**$sort_order 期数（针对分期还款，表示当前期数）
+		**$type 解冻类型（1：投标解冻 2：保证金解冻）
+		*/
+		public function usrUnFreeze($trxid,$borrowid,$sort_order,$type)
+		{
+			$ord = $this->ord();
+			$merCustId = $this->merCustId;//商户客户号
+			$ordId = $ord['id'];//订单号
+			$ordDate = $ord['date'];//订单日期
+			$trxId = $trxid;//交易流水号
+			$retUrl = Huifu::HTTP.$_SERVER["SERVER_NAME"].Huifu::USER_UNFREEZE;//资金（货款）解冻回调地址
+			$bgRetUrl = Huifu::HTTP.$_SERVER["SERVER_NAME"].Huifu::USER_UNFREEZE_BACK;//资金（货款）解冻后台回调地址
+			$info = array();
+			$info['borrowid'] = $borrowid;//标ID
+			$info['sort_order'] = $sort_order;//期数
+			$info['type'] = $type;//解冻类型
+			$merPriv = base64_encode(json_encode($info));
+			
+			$this->chinapnr->usrUnFreeze($merCustId,$ordId,$ordDate,$trxId,$retUrl,$bgRetUrl,$merPriv);
+		}
+		
+		//主动投标
+		/*
+		**$usrid 用户客户号
+	    **$transamt 交易金额
+		**$borrowercustid 借款人客户号
+		**$borrowid 标ID
+		*/
+		public function initiativeTender($usrid,$transamt,$borrowercustid,$borrowid,$reqExt='',$redvalue='0',$redid='0')
+		{
+			$glo = get_global_setting();
+			
+			$ord = $this->ord();
+
+		    /*============20150824 by lj=============*/
+			//红包数据入表 active_redpacket
+			$reddata['borrow_id']=$borrowid;
+
+			$reddata['usetime']=time();
+
+			$reddata['is_used']='1';//因为是枚举字段所以要加上引号 否则修改不了
+
+			$reddata['orderno']=$ord['id'];//订单号
+
+			$reddata['transamt']=$transamt;
+			
+			///解决 一次使用多张
+			$redarr=explode(',',$redid);
+			foreach ($redarr as $key => $value) {
+				M("active_redpacket")->where('id='.$value)->save($reddata);//修改红包数据
+			}
+			
+			$merCustId = $this->merCustId;//商户客户号
+			$ordId = $ord['id'];//订单号
+			$ordDate = $ord['date'];//订单日期
+			$transAmt = number_format($transamt,2,'.','');//交易金额
+			$usrCustId = $usrid;//用户客户号(用户id)
+			$maxTenderRate = $glo['maxtenderrate'];//最大投资手续费率
+			$borrowerDetails = array();//借款人信息
+			$borrowerDetails['BorrowerCustId'] = $borrowercustid;//借款人客户号
+			$borrowerDetails['BorrowerAmt'] = number_format($transamt,2,'.','');//借款金额
+			$borrowerDetails['BorrowerRate'] =$glo['borrowerrate'];//借款手续费率
+			$isFreeze = "Y";//是否冻结
+			$freezeord = $this->ord();
+			$freezeOrdId = $freezeord['id'];//冻结订单号
+			$retUrl=Huifu::HTTP.$_SERVER["SERVER_NAME"].Huifu::INI_TENDER;//主动投标回调地址
+			$bgRetUrl= Huifu::HTTP.$_SERVER["SERVER_NAME"].Huifu::INI_TENDER_BACK;//主动投标后台回调地址
+			$info = array();
+			$info['borrowerid'] = $borrowercustid;//借款人客户号
+			$info['borrowid'] = $borrowid;//标ID 借款人
+			$merPriv = base64_encode(json_encode($info));
+			$reqExt=$reqExt;//这里是 出账户 和金额 json 字符串
+			file_put_contents('/tmp/isnew2',date('m-d H:i:s')."20150915newreqext: ".print_r($reqExt,true)."\n",FILE_APPEND);
+			$this->chinapnr->initiativeTender($merCustId,$ordId,$ordDate,$transAmt,$usrCustId,$maxTenderRate,$borrowerDetails,$isFreeze,$freezeOrdId,$retUrl,$bgRetUrl,$merPriv,$reqExt);
+		}
+		/**
+		 * 新手标投资 2015-09-10
+		 */
+		 public function newbie_initiativeTender($usrid,$transamt,$borrowercustid,$borrowid,$reqExt='',$redvalue='0',$redid='0')
+		{
+			$glo = get_global_setting();
+			
+			$ord = $this->ord();
+
+		    /*============20150824 by lj=============*/
+			//红包数据入表 active_redpacket
+			$reddata['borrow_id']=$borrowid;
+
+			$reddata['usetime']=time();
+
+			$reddata['is_used']='1';//因为是枚举字段所以要加上引号 否则修改不了
+
+			$reddata['orderno']=$ord['id'];//订单号
+
+			$reddata['transamt']=$transamt;
+			
+			///解决 一次使用多张
+			$redarr=explode(',',$redid);
+			foreach ($redarr as $key => $value) {
+				M("active_redpacket")->where('id='.$value)->save($reddata);//修改红包数据
+			}
+			file_put_contents('/tmp/isnew2',date('m-d H:i:s')."newredarr-: ".print_r($redarr,true)."\n",FILE_APPEND);
+
+			$merCustId = $this->merCustId;//商户客户号
+			$ordId = $ord['id'];//订单号
+			$ordDate = $ord['date'];//订单日期
+			$transAmt = number_format($transamt,2,'.','');//交易金额
+			$usrCustId = $usrid;//用户客户号(用户id)
+			$maxTenderRate = $glo['maxtenderrate'];//最大投资手续费率
+			$borrowerDetails = array();//借款人信息
+			$borrowerDetails['BorrowerCustId'] = $borrowercustid;//借款人客户号
+			$borrowerDetails['BorrowerAmt'] = number_format($transamt,2,'.','');//借款金额
+			$borrowerDetails['BorrowerRate'] =$glo['borrowerrate'];//借款手续费率
+			$isFreeze = "Y";//是否冻结
+			$freezeord = $this->ord();
+			$freezeOrdId = $freezeord['id'];//冻结订单号
+			$retUrl=Huifu::HTTP.$_SERVER["SERVER_NAME"].Huifu::NEW_TENDER;//新手标主动投标回调地址
+			$bgRetUrl= Huifu::HTTP.$_SERVER["SERVER_NAME"].Huifu::NEW_TENDER_BACK;//新手标主动投标后台回调地址
+			$info = array();
+			$info['borrowerid'] = $borrowercustid;//借款人客户号
+			$info['borrowid'] = $borrowid;//标ID 借款人
+			$merPriv = base64_encode(json_encode($info));
+			$reqExt=$reqExt;//这里是 出账户 和金额 json 字符串
+
+			$this->chinapnr->initiativeTender($merCustId,$ordId,$ordDate,$transAmt,$usrCustId,$maxTenderRate,$borrowerDetails,$isFreeze,$freezeOrdId,$retUrl,$bgRetUrl,$merPriv,$reqExt);
+		}
+		
+		//自动投标
+		/*
+		**$usrid 用户客户号
+	    **$transamt 交易金额
+		**$borrowercustid 借款人客户号
+		**$borrowid 标ID
+		*/
+		public function autoTender($usrid,$transamt,$borrowercustid,$borrowid)
+		{
+			$glo = get_global_setting();
+			
+			$ord = $this->ord();
+			$merCustId = $this->merCustId;//商户客户号
+			$ordId = $ord['id'];//订单号
+			$ordDate = $ord['date'];//订单日期
+			$transAmt = number_format($transamt,2,'.','');//交易金额
+			$usrCustId = $usrid;//用户客户号
+			$maxTenderRate = $glo['maxtenderrate'];//最大投资手续费率
+			$borrowerDetails = array();//借款人信息
+			$borrowerDetails['BorrowerCustId'] = $borrowercustid;//借款人客户号
+			$borrowerDetails['BorrowerAmt'] = number_format($transamt,2,'.','');//借款金额
+			$borrowerDetails['BorrowerRate'] =$glo['borrowerrate'];//借款手续费率
+			$isFreeze = "Y";//是否冻结
+			$freezeord = $this->ord();
+			$freezeOrdId = $freezeord['id'];//冻结订单号
+			$retUrl=Huifu::HTTP.$_SERVER["SERVER_NAME"].Huifu::AUTO_TENDER;//自动投标回调地址
+			$bgRetUrl= Huifu::HTTP.$_SERVER["SERVER_NAME"].Huifu::AUTO_TENDER_BACK;//自动投标后台回调地址
+			$info = array();
+			$info['borrowerid'] = $borrowercustid;//借款人客户号
+			$info['borrowid'] = $borrowid;//标ID
+			$merPriv = base64_encode(json_encode($info));
+			
+			$this->chinapnr->autoTender($merCustId,$ordId,$ordDate,$transAmt,$usrCustId,$maxTenderRate,$borrowerDetails,$isFreeze,$freezeOrdId,$retUrl,$bgRetUrl,$merPriv,$reqExt = '');
+		}
+		
+		//自动投标
+		/*
+		**$usrid 用户客户号
+	    **$transamt 交易金额
+		**$borrowercustid 借款人客户号
+		**$borrowid 标ID
+		*/
+		public function autoTender_multi($usrid,$transamt,$borrowercustid,$borrowid)
+		{
+			$num = count($usrid);
+			$glo = get_global_setting();
+			$maxTenderRate = $glo['maxtenderrate'];//最大投资手续费率
+			$merCustId = $this->merCustId;//商户客户号
+			$retUrl=Huifu::HTTP.$_SERVER["SERVER_NAME"].Huifu::AUTO_TENDER;//自动投标回调地址
+			$bgRetUrl= Huifu::HTTP.$_SERVER["SERVER_NAME"].Huifu::AUTO_TENDER_BACK;//自动投标后台回调地址
+			$info = array();
+			$info['borrowerid'] = $borrowercustid;//借款人客户号
+			$info['borrowid'] = $borrowid;//标ID
+			$merPriv = base64_encode(json_encode($info));
+			
+			$ordId = array();
+			$ordDate = array();
+			$transAmt = array();
+			$usrCustId = array();
+			$borrowerDetails = array();
+			$isFreeze = array();
+			$freezeOrdId = array();
+			$i = 0;
+			$ord_freezeord = $this->ord_multi(2*$num);//订单号和冻结订单号
+			foreach($usrid as $k=>$v)
+			{
+				$ordId[$k] = $ord_freezeord[2*$i];//订单号
+				$ordDate[$k] = substr($ord_freezeord[2*$i],0,8);//订单日期
+				$transAmt[$k] = number_format($transamt[$k],2,'.','');//交易金额
+				$usrCustId[$k] = $v;//用户客户号
+				$borrowerDetails[$k]['BorrowerCustId'] = $borrowercustid;//借款人客户号
+				$borrowerDetails[$k]['BorrowerAmt'] = number_format($transamt[$k],2,'.','');//借款金额
+				$borrowerDetails[$k]['BorrowerRate'] =$glo['borrowerrate'];//借款手续费率
+				$isFreeze[$k] = "Y";//是否冻结
+				$freezeOrdId[$k] = $ord_freezeord[2*$i+1];//冻结订单号
+				
+				$i++;
+			}
+			
+			$this->chinapnr->autoTender_multi($merCustId,$ordId,$ordDate,$transAmt,$usrCustId,$maxTenderRate,$borrowerDetails,$isFreeze,$freezeOrdId,$retUrl,$bgRetUrl,$merPriv,$reqExt = '');
+			
+		}
+		
+		//自动投标计划
+		/*
+		**$usrid 用户客户号
+	    **$transamt 交易金额
+		*/
+		public function autoTenderPlan($usrid,$transamt)
+		{
+			$merCustId = $this->merCustId;//商户客户号
+			$usrCustId = $usrid;//用户客户号
+			$tenderPlanType = "P";//投标计划类型
+			$transAmt = number_format($transamt,2,'.','');//交易金额
+			$retUrl = Huifu::HTTP.$_SERVER["SERVER_NAME"].Huifu::TENDER_PLAN;//自动投标计划回调地址
+			
+			$this->chinapnr->autoTenderPlan($merCustId,$usrCustId,$tenderPlanType,$transAmt,$retUrl,$merPriv = '');
+		}
+		
+		//自动投标计划关闭
+		/*
+		**$usrid 用户客户号
+		*/
+		public function autoTenderPlanClose($usrid)
+		{
+			$merCustId = $this->merCustId;//商户客户号
+			$usrCustId = $usrid;//用户客户号
+			$retUrl=Huifu::HTTP.$_SERVER["SERVER_NAME"].Huifu::PLAN_CLOSE;//自动投标关闭回调地址
+			
+			$this->chinapnr->autoTenderPlanClose($merCustId,$usrCustId,$retUrl,$merPriv = '');
+		}
+		
+		//自动扣款（放款）
+		/*
+		 **$usrid 投资人客户号（用户客户号）
+		 **$transamt 交易金额
+		 **$borrowercustid 借款人客户号
+		 **$Fee 手续费
+		 **$subordid 关联投标订单号
+		 **$suborddate 关联投标订单日期
+		 **$divdetails 借款详情
+		 **$freezetrxid 冻结流水号
+		 **$borrowid 标ID
+		 **$investid 投资ID
+		 */
+		public function loans($usrid,$transamt,$borrowercustid,$Fee,$subordid,$suborddate,$divdetails,$freezetrxid,$borrowid,$investid)
+		{
+			$ord = $this->ord();
+			$merCustId = $this->merCustId;//商户客户号
+			$ordId = $ord['id'];//订单号
+			$ordDate = $ord['date'];//订单日期
+			$outCustId = $usrid;//投资人客户号
+			$transAmt = number_format($transamt,2,'.','');//交易金额
+			$fee = number_format($Fee,2,'.','');//手续费
+			$subOrdId = $subordid;//关联投标订单号
+			$subOrdDate = $suborddate;//关联投标订单日期
+			$inCustId = $borrowercustid;//借款人客户号
+			if(floatval($fee)==0)
+			{
+				$divDetails = '';
+			}
+			else
+			{
+				$divDetails = $divdetails;//借款详情
+			}
+			$feeObjFlag = "I";//手续费收取对象标志（I：向入款客户号InCustId收取）
+			$isDefault = "N";
+			$isUnFreeze = "Y";//是否解冻（Y：解冻）
+			$ord = $this->ord();
+			$unFreezeOrdId = $ord['id'];//解冻订单号
+			$freezeTrxId = $freezetrxid;//冻结流水号
+			$bgRetUrl = Huifu::HTTP.$_SERVER["SERVER_NAME"].Huifu::NEWBIE_LOANS_BACK;//自动扣款（放款）后台回调地址
+			$info = array();
+			$info['borrowid'] = $borrowid;//标ID
+			$info['investid'] = $investid;//投资ID
+			$merPriv = base64_encode(json_encode($info));
+			$this->chinapnr->loans($merCustId,$ordId,$ordDate,$outCustId,$transAmt,$fee,$subOrdId,$subOrdDate,$inCustId,$divDetails,$feeObjFlag,$isDefault,$isUnFreeze,$unFreezeOrdId,$freezeTrxId,$bgRetUrl,$merPriv = '',$reqExt = '');
+		}
+		
+		//自动扣款（放款）
+		/*
+		 **$usrid 投资人客户号（用户客户号）
+		 **$transamt 交易金额
+		 **$borrowercustid 借款人客户号
+		 **$Fee 手续费
+		 **$subordid 关联投标订单号
+		 **$suborddate 关联投标订单日期
+		 **$divdetails 借款详情
+		 **$freezetrxid 冻结流水号
+		 **$borrowid 标ID
+		 **$investid 投资ID
+		 */
+		public function loans_multi($usrid,$transamt,$borrowercustid,$Fee,$subordid,$suborddate,$divdetails,$freezetrxid,$borrowid,$investid)
+		{
+			$num = count($usrid);//总共有几个人投了此标
+			$merCustId = $this->merCustId;//商户客户号
+			$inCustId = $borrowercustid;//借款人客户号
+			$feeObjFlag = "I";//手续费收取对象标志（I：向入款客户号InCustId收取）
+			$isDefault = "N";
+			$bgRetUrl = Huifu::HTTP.$_SERVER["SERVER_NAME"].Huifu::LOANS_BACK;//自动扣款（放款）后台回调地址
+			
+			//初始化变量
+			$ordId = array();
+			$ordDate = array();
+			$outCustId = array();
+			$transAmt = array();
+			$fee = array();
+			$subOrdId = array();
+			$subOrdDate = array();
+			$divDetails = array();
+			$isUnFreeze = array();
+			$unFreezeOrdId = array();
+			$freezeTrxId = array();
+			$merPriv = array();
+			
+			$i = 0;
+			$ord = $this->ord_multi(2*$num);//订单号
+			foreach($usrid as $v)
+			{
+				$ordId[$i] = $ord[2*$i];//订单号
+				$ordDate[$i] = substr($ord[2*$i],0,8);//订单日期
+				$outCustId[$i] = $v;//投资人客户号
+				$transAmt[$i] = number_format($transamt[$i],2,'.','');//交易金额
+				$fee[$i] = number_format($Fee[$i],2,'.','');//手续费
+				$subOrdId[$i] = $subordid[$i];//关联投标订单号
+				$subOrdDate[$i] = $suborddate[$i];//关联投标订单日期
+
+				if(floatval($fee[$i])==0)
+				{
+					$divDetails[$i] = '';
+				}
+				else
+				{
+					$divDetails[$i] = $divdetails[$i];//借款详情
+				}
+				$isUnFreeze[$i] = "Y";//是否解冻（Y：解冻）
+				$unFreezeOrdId[$i] = $ord[2*$i+1];//解冻订单号
+				$freezeTrxId[$i] = $freezetrxid[$i];//冻结流水号
+				
+				$info = array();
+				$info['borrowid'] = $borrowid;//标ID
+				$info['investid'] = $investid[$i];//投资ID
+				$merPriv[$i] = base64_encode(json_encode($info));
+				
+				$i++;
+			}
+
+		
+			$this->chinapnr->loans_multi($merCustId,$ordId,$ordDate,$outCustId,$transAmt,$fee,$subOrdId,$subOrdDate,$inCustId,$divDetails,$feeObjFlag,$isDefault,$isUnFreeze,$unFreezeOrdId,$freezeTrxId,$bgRetUrl,$merPriv);
+		}
+		
+		//自动扣款（还款）
+		/*
+		**$usrid 还款人客户号
+		**$transamt 交易金额
+		**$Fee 手续费
+		**$borrowercustid 投资人客户号
+		**$divdetails 还款详情
+		**$subordid 关联投标订单号
+		**$suborddate 关联投标订单日期
+		**$borrowid 标ID
+		**$sort_order 期数（针对分期还款，表示当前期数）
+		**repaymentid 还款ID
+		**$investorid 投资人ID
+		**$type 还款类型（1：会员自己还，2：网站代还，3：担保公司代还）
+		*/
+		public function repayment($usrid,$transamt,$Fee,$borrowercustid,$divdetails,$subordid,$suborddate,$borrowid,$sort_order,$repaymentid,$investorid,$type)
+		{
+			$ord = $this->ord();
+			$merCustId = $this->merCustId;//商户客户号
+			$ordId = $ord['id'];//订单号
+			$ordDate = $ord['date'];//订单日期
+			$outCustId = $usrid;//还款人客户号
+			$transAmt = number_format($transamt,2,'.','');//交易金额
+			$fee = number_format($Fee,2,'.','');//手续费
+			$subOrdId = $subordid;//关联投标订单号
+			$subOrdDate = $suborddate;//关联投标订单日期
+			$outAcctId = 'MDT000001';//出账子账户
+			$inAcctId = '';
+			$inCustId = $borrowercustid;//投资人客户号
+			if(floatval($fee)==0)
+			{
+				$divDetails = '';
+			}
+			else
+			{
+				$divDetails = $divdetails;//还款详情
+			}
+			$feeObjFlag = "I";//手续费收取对象标志（I：向入款客户号InCustId收取）
+			$bgRetUrl = Huifu::HTTP.$_SERVER["SERVER_NAME"].Huifu::REPAYMENT_BACK;//自动扣款（还款）后台回调地址
+			$info = array();
+			$info['borrowid'] = $borrowid;//标ID
+			$info['sortorder'] = $sort_order;//期数
+			$info['repaymentid'] = $repaymentid;//还款ID
+			$info['investorid'] = $investorid;//投资人ID
+			$info['type'] = $type;//还款类型（1：会员自己还，2：网站代还，3：担保公司代还）
+			$merPriv[$i] = base64_encode(json_encode($info));
+			
+			$this->chinapnr->repayment($merCustId,$ordId,$ordDate,$outCustId,$subOrdId,$subOrdDate,$outAcctId,$transAmt,$fee,$inCustId,$inAcctId,$divDetails,$feeObjFlag,$bgRetUrl,$merPriv = '',$reqExt = '');
+		}
+		
+		//自动扣款（还款）
+		/*
+		**$usrid 还款人客户号
+		**$transamt 交易金额
+		**$Fee 手续费
+		**$borrowercustid 投资人客户号
+		**$divdetails 还款详情
+		**$subordid 关联投标订单号
+		**$suborddate 关联投标订单日期
+		**$borrowid 标ID
+		**$sort_order 期数（针对分期还款，表示当前期数）
+		**repaymentid 还款ID
+		**$investorid 投资人ID
+		**$type 还款类型（1：会员自己还，2：网站代还，3：担保公司代还）
+		*/
+		public function repayment_multi($usrid,$transamt,$Fee,$investor,$divdetails,$subordid,$suborddate,$borrowid,$sort_order,$repaymentid,$investorid,$type)
+		{
+			$num = count($investor);
+			$merCustId = $this->merCustId;//商户客户号
+			$outCustId = $usrid;//还款人客户号
+			$outAcctId = 'MDT000001';//出账子账户
+			$inAcctId = '';
+			$feeObjFlag = "I";//手续费收取对象标志（I：向入款客户号InCustId收取）
+			$bgRetUrl = Huifu::HTTP.$_SERVER["SERVER_NAME"].Huifu::REPAYMENT_BACK;//自动扣款（还款）后台回调地址
+			
+			$ordId = array();//订单号
+			$ordDate = array();//订单日期
+			$transAmt = array();//交易金额
+			$fee = array();//利息管理费
+			$subOrdId = array();//关联投标订单号
+			$subOrdDate = array();//关联投标订单日期
+			$inCustId = array();//投资人客户号
+			$divDetails = array();//还款详情
+			$merPriv = array();
+			$i = 0;
+			$ord = $this->ord_multi($num);
+			foreach($investor as $k=>$v)
+			{
+				$ordId[$i] = $ord[$i];//订单号
+				$ordDate[$i] = substr($ord[$i],0,8);//订单日期
+				$transAmt[$i] = number_format($transamt[$i],2,'.','');//交易金额
+				$fee[$i] = number_format($Fee[$i],2,'.','');//手续费
+				$subOrdId[$i] = $subordid[$i];//关联投标订单号
+				$subOrdDate[$i] = $suborddate[$i];//关联投标订单日期
+				$inCustId[$i] = $v;
+
+				if(floatval($fee)==0)
+				{
+					$divDetails[$i] = '';
+				}
+				else
+				{
+					$divDetails[$i] = $divdetails[$i];//还款详情
+				}
+				$info = array();
+				$info['borrowid'] = $borrowid;//标ID
+				$info['sortorder'] = $sort_order;//期数
+				$info['repaymentid'] = $repaymentid[$i];//还款ID
+				$info['investorid'] = $investorid[$i];//投资人ID
+				$info['type'] = $type;//还款类型（1：会员自己还，2：网站代还，3：担保公司代还）
+				$merPriv[$i] = base64_encode(json_encode($info));
+				
+				$i++;
+			}
+			$this->chinapnr->repayment_multi($merCustId,$ordId,$ordDate,$outCustId,$subOrdId,$subOrdDate,$outAcctId,$transAmt,$fee,$inCustId,$inAcctId,$divDetails,$feeObjFlag,$bgRetUrl,$merPriv,$reqExt = '');
+		}
+		
+		//债权转让
+		/*
+		**$sellcustid 转让人客户号
+		**$creditamt 转让金额（必须是本金）
+		**$dealamt 承接金额（转让金额上下浮动10%）
+		**$biddetails 债权转让明细
+		**$buycustid 承接人客户号
+		**$investid 投资ID
+		*/
+		public function creditAssign($sellcustid,$creditamt,$dealamt,$biddetails,$Fee,$buycustid,$investid)
+		{
+			$ord = $this->ord();
+			$merCustId = $this->merCustId;
+			$sellCustId = $sellcustid;
+			$creditAmt = $creditamt;
+			$creditDealAmt = $dealamt;
+			$bidDetails = $biddetails;
+			$fee = number_format($Fee,2,'.','');
+			if(floatval($fee)==0)
+			{
+				$divDetails = '';
+			}
+			else
+			{
+				$divDetails = '[{"DivAcctId":"MDT000001","DivAmt":"'.$fee.'"}]';
+			}
+			$buyCustId = $buycustid;
+			$ordId = $ord['id'];//订单号
+			$ordDate = $ord['date'];//订单日期
+			$retUrl=Huifu::HTTP.$_SERVER["SERVER_NAME"].Huifu::CREDIT_ASSIGN;
+			$bgRetUrl= Huifu::HTTP.$_SERVER["SERVER_NAME"].Huifu::CREDIT_ASSIGN_BACK;
+			$info = array();
+			$info['investid'] = $investid;
+			$merPriv = base64_encode(json_encode($info));
+			
+			$this->chinapnr->creditAssign($merCustId,$sellCustId,$creditAmt,$creditDealAmt,$bidDetails,$fee,$divDetails,$buyCustId,$ordId,$ordDate,$retUrl,$bgRetUrl,$merPriv,$reqExt = '');
+		}
+		
+		//用户账户支付
+		/*
+		**$usrid 用户客户号（出账客户号）
+		**$transamt 交易金额
+		*/
+		public function usrAcctPay($usrid,$transamt)
+		{
+			$ord = $this->ord();
+			$ordId = $ord['id'];//订单号
+			$usrCustId = $usrid;//出账客户号
+			$merCustId = $this->merCustId;//商户客户号
+			$transAmt = number_format($transamt,2,'.','');//交易金额
+			$inAcctId = "MDT000001";//入账子账户
+			$inAcctType = "MERDT";//入账账户类型
+			$retUrl=Huifu::HTTP.$_SERVER["SERVER_NAME"].Huifu::USR_PAY;//用户账户支付回调地址
+			$bgRetUrl= Huifu::HTTP.$_SERVER["SERVER_NAME"].Huifu::USR_PAY_BACK;//用户账户支付后台回调地址
+			
+			$this->chinapnr->usrAcctPay($ordId,$usrCustId,$merCustId,$transAmt,$inAcctId,$inAcctType,$retUrl,$bgRetUrl,$merPriv = '');
+		}
+		
+		//前台用户间转账接口
+		/*
+		**$usrid 用户客户号（出账客户号）
+		**$incustid 用户客户号（入账客户号）
+		**$transamt 交易金额
+		*/
+		public function usrTransfer($usrid,$incustid,$transamt)
+		{
+			$ord = $this->ord();
+			$merCustId = $this->merCustId;//商户客户号
+			$ordId = $ord['id'];//订单号
+			$usrCustId = $usrid;//出账客户号
+			$inUsrCustId = $incustid;//入账客户号
+			$transAmt = number_format($transamt,2,'.','');//交易金额
+			
+			$retUrl=Huifu::HTTP.$_SERVER["SERVER_NAME"].Huifu::USR_TRANSFER;//前台用户间转账回调地址
+			$bgRetUrl= Huifu::HTTP.$_SERVER["SERVER_NAME"].Huifu::USR_TRANSFER_BACK;//前台用户间转账后台回调地址
+			
+			$this->chinapnr->usrTransfer($merCustId,$ordId,$retUrl,$bgRetUrl,$usrCustId,$inUsrCustId,$transAmt,$merPriv = '',$reqExt);
+		}
+		
+		//自动扣款转账（商户用）
+		/*
+		**$transamt 交易金额
+		**$usrid 收款人客户号
+		*/
+		public function transfer($transamt,$usrid)
+		{
+			$ord = $this->ord();
+			$ordId = $ord['id'];//订单号
+			$outCustId = $this->merCustId;//出账的只能是商户
+			$outAcctId = "MDT000001";//出账子账户
+			$transAmt = number_format($transamt,2,'.','');//交易金额
+			$inCustId = $usrid;//收款人客户号
+			$inAcctId = '';
+			$retUrl=Huifu::HTTP.$_SERVER["SERVER_NAME"].Huifu::TRANSFER;//自动扣款转账（商户用）回调地址
+			$bgRetUrl= Huifu::HTTP.$_SERVER["SERVER_NAME"].Huifu::TRANSFER_BACK;//自动扣款转账（商户用）后台回调地址
+			
+			$this->chinapnr->transfer($ordId,$outCustId,$outAcctId,$transAmt,$inCustId,$inAcctId,$retUrl,$bgRetUrl,$merPriv = '');
+		}
+
+		//自动扣款转账（商户用）
+		/*
+		**$transamt 交易金额
+		**$usrid 收款人客户号
+		*/
+		public function transfer2($transamt,$usrid)
+		{
+			$ord = $this->ord();
+			$ordId = $ord['id'];//订单号
+			$outCustId = $this->merCustId;//出账的只能是商户
+			$outAcctId = "MDT000001";//出账子账户
+			$transAmt = number_format($transamt,2,'.','');//交易金额
+			$inCustId = $usrid;//收款人客户号
+			$inAcctId = '';
+			$retUrl=Huifu::HTTP.$_SERVER["SERVER_NAME"].Huifu::TRANSFER;//自动扣款转账（商户用）回调地址
+			$bgRetUrl= Huifu::HTTP.$_SERVER["SERVER_NAME"].Huifu::TRANSFER_BACK2;//自动扣款转账（商户用）后台回调地址
+			
+			$this->chinapnr->transfer($ordId,$outCustId,$outAcctId,$transAmt,$inCustId,$inAcctId,$retUrl,$bgRetUrl,$merPriv = '');
+		}
+                
+                
+                
+                 //交保证金
+		/*
+		**$usrid 用户客户号
+		**$transamt 交易金额
+		*/
+		public function zwtransfer($transamt)
+		{
+			$ord = $this->ord();
+			$ordId = $ord['id'];//订单号
+			$outCustId = '6000060000758826';//出账的只能是商户
+			$outAcctId = "MDT000001";//出账子账户
+			$transAmt = number_format($transamt,2,'.','');//交易金额
+			$inCustId = '6000060000758826';//收款人客户号
+			$inAcctId = 'DEP000001';
+			$retUrl=Huifu::HTTP.$_SERVER["SERVER_NAME"].Huifu::TRANSFER;//自动扣款转账（商户用）回调地址
+			$bgRetUrl= Huifu::HTTP.$_SERVER["SERVER_NAME"].Huifu::TRANSFER_BACK;//自动扣款转账（商户用）后台回调地址
+			
+			$this->chinapnr->transfer($ordId,$outCustId,$outAcctId,$transAmt,$inCustId,$inAcctId,$retUrl,$bgRetUrl,$merPriv = '');
+		}
+                
+                
+                
+		
+		//余额查询(后台)
+		/*
+		**$usrid 用户客户号
+		*/
+		public function queryBalanceBg($usrid)
+		{
+			$merCustId = $this->merCustId;//商户客户号
+			$usrCustId = $usrid;//用户客户号
+			$result = $this->chinapnr->queryBalanceBg($merCustId,$usrCustId);
+			return $result;
+		}
+		
+		//子账户信息查询
+		public function queryAccts()
+		{
+			$merCustId = $this->merCustId;//商户客户号
+			$result = $this->chinapnr->queryAccts($merCustId);
+			return $result;
+		}
+		
+		//交易状态查询
+		/*
+		**$ordid 订单号
+		**$orddate 订单日期
+		**$querytype 交易类型（L：放款 R：还款 T：投标 C：取现）
+		*/
+		public function queryTransStat($ordid,$orddate,$querytype)
+		{
+			$type = array('L'=>'LOANS','R'=>'REPAYMENT','T'=>'TENDER','C'=>'CASH');
+			$merCustId = $this->merCustId;//商户客户号
+			$ordId = $ordid;//订单号
+			$ordDate = $orddate;//订单日期
+			$queryTransType = $type[$querytype];//交易类型
+			$result = $this->chinapnr->queryTransStat($merCustId,$ordId,$ordDate,$queryTransType);
+			return $result;
+		}
+		
+		//商户扣款对账
+		/*
+		**$begindate 开始时间
+		**$enddate 结束时间
+		**$pagenum 页数
+		**$pagesize 每页记录数
+		*/
+		public function trfReconciliation($begindate,$enddate,$pagenum,$pagesize)
+		{
+			$merCustId = $this->merCustId;//商户客户号
+			$beginDate = $begindate;//开始时间
+			$endDate = $enddate;//结束时间
+			$pageNum = $pagenum;//页数
+			$pageSize = $pagesize;//每页记录数
+			$result = $this->chinapnr->trfReconciliation($merCustId,$beginDate,$endDate,$pageNum,$pageSize);
+			return $result;
+		}
+		
+		//放还款对账
+		/*
+		**$begindate 开始时间
+		**$enddate 结束时间
+		**$pagenum 页数
+		**$pagesize 每页记录数
+		**$querytype 查询类型（L：放款 R：还款）
+		*/
+		public function reconciliation($begindate,$enddate,$pagenum,$pagesize,$querytype)
+		{
+			$type = array('L'=>'LOANS','R'=>'REPAYMENT');
+			$merCustId = $this->merCustId;//商户客户号
+			$beginDate = $begindate;//开始时间
+			$endDate = $enddate;//结束时间
+			$pageNum = $pagenum;//页数
+			$pageSize = $pagesize;//每页记录数
+			$queryTransType = $type[$querytype];//查询类型
+			$result = $this->chinapnr->reconciliation($merCustId,$beginDate,$endDate,$pageNum,$pageSize,$queryTransType);
+			return $result;
+		}
+		
+		//取现对账
+		/*
+		**$begindate 开始时间
+		**$enddate 结束时间
+		**$pagenum 页数
+		**$pagesize 每页记录数
+		*/
+		public function cashReconciliation($begindate,$enddate,$pagenum,$pagesize)
+		{
+			$merCustId = $this->merCustId;//商户客户号
+			$beginDate = $begindate;//开始时间
+			$endDate = $enddate;//结束时间
+			$pageNum = $pagenum;//页数
+			$pageSize = $pagesize;//每页记录数
+			$result = $this->chinapnr->cashReconciliation($merCustId,$beginDate,$endDate,$pageNum,$pageSize);
+			return $result;
+		}
+		
+		//充值对账
+		/*
+		**$begindate 开始时间
+		**$enddate 结束时间
+		**$pagenum 页数
+		**$pagesize 每页记录数
+		*/
+		public function saveReconciliation($begindate,$enddate,$pagenum,$pagesize)
+		{
+			$merCustId = $this->merCustId;//商户客户号
+			$beginDate = $begindate;//开始时间
+			$endDate = $enddate;//结束时间
+			$pageNum = $pagenum;//页数
+			$pageSize = $pagesize;//每页记录数
+			$result = $this->chinapnr->saveReconciliation($merCustId,$beginDate,$endDate,$pageNum,$pageSize);
+			return $result;
+		}
+		
+		//生成订单号和订单日期
+		public function ord()
+		{
+			$nowtime = time();
+			$ord = array();
+			$ord['date'] = date("Ymd",$nowtime);
+			$ord['id'] = date("YmdHis",$nowtime).rand(1000,9999);
+			return $ord;
+		}
+		
+		//生成订单号
+		public function ord_multi($num)
+		{
+			for($i=0;$i<$num;$i++)
+			{
+				$nowtime = time();
+				$this->temp[] = date("YmdHis",$nowtime).rand(1000,9999);
+			}
+			$tempcopy = array_unique($this->temp);
+			$count = count($tempcopy);
+			if($count < $num)
+			{
+				$this->temp = $this->tempcopy;
+				$this->tempcopy = array();
+				$this->ord_multi($num-$count);
+			}
+			else
+			{
+				$ord = array();
+				$ord = $this->temp;
+				$this->temp = array();
+			}
+			
+			return $ord;
+		}
+
+	}

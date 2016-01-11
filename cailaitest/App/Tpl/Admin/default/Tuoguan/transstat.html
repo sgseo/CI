@@ -1,0 +1,33 @@
+<include file="Public:_header" />
+<tagLib name="htmlA" />
+<script type="text/javascript">
+function submit()
+{
+	ordid = $("#ordid").val();
+	orddate = $("#orddate").val();
+	type = $("#type option:selected").val();
+	data = {"ordid":ordid,"orddate":orddate,"type":type};
+	$.ajax({
+		type: "POST",
+		url: "__URL__/dotransstat",
+		data: data,
+		success: function(msg){
+			$("#res").html(msg);
+		}
+	});
+}
+</script>
+<div class="so_main">
+<input type="text" id="ordid" name="ordid" />
+<input type="text" id="orddate" name="orddate" />
+<select id="type" name="type" />
+<option value="L">放款</option>
+<option value="R">还款</option>
+<option value="T">投标</option>
+<option value="C">取现</option>
+</select>
+<input type="button" value="提交" onclick="submit()" />
+<br />
+<span>结果：</span><div id="res"></div>
+</div>
+<include file="Public:_footer" />

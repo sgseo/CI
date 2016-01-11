@@ -1,0 +1,149 @@
+<include file='Public:_header'/>
+<script src="__PUBLIC__/Js/calendar/jquery.js"></script>
+<!-- 日期时间插件 -->
+<script type="text/javascript" src="__PUBLIC__/Js/calendar/kalendar.js" ></script>
+<script type="text/javascript" src="__PUBLIC__/Js/underscore.1.8.3.js" ></script>
+
+<link type="text/css"  rel="stylesheet" href="__PUBLIC__/Js/calendar/kalendar.css" ></link>
+<div class="form-inline definewidth m20">我的催收日历 &there4;你好,{$Think.session.username},今天是<script type="text/javascript">
+  var date=new Date();
+  var year=date.getFullYear()+"年";
+  var month=date.getMonth()+1+"月";
+  var day=date.getDate()+"日";
+  var weekday=new Array(7);
+    weekday[0]="日";
+    weekday[1]="一";
+    weekday[2]="二";
+    weekday[3]="三";
+    weekday[4]="四";
+    weekday[5]="五";
+    weekday[6]="六";
+  var week="星期"+weekday[date.getDay()];
+  document.write(year+month+day+week);
+</script></div>
+<!-- <div id="container" class="inv_charts"  style="width:450px; height: 250px; margin: 0 0;">your browser doesn't support the highcharts.</div> -->
+<div>
+<div id='wrap' style="text-align:center;font:normal 14px/24px 'MicroSoft YaHei';">
+  <!-- 因为日历初始显示的内容要根据js获得的日期-时间来确定，所以html中不写，在js中用另一种形式添加 -->
+</div>
+ <div class="list" style='width:270px;margin:20px auto;height:100%'>
+      <div id='jj' style='display:none'>
+         <span><font color="#F45A00" id='tip'></font></span>
+      </div>
+  </div> <!-- list -->
+</div>
+<!-- 由于jschart 不支持IE 所以更换higcharts -->
+<style type='text/css'>
+  .selectChange{
+    font-size: 12px;
+
+  }
+</style>
+    </head>
+    <body>
+  <script type='text/javascript'>
+
+    $(function(){
+    var ali={$res};
+     //拆分数组
+     var fandp=ali.map(function(i){
+          return  i.split(',');
+     });
+     var newali=new Array();
+     for(var j in fandp)
+     {
+        newali.push(fandp[j][0].split('&'));
+     }
+    //第一步把组数有重复的值去掉 放进一个独立数组
+       var tep=[];
+       newali.map(function(n)
+        {
+          tep[n[0]]=n[0]+"&"+n[1]+"&"+n[2]+"&"+n[3];//注意如果下标自增的话还会出现相同元素所以一定要n[0] （也就是日期）
+        });
+    //第二步把数组循环遍历放进新数组 
+       var trans2=[];
+       for(var x in tep)
+       {
+        trans2.push(tep[x]);
+       }
+    //第三步把之前重复的那些元素全部找出来放进一个数组
+       var finalArr=[];
+        ali.map(function(n,k){
+        trans2.map(function(j,l)
+        {
+          if(j!=n && (j.substring(0,10)==n.substring(0,10)))
+          {
+              finalArr.push(n);
+          }
+        })
+       });
+    //第四步把两者循环遍历 相同日期的就合并 然后放进一个数组里 finalarr
+    var farr=[];
+      trans2.map(function(n,k){
+        finalArr.map(function(m,i)
+        {
+          if(n.substring(0,10)==m.substring(0,10))
+          {
+             n=(n+"&").concat(m);
+          }
+        })
+        farr.push(n);
+      });
+    //第五步把他写进data-amount事件 大功告成
+      for(var x in farr)
+      {
+        var date=parseInt(farr[x].substring(8,10));
+        var bbQ=farr[x];
+        var total=FindCount(bbQ,"姓名");
+        var bbQ="今日应催收的人员有"+total+"人</br>"+bbQ.replace(/\d{0,4}-\d{0,2}-\d{0,2}/g,"\t").replace(/;/g,"</br>").replace(/xxxxxxxxxxx/g,"无").replace(/&/g,'');
+        $("#"+date).attr('data-amount',bbQ);
+      }
+      //应收人员有多少人
+
+    function FindCount(targetStr, FindStr) {
+        var start = 0;
+        var aa = 0;
+        var ss =targetStr.indexOf(FindStr, start);
+        while (ss > -1) {
+            start = ss + FindStr.length;
+            aa++;
+            ss = targetStr.indexOf(FindStr, start);
+        }
+        return aa;
+    }
+
+      $("#day ul li").each(function(){
+        var ea=$(this).attr('data-amount');
+        var html=$(this).html();
+        if(ea!=undefined)
+        {       $(this).addClass('active');
+              //解决 当天 有收款事件无法区别
+                if($(this).hasClass('today'))
+                {
+                  $(this).css('color',"#f9f9f9");
+                }
+                $(this).mouseover(function(){
+                $("#tip").html(ea);//这里应该填写催收人员名单和本期还款
+                $("#jj").show().addClass(tip);
+            }).mouseout(function(){
+               $("#jj").hide();
+            })
+        }else{
+            $(this).mouseover(function(){
+                $("#jj").hide();
+                //屏蔽空元素li出现mouseFloat样式
+                if(!html)
+                {
+                  if($(this).hasClass('mouseFloat'))
+                  {
+                    $(this).removeClass('mouseFloat');
+                  }
+                }
+            })
+        }
+      })
+
+    })
+
+
+</script>

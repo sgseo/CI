@@ -1,0 +1,88 @@
+<include file='Public:_header'/>
+<ol class="breadcrumb">
+  <li><a href="#">业务管理-></a></li>
+  <li class="active">做单过程</li>
+</ol>
+    <div class="form-inline definewidth m20">做单过程列表 &there4;</div>
+<!--     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
+    <a href='__URL__/allotlist?status=4' class="btn btn-primary">已分配</a>
+    <a href='__URL__/allotlist?status=1' class="btn btn-primary">刚录入</a>
+    <a href='__URL__/allotlist?status=2' class="btn btn-primary">已通过(未分配)</a>
+    <a href='__URL__/allotlist?status=3' class="btn btn-primary">已拒绝</a> -->
+<form class="form-inline definewidth m20" action="__URL__/allotlist" method="post">  
+    借款人：
+    <input type="text" name="cstname"  class="abc input-default" placeholder="搜索借款人" value="">&nbsp;&nbsp;  
+
+    <button type="submit" class="btn btn-primary">查询</button>&nbsp;&nbsp; 
+    <!-- <a href="__URL__/cl_to_excel" class="btn btn-success" id="addnew">下载</a>  -->
+</form>
+        <!-- 我的个人信息开始 -->
+
+<table class="table table-bordered table-hover definewidth m10" >
+    <thead>
+    <tr>
+     
+        <th>借款标号</th>
+        <th>借款标题</th>
+        <th>借款人</th>
+        <th>借款金额</th>
+        <th>期限</th>
+        <th>利率（%）</th>
+        <th>借款类型</th>
+        <th>资金方</th>
+        <th>做单业务员</th>
+        <!-- <th>选业务员</th> -->
+        <!-- <th>操作</th> -->
+        <!-- 客户姓名，身份证号码，联系电话，贷款金额，期限，利率， -->
+    </tr>
+    </thead>
+    <volist name='list' id='vo' key='k'>
+         <tr>
+            <td>{$vo.id}</td>
+            <td><a href='__APP__/Home/Role/processdetail?id={$vo.id}'>{$vo.title}</a></td>
+            <td>{$vo.cstname}</td>
+            <td>{$vo.borrowamt}</td>
+            <td>{$vo.duration}</td>
+            <td>{$vo.rate}</td>
+             <td><eq name='vo.category' value='car'>车抵押&nbsp;<input type="button" value="&nabla;" onclick="demo08({$vo.id});" /></eq><eq name='vo.category' value='fang'>房抵押&nbsp;<input type="button" value="&nabla;" onclick="demo08({$vo.id});" /></eq></td>
+            <td>资金方</td>
+            <td>{$vo.username}</td>
+           </tr>
+        <tr>
+            <td><b>现场调查</b></td><td><neq name='vo.xcdc' value='0'>标记</neq><eq name='vo.xcdc' value='0'>未标记</eq></td>
+            <td><b>强制公证</b></td><td><neq name='vo.qzgz' value='0'>通过</neq><eq name='vo.qzgz' value='0'>未通过</eq></td>
+            <td><b>全委公证</b></td><td><neq name='vo.qwgz' value='0'>通过</neq><eq name='vo.qwgz' value='0'>未通过</eq></td>
+            <td><b>房产抵押</b></td><td colspan='2'><neq name='vo.fcdy' value='0'>通过</neq><eq name='vo.fcdy' value='0'>未通过</eq></td>
+        <tr>
+    </volist>
+    
+    </table>
+     <!-- 我的个人信息结束 -->
+     <div class='page'>
+          {$page}
+    </div>
+  
+</body>
+</html>
+<script type='text/javascript'>
+    $("select[name=salesman]").change(function(){
+        // var thisid=$(this).attr('id');
+        // var sid=thisid.substr(1);
+        var realsid=$(this).find("option:selected").val();
+        var pro=$(this).find("option:selected").attr('data-pro');
+        $.ajax({
+            type:"get",
+            url:"__URL__/allocated",
+            data:{respid:realsid,propid:pro},
+            // dataType:"josn",
+            success:function(r){
+            jBox.tip('操作成功.','success');
+            location.reload();
+           // console.log(r);
+            }
+
+        })
+    })
+</script>
+
+ 

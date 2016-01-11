@@ -1,0 +1,66 @@
+<include file="Public:_header_common" /><include file="Public:_header_main" />
+<title>{$glo.web_name}赎回投资</title>
+<meta http-equiv="keywords" content="{$glo.web_keywords}" />
+<meta http-equiv="description" content="{$glo.web_descript}" />
+<link href="__ROOT__/Style/Help/css/bangzhu.css" rel="stylesheet" type="text/css">
+<table width="979" border="0" cellspacing="0" cellpadding="0" class="cc">
+  <tbody>
+    <tr>
+      <td height="80" colspan="2" background="__ROOT__/Style/Help/images/touzhioneca.jpg"><table width="205" border="0" cellspacing="0" cellpadding="0">
+          <tbody>
+            <tr>
+              <td align="center" class="cabout"><span class="f22 baitis fya1"> <!-- 赎回投资 --></span></td>
+            </tr>
+          </tbody>
+        </table></td>
+    </tr>
+    <tr>
+      <td width="21"></td>
+      <td width="957"><div class="bkki"> <br>
+          <table width="81%" border="0" cellspacing="0" cellpadding="0" class="cc">
+            <tbody>
+              <tr align="center">
+                <td height="284" colspan="2"><p>&nbsp;</p>
+                  <p align="center" class="bkkifont f18 line_35"><img src="__ROOT__/Style/Help/images/babb1.jpg" width="794" height="234"></p>
+                  <br>
+                  <div class="lineone5_1">
+                  </div>
+                  <br></td>
+              </tr>
+              <tr>
+                <td colspan="2" align="left"><span class="line_35 f20 fya1 bkkifont "><strong class="gay">什么是债权转让?</strong></span> <br>
+                  <br>
+                  <p class="bkkifont f14 fya1 line_28">债权转让是指债权持有人通过本平台债权转让，平台将债权挂出出售，将所持有的债权转让给购买人的操作。 </p>
+				  <div class="lineone5_1"> </div>
+                  <br></td>
+              </tr>
+              <tr>
+                <td height="73" colspan="2" align="left" class="line_35 bkkifont fya1 f20"><strong class="gay">债权转让的条件?</strong></td>
+              </tr>
+              <tr>
+                <td colspan="2" align="left" class="f14 fya1 bkkifont line_35">1、 合同成立日必须是成立日为2014年11月20日以后投资的标的；<br>
+                  <p>2、 投资完成后，必须持有债权达到30个自然日，且借款到期日具债权转让日必须大于30  
+个自然日；
+</p>
+				  <div class="lineone5_1"></div>
+                  <br></td>
+              </tr>
+            </tbody>
+          </table>
+		  <table width="81%" border="0" cellspacing="0" cellpadding="0" class="cc">
+            <tbody>
+              <tr>
+                <td colspan="2" align="left"><span class="line_35 f20 fya1 bkkifont "><strong class="gay">债权转让流程</strong></span> <br>
+                  <br>
+                  <p class="bkkifont f14 fya1 line_28">当投资用户持有的债权处于可转让状态时，理财用户可以在“我的账户”——“债权转让”——“可转让债权”页面进行债权转让操作，填写转让的折扣，将债权挂出，其它用户对此债权进行了购买后即完成转出。</p>
+				  <div class="lineone5_1"> </div>
+                  <br></td>
+              </tr>
+             
+            </tbody>
+          </table>
+        </td>
+    </tr>
+  </tbody>
+</table>
+<include file="Public:_footer" />

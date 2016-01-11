@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<% include file="/public/head.html" %>
+<link href="/statics/css/font.css" type="text/css" rel="stylesheet"/>
+<style>
+ #m_menu{width:100%; height:20px;margin:0 auto; border-top:1px solid #b1b1b1; background:#f8f8f8; padding:2px 0 30px 0; overflow:hidden;text-align:center; position: absolute; bottom: 0px;}  
+</style>
+</head>
+
+<body>
+<div id="m_base"> 
+<div id="m_zichan">
+<div class="m_zhanghuye">账户余额</div>
+<div class="m_zhanghuje fixed" ><% $data[account_money] %></div>
+<div class="m_dslx">待收利息 <span class="fixed"><% $data[wait_interest] %></span></div>
+<div class="m_dslx ">待收总额 <span class="fixed"><% $data[money_collect] %></span></div> 
+</div> 
+  
+<div id="m_zongzic">
+<div class="m_djzj">冻结资金 <span class="fixed"><% $data[money_freeze] %></span></div>
+<div class="m_djzj">总资产 <span class="fixed"><% $data[all_money] %></span></div> 
+</div>
+
+<div id="m_tblist">
+<div class="m_listnav">
+<ul>
+<li><a href="/consumer/tendbacking">我的投标<i class="iconfont">&#xe6a7;</i></a></li>
+<li><a href="/consumer/recommend">我的推荐<i class="iconfont">&#xe6a7;</i></a></li>
+<li><a href="/consumer/dealhisory">交易记录<i class="iconfont">&#xe6a7;</i></a></li>
+<li><a href="/consumer/borrowpaying">我的借款<i class="iconfont">&#xe6a7;</i></a></li>
+</ul>
+</div> 
+</div>
+<div class='m_but'>
+<div class="m_czbut"><a href="/consumer/recharge">充值</a></div> 
+<div class="m_txbut"><a href="/consumer/withdrawals">提现</a></div> 
+</div>
+<div class="clear"></div> 
+<script type='text/javascript'>  selectid=3 
+    if( isNaN(selectid)){
+        //判断
+        selectid=0;
+    }else{
+        //alert(selectid);
+       var _aTags=document.querySelectorAll('#m_menu li a');
+       _aTags[selectid-1].className='dqmenu';
+    }
+</script>
+<% include file="/public/foot.html" %> 
+</div>
+</body>
+</html>

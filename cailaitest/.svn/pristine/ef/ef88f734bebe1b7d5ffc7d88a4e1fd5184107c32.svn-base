@@ -1,0 +1,448 @@
+<include file="Public:_header_common"/>
+<title>我的账户-- {$glo.web_name}</title>
+<!--{$uclogin}-->
+<link rel="stylesheet" type="text/css" href="__ROOT__/Style/JQtip/tip-yellowsimple/tip-yellowsimple.css" />
+<script language="javascript" src="__ROOT__/Style/JQtip/jquery.poshytip.js" type="text/javascript"></script>
+<!-- 图表的js -->
+<script type="text/javascript" src="__ROOT__/Style/H/js/jscharts_mb.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+	function displayDiv(num) {
+		var obj = document.getElementById("udiv" + num);
+		var obja = document.getElementById("ulink" + num);
+		var objtop = document.getElementById("utop" + num);
+		var objbottom = document.getElementById("ubottom" + num);
+
+		if (obj.style.display == 'none') {
+			objbottom.style.display = '';
+			obj.style.display = '';
+			objtop.style.backgroundImage = "url(__ROOT__/Style/M/images/account/uctop.jpg)";
+			obja.innerHTML = "-";
+		}
+		else {
+			obj.style.display = 'none';
+			objbottom.style.display = 'none';
+			objtop.style.backgroundImage = "url(__ROOT__/Style/M/images/account/ucall.jpg)";
+			obja.innerHTML = "+";
+		}
+	}
+	
+	$(function(){
+	$('.xtitle').poshytip({
+		className: 'tip-yellowsimple',
+		showOn: 'hover',
+		alignTo: 'target',
+		alignX: 'center',
+		alignY: 'top',
+		offsetX: 0,
+		offsetY: 5
+	});
+});
+</script> 
+<style type="text/css">
+
+.dw_2_show #fragment-3{ font-size:14px; width:725px;}
+.fontred { color: #005B9F; }
+.infolist { margin: 5px 0 10px 20px; border: solid 1px #ddd; padding: 2px; width: 715px; text-align: left; }
+.infolist table td { height: 28px; }
+.infolist .myfont { color: #ff6500; font-weight: bold; }
+#pager a.current { background-color: #ddd; border: solid 1px #ccc; color: #fff; }
+#pager a:hover { background-color: #ddd; border: solid 1px #ccc; color: red; }
+.tdHeard, .tdContent { border: solid 1px #ccc; font-size:14px; }
+.tdContent a { text-decoration: underline; }
+.tdHeard { background-image: url(__ROOT__/Style/H/images/thbg.jpg); height: 29px; font-weight:normal; }
+.divtitle { height: 20px; line-height: 30px; text-align: left; padding-left: 20px; font-size: 8px; text-indent: 25px; margin-top: 8px; margin-bottom: 1PX; }
+#noinfotip .tdContent{width:auto}
+.tdContent a{color:#03F; text-decoration:none}
+ 
+</style>
+<include file="default:Public:_header_main" group="Home"/>
+
+<!--中部开始-->
+<div class="Cmm" > 
+<include file="Public:_left" />
+
+<div id="hy_right" style="position:relative;"> 
+<if condition="$hasbind eq 0">
+<div id="popbanner"><div class="popclose"></div><div class="clear"></div></div><div class="popbg"></div></if>   
+ 
+<div class="dw_list">
+<div class="dw_top"> 
+<div class="touxiang"> <a href="__APP__/member/user#fragment-1" title="点击进行头像更换"> <img style="width:98px; height:98px;"  alt="点击进行头像更换" src="{$UID|get_avatar=###}"  /></a> </div>    
+<div class="heng1"> <span><?php
+$h=date('G');
+if ($h<11) echo '早上好';
+else if ($h<13) echo '中午好';
+else if ($h<17) echo '下午好';
+else echo '晚上好';
+?> , <font color="#f35a00"><?php if(!empty($_SESSION['real_name'])){echo $_SESSION['real_name']; }else{ echo $_SESSION['u_user_name'];} ?></font> ! </span> 
+<a target="_blank" href="/member/index/tuoguanlogin" id="login" style="color:#666; font-size:16px;">[登录汇付宝]</a></div>
+
+<div class="gradearea">
+<span class="grade">
+<i class="icon_planner" <eq name='vip.id_status' value='1'>style="background-position:-36px 0px"</eq>  data-type="普通"></i> 
+<i class="icon_realed" <neq name='bank.bank_num' value='null'>style="background-position:-108px 0px"</neq>></i> 
+<i class="icon_bindcard" <eq name='vip.email_status' value='1'>style="background-position:-180px 0px"</eq>></i>
+<i class="icon_bindcarded" <eq name='vip.safequestion_status' value='1'>style="background-position:-252px 0px"</eq>></i>
+</span> 
+
+<span class="security_level">安全等级：<span>低</span> </span>
+<span class="balancearea">注册时间： <span class="g-fr last_time">{$minfo.reg_time|date='Y-m-d H:i:s',###}</span></span>                           
+</div>
+</div>
+<div class="as_info">
+<ul>
+<li>资产总额：<span> {$minfo['account_money']+$minfo['back_money']+$minfo['money_collect']+$minfo['money_freeze']|Fmoney=###}</span></li>
+<li>
+可用余额：
+<span>{$minfo['account_money']+$minfo['back_money']|Fmoney=###}</span>
+</li>
+<li>
+冻结总额：
+<span>
+  {$minfo['money_freeze']|Fmoney=###}
+</span>
+</li>
+<li>
+待收总额：
+<span>{$minfo['money_collect']|Fmoney=###}</span>
+</li>
+<li>
+待收本金：
+<span>{$minfo['money_collect']-$benefit['interest_collection']|Fmoney=###}</span> 
+</li>
+<li>
+待收利息：
+<span>{$benefit['interest_collection']|Fmoney=###}</span>
+</li>
+</ul>
+</div>
+<div class="dw_p2" style="margin-top:18px;"> 
+<if condition="$hasbind eq 0"><a href="/member/index/bind" class="dw_cz" title="充值" > 充值 </a>
+<else/><a href="__APP__/member/charge#fragment-1" class="dw_cz" title="充值" > 充值 </a></if> 
+<if condition="$hasbind eq 0"><a href="/member/index/bind"  class="dw_tixian"  title="提现"> 提现</a> 
+<else/><a href="__APP__/member/withdraw#fragment-1"  class="dw_tixian"  title="提现"> 提现</a> 
+</if> 
+<if condition="$hasbind eq 0"><a href="/invest/index"  class="dw_tz"  title="马上投资"> 马上投资 </a> 
+<else/><a href="/invest/index"  class="dw_tz"  title="马上投资"> 马上投资</a> 
+</if> 
+<a href="__APP__/member/promotion/promotion/" class="dw_yqhy"  title="邀请有奖"> 邀请有奖</a> 
+</if>
+</div>
+</div> 
+<div class="dw_list">
+<div class="til-lr"><strong class="l">投资走势</strong><strong class="r">收款计划</strong></div>
+<!-- 判断千万百元 -->
+<input type='hidden' value='{$char}' id='char'/>
+<div class="inv_charts" id="chart_container" style='width:450px;'></div> 
+<script type="text/javascript">
+var my = {$arr};
+console.log(my);
+var month=[01,02,03,04,05,06,07,08,09,10,11,12];
+var res=my.map(function(v,k){
+  return [month[k],parseInt(v)];
+});
+var c=$("#char").val();
+//console.log(res);
+var myData =res;
+var date=new Date();
+var cm=date.getMonth();
+var myChart = new JSChart('chart_container', 'line');
+myChart.patchMbString();
+myChart.setFontFamily("微软雅黑");
+myChart.resize(440,270);//重置图表大小，默认x/y为400px/300px，新值应是默认值的整数倍.
+myChart.setAxisNameX("月份");
+myChart.setAxisNameY(c);
+myChart.setTitle('投资走势');
+myChart.setTitleColor("#f35a00");
+myChart.setAxisValuesColor('#f35a00');
+myChart.setTextPaddingLeft(8);
+myChart.setLineColor('#f45a00', 'green');
+myChart.setIntervalEndX(12);//设置x轴的结束值，如果;//设置了起始值，则此值必须比起始值大。
+myChart.setIntervalStartX(1);//设置x轴的起始值，如果;//设置了结束值，则此值必须比结束值
+myChart.setAxisValuesNumberX(12);
+myChart.setGraphLabelShadowColor('#c0392b');
+myChart.setAxisNameColor('#f35a00');
+myChart.setTooltipPosition('ne');//设置提示位置,取值范围 nw, ne, sw and se  默认se。
+myChart.setDataArray(myData,"green");
+myChart.draw();
+</script>
+
+<!-- 日期时间插件 -->
+<script type="text/javascript" src="__ROOT__/Style/H/css/calendar/js/kalendar.js" ></script>
+<link type="text/css"  rel="stylesheet" href="__ROOT__/Style/H/css/calendar/css/kalendar.css" ></link>
+<div class="total-data" style='width:280px;'>
+<div id='wrap' style="text-align:center;font:normal 14px/24px 'MicroSoft YaHei';">
+  <!-- 因为日历初始显示的内容要根据js获得的日期-时间来确定，所以html中不写，在js中用另一种形式添加 -->
+</div>
+
+  <div class="list">
+      <div  id='jj' style='display:none'>
+         <a >预期收益&nbsp;&yen;<font color="#F45A00" id='tip'></font>元</a>
+      </div>
+  </div> <!-- list -->
+<script type='text/javascript'>
+
+    $(function(){
+    var ali={$ali};
+    //这里为日期
+    var y=ali.map(function(n){
+      return n.substring(2,4);//从第二位开始截取到第四位 下标从1开始
+    });
+    //这里为收益
+     var z=ali.map(function(n){
+      return n.substring(5);
+    });
+    var x=z.map(function(v,k){
+       return [y[k],v];;
+      });
+
+      for(var i in x)
+      {
+           var bbQ=x[i][1];
+        $("#"+parseInt(x[i][0])).attr('data-amount',bbQ);
+      }
+
+      $("#day ul li").each(function(){
+        var ea=$(this).attr('data-amount');
+        var html=$(this).html();
+        if(ea!=undefined)
+        {       $(this).addClass('active');
+              //解决 当天 有收款事件无法区别
+                if($(this).hasClass('today'))
+                {
+                  $(this).css('color',"#f9f9f9");
+                }
+                $(this).mouseover(function(){
+                $("#tip").html(ea);
+                $("#jj").show().addClass(tip);
+            }).mouseout(function(){
+               $("#jj").hide();
+            })
+        }else{
+            $(this).mouseover(function(){
+                $("#jj").hide();
+                //屏蔽空元素li出现mouseFloat样式
+                if(!html)
+                {
+                  if($(this).hasClass('mouseFloat'))
+                  {
+                    $(this).removeClass('mouseFloat');
+                  }
+                }
+            })
+        }
+      })
+
+    })
+
+
+</script>
+</div><!-- total-data -->
+</div><!-- eof dw_list -->
+
+<div class="dw_list">
+<div class="til-lr"><strong class="l">推荐项目</strong></div>
+<div class="related_items">
+<table width="765px" cellspadding="0" cellpadding="0" border="0">
+<thead>
+<tr>
+<th width="28%">项目名称</th>
+<th width="14%">项目金额（元）</th>
+<th width="10%">年化收益率</th>
+<th width="11%">项目期限</th>
+<th width="16%">还款方式</th>
+<th width="11%">操作</th>
+</tr>
+</thead>
+<tbody> 
+<!-- 循环结束 -->
+<volist name='listBorrow.list' id='vb'>
+<tr>
+<td> {:getIco($vb)}<a href="{$vb.id|getInvestUrl=###}"title="{$vb.borrow_name}">{$vb.borrow_name|cnsubstr=###,11}</a></td> 
+<td>{$vb.borrow_money|getMoneyFormt=###}</td>
+<td><span>{$vb.borrow_interest_rate}</span>%</td>
+<td>
+            <if condition="$vb['repayment_type'] eq 1">
+              {$vb.borrow_duration}天
+            <else/>
+              {$vb.borrow_duration}个月
+            </if>
+</td>
+<td>{$vb.repayment_type}</td>
+<td><a target="_blank" href="{$vb.id|getInvestUrl=###}" class="buy">加入</a></td>  
+</tr> 
+</volist>
+<!-- 循环结束 -->
+</tbody>
+</table>
+</div>
+</div>
+   
+   
+
+</div>
+  <div style="clear:both"></div>
+  <script type="text/javascript">
+  $('#dwtipkff').click(function(){
+  $(this).parent().hide();
+  });
+function huandong(a){
+    var a1=$(a).children('ul').children();
+    var a2=$(a).children('div').children();
+
+    a1.click(function(){
+    var index=$(this).index();
+    $(this).addClass('on').siblings().removeClass("on");
+    a2.hide().eq(index).show();
+    if(index==2){
+    var x={};
+        $.ajax({
+                url: "__URL__/zwtendbacking",
+                data: x,
+                timeout: 5000,
+                cache: false,
+                type: "get",
+                dataType: "json",
+                success: function (d, s, r) {
+
+                    if(d) $("#fragment-3").html(d.html);//更新客户端 作个判断，避免报错
+
+                }
+            });
+    
+}
+    if(index==3){
+        var x={};
+            $.ajax({
+                    url: "__URL__/zwborrowpaying",
+                    data: x,
+                    timeout: 5000,
+                    cache: false,
+                    type: "get",
+                    dataType: "json",
+                    success: function (d, s, r) {
+                        if(d) $("#fragment-4").html(d.html);//更新客户端 作个判断，避免报错
+
+                    }
+                });
+    }
+
+});
+}
+huandong('#dw_huadong');
+function jfun_dogetpaypass(){
+	var ux = $("#payemailname").val();
+	if(ux==""){
+		$.jBox.tip('请输入用户名或者邮箱','tip');
+		return;
+	}
+	$.jBox.tip("邮件发送中......","loading");
+	$.ajax({
+		url: "__URL__/dogetpaypass",
+		data: {"u":ux},
+		//timeout: 5000,
+		cache: false,
+		type: "post",
+		dataType: "json",
+		success: function (d, s, r) {
+			if(d){
+				if(d.status==1){
+					$.jBox.tip("发送成功，请去邮箱查收",'success');
+					$.jBox.close(true);
+				}else{
+					$.jBox.tip("发送失败，请重试",'fail');
+				}
+			}
+		}
+	});
+
+}
+
+function getpaypassword() {
+	$.jBox("get:__URL__/getpaypassword", {
+		title: "找回支付密码",
+		width: "auto",
+		buttons: {'发送邮件':'jfun_dogetpaypass()','关闭': true }
+	});   
+}
+
+$("#duizhang").click(function()
+{
+	$.ajax({
+	type: "POST",
+	url: "/member/index/duizhang",
+	success: function(res){
+		if(res==1)
+		{
+			window.location.href=window.location.href;
+		}
+	}
+	});
+})
+</script>
+</div> 
+<style>
+#popbanner{width:730px;height:109px;position: absolute;left: 42%;
+		top: 30%;
+		margin-top: -190px;
+		margin-left: -355px;
+		background: url(/UF/pop.png) no-repeat;
+		z-index: 99999;
+		display: none;
+	}
+	.popbg{
+		background: #333;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+
+		position: fixed;
+		z-index: 9999;
+		filter:alpha(opacity=40);
+		-moz-opacity:0.4;
+		opacity:0.4;
+		display: none;
+	}
+	.popclose{
+		width: 40px;
+		height: 40px;
+		float: right;
+		cursor: pointer;
+                position:absolute;
+                top:0;
+                left:95%;
+	}
+	.clear{
+		clear: both;
+	}
+</style>
+
+
+<script>
+	function getCookie(c_name) {
+		return "";
+	}
+
+	var popbg = $('.popbg');
+	var popbanner = $('#popbanner');
+	var popclose = $('.popclose');
+
+	// ;//设置弹出
+	if(getCookie('homepophide') == '') {
+		// ;//设置背景层
+		popbg.css({'width':$(window).width(),'height':$(document).height()}).show();
+		popbanner.fadeIn();
+	}
+
+	// 关闭效果
+	popclose.click(function(){
+		popbg.hide();
+		popbanner.hide();
+		//setCookie('homepophide', 1, 30);
+	})
+</script>
+
+
+<include file="default:Public:_footer" group="Home" />

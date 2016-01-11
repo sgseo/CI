@@ -1,0 +1,92 @@
+<style type="text/css">
+.pop-box{ width:440px; height:auto; overflow:hidden; float:left; padding:15px 0;}
+.pop-box li{ width:100%; float:left; margin-bottom:15px;}
+.pop-box li h2{width:100px; height:30px; line-height:30px; font-size:12px; float:left; text-align:right; margin-right:10px;}
+.pop-box li b{width:auto; height:30px; font-size:12px; line-height:30px; float:left; padding:0 5px;}
+.pop-box li span{width:200px; height:30px; font-size:12px; line-height:30px; float:left;}
+.pop-box li input.normal{width:140px; height:22px; font-size:12px; float:left; padding:3px; border:1px solid #ddd;}
+.pop-box li input.button{width:140px; height:40px; font-size:12px; color:#fff; float:left; border:0; margin:30px 0 30px 155px; border-radius:4px; background:#f39800;}
+</style>
+<ul class="pop-box" id="tips">
+		<li>
+			<h2>转让的债权:</h2>
+			<span>{$borrows['borrow_name']}</span>
+		</li>
+		<li>
+			<h2>本金:</h2>
+			<span>￥{$borrows['investor_capital']}</span>
+		</li>
+		<li>
+ 			<h2>最高转让价格:</h2>
+			<span>￥{$info['capital']*110/100}</span>
+		</li>
+		<li>
+			<h2>转让手续费:</h2>
+			<span>￥ <font id="fee">0</font> (转让价格的{$debt_fee}%)</span>
+		</li>
+		<li>
+			<h2>转让价格:</h2>
+			<input type="text" name="money" id="money" class="normal"/>
+			<b>元</b>
+			<font color="red">*</font>
+		</li>
+	 
+		<li>
+			<input type="hidden" name="invest_id" id="invest_id" value="{$invest_id}">
+			<input type="button" name="dosubmit" id="dosubmit" class="button" value="确认转让">
+		</li>
+</ul>
+<script type="text/javascript">
+function myrefresh() 
+{ 
+    window.location.reload(); 
+}
+var debt_fee = {$debt_fee};
+//var highest_price = {$info['capital']+$info['interest']};
+var highest_price = {$info['capital']*110/100};
+ $(document).ready(function(){
+    $("#money").bind('input money',function(){
+        var money = parseFloat($("#money").val().replace(/(<br[^>]*>|  |\s*)/g,''));
+        if(money>highest_price){
+            alert("您已经高出了最高价格，将无法转让！");
+        }
+        if(money==='0'){
+            $("#money").val('');
+        }
+        fee = Math.round(money*debt_fee)/100;
+        $("#fee").html(fee);
+    })
+});
+$("#dosubmit").click(function(){
+    var money = parseFloat($("#money").val().replace(/(<br[^>]*>|  |\s*)/g,''));
+   // var paypass = $("#paypass").val();
+    var invest_id = $("#invest_id").val();
+    if(!invest_id){
+        alert("缺少参数，请与管理员联系！");
+        return false;
+    }
+    if(!money){
+        alert("请输入转让价格！");
+        return false;
+    }else if(money> highest_price){
+        alert("转让价格高出了最高转让价格！");
+        return false;
+    }
+    /*if(!paypass){
+        alert("请输入支付密码！");
+        return false;
+    }*/
+    if(confirm('您确定以￥'+money+'元的价格转让债权吗?')){
+        $.jBox.tip("数据处理中，请稍候......",'loading');
+		$.post("__URL__/sell", {"money":money, "invest_id":invest_id}, function (j){
+			if(j.status){
+				$.jBox.tip('债权转让成功',"success");
+				setTimeout(function (){ location.reload();}, 1000);
+			}else{
+				$.jBox.tip(j.message);
+			}
+		
+		}, "json");
+    }
+})
+</script>

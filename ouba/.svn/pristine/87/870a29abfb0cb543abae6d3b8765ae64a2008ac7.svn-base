@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Css/bootstrap-responsive.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Css/style.css" />
+    <script type="text/javascript" src="__PUBLIC__/Js/jquery.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Js/jquery.sorted.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Js/bootstrap.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Js/ckform.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Js/common.js"></script>
+
+    <style type="text/css">
+        body {
+            padding-bottom: 40px;
+        }
+        .sidebar-nav {
+            padding: 9px 0;
+        }
+
+        @media (max-width: 980px) {
+            /* Enable use of floated navbar text */
+            .navbar-text.pull-right {
+                float: none;
+                padding-left: 5px;
+                padding-right: 5px;
+            }
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="form-inline definewidth m20">我的任务列表 &there4;</div>
+ <!--    <a href='__URL__/allotlist?status=4' class="btn btn-primary">已分配</a>
+    <a href='__URL__/allotlist?status=2' class="btn btn-primary">待分配</a>
+    <a href='__URL__/allotlist?status=3' class="btn btn-primary">已拒绝</a> -->
+<form class="form-inline definewidth m20" action="__URL__" method="post">  
+    客户姓名：
+    <input type="text" name="cstname"   class="abc input-default" placeholder="搜索客户姓名" value="">&nbsp;&nbsp;  
+
+    <button type="submit" class="btn btn-primary">查询</button>&nbsp;&nbsp; 
+    <!-- <a href="__URL__/cl_to_excel" class="btn btn-success" id="addnew">下载</a>  -->
+</form>
+        <!-- 我的个人信息开始 -->
+
+<table class="table table-bordered table-hover definewidth m10" >
+    <thead>
+    <tr>
+     
+        <th>借款标号</th>
+        <th>借款标题</th>
+        <th>客户姓名</th>
+        <th>身份证号码</th>
+        <th>联系电话</th>
+        <th>贷款金额</th>
+        <th>贷款期限</th>
+        <th>贷款利率（%）</th>
+        <!-- <th>婚姻状况</th> -->
+        <!-- <th>客户来源</th> -->
+        <!-- <th>备注信息</th> -->
+        <th>房屋地址</th>
+        <th>房屋估价</th>
+        <th>房屋面积</th>
+        <th>借款类型</th>
+        <th>房屋户口</th>
+        <th>车子品牌</th>
+        <th>车子型号</th>
+        <th>车子估价</th>
+        <th>车辆购买日期</th>
+        <!-- <th>通知时间</th> -->
+        <th>状态</th>
+        <!-- <th>操作</th> -->
+        <!-- 客户姓名，身份证号码，联系电话，贷款金额，期限，利率， -->
+    </tr>
+    </thead>
+    <volist name='list' id='vo'>
+         <tr>
+            <td>{$vo.id}</td>
+            <td>{$vo.title}</td>
+            <td>{$vo.cstname}</td>
+            <td>{$vo.idno}</td>
+            <td>{$vo.tel}</td>
+            <td>{$vo.borrowamt}</td>
+            <td>{$vo.duration}</td>
+            <td>{$vo.rate}</td>
+            <!-- <td>{$vo.wed}</td> -->
+            <!-- <td>{$vo.source}</td> -->
+            <!-- <td>{$vo.tip}</td> -->
+       <!--      <td><if condition='$vo.area neq 0'>{$vo.area}<else/>-</if></td>
+            <td><if condition='$vo.price neq 0'>{$vo.price}<else/>-</if></td>
+            <td><if condition='$vo.area neq 0'>{$vo.area}<else/>-</if></td>
+            <td>{$vo.category}</td>
+            <td><if condition='$vo.area neq 0'>{$vo.residence}<else/>-</if></td>
+            <td><if condition='$vo.area neq 0'>{$vo.carbrand}<else/>-</if></td>
+            <td><if condition='$vo.area neq 0'>{$vo.cartype}<else/>-</if></td>
+            <td><if condition='$vo.carestimate neq 0'>{$vo.carestimate}<else/>-</if></td>
+            <td><if condition='$vo.carbuytime neq 0'>{$vo.carbuytime|date=Ymd,###}<else/>-</if></td> -->
+            <td><if condition='$vo.address neq null'>{$vo.address}<else/>-</if></td>
+            <td><if condition='$vo.price neq 0'>{$vo.price}<else/>-</if></td>
+            <td><if condition='$vo.area neq 0'>{$vo.area}<else/>-</if></td>
+            <td><eq name='vo.category' value='car'>车抵押</eq><eq name='vo.category' value='fang'>房抵押</eq></td>
+            <td><if condition='$vo.residence neq 0'>{$vo.residence}<else/>-</if></td>
+            <td><if condition='$vo.carbrand neq null'>{$vo.carbrand}<else/>-</if></td>
+            <td><if condition='$vo.cartype neq null'>{$vo.cartype}<else/>-</if></td>
+            <td><if condition='$vo.carestimate neq null'>{$vo.carestimate}<else/>-</if></td>
+            <td><if condition='$vo.carbuytime neq null'>{$vo.carbuytime|date=Ymd,###}<else/>-</if></td>
+            <!-- <td><if condition='$vo.fptime neq 0'>{$vo.fptime|date=Ymd,###}<else/>-</if></td> -->
+            <td>
+                <php>
+                    if($vo['status']==2)
+                    {
+                        echo '待分配';
+                    }else if($vo['status']==3){
+                        echo '已拒绝';
+                    }else if($vo['status']==4)
+                    {
+                        echo "已分配";
+                    }else if($vo['status']==5)
+                    {
+                        echo "已完成";
+                    }else if($vo['status']==6)
+                    {
+                        echo "已放款";
+                    }else{
+                    echo "待分配";
+                    }
+                </php>
+            </td>
+            <!-- <td><if condition='$vo.status neq 5'><span class='confirm'><a href='__URL__/taskconfirm?taskid={$vo.id}&uid={$uid}'>已完成~~~</a></span><else/>-</if></td> -->
+        </tr>
+    </volist>
+    
+    </table>
+     <!-- 我的个人信息结束 -->
+     <div class='table table-bordered table-hover definewidth m10' style='margin:0 auto;text-align:center;'>
+          {$page}
+    </div>
+  
+</body>
+</html>
+<script>
+    $(function () {
+               $('.confirm').click(function(){
+
+               if(confirm('确认已经完成此项目？'))
+                {}else{
+                    return false;
+                }
+         });
+
+
+    });
+
+    function del(id)
+    {
+        
+        
+        if(confirm("确定要删除吗？"))
+        {
+        
+            var url = "index.html";
+            
+            window.location.href=url;       
+        
+        }
+    
+    
+    
+    
+    }
+</script>

@@ -1,0 +1,95 @@
+ <!DOCTYPE html>
+<html>
+<% include file="/public/head.html" %></head>
+<body> 
+<div id="m_base">
+	<div id='content_base'>
+    <%foreach from=$bondlist value=val %> 
+    <div class="new_novice"> 
+        <div class="novice_title"  onclick='Askpt(<% $val[bid] %>)' ><span><a href="/bond/summary?bid=<% $val[bid] %>"><% $val[bname] %></a></span> <i><% $val[borrow_type] %></i></div>  
+        <div class="novice_content_property" >
+            <div class="novice_bt" onclick='Askpt(<% $val[bid] %>)' style='width:22%'><a href="/bond/summary?bid=<% $val[bid] %>"><i><% $val[interest_rate] %></i></a>收益率(%)</div>
+            <div class="novice_bt" onclick='Askpt(<% $val[bid] %>)' style='width:12%;padding:0 6px;'><span><a href="/bond/summary?bid=<% $val[bid] %>"><% $val[borrow_duration] %></a></span>期限(月)</div>
+            <div class="novice_bts" onclick='Askpt(<% $val[bid] %>)' style='width:18%'><span><a href="/bond/summary?bid=<% $val[bid] %>"><% $val[borrow_money] %></a></span>规模(万)</div>
+            <div class="ui-list-field" onclick='Askpt(<% $val[bid] %>)'><svg width="64" height="64" version="1.1" xmlns="http://www.w3.org/2000/svg" >
+                    <circle cx="32" cy="32" r="30" fill="transparent" stroke='#ccc' stroke-width='3px'/>
+                    <path class='o' name='o' d="<% $val[d] %>" fill='transparent' stroke='#FF7200' stroke-width='3px'  />
+                    <text x='<% $val[x] %>' y='36' style='fill:#010101;font-szie:8'><% $val[ratio] %>%</text>
+                 
+                </svg>
+            </div> 
+            <div class="<% $val[mBut] %>" arg='bid=<% $val[bid] %>' style="float:right; height:30px;line-height:30px; margin-top:15px; cursor:pointer; float:right; background-color:<% $val[status] %>; no-repeat right; color:#fff; width:17%; max-width:60px;  border-top-left-radius:15px;border-bottom-left-radius:15px; text-align:right; font-size:12px; " ><% $val[borrow_status] %></div> 
+        </div>
+    </div> 
+    <%/foreach%>
+	</div>
+    <div class="clear"></div> 
+   
+    <% include file="/public/foot.html" %>
+</div>
+<script type="text/javascript">
+    function Askpt(id){
+        window.location.href="/bond/summary?bid="+id;
+    }
+   
+    transA('.m_toub','/consumer/buy?min=100');
+    var tar='';
+    var current_page=1;  //当前页面
+    var $base=$('#content_base');
+    var BaseNum=$base.height()/4;
+     window.onscroll=function (){
+    			var t = document.documentElement.scrollTop || document.body.scrollTop;
+    			if(t>=BaseNum){
+					//$base=$('#m_base');
+    				BaseNum=$base.height()/4;
+                    $.get('/bond/listLoading',{Current_page:current_page},function (data){
+					//console.log(data);
+                        if(data.indexOf('delEvent')!=-1){
+						   return	window.onscroll=null;
+                        }else{
+                          $base.append(data);
+                        }
+                        current_page++;
+                    });
+    			}	
+    		}
+
+
+
+window.onload = function(){
+    var W = 80;
+    var H = 80;
+    var text,text_w;
+    
+    $('.canvas').each(function (i){
+       var number= this.getAttribute("number");
+       var ctx = this.getContext("2d");
+        ctx.clearRect(0,0,W,H);
+        ctx.beginPath();
+        if(number==100){
+            ctx.strokeStyle="#FE7F00";
+        }else{
+            ctx.strokeStyle="#ddd";
+        }
+        
+        ctx.lineWidth=2;
+        ctx.arc(W/2,H/2,20,0,Math.PI*2,false);
+        ctx.stroke();
+        ctx.beginPath();
+    if(number!=0){
+           ctx.strokeStyle = "#2EABE9";        
+            ctx.lineWidth=1;
+            ctx.arc(W/2,H/2,20,2*Math.PI,2*Math.PI*(number/100),false); 
+            ctx.stroke(); 
+        
+    }
+        ctx.fillStyle="#000";
+        ctx.font="12px Arial";
+        text = number+"%";
+        text_w = ctx.measureText(text).width;
+        ctx.fillText(text,W/2 - text_w/2,H/2+5);
+    });
+}
+</script>
+</body>
+</html>

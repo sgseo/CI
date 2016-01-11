@@ -1,0 +1,2 @@
+<?php
+return array ( 'enable' => '0', 'auth' => '3h4sKVO1I4?[BB=%X9@V1%YM6%-j?o?g?ka+*.?[VVbdD6]C`bN6cf%S?c?oO.Rjd 0l?z?xJF?vMxLnP;^ua [.Pq?x&y[g@;M.KtUiQ[[oZq>z?v[j@.GgNa?x%l?d(ta$?a?v=lZkFg^eRw?x?vTfKvYjTj%u5c?d?g*l7x?v?jSaYkKcM/?x?vdHSuc9b5?x.E)#3$C82#+%VKM64z?m)t?m4d?v?jdH@.SyOs?x?vFwTq\\h[.^/JnTmc6?xG/?g?g+y>h-i?v$s\\db2JtAlYgWrVbKh?x+eA.Pz?j?x%t)mTxcZCmcX[lUuTlF/?x?vAlIdTmdCCaIaV;WpF.XpVt?x?vY[^/\\qVl?x-i?g+y?f?v?jZi_.@/Jg2d9n$s^fc5Pc^.UiGbRe_wLcb3b=?x2g0[BgUiEmKgHm`Vd\\?x', ); ?>

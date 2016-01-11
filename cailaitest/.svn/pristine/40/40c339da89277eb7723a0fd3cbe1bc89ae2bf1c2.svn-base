@@ -1,0 +1,1163 @@
+<?php
+// 本类由系统自动生成，仅供测试用途
+class InvestAction extends HCommonAction {
+	/**
+    * 普通标列表
+    * 
+    */
+    public function index()
+    {
+        static $newpars;
+		$Bconfig = require C("APP_ROOT")."Conf/borrow_config.php";
+		$per = C('DB_PREFIX');
+		$search = array();
+		if($search['b.borrow_status']==0){
+			$search['b.borrow_status']=array("in","2,4,6,7");
+		}
+		if(is_array($search['b.borrow_duration']) && ($search['b.borrow_duration'][1][0] != 0))
+		{
+			$search['b.repayment_type'] = array("neq",1);
+		}elseif(is_array($search['b.borrow_duration']) && ($search['b.borrow_duration'][1][0] == 0)){
+			unset($search['b.borrow_duration']);
+			$search['_string']  = ' (b.borrow_duration > 0 AND b.borrow_duration < 3 AND b.repayment_type <> 1) OR  (b.repayment_type = 1) ';
+		}
+		$search['b.borrow_type'] = array('in','5,7');
+		$search['b.is_new'] = array("eq",0);
+                
+		$parm['map'] = $search;
+		$parm['pagesize'] = 10;
+		
+		//排序         
+        $list = getBorrowList($parm);
+       // echo "<pre/>";var_dump($list);die;
+      
+      	//有几个贷款
+      	$this->zong=$list['count'];
+
+      	session('zong',$list['count']);
+
+      	//查一下车贷
+      	$search['b.borrow_type'] = array('eq','7');
+      	$search['b.is_new'] = array("eq",0);      
+		$parm['map'] = $search;
+		$parm['pagesize'] = 10;
+      	$chelist = getBorrowList($parm);
+
+      	$this->che=$chelist['count'];
+
+      	session('che',$chelist['count']);
+     	
+     	$this->fang=$list['count']-$chelist['count'];
+
+     	session('fang',($list['count']-$chelist['count']));
+
+     	   //左边列表
+
+        $left=$this->invest_ad();
+        $this->left = $left;
+
+        $this->assign("Sorder",$Sorder);
+		$this->assign("searchUrl",$searchUrl);
+        $this->assign("searchMap",$searchMap);
+        $this->assign("Bconfig",$Bconfig);
+        $this->assign("Buse",$this->gloconf['BORROW_USE']);
+        $this->assign("list",$list);
+        $this->display();
+    }
+
+
+    //z解决括号没有数据
+
+    public function blank()
+    {
+    	$Bconfig = require C("APP_ROOT")."Conf/borrow_config.php";
+		$per = C('DB_PREFIX');
+		$search = array();
+		if($search['b.borrow_status']==0){
+			$search['b.borrow_status']=array("in","2,4,6,7");
+		}
+		if(is_array($search['b.borrow_duration']) && ($search['b.borrow_duration'][1][0] != 0))
+		{
+			$search['b.repayment_type'] = array("neq",1);
+		}elseif(is_array($search['b.borrow_duration']) && ($search['b.borrow_duration'][1][0] == 0)){
+			unset($search['b.borrow_duration']);
+			$search['_string']  = ' (b.borrow_duration > 0 AND b.borrow_duration < 3 AND b.repayment_type <> 1) OR  (b.repayment_type = 1) ';
+		}
+		$search['b.borrow_type'] = array('in','5,7');
+		$search['b.is_new'] = array("eq",0);
+                
+		$parm['map'] = $search;
+		$parm['pagesize'] = 10;
+		
+		//排序         
+        $list = getBorrowList($parm);
+       // echo "<pre/>";var_dump($list);die;
+      
+      	//有几个贷款
+      	$this->zong=$list['count'];
+
+      	session('zong',$list['count']);
+
+      	//查一下车贷
+      	$search['b.borrow_type'] = array('eq','7');
+      	$search['b.is_new'] = array("eq",0);      
+		$parm['map'] = $search;
+		$parm['pagesize'] = 10;
+      	$chelist = getBorrowList($parm);
+
+      	$this->che=$chelist['count'];
+
+      	session('che',$chelist['count']);
+     	
+     	$this->fang=$list['count']-$chelist['count'];
+
+     	session('fang',($list['count']-$chelist['count']));
+
+
+    }
+
+    /*房屋抵押标*/
+
+    public function fangwudiy()
+    {
+    	$this->blank();
+    	if($search['b.borrow_status']==0){
+			$search['b.borrow_status']=array("in","2,4,6,7");
+		}
+		if(is_array($search['b.borrow_duration']) && ($search['b.borrow_duration'][1][0] != 0))
+		{
+			$search['b.repayment_type'] = array("neq",1);
+		}elseif(is_array($search['b.borrow_duration']) && ($search['b.borrow_duration'][1][0] == 0)){
+			unset($search['b.borrow_duration']);
+			$search['_string']  = ' (b.borrow_duration > 0 AND b.borrow_duration < 3 AND b.repayment_type <> 1) OR  (b.repayment_type = 1) ';
+		}
+
+    	$search['b.borrow_type'] = array("eq","5");
+
+		$search['b.is_new'] = array("eq",0);
+                
+		$parm['map'] = $search;
+		$parm['pagesize'] = 10;
+
+		$list = getBorrowList($parm);
+		//总共有多少标
+		$this->zong=session('zong');
+
+		$this->list=$list;
+
+		$this->fang=$list['count'];
+
+		$this->che=session('zong')-$list['count'];
+
+			   //左边列表
+
+        $left=$this->invest_ad();
+        $this->left = $left;
+
+
+    	$this->display();
+    }
+    
+     /*车辆押标*/
+
+    public function cheliangdiy()
+    {
+
+    	$this->blank();
+    	if($search['b.borrow_status']==0){
+			$search['b.borrow_status']=array("in","2,4,6,7");
+		}
+		if(is_array($search['b.borrow_duration']) && ($search['b.borrow_duration'][1][0] != 0))
+		{
+			$search['b.repayment_type'] = array("neq",1);
+		}elseif(is_array($search['b.borrow_duration']) && ($search['b.borrow_duration'][1][0] == 0)){
+			unset($search['b.borrow_duration']);
+			$search['_string']  = ' (b.borrow_duration > 0 AND b.borrow_duration < 3 AND b.repayment_type <> 1) OR  (b.repayment_type = 1) ';
+		}
+
+		$search['b.borrow_type'] = array("eq","7");
+		$search['b.is_new'] = array("eq",0);
+                
+		$parm['map'] = $search;
+		$parm['pagesize'] = 10;
+
+		$list = getBorrowList($parm);
+	
+		$this->list=$list;
+
+		$this->zong=session('zong');
+
+		$this->list=$list;
+
+		$this->che=$list['count'];
+
+		$this->fang=session('zong')-$list['count'];
+
+			   //左边列表
+
+        $left=$this->invest_ad();
+        $this->left = $left;
+
+
+    	$this->display();
+    }
+	/////////////////////////////////////////////////////////////////////////////////////
+	
+    public function detail(){
+
+		$pre = C('DB_PREFIX');
+		$id = intval($_GET['id']);
+		$Bconfig = require C("APP_ROOT")."Conf/borrow_config.php";
+		
+		//合同ID
+		if($this->uid){
+			$res = M("members")->field("usrid")->where("id=".$this->uid)->find();
+			if(!empty($res["usrid"]))
+			{
+				$hetong = 1;
+			}
+			else
+			{
+				$hetong = 0;
+			}
+			$this->assign("hetong",$hetong);
+			$invs = M('borrow_investor')->field('id')->where("borrow_id={$id} AND (investor_uid={$this->uid} OR borrow_uid={$this->uid})")->find();
+			if($invs['id']>0) $invsx=$invs['id'];
+			elseif(!is_array($invs)) $invsx='no';
+		}else{
+			$invsx='login';
+		}
+		$this->assign("invid",$invsx);
+		//合同ID
+
+		$borrowinfo = M("borrow_info bi")->field('bi.*,ac.title,ac.id as aid')->join('lzh_article ac on ac.id= bi.danbao')->where('bi.id='.$id)->find();
+		if(!is_array($borrowinfo) || ($borrowinfo['borrow_status']==0 && $this->uid!=$borrowinfo['borrow_uid']) ) $this->error("数据有误");
+		$borrowinfo['biao'] = $borrowinfo['borrow_times'];
+		$borrowinfo['need'] = $borrowinfo['borrow_money'] - $borrowinfo['has_borrow'];
+		$borrowinfo['lefttime'] =$borrowinfo['collect_time'] - time();
+		$borrowinfo['progress'] = getFloatValue($borrowinfo['has_borrow']/$borrowinfo['borrow_money']*100,2);
+
+	//	echo "<pre/>";print_r($borrowinfo);
+
+		$this->assign("vo",$borrowinfo);
+
+		//底部那些图片
+		$bottominfo = unserialize($borrowinfo['updata']);
+
+		foreach($bottominfo as $v)
+		{
+			$arr[]=$v['info'];
+		}
+		$this->bottom = $arr;
+
+		$memberinfo = M("members m")->field("m.id,m.customer_name,m.customer_id,m.user_name,m.reg_time,m.credits,fi.*,mi.*,mm.*")->join("{$pre}member_financial_info fi ON fi.uid = m.id")->join("{$pre}member_info mi ON mi.uid = m.id")->join("{$pre}member_money mm ON mm.uid = m.id")->where("m.id={$borrowinfo['borrow_uid']}")->find();
+		$areaList = getArea();
+		$memberinfo['location'] = $areaList[$memberinfo['province']].$areaList[$memberinfo['city']];
+		$memberinfo['location_now'] = $areaList[$memberinfo['province_now']].$areaList[$memberinfo['city_now']];
+		$memberinfo['zcze']=$memberinfo['account_money']+$memberinfo['back_money']+$memberinfo['money_collect']+$memberinfo['money_freeze'];
+
+		$memberinfo['user_name2'] = get_secure_str($memberinfo['user_name']);
+		$this->assign("minfo",$memberinfo);
+
+		//data_list
+		$data_list = M("member_data_info")->field('type,add_time,count(status) as num,sum(deal_credits) as credits')->where("uid={$borrowinfo['borrow_uid']} AND status=1")->group('type')->select();
+		$this->assign("data_list",$data_list);
+		//data_list
+		
+        // 投资记录
+        $this->investRecord($id);
+
+        $this->assign('borrow_id', $id);
+
+        //借款者信息补充20150727lj
+
+        $charge = M("borrow_detail")->where("bid=".$id)->find();
+
+        $this->charge=$charge;
+
+        //左边列表
+
+        $left=$this->invest_ad();
+
+
+		//近期还款的投标
+		//$time1 = microtime(true)*1000;
+		$history = getDurationCount($borrowinfo['borrow_uid']);
+		$this->assign("history",$history);
+
+
+		//investinfo
+		$fieldx = "bi.investor_capitalinfotal,bi.add_time,m.user_name,bi.is_auto";
+		$investinfo = M("borrow_investor bi")->field($fieldx)->join("{$pre}members m ON bi.investor_uid = m.id")->limit(10)->where("bi.borrow_id={$id}")->order("bi.id DESC")->select();
+		$this->assign("investinfo",$investinfo);
+		//investinfo
+		
+		//帐户资金情况
+		$this->assign("investInfo", getMinfo($this->uid,true));
+		$this->assign("mainfo", getMinfo($borrowinfo['borrow_uid'],true));
+		//echo "<pre>";print_r(getMinfo($borrowinfo['borrow_uid'],true));echo "</pre>";exit;
+		//$this->assign("capitalinfo", getMemberBorrowScan($borrowinfo['borrow_uid']));
+		//帐户资金情况
+		//展示资料
+		$show_list = M("member_borrow_show")->where("uid={$borrowinfo['borrow_uid']}")->order('sort DESC')->select();
+		$this->assign("show_list",$show_list);
+		//展示资料
+		
+		//上传资料类型
+		$upload_type = FilterUploadType(FS("Webconfig/integration"));
+		$this->assign("upload_type", $upload_type); // 上传资料所有类型
+		
+		//评论
+		$cmap['tid'] = $id;
+		$clist = getCommentList($cmap,5);
+		$this->assign("Bconfig",$Bconfig);
+		$this->assign("gloconf",$this->gloconf);
+		$this->assign("commentlist",$clist['list']);
+		$this->assign("commentpagebar",$clist['page']);
+		$this->assign("commentcount",$clist['count']);
+		$this->display();
+    }
+	
+
+
+    //左边 30日投资 和网站公告
+
+    public function invest_ad(){
+
+    	$invest = M("amount_top")->select();
+
+    	//$ad = M('article')->limit(5)->select();
+    	$parm['type_id'] = 37;
+		$parm['pagesize'] ='5';
+		$ad=getArticleList($parm);
+		$ad=$ad['list'];
+		//echo "<pre/>";var_dump($ad);
+		//$this->assign("noticeList",getArticleList($parm));
+    	return array($invest,$ad);
+
+    }
+
+ public function sess()
+ {
+ 	var_dump($_SESSION);
+ }
+
+
+      public function newnovice(){
+           static $newbiao;
+                   
+		$Bconfig = require C("APP_ROOT")."Conf/borrow_config.php";
+		$per = C('DB_PREFIX');
+        
+		$curl = $_SERVER['REQUEST_URI'];
+		$urlarr = parse_url($curl);
+		parse_str($urlarr['query'],$surl);//array获取当前链接参数，2.
+                $urlArr = array('borrow_status','borrow_duration','scale','leve','new');
+		$leveconfig = FS("Webconfig/leveconfig");
+		foreach($urlArr as $v){
+			$newbiao = $surl;//用新变量避免后面的连接受影响
+			unset($newbiao[$v],$newbiao['type'],$newbiao['order_sort'],$newbiao['orderby']);//去掉公共参数，对掉当前参数
+			foreach($newbiao as $skey=>$sv){
+				if($sv=="all") unset($newbiao[$skey]);//去掉"全部"状态的参数,避免地址栏全满
+			}
+			
+			$newurl = http_build_query($newbiao);//生成此值的链接,生成必须是即时生成
+			$searchUrl[$v]['url'] = $newurl;
+			$searchUrl[$v]['cur'] = empty($_GET[$v])?"all":text($_GET[$v]);
+		}
+		$searchMap['deadline']=strtotime("deadline");
+		$searchMap['borrow_status'] = array("all"=>"不限制","2"=>"进行中","4"=>"复审中","6"=>"还款中","7"=>"已完成");
+		$searchMap['borrow_duration'] = array("all"=>"不限制","0-3"=>"3个月以内","3-6"=>"3-6个月","6-12"=>"6-12个月","12-24"=>"12-24个月");
+		$searchMap['scale'] = array("all"=>"不限制","0-1000000"=>"0-100万","1000000-3000000"=>"100-300万","3000000-5000000"=>"300-500万","5000000-10000000"=>"500万以上");
+		$searchMap['leve'] = array("all"=>"不限制","{$leveconfig['1']['start']}-{$leveconfig['1']['end']}"=>"{$leveconfig['1']['name']}","{$leveconfig['2']['start']}-{$leveconfig['2']['end']}"=>"{$leveconfig['2']['name']}","{$leveconfig['3']['start']}-{$leveconfig['3']['end']}"=>"{$leveconfig['3']['name']}","{$leveconfig['4']['start']}-{$leveconfig['4']['end']}"=>"{$leveconfig['4']['name']}","{$leveconfig['5']['start']}-{$leveconfig['5']['end']}"=>"{$leveconfig['5']['name']}","{$leveconfig['6']['start']}-{$leveconfig['6']['end']}"=>"{$leveconfig['6']['name']}","{$leveconfig['7']['start']}-{$leveconfig['7']['end']}"=>"{$leveconfig['7']['name']}");
+		$search = array();
+		//搜索条件
+		foreach($urlArr as $v){
+			if($_GET[$v] && $_GET[$v]<>'all'){
+				switch($v){
+					case 'scale':
+						$barr = explode("-",text($_GET[$v]));
+						$search["b.borrow_money"] = array("between",$barr);
+					break;
+					case 'borrow_status':
+						$search["b.".$v] = intval($_GET[$v]);
+					break;
+					default:
+						$barr = explode("-",text($_GET[$v]));
+						$search["b.".$v] = array("between",$barr);
+					break;
+				}
+			}
+		}
+		if($search['b.borrow_status']==0){
+			$search['b.borrow_status']=array("in","2,4,6,7");
+		}
+		if(is_array($search['b.borrow_duration']) && ($search['b.borrow_duration'][1][0] != 0))
+		{
+			$search['b.repayment_type'] = array("neq",1);
+		}elseif(is_array($search['b.borrow_duration']) && ($search['b.borrow_duration'][1][0] == 0)){
+			unset($search['b.borrow_duration']);
+			$search['_string']  = ' (b.borrow_duration > 0 AND b.borrow_duration < 3 AND b.repayment_type <> 1) OR  (b.repayment_type = 1) ';
+		}
+		$str = "%".urldecode($_REQUEST['searchkeywords'])."%";
+		if($_GET['is_keyword']=='1'){
+			$search['m.user_name']=array("like",$str);
+		}elseif($_GET['is_keyword']=='2'){
+			$search['b.borrow_name']=array("like",$str);
+			
+		}
+		$search['b.borrow_type'] = array("neq","9");
+                $search['b.is_new'] = array("eq",1);
+		
+		$parm['map'] = $search;
+		$parm['pagesize'] = 10;
+		//排序
+		(strtolower($_GET['sort'])=="asc")?$sort="desc":$sort="asc";
+		unset($surl['orderby'],$surl['sort']);
+		$orderUrl = http_build_query($surl);
+		if($_GET['orderby']){
+			//if(strtolower($_GET['orderby'])=="leve") $parm['orderby'] = "m.credits ".text($_GET['sort']);
+			if(strtolower($_GET['orderby'])=="rate") $parm['orderby'] = "b.borrow_interest_rate ".text($_GET['sort']);
+			elseif(strtolower($_GET['orderby'])=="borrow_money") $parm['orderby'] = "b.borrow_money ".text($_GET['sort']);
+			else $parm['orderby']="b.id DESC";
+		}else{
+			$parm['orderby']="b.borrow_status ASC,b.id DESC";
+		}
+		
+	
+		$Sorder['Corderby'] = strtolower(text($_GET['orderby']));
+		$Sorder['Csort'] = strtolower(text($_GET['sort']));
+		$Sorder['url'] = $orderUrl;
+		$Sorder['sort'] = $sort;
+		$Sorder['orderby'] = text($_GET['orderby']);
+		
+		//排序         
+        $list = getBorrowList($parm);
+        //dump(M()->GetLastsql());exit;
+        $this->assign("Sorder",$Sorder);
+		$this->assign("searchUrl",$searchUrl);
+        $this->assign("searchMap",$searchMap);
+        $this->assign("Bconfig",$Bconfig);
+        $this->assign("Buse",$this->gloconf['BORROW_USE']);
+        $this->assign("list",$list);
+        $this->display();
+      }
+    
+	public function investcheck(){
+		$pre = C('DB_PREFIX');
+		if(!$this->uid) {
+			ajaxmsg('',3);
+			exit;
+		}
+		$pin = md5($_POST['pin']);
+		$borrow_id = intval($_POST['borrow_id']);
+		$money = intval($_POST['money']);
+		$vm = getMinfo($this->uid,'m.pin_pass,mm.account_money,mm.back_money,mm.money_collect');
+		$amoney = $vm['account_money']+$vm['back_money'];
+		$uname = session('u_user_name');
+		$pin_pass = $vm['pin_pass'];
+		$amoney = floatval($amoney);
+		
+		$binfo = M("borrow_info")->field('borrow_money,is_new,has_borrow,has_vouch,borrow_max,borrow_min,borrow_type,password,money_collect,borrow_uid,borrow_status')->find($borrow_id);
+                
+                if($binfo['is_new']==1){
+                    //SELECT investor_capital FROM %s WHERE investor_uid = '%s' ",$this->tablebi,$userId);
+                    $isFirst = M('borrow_investor')->field("investor_capital")->where("investor_uid=".$this->uid)->find();
+                    if(!empty($isFirst) || $isFirst['investor_capital'] >= 100 ){
+                       ajaxmsg("尊敬的财来用户，此标只适合首次投资用户",3);
+                   }
+                 if($binfo['borrow_max']<$money){
+                      ajaxmsg("尊敬的财来用户，您投的金额大于了最大投资金额：".$binfo['borrow_max']."了",3);
+                 }
+                    
+                }
+             
+                
+		if(!empty($binfo['password'])){
+			if(empty($_POST['borrow_pass'])) ajaxmsg("此标是定向标，必须验证投标密码",3);
+			else if($binfo['password']<>md5($_POST['borrow_pass'])) ajaxmsg("投标密码不正确",3);		
+		}
+		
+		
+		////////////////////////////////////待收金额限制 2013-08-26  fan///////////////////
+		if($binfo['money_collect']>0){
+			if($vm['money_collect']<$binfo['money_collect']) {
+				ajaxmsg("此标设置有投标待收金额限制，您账户里必须有足够的待收才能投此标",3);
+			}
+		}
+		//dump($binfo['borrow_status']);die;
+		if($binfo['borrow_status'] == 3){
+		
+			ajaxmsg("I'm Sorry，此标已流标",3);
+		
+		}
+		$uid = $this->uid;
+		
+		//dump($binfo['borrow_uid']);die;
+		if($uid == $binfo['borrow_uid']){
+			ajaxmsg("不能投资自己的借款标",3);
+		}
+		$type = member_type($uid);
+		if( $type['status'] != 3)
+		{
+			ajaxmsg("您是".$type['type']."用户不能投标",3);
+		}
+		////////////////////////////////////待收金额限制 2013-08-26  fan///////////////////
+		//投标总数检测
+		$capital = M('borrow_investor')->where("borrow_id={$borrow_id} AND investor_uid={$this->uid}")->sum('investor_capital');
+		if(($capital+$money)>$binfo['borrow_max']&&$binfo['borrow_max']>0){
+			$xtee = $binfo['borrow_max'] - $capital;
+			ajaxmsg("您已投标{$capital}元，此投上限为{$binfo['borrow_max']}元，你最多只能再投{$xtee}",3);
+		}
+		
+		$need = $binfo['borrow_money'] - $binfo['has_borrow'];
+		$caninvest = $need - $binfo['borrow_min'];
+		if( $money>$caninvest && ($need-$money)<>0 ){
+			$msg = "尊敬的{$uname}，此标还差{$need}元满标,如果您投标{$money}元，将导致最后一次投标最多只能投".($need-$money)."元，小于最小投标金额{$binfo['borrow_min']}元，所以您本次可以选择<font color='#FF0000'>满标</font>或者投标金额必须<font color='#FF0000'>小于等于{$caninvest}元</font>";
+			if($caninvest<$binfo['borrow_min']) $msg = "尊敬的{$uname}，此标还差{$need}元满标,如果您投标{$money}元，将导致最后一次投标最多只能投".($need-$money)."元，小于最小投标金额{$binfo['borrow_min']}元，所以您本次可以选择<font color='#FF0000'>满标</font>即投标金额必须<font color='#FF0000'>等于{$need}元</font>";
+
+			ajaxmsg($msg,3);
+		}
+		if(($binfo['borrow_min']-$money)>0 ){
+			ajaxmsg("尊敬的{$uname}，本标最低投标金额为{$binfo['borrow_min']}元，请重新输入投标金额",3);
+		}
+		if(($need-$money)<0 ){
+			ajaxmsg("尊敬的{$uname}，此标还差{$need}元满标,您最多只能再投{$need}元",3);
+		}
+		
+		//if($pin<>$pin_pass) ajaxmsg("支付密码错误，请重试!",0);
+		if($money>$amoney){
+			$msg = "尊敬的{$uname}，您准备投标{$money}元，但您的账户可用余额为{$amoney}元，您要先去充值吗？";
+			ajaxmsg($msg,2);
+		}else{
+			$msg = "尊敬的{$uname}，您的账户可用余额为{$amoney}元，您确认投标{$money}元吗？";
+			ajaxmsg($msg,1);
+		}
+		//ajaxmsg($msg,1);
+	}
+		
+	public function investmoney(){   
+		//if(!$this->uid) exit;
+		if(!$this->uid) {
+			ajaxmsg('请先登录',3);
+			exit;
+		}
+		$type = member_type($this->uid);
+		if( $type['status'] != 3)
+		{
+			ajaxmsg("您是".$type['type']."用户不能投标",3);
+		}
+		$money = intval($_POST['money']);
+		$borrow_id = intval($_POST['borrow_id']);
+		$m = M("member_money")->field('account_money,back_money,money_collect')->find($this->uid);
+		$amoney = $m['account_money']+$m['back_money'];
+		$uname = session('u_user_name');
+		if($amoney<$money) $this->error("尊敬的{$uname}，您准备投标{$money}元，但您的账户可用余额为{$amoney}元，请先去充值再投标.",__APP__."/member/charge#fragment-1");
+		
+		$vm = getMinfo($this->uid,'m.pin_pass,mm.account_money,mm.back_money,mm.money_collect');
+		$pin_pass = $vm['pin_pass'];
+		$pin = md5($_POST['pin']);
+		//if($pin<>$pin_pass) $this->error("支付密码错误，请重试");
+
+		$binfo = M("borrow_info")->field('borrow_money,is_new,borrow_max,has_borrow,has_vouch,borrow_type,borrow_min,money_collect,password')->find($borrow_id);
+				
+		//判断是否是新手标
+                  if($binfo['is_new']==1){
+                    //SELECT investor_capital FROM %s WHERE investor_uid = '%s' ",$this->tablebi,$userId);
+                    $isFirst = M('borrow_investor')->field("investor_capital")->where("investor_uid=".$this->uid)->find();
+                    if(!empty($isFirst) || $isFirst['investor_capital'] >= 100 ){
+                       ajaxmsg("尊敬的财来用户，此标只适合首次投标用户",3);
+                   }
+                 if($binfo['borrow_max']<$money){
+                      ajaxmsg("尊敬的财来用户，您投的金额大于了最大投标金额：".$binfo['borrow_max']."了",3);
+                 }
+                    
+                } 
+		////////////////////////////////////待收金额限制 2013-08-26  fan///////////////////
+		if($binfo['money_collect']>0){
+			if($m['money_collect']<$binfo['money_collect']) {
+				ajaxmsg("此标设置有投标待收金额限制，您账户里必须有足够的待收才能投此标",3);
+			}
+		}
+		////////////////////////////////////待收金额限制 2013-08-26  fan///////////////////
+		
+		//投标总数检测
+		$capital = M('borrow_investor')->where("borrow_id={$borrow_id} AND investor_uid={$this->uid}")->sum('investor_capital');
+		if(($capital+$money)>$binfo['borrow_max']&&$binfo['borrow_max']>0){
+			$xtee = $binfo['borrow_max'] - $capital;
+			$this->error("您已投标{$capital}元，此投上限为{$binfo['borrow_max']}元，你最多只能再投{$xtee}",3);
+		}
+		//if($binfo['has_vouch']<$binfo['borrow_money'] && $binfo['borrow_type'] == 2) $this->error("此标担保还未完成，您可以担保此标或者等担保完成再投标");
+		$need = $binfo['borrow_money'] - $binfo['has_borrow'];
+		$caninvest = $need - $binfo['borrow_min'];
+		if( $money>$caninvest && $need==0){
+			$msg = "尊敬的{$uname}，此标已被抢投满了,下次投标手可一定要快呦！";
+			$this->error($msg);
+		}
+		if(($binfo['borrow_min']-$money)>0 ){
+			$this->error("尊敬的{$uname}，本标最低投标金额为{$binfo['borrow_min']}元，请重新输入投标金额",3);
+		}
+		if(($need-$money)<0 ){
+			$this->error("尊敬的{$uname}，此标还差{$need}元满标,您最多只能再投{$need}元",3);
+		}else{
+			/////////////////////////////////////////////////////汇付托管 2014-10-09///////////////////////////////////////////////////////////////
+			$pre = C('DB_PREFIX');
+			$info1 = M("members")->field("usrid")->where("id=".$this->uid)->find();
+			$info2 = M("members m")->field("m.usrid")->join("{$pre}borrow_info s ON s.borrow_uid=m.id")->where("s.id = $borrow_id")->find();
+			$usrid = $info1['usrid'];
+			$borrowerid = $info2['usrid'];
+			// echo "<pre/>";var_dump($_POST);
+			// die;
+			$redvalue=number_format($_POST['redvalue'],2);//红包的面值
+
+			$redid=$_POST['redid'];//红包的id       
+
+			$transamt =$money;
+			$type = "S";//表示散标
+			$borrowid = $borrow_id; //标id$borrow_id
+			if($redvalue!=0)
+			{
+			$ext=array('Vocher'=>array('AcctId'=>'MDT000001','VocherAmt'=>$redvalue));
+			
+			$reqExt=$ext;
+			}
+
+			import("ORG.Huifu.Huifu");
+
+			$huifu = new Huifu();
+
+			$huifu->initiativeTender($usrid,$transamt,$borrowerid,$borrowid,$reqExt,$redvalue,$redid);
+		
+			/////////////////////////////////////////////////////汇付托管 END///////////////////////////////////////////////////////////////
+		}
+	
+		/*if($done===true) {
+			$this->success("恭喜成功投标{$money}元");
+		}else if($done){
+			$this->error($done);
+		}else{
+			$this->error("对不起，投标失败，请重试!");
+		}*/
+	}
+    //新手标投资接口 2015-09-10 by lj
+    public function newbieinvest()
+    {
+        if(!$this->uid) {
+            ajaxmsg('请先登录',3);
+            exit;
+        }
+        $type = member_type($this->uid);
+        if( $type['status'] != 3)
+        {
+            ajaxmsg("您是".$type['type']."用户不能投标",3);
+        }
+        $money = intval($_POST['money']);
+        $borrow_id = intval($_POST['borrow_id']);
+        $m = M("member_money")->field('account_money,back_money,money_collect')->find($this->uid);
+        $amoney = $m['account_money']+$m['back_money'];
+        $uname = session('u_user_name');
+        if($amoney<$money) $this->error("尊敬的{$uname}，您准备投标{$money}元，但您的账户可用余额为{$amoney}元，请先去充值再投标.",__APP__."/member/charge#fragment-1");
+        
+        $vm = getMinfo($this->uid,'m.pin_pass,mm.account_money,mm.back_money,mm.money_collect');
+        $pin_pass = $vm['pin_pass'];
+        $pin = md5($_POST['pin']);
+        //这里用来判断 是否投过此新手标 根据$uid
+        $is_access=M('newbie_record')->getFieldByInvest_uid($this->uid,'id');//$this->uid
+        if($is_access){
+            ajaxmsg("尊敬的财来用户，此标只能进行一次投标,您已经投过此标。",3);
+        }
+        
+        $binfo = M("newbie_bid")->find($borrow_id);//查询此新手标信息
+
+
+        if($binfo['min']>$money){
+            $this->error("尊敬的{$uname}，本标最低投标金额为{$binfo['min']}元，请重新输入投标金额",3);
+        }else if($binfo['max']<$money){
+             $this->error("尊敬的{$uname}，本标最高投标金额为{$binfo['max']}元，请重新输入投标金额",3);
+        }
+            $pre = C('DB_PREFIX');
+            $info1 = M("members")->field("usrid")->where("id=".$this->uid)->find();
+            $info2 = M("members m")->field("m.usrid")->join("{$pre}newbie_bid s ON s.borrow_uid=m.id")->where("s.id = $borrow_id")->find();
+          //  $info2=M("newbie_bid")->field('borrow_uid')->where('id='.$borrowid)->find();
+            $usrid = $info1['usrid'];
+            $borrowerid = $info2['usrid'];
+
+            $redvalue=number_format($_POST['redvalue'],2);//红包的面值
+
+            $redid=$_POST['redid'];//红包的id       
+
+            $transamt =$money;
+            $type = "S";//表示散标
+            $borrowid = $borrow_id; //标id $borrow_id
+            if($redvalue!=0)
+            {
+            $ext=array('Vocher'=>array('AcctId'=>'MDT000001','VocherAmt'=>$redvalue));
+            
+            $reqExt=$ext;
+            }
+
+            import("ORG.Huifu.Huifu");
+
+            $huifu = new Huifu();
+            //新手标投资要重写
+            $huifu->newbie_initiativeTender($usrid,$transamt,$borrowerid,$borrowid,$reqExt,$redvalue,$redid);
+    }
+
+
+	public function addcomment(){
+	
+		$data['comment'] = text($_POST['comment']);
+		if(!$this->uid)  ajaxmsg("请先登陆",0);
+		if(empty($data['comment']))  ajaxmsg("留言内容不能为空",0);
+		$data['type'] = 1;
+		$data['add_time'] = time();
+		$data['uid'] = $this->uid;
+		$data['uname'] = session("u_user_name");
+		$data['tid'] = intval($_POST['tid']);
+		$data['name'] = M('borrow_info')->getFieldById($data['tid'],'borrow_name');
+
+		$newid = M('comment')->add($data);
+		//$this->display("Public:_footer");
+		if($newid) ajaxmsg();
+		else ajaxmsg("留言失败，请重试",0);
+	}
+	
+	public function jubao(){
+		if($_POST['checkedvalue']){
+			$data['reason'] = text($_POST['checkedvalue']);
+			$data['text'] = text($_POST['thecontent']);
+			$data['uid'] = $this->uid;
+			$data['uemail'] = text($_POST['uemail']);
+			$data['b_uid'] = text($_POST['b_uid']);
+			$data['b_uname'] = text($_POST['theuser']);
+			$data['add_time'] = time();
+			$data['add_ip'] = get_client_ip();
+			$newid = M('jubao')->add($data);
+			if($newid) exit("1");
+			else exit("0");
+		}else{
+			$id=intval($_GET['id']);
+			$u['id'] = $id;
+			$u['uname']=M('members')->getFieldById($id,"user_name");
+			$u['uemail']=M('members')->getFieldById($this->uid,"user_email");
+			$this->assign("u",$u);
+			$data['content'] = $this->fetch("Public:jubao");
+			exit(json_encode($data));
+		}
+	}
+	
+	public function ajax_invest(){
+		if(!$this->uid) {
+			ajaxmsg("请先登陆",0);
+		}
+		$pre = C('DB_PREFIX');
+		$id=intval($_GET['id']);
+		$investMoney = intval($_GET['num']);
+		$field = "id,is_new,borrow_uid,borrow_money,borrow_status,borrow_type,has_borrow,has_vouch,borrow_interest_rate,borrow_duration,repayment_type,collect_time,borrow_min,borrow_max,password,borrow_use,money_collect";
+		$vo = M('borrow_info')->field($field)->find($id);
+		if($this->uid == $vo['borrow_uid']) ajaxmsg("不能去投自己的标",0);
+		if($vo['borrow_status'] <> 2) ajaxmsg("只能投正在借款中的标",0);
+                 file_put_contents('/tmp/isnew2',date('m-d H:i:s')." isnew : ".print_r($vo,true)."\n",FILE_APPEND);
+                //判断是否是首次投资
+                if($vo['is_new']==1){
+                    //SELECT investor_capital FROM %s WHERE investor_uid = '%s' ",$this->tablebi,$userId);
+                    $isFirst = M('borrow_investor')->field("investor_capital")->find($this->uid);
+                    if(!empty($isFirst) || $isFirst['investor_capital'] >= 100 ){
+                       ajaxmsg("此标只能是首次才可以投的哦",3);
+                   }
+                    
+                }
+              
+		////////////////////////////////////待收金额限制 2013-08-26  fan///////////////////
+		if($binfo['money_collect']>0){
+			if($vm['money_collect']<$binfo['money_collect']) {
+				ajaxmsg("此标设置有投标待收金额限制，您账户里必须有足够的待收才能投此标",3);
+			}
+		}
+		////////////////////////////////////待收金额限制 2013-08-26  fan///////////////////
+		$vm = getMinfo($this->uid,'m.pin_pass,mm.account_money,mm.back_money,mm.money_collect');
+		
+		$pin_pass = $vm['pin_pass'];
+		$has_pin = (empty($pin_pass))?"no":"yes";
+		$has_pin = "yes";
+		$this->assign("has_pin",$has_pin);
+		$this->assign("investMoney",$investMoney);
+		
+		$this->assign("vo",$vo);
+		$data['content'] = $this->fetch();
+		ajaxmsg($data);
+	}
+	
+	
+	public function ajax_vouch(){
+		if(!$this->uid) {
+			ajaxmsg("请先登陆",0);
+		}
+		$pre = C('DB_PREFIX');
+		$id=intval($_GET['id']);
+		$Bconfig = require C("APP_ROOT")."Conf/borrow_config.php";
+		$field = "id,borrow_uid,borrow_money,has_borrow,borrow_interest_rate,borrow_duration,repayment_type,collect_time,has_vouch,reward_vouch_rate,borrow_min,borrow_max,money_collect";
+		$vo = M('borrow_info')->field($field)->find($id);
+		
+		$vo['need'] = $vo['borrow_money'] - $vo['has_borrow'];
+		$vo['lefttime'] =$vo['collect_time'] - time();
+		$vo['progress'] = getFloatValue($vo['has_borrow']/$vo['borrow_money']*100,4);//ceil($vo['has_borrow']/$vo['borrow_money']*100);
+		$vo['vouch_progress'] = getFloatValue($vo['has_vouch']/$vo['borrow_money']*100,4);//ceil($vo['has_vouch']/$vo['borrow_money']*100);
+		$vo['vouch_need'] = $vo['borrow_money'] - $vo['has_vouch'];
+		$vo['uname'] = M("members")->getFieldById($vo['borrow_uid'],'user_name');
+		$time1 = microtime(true)*1000;
+		$vm = getMinfo($this->uid,"m.pin_pass,mm.invest_vouch_cuse,mm.money_collect");
+		////////////////////////////////////待收金额限制 2013-08-26  fan///////////////////
+		if($binfo['money_collect']>0){
+			if($vm['money_collect']<$binfo['money_collect']) {
+				ajaxmsg("此标设置有投标待收金额限制，您账户里必须有足够的待收才能投此标",3);
+			}
+		}
+		////////////////////////////////////待收金额限制 2013-08-26  fan///////////////////
+		////////////////////投标时自动填写可投标金额在投标文本框 2013-07-03 fan////////////////////////
+		if($vo['vouch_progress']==100){
+			$amoney = $vm['account_money']+$vm['back_money'];
+			if($amoney<floatval($vo['borrow_min'])){
+				ajaxmsg("您的账户可用余额小于本标的最小投标金额限制，不能投标！",0);
+			}elseif($amoney>=floatval($vo['borrow_max']) && floatval($vo['borrow_max'])>0){
+				$toubiao = intval($vo['borrow_max']);
+			}else if($amoney>=floatval($vo['need'])){
+				$toubiao = intval($vo['need']);
+			}else{
+				$toubiao = floor($amoney);
+			}
+			$vo['toubiao'] =$toubiao;
+		}
+		////////////////////投标时自动填写可投标金额在投标文本框 2013-07-03 fan////////////////////////
+		
+		$pin_pass = $vm['pin_pass'];
+		$has_pin = (empty($pin_pass))?"no":"yes";
+		$this->assign("has_pin",$has_pin);
+		$this->assign("vo",$vo);
+		$this->assign("invest_vouch_cuse",$vm['invest_vouch_cuse']);
+		$this->assign("Bconfig",$Bconfig);
+		$data['content'] = $this->fetch();
+		ajaxmsg($data,1);
+	}
+	
+	public function vouchcheck(){
+		$pre = C('DB_PREFIX');
+		if(!$this->uid) ajaxmsg('',3);
+		$pin = md5($_POST['pin']);
+		$money = intval($_POST['vouch_money']);
+		$vm = getMinfo($this->uid,"m.pin_pass,mm.invest_vouch_cuse");
+		$amoney = $vm['invest_vouch_cuse'];
+		$uname = session('user_name');
+		$pin_pass = $vm['pin_pass'];
+		$amoney = floatval($amoney);
+
+		if($pin<>$pin_pass) ajaxmsg("支付密码错误，请重试",0);
+		if($money>$amoney){
+			$msg = "尊敬的{$uname}，您准备担保{$money}元，但您可用担保投资额度为{$amoney}元，要去申请更高额度吗？";
+			ajaxmsg($msg,2);
+		}else{
+			$msg = "尊敬的{$uname}，您可用担保投资额度为{$amoney}元，您确认担保{$money}元吗？";
+			ajaxmsg($msg,1);
+		}
+	}
+		
+	public function vouchmoney(){
+		if(!$this->uid) exit;
+			/****** 防止模拟表单提交 *********/
+		$cookieKeyS = cookie(strtolower(MODULE_NAME)."-vouch");
+		if($cookieKeyS!=$_REQUEST['cookieKey']){
+			$this->error("数据校验有误");
+		}
+		/****** 防止模拟表单提交 *********/
+		$money = intval($_POST['vouch_money']);
+		$borrow_id = intval($_POST['borrow_id']);
+		$rate = M('borrow_info')->getFieldById($borrow_id,'reward_vouch_rate');
+		$amoney = M("member_money")->getFieldByUid($this->uid,'invest_vouch_cuse');
+		$uname = session('u_user_name');
+		if($amoney<$money) $this->error("尊敬的{$uname}，您准备担保{$money}元，但您可用担保投资额度为{$amoney}元，请先去申请更高额度.");
+		
+		$saveVouch['borrow_id'] = $borrow_id;
+		$saveVouch['uid'] = $this->uid;
+		$saveVouch['uname'] = $uname;
+		$saveVouch['vouch_money'] = $money;
+		$saveVouch['vouch_reward_rate'] = $rate;
+		$saveVouch['vouch_reward_money'] = getFloatValue($money*$rate/100,2);
+		$saveVouch['add_ip'] = get_client_ip();
+		$saveVouch['vouch_time'] = time();
+		$newid = M('borrow_vouch')->add($saveVouch);
+		
+		if($newid) $done = M("member_money")->where("uid={$this->uid}")->setDec('invest_vouch_cuse',$money);
+		//$this->assign("waitSecond",1000);
+		if($done==true){
+			M("borrow_info")->where("id={$borrow_id}")->setInc('has_vouch',$money);
+			$this->success("恭喜成功担保{$money}元");
+		}
+		else $this->error("对不起，担保失败，请重试!");
+	}
+	
+	public function getarea(){
+		$rid = intval($_GET['rid']);
+		if(empty($rid)){
+			$data['NoCity'] = 1;
+			exit(json_encode($data));
+		}
+		$map['reid'] = $rid;
+		$alist = M('area')->field('id,name')->order('sort_order DESC')->where($map)->select();
+
+		if(count($alist)===0){
+			$str="<option value=''>--该地区下无下级地区--</option>\r\n";
+		}else{
+			if($rid==1) $str.="<option value='0'>请选择省份</option>\r\n";
+			foreach($alist as $v){
+				$str.="<option value='{$v['id']}'>{$v['name']}</option>\r\n";
+			}
+		}
+		$data['option'] = $str;
+		$res = json_encode($data);
+		echo $res;
+	}	
+	
+	public function addfriend(){
+		if(!$this->uid) ajaxmsg("请先登陆",0);
+		$fuid = intval($_POST['fuid']);
+		$type = intval($_POST['type']);
+		if(!$fuid||!$type) ajaxmsg("提交的数据有误",0);
+		
+		$save['uid'] = $this->uid;
+		$save['friend_id'] = $fuid;
+		$vo = M('member_friend')->where($save)->find();	
+		
+		if($type==1){//加好友
+		if($this->uid == $fuid) ajaxmsg("您不能对自己进行好友相关的操作",0);
+			if(is_array($vo)){
+				if($vo['apply_status']==3){
+					$msg="已经从黑名单移至好友列表";
+					$newid = M('member_friend')->where($save)->setField("apply_status",1);
+				}elseif($vo['apply_status']==1){
+					$msg="已经在你的好友名单里，不用再次添加";
+				}elseif($vo['apply_status']==0){
+					$msg="已经提交加好友申请，不用再次添加";
+				}elseif($vo['apply_status']==2){
+					$msg="好友申请提交成功";
+					$newid = M('member_friend')->where($save)->setField("apply_status",0);
+				}
+			}else{
+				$save['uid'] = $this->uid;
+				$save['friend_id'] = $fuid;
+				$save['apply_status'] = 0;
+				$save['add_time'] = time();
+				$newid = M('member_friend')->add($save);	
+				$msg="好友申请成功";
+			}
+		}elseif($type==2){//加黑名单
+		if($this->uid == $fuid) ajaxmsg("您不能对自己进行黑名单相关的操作",0);
+			if(is_array($vo)){
+				if($vo['apply_status']==3) $msg="已经在黑名单里了，不用再次添加";
+				else{
+					$msg="成功移至黑名单";
+					$newid = M('member_friend')->where($save)->setField("apply_status",3);	
+				}
+			}else{
+				$save['uid'] = $this->uid;
+				$save['friend_id'] = $fuid;
+				$save['apply_status'] = 3;
+				$save['add_time'] = time();
+				$newid = M('member_friend')->add($save);	
+				$msg="成功加入黑名单";
+			}
+		}
+		if($newid) ajaxmsg($msg);
+		else ajaxmsg($msg,0);
+	}
+	
+	
+	public function innermsg(){
+		if(!$this->uid) ajaxmsg("请先登陆",0);
+		$fuid = intval($_GET['uid']);
+		if($this->uid == $fuid) ajaxmsg("您不能对自己进行发送站内信的操作",0);
+		$this->assign("touid",$fuid);
+		$data['content'] = $this->fetch("Public:innermsg");
+		ajaxmsg($data);
+	}
+	public function doinnermsg(){
+		$touid = intval($_POST['to']);
+		$msg = text($_POST['msg']);	
+		$title = text($_POST['title']);	
+		$newid = addMsg($this->uid,$touid,$title,$msg);
+		if($newid) ajaxmsg();
+		else ajaxmsg("发送失败",0);
+		
+	}
+     /**
+    * ajax 获取投资记录
+    * 
+    */
+    public function investRecord($borrow_id=0)
+    {
+        
+        isset($_GET['borrow_id']) && $borrow_id = intval($_GET['borrow_id']);
+        $Page = D('Page');       
+        import("ORG.Util.Page");       
+        $count = M("borrow_investor")->where('borrow_id='.$borrow_id)->count('id');
+        $Page     = new Page($count,100);
+        
+        
+        $show = $Page->ajax_show();
+        $this->assign('page', $show);
+        if($_GET['borrow_id']){
+            $list = M("borrow_investor as b")
+                        ->join(C(DB_PREFIX)."members as m on  b.investor_uid = m.id")
+                        ->join(C(DB_PREFIX)."borrow_info as i on  b.borrow_id = i.id")
+                        ->field('i.borrow_interest_rate, i.repayment_type, b.investor_capital, b.add_time, b.is_auto, m.user_name')
+                        ->where('b.borrow_id='.$borrow_id)->order('b.id')->limit($Page->firstRow.','.$Page->listRows)->select();
+            $string = '';
+           foreach($list as $k=>$v){
+			   $relult=$k%2;
+			    if(!$relult){
+               $string .= "<tr style='background-color: rgb(255, 255, 255);' class='borrowlist3'>
+                   <td width='148' class='txtC'>".hidecard($v['user_name'],5)."</td>
+                      <td  width='148' class='txtC'>";
+					  }else{
+						   $string .= "<tr style='background-color: rgb(236, 249, 255);' class='borrowlist5'>
+                   <td width='148' class='txtC'>".hidecard($v['user_name'],5)."</td>
+                      <td  width='148' class='txtC'>";
+						  }
+					$string .= $v['is_auto']?'自动':'手动'; 
+                $string .= "</td>
+                      <td  width='128' class='txtRight pr30'>".Fmoney($v['investor_capital'])."元</td>
+                      <td width='198' class='txtC'>".date("Y-m-d H:i",$v['add_time'])."</td>
+                     <td></td></tr>";
+            }
+            echo empty($string)?'暂时没有投资记录':$string;
+        }
+        
+    }
+      		//红包使用
+    		public function redpacket()
+    		{
+    			 $uid=$this->uid;
+
+    			if(!$this->uid){ajaxmsg("请先登陆",0);};
+    			$time=time();
+    		$redlist=M("active_redpacket")->where('owner='.$uid.' and is_used="0" and '.$time.' < overtime')->order('addtime asc,shelftime asc')->select();
+  			//	$redlist=M("active_redpacket")->where('owner='.$uid.' and is_used="0"')->order('overtime asc')->select();
+
+    			//根据时间升序 先获得的红包 剩余时间最短 优先推荐使用
+    			if(!$redlist)
+    				{
+    					$red='<span style="color:red">暂时没有可用红包</span>';
+    				}
+
+    			$this->assign('redlist',$redlist);
+
+    			$d['content'] = $this->fetch();
+				//echo json_encode($d);
+				exit(json_encode($d));
+	    	}
+
+            //新手标具体详情页 2015-09-09 lj
+            public function newbie()
+            {
+              
+                $pre = C('DB_PREFIX');
+                $id = intval($_GET['id']);
+                $Bconfig = require C("APP_ROOT")."Conf/borrow_config.php";
+                //我的余额
+                $this->assign("investInfo", getMinfo($this->uid,true));
+                $newbielist=M("newbie_bid")->where('id='.$id)->find();
+                $this->newbie=$newbielist;
+                $this->display();//需要一个newbiedetail html页面
+            }
+
+            //新手标验证
+            public function newbie_check()
+            {
+                if(!$this->uid) {
+                    ajaxmsg('请先登录',3);
+                    exit;
+                 }
+                $type = member_type($this->uid);
+                if( $type['status'] != 3)
+                {
+                    ajaxmsg("您是".$type['type']."用户不能投标",3);
+                }
+                $money = intval($_POST['money']);
+                $borrow_id = intval($_POST['borrow_id']);
+                $m = M("member_money")->field('account_money,back_money,money_collect')->find($this->uid);
+                $amoney = $m['account_money']+$m['back_money'];
+                $uname = session('u_user_name');
+                if($amoney<$money) $this->error("尊敬的{$uname}，您准备投标{$money}元，但您的账户可用余额为{$amoney}元，请先去充值再投标.",__APP__."/member/charge#fragment-1");
+                
+                $vm = getMinfo($this->uid,'m.pin_pass,mm.account_money,mm.back_money,mm.money_collect');
+
+                //这里用来判断 是否投过此新手标 根据$uid
+                $is_access=M('newbie_record')->getFieldByInvest_uid($this->uid,'id');//$this->uid
+                if($is_access){
+                    ajaxmsg("尊敬的财来用户，此标只能进行一次投标,您已经投过此标。",3);
+                }
+                $binfo = M("newbie_bid")->find($borrow_id);//查询此新手标信息
+                if($binfo['min']>$money){
+                    $this->error("尊敬的{$uname}，本标最低投标金额为{$binfo['min']}元，请重新输入投标金额",3);
+                }else if($binfo['max']<$money){
+                     $this->error("尊敬的{$uname}，本标最高投标金额为{$binfo['max']}元，请重新输入投标金额",3);
+                }else{
+                    $msg = "尊敬的{$uname}，您的账户可用余额为{$amoney}元，您确认投标{$money}元吗？";
+                    ajaxmsg($msg,1);
+                }
+            }
+            //cron 脚本自动触发本方法 别的不允许访问
+            //**新手标：还款功能
+            /*
+            *@param $investid 投资id
+            *@param $type 1位会员自己还
+            */
+            public function newbie_repayment($investid='123486',$type=1)
+            {
+                $pre = C('DB_PREFIX');
+                 $done = false;
+                //$borrowDetail = D('investor_detail');
+                // $binfo = M("borrow_info")->field("id,borrow_uid,borrow_type,borrow_money,borrow_duration,repayment_type,has_pay,total,deadline,danbao")->find($borrowid);
+                $b_member=M('members')->field("user_name")->find($binfo['borrow_uid']);
+                $tuoguan = FS("Webconfig/tuoguanconfig");
+                $merCustId = $tuoguan['huifu']['MerCustId'];
+                //还款信息 还款金额 还款利息 借款人
+                $repayinfo = M("newbie_record")->field("id,invest_money,interest,borrow_uid,ordid,orddate,freezetrxid")->where('invest_uid='.$investid)->find();
+                $repaysql=M()->GetLastsql();
+                file_put_contents("/tmp/isnew2",date('Y-m-d').'$repaysql-invest1125-'..print_r($repaysql,true)."\n",FILE_APPEND);
+                file_put_contents("/tmp/isnew2",date('Y-m-d').'REpayinfo-invest1125-'..print_r($repayinfo,true)."\n",FILE_APPEND);
+                //还款人都自己还
+                $borrow_uid = $repayinfo['borrow_uid'];
+                $info1 = M("members")->field("usrid")->where("id=".$borrow_uid)->find();
+                $usrid = $info1['usrid'];//借款人客户号    
+                //投资人usrid
+                 $info2 = M("members")->field("usrid")->where("id=".$investid)->find();
+                $investusrid= $info2['usrid'];//投资人客户号   
+                //还款汇付接口数据初始化
+                $transamt=array();//本息
+                $investor =array();//投资人
+                $investorid =array();//投资人
+                $Fee =array();//利息管理费
+                $divdetails =array();//利息管理费详情
+                $subordid =array();//订单号
+                $suborddate =array();//订单日期
+                $repaymentid = array();//还款ID
+
+                $transamt = $repayinfo['invest_money'] + $repayinfo['interest'];//本息
+                $investor = $investusrid;//投资人usrid
+                $investorid= $investid;//投资人ID
+                $Fee=0.00;//利息管理费
+                $divdetails = '';//因为利息管理费为零 所以此变量为空 
+                $subordid = $repayinfo['ordid'];//订单号
+                $suborddate = $repayinfo['orddate'];//订单日期
+                $repaymentid = $repayinfo['id'];
+                //解除冻结保证金
+                $borrowid=1;//标的id为1 固定值
+                $freezetrxid = $repayinfo['freezetrxid'];
+                import("ORG.Huifu.Huifu");
+                $huifu = new Huifu();
+               // $huifu->newbie_usrUnFreeze($freezetrxid,$borrowid,$borrow_uid,$type);//解冻资金
+                $huifu->repayment($usrid,$transamt,$Fee,$investor,$divdetails,$subordid,$suborddate,$borrowid,$sort_order='',$repaymentid,$investorid,$type);//还款
+   }
+
+
+   }//eof class

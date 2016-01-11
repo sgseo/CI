@@ -1,0 +1,46 @@
+<include file="../Public/_header" />
+<script type="text/javascript" src="__ROOT__/Style/My97DatePicker/WdatePicker.js" language="javascript"></script>
+<style type="text/css">
+.tip{color:#F2F4F6}
+</style>
+<tagLib name="htmlA" />
+<div class="so_main">
+  <!--列表模块-->
+ <!--  <form name="sdf" id="sdf" action="__URL__/index" method="get">
+  <div class="Toolbar_inbox">
+    <span>从<htmlA:timer id="start_time" tip='只选开始时间则查询从开始时间往后所有' arg="{maxDate:'#F{$dp.$D(\\\\'end_time\\\\')||\\\\'2020-10-01\\\\'}',dateFmt:'yyyy-MM-dd HH:mm:ss',alwaysUseStartDate:true}"  class="Wdate" value="{$search.start_time|mydate='Y-m-d H:i:s',###}"/>到<htmlA:timer id="end_time" tip='只选结束时间则查询从结束时间往前所有' arg="{minDate:'#F{$dp.$D(\\\\'start_time\\\\')}',maxDate:'2020-10-01',dateFmt:'yyyy-MM-dd HH:mm:ss',alwaysUseStartDate:true}" class="Wdate" value="{$search.end_time|mydate='Y-m-d H:i:s',###}"/></span>
+    <a href="javascript:;" onclick="javascript:document.forms.sdf.submit();" class="btn_a"><span>统计</span></a></div>
+</form> -->
+<style type="text/css">
+.ssx a{height:30px; line-height:30px}
+.list td{border-right:1px solid #E3E6EB; width:30%}
+.lx{width:100%; overflow:hidden; height:30px; line-height:30px}
+.lx dt,.lx dd{float:left; width:40%}
+.lx dt{text-align:right;}
+.lx dd{text-align:left; text-indent:10px}
+</style>
+  <div class="list">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <th class="line_l">会员统计</th>
+
+      </tr>
+      <tr>
+        <td valign="top">
+            <dl class="lx"><dt>会员总数:</dt><dd>{$list.mm.num}人</dd></dl>
+            <dl class="lx"><dt>实名认证会员总数:</dt><dd>{$list.mm.ms_id}人</dd></dl>
+            <dl class="lx"><dt>通过手机认证:</dt><dd>{$list.mm.ms_phone}人</dd></dl>
+            <dl class="lx"><dt>已绑卡会员总数:</dt><dd>{$list.mm.ms_mb}人</dd></dl>
+            <!-- <dl class="lx"><dt>下载APP总数:</dt><dd>{$list.mm.ms_video}人</dd></dl> -->
+            <dl class="lx"><dt>推荐人数:</dt><dd>{$list.mm.ms_renum}人</dd></dl>
+        </td>
+      </tr>
+    </table>
+  </div>
+<!--<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Ff708bea5a5b94473d52231dbe92e5017' type='text/javascript'%3E%3C/script%3E"));
+</script>
+-->
+</div>
+<include file="Public:_footer" />

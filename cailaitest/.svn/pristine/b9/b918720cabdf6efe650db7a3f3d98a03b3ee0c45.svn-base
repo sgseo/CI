@@ -1,0 +1,177 @@
+<script type="text/javascript">
+function videoverify(){
+	var msg = "申请视频认证后会直接从帐户扣除认证费用{$glo.fee_video|default=0}元，然后客服会联系您进行认证。<br/><font style='color:red'>确定要申请认证吗?</font>";
+	var content = '<div class="jbox-custom"><p>'+ msg +'</p><div class="jbox-custom-button"><span onclick="$.jBoxl.close()">暂不申请</span><span onclick="dovideo(true)">确认申请</span></div></div>';
+  	$.jBox(content, {title:'视频认证'});
+}
+function dovideo(v, h, f) {
+	if (v == true){
+        $.ajax({
+            url: "__APP__/common/video",
+            data: {},
+            timeout: 5000,
+            cache: false,
+            type: "get",
+            dataType: "json",
+            success: function (d, s, r) {
+              	if(d){
+					if(d.status==1) $.jBox.tip(d.message, 'success');
+					else $.jBox.tip(d.message, 'error');
+				}
+            }
+        });
+	}
+	return true;
+};
+// 自定义按钮
+function faceverify(){
+	var msg = "<font style='color:red'>确定要申请现场认证吗?</font>";
+	var content = '<div class="jbox-custom"><p>'+ msg +'</p><div class="jbox-custom-button"><span onclick="$.jBoxl.close()">暂不申请</span><span onclick="doface(true)">确认申请</span></div></div>';
+  	$.jBox(content, {title:'现场认证'});
+}
+function doface(v, h, f) {
+	if (v == true){
+        $.ajax({
+            url: "__APP__/common/face",
+            data: {},
+            timeout: 5000,
+            cache: false,
+            type: "get",
+            dataType: "json",
+            success: function (d, s, r) {
+              	if(d){
+					if(d.status==1) $.jBox.tip(d.message, 'success');
+					else $.jBox.tip(d.message, 'error');
+				}
+            }
+        });
+	}
+	return true;
+};
+  $(function  () {
+   	 var xiaowei_p= $("#xiaowei li");
+   	 if(true)
+   	 {
+   	   xiaowei_p.parent().parent().css('background','url(__ROOT__/Style/H/images/hover_bg.gif) no-repeat center right');
+   	 }
+   });
+
+  
+</script>
+<script type=text/javascript><!--//--><![CDATA[//><!--
+function menuFix() {
+// @Modify fangjixiang 20140509
+var ele__ = document.getElementById("nav");
+if(!ele__) return false;
+
+var sfEls = ele__.getElementsByTagName("li");
+for (var i=0; i<sfEls.length; i++) {
+sfEls[i].onmouseover=function() {
+this.className+=(this.className.length>0? " ": "") + "sfhover";
+}
+sfEls[i].onMouseDown=function() {
+this.className+=(this.className.length>0? " ": "") + "sfhover";
+}
+sfEls[i].onMouseUp=function() {
+this.className+=(this.className.length>0? " ": "") + "sfhover";
+}
+sfEls[i].onmouseout=function() {
+this.className=this.className.replace(new RegExp("( ?|^)sfhover\\b"),
+"");
+}
+}
+}
+window.onload=menuFix;
+//--><!]]></script>
+<link rel="stylesheet" type="text/css" href="__ROOT__/Style/H/css/home.css" />
+</head><body>
+<!--头部开始-->
+<if condition="$UID gt '0'"> <include file="default:Common:afterlogin" group="Member"/>
+  <else/>
+  <include file="default:Common:beforelogin" group="Member"/> </if>
+<script type="text/javascript">
+  function  erji(a, b, c, d) {
+        $(a).children(b).each(function() {
+            var a1 = $(this).children(c),
+             b2 = $(this).children(d),
+             index=$(this).index();
+            if (a1.html()) $(this).hover(function() {
+                a1.show();
+                
+            index==0 && $(this).css({'background-position':'0px -62px'});
+            index==1 && $(this).css({'background-position':'0px -124px'});
+                b2.css({
+
+                    'color':'#fff'
+                });
+            }, function() {
+                a1.hide();
+                 index==0 && $(this).css({'background-position':'0px -31px'});
+            index==1 && $(this).css({'background-position':'0px -93px'});
+                b2.css({
+
+                    'color':'#fff'
+                });
+            });
+        });
+    }
+
+
+
+erji('#erji','li','div','h1');
+</script>
+<div class="Nav">
+  <div class="contain">
+    <div class="N_logo"><a href="/"><img class="ilogo"  src="/Style/H/img/logo.png" alt=""/></a></div>
+    <div class="Nav_nav">
+      <div class="menu">
+        <ul class="navigation-list" id="dw_ul">
+          <php>$typelist = getTypeList(array('type_id'=>0,'limit'=>9)); foreach($typelist as $vtype=> $va){ </php>
+          <li class="navigation-item "> <a href="{$va.turl}" class="navigation-item-name">{$va.type_name}
+            <php>$sontypelist = getTypeList(array('type_id'=>$va['id'],'limit'=>8,'notself'=>true)); if($sontypelist != null){</php>
+              <span class="iarrow-down"></span>
+            <php>}</php>
+            </a>
+            <div class="navigation-list-two-con" id="dw_ul2">
+                <php>if($sontypelist != null){</php>
+              <div class="navigation-list-two">
+                <php>$sontypelist = getTypeList(array('type_id'=>$va['id'],'limit'=>8,'notself'=>true)); </php>
+                <span class="loanImg nav-sanjiao"></span>
+
+                <ul class="navigation-two-list" id="erji_nav">
+                  <php>$sontypelist = getTypeList(array('type_id'=>$va['id'],'limit'=>8,'notself'=>true)); foreach($sontypelist as $sonvtype){</php>
+                  <li><a href="{$sonvtype.turl}"  >{$sonvtype.type_name}</a></li>
+                  <php>}</php>
+                </ul>
+
+              </div>
+                <php>}</php>
+            </div>
+          </li>
+          <php>}</php>
+         
+        </ul>
+      </div>
+    </div>
+   
+    <script language="javascript">
+                   $(document).ready(function(){
+			
+						
+					$("#ui-nav-item-link").mouseover(function(){
+						$("#ui-nav-dropdown").show()
+						}).mouseout(function(){
+							$("#ui-nav-dropdown").hide()
+							});
+						$(".ui-nav-dropdown-item").mouseover(function(){
+							$(this).css({"background":"#027BC0"}).mouseout(function(){
+								$(this).css({"background":"#fff"})
+															});
+
+							})
+						
+					  })
+ 
+                     </script>
+  </div>
+</div>

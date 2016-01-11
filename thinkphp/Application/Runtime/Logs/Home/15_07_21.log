@@ -1,0 +1,117 @@
+[ 2015-07-21T10:18:40+08:00 ] 127.0.0.1 /thinkphp/Home/role/sendsms
+ERR: 参数错误或者未定义:mob
+
+[ 2015-07-21T13:10:15+08:00 ] 127.0.0.1 /thinkphp/Home/role/sendsms
+ERR: 非法操作:sendsms
+
+[ 2015-07-21T14:22:11+08:00 ] 127.0.0.1 /thinkphp/Home/Role/sendsms
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+NOTIC: [8] Use of undefined constant PNAME - assumed 'PNAME' D:\WWW\thinkphp\Application\Home\Controller\RoleController.class.php 第 14 行.
+NOTIC: [8] Use of undefined constant SECRET_KEY - assumed 'SECRET_KEY' D:\WWW\thinkphp\Application\Home\Controller\RoleController.class.php 第 15 行.
+NOTIC: [8] Use of undefined constant API_URL - assumed 'API_URL' D:\WWW\thinkphp\Application\Home\Controller\RoleController.class.php 第 16 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.003000s ]
+
+[ 2015-07-21T14:23:22+08:00 ] 127.0.0.1 /thinkphp/Home/Role/sendsms
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001001s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001001s ]
+NOTIC: [8] Use of undefined constant PNAME - assumed 'PNAME' D:\WWW\thinkphp\Application\Home\Controller\RoleController.class.php 第 14 行.
+NOTIC: [8] Use of undefined constant SECRET_KEY - assumed 'SECRET_KEY' D:\WWW\thinkphp\Application\Home\Controller\RoleController.class.php 第 15 行.
+NOTIC: [8] Use of undefined constant API_URL - assumed 'API_URL' D:\WWW\thinkphp\Application\Home\Controller\RoleController.class.php 第 16 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.003000s ]
+
+[ 2015-07-21T14:27:22+08:00 ] 127.0.0.1 /thinkphp/Home/Role/sendsms
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.003000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004000s ]
+NOTIC: [8] Use of undefined constant PNAME - assumed 'PNAME' D:\WWW\thinkphp\Application\Home\Controller\RoleController.class.php 第 14 行.
+NOTIC: [8] Use of undefined constant SECRET_KEY - assumed 'SECRET_KEY' D:\WWW\thinkphp\Application\Home\Controller\RoleController.class.php 第 15 行.
+NOTIC: [8] Use of undefined constant API_URL - assumed 'API_URL' D:\WWW\thinkphp\Application\Home\Controller\RoleController.class.php 第 16 行.
+
+[ 2015-07-21T14:28:03+08:00 ] 127.0.0.1 /thinkphp/Home/Role/sendsms
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002001s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003001s ]
+NOTIC: [8] Use of undefined constant PNAME - assumed 'PNAME' D:\WWW\thinkphp\Application\Home\Controller\RoleController.class.php 第 14 行.
+NOTIC: [8] Use of undefined constant SECRET_KEY - assumed 'SECRET_KEY' D:\WWW\thinkphp\Application\Home\Controller\RoleController.class.php 第 15 行.
+NOTIC: [8] Use of undefined constant API_URL - assumed 'API_URL' D:\WWW\thinkphp\Application\Home\Controller\RoleController.class.php 第 16 行.
+
+[ 2015-07-21T14:28:11+08:00 ] 127.0.0.1 /thinkphp/Home/Role/sendsms
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+NOTIC: [8] Use of undefined constant PNAME - assumed 'PNAME' D:\WWW\thinkphp\Application\Home\Controller\RoleController.class.php 第 14 行.
+NOTIC: [8] Use of undefined constant SECRET_KEY - assumed 'SECRET_KEY' D:\WWW\thinkphp\Application\Home\Controller\RoleController.class.php 第 15 行.
+NOTIC: [8] Use of undefined constant API_URL - assumed 'API_URL' D:\WWW\thinkphp\Application\Home\Controller\RoleController.class.php 第 16 行.
+
+[ 2015-07-21T14:29:14+08:00 ] 127.0.0.1 /thinkphp/Home/Role/sendsms
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001001s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001001s ]
+NOTIC: [8] Use of undefined constant PNAME - assumed 'PNAME' D:\WWW\thinkphp\Application\Home\Controller\RoleController.class.php 第 14 行.
+NOTIC: [8] Use of undefined constant SECRET_KEY - assumed 'SECRET_KEY' D:\WWW\thinkphp\Application\Home\Controller\RoleController.class.php 第 15 行.
+NOTIC: [8] Use of undefined constant API_URL - assumed 'API_URL' D:\WWW\thinkphp\Application\Home\Controller\RoleController.class.php 第 16 行.
+
+[ 2015-07-21T14:29:58+08:00 ] 127.0.0.1 /thinkphp/Home/Role/sendsms
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+NOTIC: [8] Use of undefined constant PNAME - assumed 'PNAME' D:\WWW\thinkphp\Application\Home\Controller\RoleController.class.php 第 14 行.
+NOTIC: [8] Use of undefined constant SECRET_KEY - assumed 'SECRET_KEY' D:\WWW\thinkphp\Application\Home\Controller\RoleController.class.php 第 15 行.
+NOTIC: [8] Use of undefined constant API_URL - assumed 'API_URL' D:\WWW\thinkphp\Application\Home\Controller\RoleController.class.php 第 16 行.
+
+[ 2015-07-21T14:37:06+08:00 ] 127.0.0.1 /thinkphp/Home/Role/sendsms
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003000s ]
+NOTIC: [8] Use of undefined constant PNAME - assumed 'PNAME' D:\WWW\thinkphp\Application\Home\Controller\RoleController.class.php 第 14 行.
+NOTIC: [8] Use of undefined constant SECRET_KEY - assumed 'SECRET_KEY' D:\WWW\thinkphp\Application\Home\Controller\RoleController.class.php 第 15 行.
+NOTIC: [8] Use of undefined constant API_URL - assumed 'API_URL' D:\WWW\thinkphp\Application\Home\Controller\RoleController.class.php 第 16 行.
+
+[ 2015-07-21T14:37:55+08:00 ] 127.0.0.1 /thinkphp/Home/Role/sendsms
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+NOTIC: [8] Use of undefined constant PNAME - assumed 'PNAME' D:\WWW\thinkphp\Application\Home\Controller\RoleController.class.php 第 14 行.
+NOTIC: [8] Use of undefined constant SECRET_KEY - assumed 'SECRET_KEY' D:\WWW\thinkphp\Application\Home\Controller\RoleController.class.php 第 15 行.
+NOTIC: [8] Use of undefined constant API_URL - assumed 'API_URL' D:\WWW\thinkphp\Application\Home\Controller\RoleController.class.php 第 16 行.
+
+[ 2015-07-21T14:37:58+08:00 ] 127.0.0.1 /thinkphp/Home/Role/sendsms
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Use of undefined constant PNAME - assumed 'PNAME' D:\WWW\thinkphp\Application\Home\Controller\RoleController.class.php 第 14 行.
+NOTIC: [8] Use of undefined constant SECRET_KEY - assumed 'SECRET_KEY' D:\WWW\thinkphp\Application\Home\Controller\RoleController.class.php 第 15 行.
+NOTIC: [8] Use of undefined constant API_URL - assumed 'API_URL' D:\WWW\thinkphp\Application\Home\Controller\RoleController.class.php 第 16 行.
+
+[ 2015-07-21T14:39:38+08:00 ] 127.0.0.1 /thinkphp/Home/Role/sendsms
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Use of undefined constant PNAME - assumed 'PNAME' D:\WWW\thinkphp\Application\Home\Controller\RoleController.class.php 第 14 行.
+NOTIC: [8] Use of undefined constant SECRET_KEY - assumed 'SECRET_KEY' D:\WWW\thinkphp\Application\Home\Controller\RoleController.class.php 第 15 行.
+NOTIC: [8] Use of undefined constant API_URL - assumed 'API_URL' D:\WWW\thinkphp\Application\Home\Controller\RoleController.class.php 第 16 行.
+
+[ 2015-07-21T14:41:18+08:00 ] 127.0.0.1 /thinkphp/Home/Role/sendsms
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+NOTIC: [8] Use of undefined constant PNAME - assumed 'PNAME' D:\WWW\thinkphp\Application\Home\Controller\RoleController.class.php 第 14 行.
+NOTIC: [8] Use of undefined constant SECRET_KEY - assumed 'SECRET_KEY' D:\WWW\thinkphp\Application\Home\Controller\RoleController.class.php 第 15 行.
+NOTIC: [8] Use of undefined constant API_URL - assumed 'API_URL' D:\WWW\thinkphp\Application\Home\Controller\RoleController.class.php 第 16 行.
+
+[ 2015-07-21T14:46:14+08:00 ] 127.0.0.1 /thinkphp/Home/Role/sendsms
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+NOTIC: [8] Use of undefined constant PNAME - assumed 'PNAME' D:\WWW\thinkphp\Application\Home\Controller\RoleController.class.php 第 15 行.
+NOTIC: [8] Use of undefined constant SECRET_KEY - assumed 'SECRET_KEY' D:\WWW\thinkphp\Application\Home\Controller\RoleController.class.php 第 16 行.
+NOTIC: [8] Use of undefined constant API_URL - assumed 'API_URL' D:\WWW\thinkphp\Application\Home\Controller\RoleController.class.php 第 17 行.
+NOTIC: [8] Use of undefined constant SON_URL - assumed 'SON_URL' D:\WWW\thinkphp\Application\Home\Controller\RoleController.class.php 第 18 行.
+

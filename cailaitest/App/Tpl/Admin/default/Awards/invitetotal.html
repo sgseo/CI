@@ -1,0 +1,52 @@
+<style type="text/css">
+.table1{width:420px; padding-left:30px; margin-bottom:20px;}
+.table1 tr{line-height:25px; }
+.table1 tr td{border-top: 1px dashed #e2e2e2;}
+</style>
+<tagLib name="htmlA" />
+<div class="so_main">
+
+<div class="page_tit">邀请的会员奖励汇总</div>
+<div class="form2">
+
+	<div id="tab_1">
+	<table border=0 class="table1">	
+		<tr>
+			<th width=30%>被邀请人</th>
+			<th width=30%>投资总额</th>
+			<th width=30%>贡献总额</th>
+		</tr>
+		<notempty name="list">
+		<volist name="list" id="vo">
+		<tr>
+			<td>{$vo.user_name}</td>
+			<td>{$vo.invest_money|default='0.00'}元</td>
+			<td>+{$vo.jiangli|default='0.00'}元</td>
+		</tr>	
+
+		</volist>
+		<else />
+		没有推广记录
+		</notempty>
+		<notempty name="admin_add">
+		<tr>
+			<td>管理员增加资金</td>
+			<td>0</td>
+			<td>+{$admin_add|default='0.00'}元</td>
+		</tr>
+		</notempty>
+		<notempty name="admin_minus">
+		<tr>
+			<td>管理员减少资金</td>
+			<td>0</td>
+			<td>{$admin_minus|default='0.00'}元</td>
+		</tr>
+		</notempty>
+	</table>
+	
+	</div>
+	
+	
+</div>
+
+</div>

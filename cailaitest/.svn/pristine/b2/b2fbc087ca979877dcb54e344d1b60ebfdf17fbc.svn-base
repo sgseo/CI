@@ -1,0 +1,117 @@
+
+
+
+/*天顺祥借款页面*/
+
+.tsx_mb{width: 1000px; height: auto;  margin: auto;}
+
+.tsx_mba{width: 998px; margin: auto;border:1px solid #ddd;  background: #fff; margin-top: 33px; text-align:center;}
+.tsx_zero{
+	width: 962px; 
+	margin: auto; 
+	clear: both;
+	overflow: hidden;
+	margin: 22px 18px;
+}
+
+.tsx_zero_l{
+	width: 186px; 
+	height: 188px; 
+	background:url('../images3/tsx_110801.png') no-repeat;
+	float: left;
+	position: relative;
+	left: 0px;
+	top: 0px;
+	margin-top: 10px;
+}
+.tsx_zero_l a{
+	font-size: 18px; 
+	color: #fff; 
+	position: absolute;
+	bottom: 26px; 
+	left: 56px;
+}
+.tsx_zero_r{
+	width: 770px; 
+	height: 188px; 
+	float: left;
+	margin-left: 6px;
+	margin-top: 10px;
+}
+
+.tsx_zero_r h2.tsx_zero_r01{
+	height:50px;
+	background: #8ac33f; 
+	width: 770px; 
+	font-size: 18px;
+	line-height: 50px;
+	color: #fff;
+	position: relative;
+	left: 0px;
+	 top: 0px;
+	}
+
+	.tsx_zero_r h2.tsx_zero_r02{
+		background: #f46867;
+	}
+
+
+	.tsx_zero_r h2.tsx_zero_r03{
+		background: #f6ae48;
+	}
+
+
+
+
+
+
+	.tsx_zero_r h2 span{
+		font-size: 26px;
+		position: absolute;
+		left: 18px;
+		 top: 0px;
+	}
+
+	.tsx_zero_r_b{
+		width: 770px;
+		height: 130px;
+		background: #e5f4ff;
+		margin-top: 8px;
+		clear: both;
+		color: #666;
+	}
+	
+	.tsx_zero_r_b img{float:left;}
+	.tsx_zero_r_b h3{
+		font-size: 18px;
+		margin-top: 20px;
+		text-align: left;
+		text-indent: 26px;
+	}
+	.tsx_zero_r_b p{
+		font-size: 14px;
+		text-align: left;
+		margin-top: 10px;
+		text-indent: 44px;
+	}
+
+	.tsx_zero_r_b_l{
+		width: 376px;
+		height: 130px;
+		float: left;
+	}
+
+
+	.tsx_zero_r_b_r{
+		width: 376px;
+		height: 130px;
+		float: right;
+	}
+
+.tsx_zero_l_01{
+		background:url('../images3/tsx_110802.png') no-repeat;
+	}
+
+	.tsx_zero_l_02{
+		background:url('../images3/tsx_110803.png') no-repeat;
+	}

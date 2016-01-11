@@ -1,0 +1,67 @@
+@charset "utf-8";
+*{padding:0;margin:0;font-family: 'microsoft yahei'}
+li{list-style: none;}
+
+#wrap{width:273px;margin:5px auto;padding-left: 7px;}
+#wrap ul li{
+	  border: 0px solid transparent;
+  	  border-radius: 50%;
+  	  display: inline-block;
+  	  margin: 2px 1px;
+}
+#kalendar{width:273px;margin:0 auto; }
+/* 选择年月 的行 */
+#kalendar tr#select{height:30px;}
+#kalendar tr#select td{clear:both;}
+#kalendar tr#select td div{float:left;width:100px;height:30px;line-height:30px;}
+#kalendar tr#select #year,#kalendar tr#select #month{width:130px;padding-left:100px;}
+
+#select #year ul,#select #month ul{clear:both;}
+#select #year ul li,#select #month ul li{float:left;text-align: center;}
+#select #year ul li input,#select #month ul li input{width:15px;text-align:30px;cursor:pointer;}
+#select #year ul li.selectChange,#select #month ul li.selectChange{width:70px;height:10px;}
+#select #year ul li.selectChange select,#select #month ul li.selectChange select{width:64px;padding-left:2px;cursor:pointer;}
+#select #year ul li.selectChange select option,#select #month ul li.selectChange select option{padding-left:5px;}
+
+/* 星期表头 的行 */
+#kalendar tr#week{height:30px;}
+#kalendar tr#week td ul{width:278px;clear:both;}
+#kalendar tr#week td ul li{float:left;width:28px;height:28px;line-height:28px;text-align:center;margin:0 3px;border:2px solid transparent;/*background:#9999CC*/;}
+
+/* 某月具体日期 的每一行 */
+#kalendar tr#day ul.dayList{width:278px;height:28px;clear:both;margin:2px auto;}
+#kalendar tr#day ul.dayList li{float:left;width:28px;height:28px;line-height:28px;text-align:center;margin:0 3px 1px 3px;/*background:#eee*/;cursor:pointer;border:2px solid #fff}
+/* 日期占用行数(4-6行)，将不需要显示的行隐藏 */
+#kalendar tr#day ul.hide{display:none;}
+/* 周末 的特殊样式 */
+#week .weekend,#day .weekend{color:#EA0000;}
+
+/* 下面几个样式注意顺序，选择器不能简写，否则日历中 今天 的样式会被鼠标滑过的样式替换 */
+/* 鼠标经过某个日期 的特殊样式 */
+#kalendar tr#day td ul.dayList li.mouseFloat{background:#fff;border: 2px solid #F45A00;border-radius: 50%;}
+/* 当天是周末 的特殊样式 */
+#kalendar tr#day td ul.dayList li.todayWeekend{color:#EA0000;background:#abcdef;font-weight:700;}
+/* 当天 的特殊样式 */
+#kalendar tr#day td ul.dayList li.today{
+  background: #0CDA4A;
+  border: 2px solid transparent;
+  color: #f9f9f9;}
+#kalendar tr#day td ul.dayList li.active{
+    /*border: 2px solid blue;*/
+  color: #666;
+  border-radius: 50%;
+  border:2px solid #F45A00; /*#0CDA4A;*/
+}
+//收益提示
+.tip{
+padding:4px auto;
+margin-left:4px; auto;
+background-color:#eee;
+}
+
+.list{
+	width: 280px;
+	background-color: #eee;
+	height:31px; line-height:31px;
+	text-align: center;
+}

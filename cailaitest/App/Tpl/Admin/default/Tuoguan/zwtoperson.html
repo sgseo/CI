@@ -1,0 +1,145 @@
+<script type="text/javascript" src="__ROOT__/Style/M/js/amounttochinese.js" language="javascript"></script>
+<script language="javascript" type="text/javascript" src="__ROOT__/Style/A/js/jquery.min.js"></script>
+
+<style type="text/css">
+        .btnEnable { width: 96px; height: 28px; line-height: 25px; text-align: center; cursor: pointer; background-image: url(__ROOT__/Style/M/images/sendMsg.jpg); }
+        a.btnEnable:hover { color: #F4FFFF; }
+        a.btnDisable { color: Gray; }
+        .tdTitle { text-align: right; padding-left: 10px; font-size: 12px; height: 80; line-height: 40px; vertical-align: middle; width: 110px; color: #000; }
+        .tdContent { text-align: left; padding-left: 10px; font-size: 12px; height: 80; line-height: 40px; vertical-align: middle; width:350px; color: #000; }
+        .reg_wrong { font-size: 12px; background-color: #fff9dd; border: 1px solid #ff0000; color: #ff0000; height: 22px; line-height: 21px; }
+        #vtiplink, #bacctip { width: 115px; border: none; cursor: pointer; display: block; height: 5px; }
+        #formTb { width: 100%; margin: 0px; padding: 0px; border-collapse: collapse; text-align: left; }
+        #currentMoeny { color: Red; font-weight: bold; font-size: 12px; }
+        .titstrong { height: 30px; line-height: 30px; text-indent: 30px; padding-top: 20px; text-align: left; border-bottom: dashed 1px #ccc; margin-bottom: 10px; }
+        .listframe { width: 100%; overflow: hidden; padding: 0px 0px; }
+        .listframe td { border: 1px solid #dedede; }
+        .listframe a { color: #0000ff; }
+    </style>
+    <style type="text/css">
+        .dv_header_8 { background-image: url(); }
+        .dv_account_0 { margin-top: 10px; }
+    </style>
+<div class="listframe" style="clear: both; margin-top: 20px; width: 100%;">
+<form action="__URL__/zwtodoperson" method="post">
+	<input type="hidden" value="<?php echo $need_return?>" name="need_return">
+	<table id="formTb" style="margin: 0px 20px 10px 20px;width: 762px;" cellpadding="0" cellspacing="0">		
+                 <tr>
+			<td class="tdTitle">
+				用户手机号：
+			</td>
+			<td class="tdContent">
+				<div style="float: left; line-height: 21px;">
+					<!--<input name="txt_Amount" id="txt_Amount" class="text2" onblur="testAmount();" type="text">-->
+					<input name="zw_telephone" id="zw_telephone" class="text2"  type="text" value="<?php echo $mobile?>">
+				</div>
+				<div id="d_money" style="width: 250px; height: 20px; line-height: 20px; margin-left: 10px;
+					float: left;">
+				</div>
+			</td>
+            
+			<td class="tdTitle">
+				姓名：
+			</td>
+            
+			<td class="tdContent" id ="zwname">
+				【】
+			</td>
+		</tr>
+<!--		<tr>
+			<td class="tdTitle">
+				可转账金额：
+			</td>
+			<td class="tdContent">
+				[<span id="currentMoeny"></span>]元
+			</td>
+		</tr>-->
+		<tr>
+			<td class="tdTitle">
+				转账金额：
+			</td>
+			<td class="tdContent">
+				<div style="float: left; line-height: 21px;">
+					<!--<input name="txt_Amount" id="txt_Amount" class="text2" onblur="testAmount();" type="text">-->
+					<input name="money" id="txt_Amount" class="text2"  type="text" value="<?php echo $money?>">
+				</div>
+				<div id="d_money" style="width: 250px; height: 20px; line-height: 20px; margin-left: 10px;
+					float: left;">
+				</div>
+			</td>
+            
+            
+			<td class="tdTitle">
+				可用余额：
+			</td>
+			<td class="tdContent" id ="zwallmoney">
+				
+			</td>
+            
+		</tr>
+		<tr>
+			<td class="tdTitle">&nbsp;
+				
+			</td>
+			<td class="tdContent" colspan="3">
+				<!--<img style="cursor: pointer;" alt="确认提现" onclick="drawMoney()" src="__ROOT__/Style/M/images/draw.jpg">
+				<img src="__ROOT__/Style/M/images/sendMsgdis.jpg" style="display: none;">-->
+				<input type="submit" id= "zwsubmit" value="确认转账">
+			</td>
+		</tr>
+            </table></form>
+	<div style="clear: both; margin-bottom: 30px; padding-left: 20px;">
+
+
+
+		</div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	var usrTelephone = $('#zw_telephone').val();
+    if(usrTelephone.length = 11){
+        $.ajax({
+            url: "__URL__/zwtodoperson",
+            type: "post",
+            dataType: "json",
+            data: {"type":"zwperson","usrTelephone":usrTelephone},
+            success: function(z){                 
+                if(z){
+                   $("#zwname").html("【 "+z.real_name+" 】") ;
+                   $("#zwallmoney").html(z.all_money) ;
+                }
+            }
+        });
+    }
+    
+    $('#zwsubmit').bind('click',function(){
+                if(confirm('你确定要提交吗？')){
+                     $('#zwsubmit').submit();  
+                }else{
+                    return false;
+                }
+ 
+    })
+
+})
+$("#zw_telephone").blur(function(){
+            var usrTelephone = $(this).val();
+            if(usrTelephone.length = 11){
+                $.ajax({
+                    url: "__URL__/zwtodoperson",
+                    type: "post",
+                    dataType: "json",
+                    data: {"type":"zwperson","usrTelephone":usrTelephone},
+                    success: function(z){                 
+                        if(z){
+                           $("#zwname").html("【 "+z.real_name+" 】") ;
+                           $("#zwallmoney").html(z.all_money) ;
+                        }
+                    }
+                });
+            }
+        });
+
+
+</script>

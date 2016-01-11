@@ -1,0 +1,111 @@
+<include file="Public:_header" />
+<tagLib name="htmlA" />
+<script type="text/javascript">
+	var delUrl = '__URL__/doDel';
+	var addUrl = '__URL__/add';
+	var isSearchHidden = 1;
+</script>
+<div class="so_main">
+  <div class="page_tit">商户代还借款</div>
+<!--搜索/筛选会员-->
+  <!--<include file="search" />-->
+<!--搜索/筛选会员-->
+
+  <div class="Toolbar_inbox" style="height:26px;">
+  	<div class="page right">{$pagebar}</div>
+    <!--<htmlA:commonBtn type="jsfun" action="dosearch();" value="搜索/筛选借款" style="search_action" />-->
+  </div>
+  
+  <div class="list">
+  <table id="area_list" width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <!--<th style="width:30px;">
+        <input type="checkbox" id="checkbox_handle" onclick="checkAll(this)" value="0">
+        <label for="checkbox"></label>
+    </th>-->
+    <!--<th class="line_l">ID</th>-->
+    <th class="line_l">计划还款日期</th>
+    <th class="line_l">计划还款本金</th>
+    <th class="line_l">计划还款利息</th>
+    <th class="line_l">实还本息</th>
+    <th class="line_l">需还本息</th>
+    <th class="line_l">还款状态</th>
+    <th class="line_l">还款</th>
+  </tr>
+  <volist id="vo" name="list.list">
+      <tr overstyle='on' id="list_{$vo.id}">
+        <!--<td><input type="checkbox" name="checkbox" id="checkbox2" onclick="checkon(this)" value="{$vo.id}"></td>-->
+        <td>{$vo.deadline|date="Y-m-d H:i",###}</td>
+		<td>{$vo.capital}</td>
+        <td>{$vo.interest}</td>
+        <td><if condition="$vo['needpay'] eq 0">{$vo.paid}<else/>0</if></td>
+        <td><if condition="$vo['needpay'] eq 0">0<else/>{$vo['needpay']+$vo['paid']}</if></td>
+        <td>{$vo.status}</td>
+        <td>
+			<if condition="$vo['needpay'] eq 0">---<else/><a href="javascript:;" onclick="repayment({$vo.borrow_id},{$vo.sort_order})">还款</a></if>
+			<a href="javascript:;" onclick="unfreeze({$vo.borrow_id},{$vo.sort_order})">解冻</a>
+        </td>
+      </tr>
+  </volist>
+  </table>
+
+  </div>
+  
+  <div class="Toolbar_inbox" style="height:26px;">
+  	<div class="page right">{$pagebar}</div>
+    <!--<htmlA:commonBtn type="jsfun" action="dosearch();" value="搜索/筛选借款" style="search_action" />-->
+  </div>
+</div>
+<script type="text/javascript">
+function repayment(bid,sort_order){
+	ui.success("还款操作已执行，等待页面刷新");
+	setTimeout(function (){ location.reload();}, 3000);
+	x = {"bid":bid,"sort_order":sort_order};
+	$.ajax({
+		url: "__URL__/repayment",
+		data: x,
+		timeout: 15000,
+		cache: false,
+		type: "post",
+		dataType: "json",
+		success: function (d, s, r) {
+			if(d){
+				if(d.status==1){
+					$.jBox.tip("还款成功",'success');
+					setTimeout('myrefresh()',3000); //指定3秒刷新,系统提示停留时间
+				}else{
+					$.jBox.tip(d.message,'error');
+					setTimeout('myrefresh()',3000); //指定3秒刷新,系统提示停留时间
+				}
+			}
+		}
+
+	});
+}
+function unfreeze(bid,sort_order){
+	ui.success("解冻操作已执行，等待页面刷新");
+	setTimeout(function (){ location.reload();}, 3000);
+	x = {"bid":bid,"sort_order":sort_order};
+	$.ajax({
+		url: "__URL__/unfreeze",
+		data: x,
+		timeout: 15000,
+		cache: false,
+		type: "post",
+		dataType: "json",
+		success: function (d, s, r) {
+			if(d){
+				if(d.status==1){
+					$.jBox.tip("还款成功",'success');
+					setTimeout('myrefresh()',3000); //指定3秒刷新,系统提示停留时间
+				}else{
+					$.jBox.tip(d.message,'error');
+					setTimeout('myrefresh()',3000); //指定3秒刷新,系统提示停留时间
+				}
+			}
+		}
+
+	});
+}
+</script>
+<include file="Public:_footer" />

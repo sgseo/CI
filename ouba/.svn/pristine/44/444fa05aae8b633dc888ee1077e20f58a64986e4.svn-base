@@ -1,0 +1,202 @@
+  /*核心信息*/
+      .title{
+        width: 50%;
+        margin:25px auto 0px auto; 
+        text-align: center;
+        font-size: 16px;
+        font-family: "microsoft yahei";
+        color: #000;
+        font-weight: bold;
+        text-align: center;
+        /*border: 1px solid #000;*/
+      }
+      .coretop{
+        width: 1066px;
+        margin: 5px auto ;
+        border-bottom: 1px solid #d6d6d6;
+        /*margin-bottom:60px;*/
+        /*border: 1px solid red;*/
+        /*padding-bottom:120px;*/
+        height: 250px;
+        /*border: 1px solid red;*/
+      }
+      .coretop div{
+        width: 371px;
+        padding: 0px 0px;
+        /*line-height: 49px;*/
+      }
+        .coretop select{
+        height: 30px;
+        width: 371px;
+       }
+      .every{
+        /*border: 1px solid red;*/
+        float: left;
+        margin-top: 20px;
+        margin-left: 100px;
+        height: 50px;
+      }
+    
+      .every>input{
+        width: 365px;
+        height: 30px;
+        line-height: 30px;
+        float: left;
+        margin:0px auto;
+        padding-left: 5px;
+        font-size: 12px;
+        /*border: 1px solid blue;*/
+        
+      }
+      .every>span{
+        font-size: 14px;
+        /*margin-left:1px;*/
+        font-family: "microsoft yahei";
+        /*font-weight: bold;*/
+        padding-bottom: 0px;  
+      }
+      .son p{
+        width: 180px;
+        height: 20px;
+        float: left;
+        /*text-align: center;*/
+        line-height: 59px;
+        /*border: 1px solid red;*/
+      }
+
+    .son input{
+        width: 14px;
+        height: 14px;
+        margin-top: 23px;
+        float: left;
+      }
+
+    .son>span{
+      height: 20px;
+      width: 160px;
+      line-height: 20px;
+     }
+
+     .info{
+        width: 180px;
+        height: 20px;
+        float: left;
+        text-align: center;
+        line-height: 59px;
+      }
+    
+     .info p{
+        width: 120px;
+        height: 20px;
+        float: left;
+        /*text-align: center;*/
+        line-height: 59px;
+        /*border: 1px solid red;*/
+      }
+
+    .info input{
+        width: 14px;
+        height: 14px;
+        margin-top: 23px;
+        float: left;
+      }
+
+    .info>span{
+      width: 160px;
+      line-height: 20px;
+     }
+      
+      /*过桥*/
+      .corebridge{
+        width: 1066px;
+        margin: 0px auto;
+        border-bottom: 1px solid #d6d6d6;
+        margin-bottom: 60px;
+        /*padding-bottom:40px;*/
+        height: 300px;
+        /*border: 1px solid blue;*/
+      }
+      .corebridge div{
+        width: 375px;
+        padding: 0px 0px;
+        /*line-height: 49px;*/
+      }
+       .corebridge select{
+        height: 30px;
+        width: 371px;
+       }
+
+      .bridge{
+        width: 1066px;
+        margin: 0px auto;
+        /*border-bottom: 1px solid #d6d6d6;*/
+        margin-bottom: 125px;
+        padding-bottom:40px;
+        height: 300px;
+        /*border: 1px solid blue;*/
+      }
+
+       .bridge select{
+        height: 30px;
+width: 371px;}
+     
+
+     /*抵押物信息*/
+     .pledge>p{
+       float: left;
+     }
+    .for{
+      width: 371px;
+      height: 49px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      line-height: 49px;
+    }
+    .for p{
+      float: left;
+      margin: 5px 15px;
+    }
+
+      .corepic{
+        width: 50%;
+        margin: 50px auto;
+        height:600px;
+        border-bottom: 1px solid #ccc;
+        margin-top: 50px;
+        padding-bottom:40px;
+      }
+	  
+.pic{ width:24%;float: left;margin: 10px 0px 10px 10px;}
+.pic span,.pic input{ font-size:12px;}
+textarea{width:97%;margin:0 auto; padding:10px;height:60px;}
+.clear{clear: both;}
+
+
+
+.sidebar-frame{border:1px solid #eee;width:1050px;height:auto;overflow:hidden;padding:20px 15px 15px 15px;margin-top:15px;}
+.sidebar-s{width:1050px;height:auto;overflow:hidden;padding:20px 15px 15px 15px;margin-top:15px;}
+.title_p{width:100%;position:absolute;z-index:1;}
+.title_p span{position:relative;top:-32px;z-index:1;background:#fff;padding:0 10px;font-size:14px;font-family:"microsoft yahei";color:#333;font-weight:bold;text-align:left;}
+.every_p{width:350px;float:left;margin-top:10px;height:35px;} 
+.every_p span{font-size:12px;font-family:"microsoft yahei";float:left; padding:0 0px 0 10px; line-height:25px;margin-bottom:0;}
+.every_p input{width:70%;height:22px;line-height:22px;float:left;padding-left:5px;font-size:12px; border-radius:3px; margin-left:2%;margin-bottom:0;}
+.every_p input.width{width:45.2%;} 
+.every_p input.width_321{width:58%;}
+.every_p input.width_333{width:61%;}  
+.every_p input.width_338{width:63%;} 
+.every_p input.width_340{width:64%;} 
+.every_p input.width_353{width:66%;}   
+.every_p input.width_356{width:66.5%;} 
+.every_p input.width_363{width:68.5%;} 
+.every_p input.width_378{width:71%;} 
+.every_p input.width_380{width:67%;} 
+.every_p .son_p p{width:22%;height:20px;float:left;line-height:20px; padding-left:2%;font-size:12px;} 
+.every_p .son_p input{width:14px;height:14px;float:left;}
+.every_p .son_p span{height:20px;width:56px;float:left;line-height:20px;padding:0; } 
+.bridge_p select{height:25px;width:65.3%;margin-left:2%;font-size:12px;}
+.pledge_p select{height:25px;width:62%;margin-left:2%;font-size:12px;}
+.pledge_p1 select{height:25px;width:65.3%;margin-left:2%;font-size:12px;}
+.pledge_p2 select{height:25px;width:67.5%;margin-left:2%;font-size:12px;}
+.pledge_p3 select{height:25px;width:60.5%;margin-left:2%;font-size:12px;}
+.pledge_ps select{height:25px;width:68%;margin-left:2%;font-size:12px;}
+ 

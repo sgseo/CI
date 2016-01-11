@@ -1,0 +1,30 @@
+<include file="Public:_header" />
+<script type="text/javascript" src="__ROOT__/Style/My97DatePicker/WdatePicker.js" language="javascript"></script>
+<tagLib name="htmlA" />
+<div class="so_main">
+
+<div class="page_tit">查看融资申请</div>
+<div class="page_tab"><span data="tab_1" class="active">融资申请</span></div>
+<div class="form2">
+	
+	<div id="tab_1">
+	
+		<dl class="lineD"><dt>企业名称：</dt><dd>{$vo.qiyename}</dd></dl>
+        <dl class="lineD"><dt>注册号：</dt><dd>{$vo.zhucehao}</dd></dl>
+        <dl class="lineD"><dt>法人/负责人：</dt><dd>{$vo.faren}</dd></dl>
+        <dl class="lineD"><dt>身份证号：</dt><dd>{$vo.shenfenzheng}</dd></dl>
+        <dl class="lineD"><dt>联系电话：</dt><dd>{$vo.phone}</dd></dl>
+        <dl class="lineD"><dt>所在城市：</dt><dd>{$vo.city}</dd></dl>
+        <dl class="lineD"><dt>借款金额：</dt><dd>{$vo.jine}万</dd></dl>
+        <dl class="lineD"><dt>结款周期：</dt><dd>{$vo.zhouqi}月</dd></dl>
+        <dl class="lineD"><dt>借款用途：</dt><dd>{$vo.yongtu}</dd></dl>
+        <dl class="lineD"><dt>还款来源：</dt><dd>{$vo.huankuanlaiyuan}</dd></dl>
+        
+        <dl class="lineD"><dt><input type="button" value="返回" onclick="history.back(-1)" /></dt> </dl>
+	</div><!--tab1-->
+	
+</div>
+
+</div>
+
+<include file="Public:_footer" />

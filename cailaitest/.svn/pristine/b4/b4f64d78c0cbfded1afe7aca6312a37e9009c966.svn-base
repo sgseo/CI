@@ -1,0 +1,69 @@
+<include file="Public:_header_common"/>
+<title>我的账户-- {$glo.web_name}</title>
+<!--{$uclogin}-->
+<include file="default:Public:_header_main" group="Home"/>
+<!--中部开始-->
+<div class="Cmm" > 
+<include file="Public:_left" />
+<div id="hy_right" style="position:relative;"> 
+
+<div class="box">
+      <div class="Menubox1" id="rotate">
+        <ul class="menu ajaxdata">
+       <li><a href="#" >我的红包</a></li>  
+        </ul>
+      </div>
+      
+      <div class="contentright">
+         
+       <div class="avtprize-content">
+<div class="table-box">
+<table>
+<tbody >
+  <if condition='count($redlist) eq 0'>
+    <div style='margin:auto;text-align:center;'>暂无红包数据，请关注网站活动~</div>
+  <else/>
+    <tr>
+      <th>金额</th>
+      <th>获取时间</th>
+      <th>有效期</th>
+      <th>状态</th>
+      <th>备注</th>
+    </tr>
+
+    <volist name='redlist' id='vo' >
+      <tr>
+      <td style="width:300px">
+      <div class="ticket-pkg">
+      <div class="ticket ticket-s <eq name='vo.is_used' value='1'>ticket-useless</eq>">
+      <span class="ticket-title"><em>现金券</em></span>
+      <div class="ticket-content"><sup>￥</sup><em>{$vo.facevalue}</em></div>
+      </div>
+      <strong>{$vo.facevalue}元现金券</strong><br> 
+      有效期截至: {$vo.overtime|date='Y-m-d H:i:s',###}</div> 
+      </td>
+      <td style="width:150px">{$vo.addtime|date='Y-m-d H:i:s',###}</td>
+      <td style="width:80px"><eq name='vo.is_used' value='0'>{$vo.shelftime}</eq><eq name='vo.is_used' value='1'>0</eq>天</td>
+      <td  style="width:80px" <eq name='vo.is_used' value='0'>class="red"</eq>><eq name='vo.is_used' value='0'>可使用</eq><neq name='vo.is_used' value='0'>已使用</neq></td>
+      <td style="width:185px">{$redtip[$vo['note']]}</td>
+      </tr>
+    </volist>
+
+  </if>
+
+
+</tbody>
+</table>
+
+</div>
+</div>
+
+ <div id='pager' class='yahoo2 ajaxpagebar' style="margin:0 30px 30px 0">{$page}</div>
+      </div>
+      
+    </div>
+</div>
+</div> 
+
+
+<include file="default:Public:_footer" group="Home" />

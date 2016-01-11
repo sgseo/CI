@@ -1,0 +1,104 @@
+<include file='Public:_header'/>
+    <ol class="breadcrumb">
+  <li><a href="#">业务管理-></a></li>
+  <li class="active">贷款修改</li>
+  <!-- <li >十一月</li> -->
+</ol>
+    <div class="form-inline definewidth m20">我的任务列表 &there4;</div>
+ <!--    <a href='__URL__/allotlist?status=4' class="btn btn-primary">已分配</a>
+    <a href='__URL__/allotlist?status=2' class="btn btn-primary">待分配</a>
+    <a href='__URL__/allotlist?status=3' class="btn btn-primary">已拒绝</a> -->
+<form class="form-inline definewidth m20" action="__URL__/showlist" method="post">  
+    客户姓名：
+    <input type="text" name="cstname"   class="abc input-default" placeholder="搜索客户姓名" value="">&nbsp;&nbsp;  
+
+    <button type="submit" class="btn btn-primary">查询</button>&nbsp;&nbsp; 
+  
+    <!-- <a href="__URL__/cl_to_excel" class="btn btn-success" id="addnew">下载</a>  -->
+</form>
+        <!-- 我的个人信息开始 -->
+
+<table class="table table-bordered table-hover definewidth m10" >
+    <thead>
+    <tr>
+     
+        <th>借款标号</th>
+        <th>借款标题</th>
+        <th>客户姓名</th>
+        <th>身份证号码</th>
+        <th>联系电话</th>
+        <th>贷款金额</th>
+        <th>贷款期限</th>
+        <th>贷款利率（%）</th>
+        <th>借款类型</th>
+        <th>状态</th>
+        <th>操作</th>
+        <!-- 客户姓名，身份证号码，联系电话，贷款金额，期限，利率， -->
+    </tr>
+    </thead>
+    <volist name='list' id='vo'>
+         <tr>
+            <td>{$vo.id}</td>
+            <td><a href='__APP__/Home/Node/showlog?id={$vo.id}'>{$vo.title}</a></td>
+            <td>{$vo.cstname}</td>
+            <td>{$vo.idno}</td>
+            <td>{$vo.tel}</td>
+            <td>{$vo.borrowamt}</td>
+            <td>{$vo.duration}</td>
+            <td>{$vo.rate}</td>
+            <td>
+                <eq name='vo.category' value='car'>车抵押&nbsp;<input type="button" value="&nabla;" onclick="demo08({$vo.id});" /></eq>
+                <eq name='vo.category' value='fang'>房抵押&nbsp;<input type="button" value="&nabla;" onclick="demo08({$vo.id});"/></eq>
+            </td>
+            <td>
+                {$vo.ostatus}
+            </td>
+            <td>
+                <lt name='vo.status' value='5'>
+                   <a href='__URL__/modifyshow?id={$vo.id}'>修改</a>
+                </lt>
+              <!--   <if condition='$vo.status eq 1'> 
+                <a href='__URL__/modifyshow?id={$vo.id}'>修改</a>
+                <span class='confirm'>
+                <a href='__URL__/del?id={$vo.id}'>删除</a>
+                </span>
+                </if> -->
+            </td>
+        </tr>
+    </volist>
+    
+    </table>
+     <!-- 我的个人信息结束 -->
+     <div class='page'>
+          {$page}
+    </div>
+</body>
+</html>
+<script>
+    $(function () {
+               $('.confirm').click(function(){
+
+               if(confirm('确认已经完成此项目？'))
+                {}else{
+                    return false;
+                }
+         });
+
+
+    });
+
+    function del(id)
+    {
+        
+        
+        if(confirm("确定要删除吗？"))
+        {
+        
+            var url = "index.html";
+            
+            window.location.href=url;       
+        
+        }
+    
+    }
+</script>

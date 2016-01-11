@@ -1,0 +1,571 @@
+<include file='Public:_header'/>
+  <ol class="breadcrumb">
+  <li><a href="#">业务管理-></a></li>
+  <li class="active">贷款预览</li>
+  <!-- <li >十一月</li> -->
+</ol>
+<style type="text/css">
+        body {
+            padding-bottom</td><td>40px;
+        }
+        .sidebar-nav {
+            padding</td><td>9px 0;
+        }
+        table ,td, tr{
+          width: 250px;
+          border：1px solid #dddddd;
+          border-color:inherit;
+          height:30px;
+        }
+        .table tr td{
+          border:1px solid #ddd;
+          /*text-align: center;*/
+          vertical-align: middle;
+
+        }
+
+</style>
+</head>
+<body>
+<div style='margin:1px auto;width:70%;'>
+<!-- 项目录入 -->
+<form  style="padding-top:2px; " action="__URL__/add" method="post" enctype="multipart/form-data" >
+<!-- 基础文档模型 -->
+<table class='table  definewidth m10 t' >
+<tr><td colspan='6' style='text-align:center; border:1px solid #ddd'><h2>贷款项目信息表</h2></td></tr>
+<tr><td colspan='6'>一、借款核心信息：</td></tr>
+<!-- 金额利率类型期限标题借款人 -->
+<tr>
+   <td>借款标题</td>
+   <td><input type="text"  name="title"  readonly='readonly' value="{$data.title}" ></td>
+   <td>贷款金额 (元)</td>
+   <td>
+   <input type="text"   name="borrowamt" data-ideny='num2ch'  readonly='readonly' value="{$data.borrowamt}" onblur='num2ch(this.value,this.name)'>
+    <span id='borrowamt' style='color:red; text-align:center; line-height:15px;'>
+   </td>
+    <td>贷款期限 (月) </td>
+    <td>
+    <input type="text"  name="duration"  readonly='readonly' value="{$data.duration}" >
+   </td>
+</tr>
+
+<tr>
+  <td>
+    贷款利率 (0.8%-2%之间)
+  </td>
+  <td>
+<input type="text"   name="rate"  readonly='readonly' value="{$data.rate}"  onblur="number(this.value,this.name)" >
+<span id='rate' style='display:none;color:red'>
+  </td>
+  <td>
+  <input  type="radio"  readonly='readonly' value="fang" name="category" id='fang' <eq name='data.category'  readonly='readonly' value='fang'>checked="checked"</eq>/>
+  房屋抵押
+  </td>
+  
+  <td>
+    <input type="radio"  readonly='readonly' value="car" name="category" id='car' <eq name='data.category'  readonly='readonly' value='car'>checked="checked"</eq>>车辆抵押
+  </td>
+
+<td>
+借款人姓名
+</td>
+<td>
+<input type="text"   name="cstname"  readonly='readonly' value="{$data.cstname}" >
+</td>
+</tr>
+
+
+<tr><td colspan='6'>二、借款人信息</td></tr>
+<tr>
+  <td>
+  身份证号</td>
+  <td>
+<input type="text"  name="idno"  readonly='readonly' value="{$data.idno}"  maxlength='40'>
+</td>
+<td>
+借款人户籍
+</td>
+<td>
+<input type="text"   name="domicile"  readonly='readonly' value="{$data.domicile}"  maxlength='40'>
+</td>
+<td>
+  借款人年龄
+</td>
+<td>
+<input type="text"   name="age"  readonly='readonly' value="{$data.age}"  maxlength='40'>
+  
+</td>
+</tr>
+<tr>
+<td>
+  手机号码</td>
+  <td>
+<input type="text"  name="tel"  readonly='readonly' value="{$data.tel}"  maxlength='40'>
+</td>
+<td>
+婚姻状况
+</td>
+
+<td>
+<input  type="radio"  readonly='readonly' value="1" name="wed" <eq name='data.wed'  readonly='readonly' value='1'>checked="checked"</eq>/>未婚
+<input  type="radio"  name="wed"  readonly='readonly' value='2' <eq name='data.wed'  readonly='readonly' value='2'>checked="checked"</eq>/>已婚
+<input  type="radio"  name="wed"  readonly='readonly' value='3' <eq name='data.wed'  readonly='readonly' value='3'>checked="checked"</eq>/>离异
+</td>
+<td>
+  借款人职业</td>
+  <td>
+<input type="text"  name="work"  readonly='readonly' value="{$data.work}"  maxlength='40'>
+</td>
+</tr>
+
+<tr><td colspan='6'>三、抵押物信息</td></tr>
+<tr>
+  <td>
+   <input  type="radio"  readonly='readonly' value="1" name="iscity" <eq name='data.iscity'  readonly='readonly' value='1'>checked="checked"</eq>/>内环
+<input  type="radio"  name="iscity"  readonly='readonly' value='2' <eq name='data.iscity'  readonly='readonly' value='2'>checked="checked"</eq>/>非内环
+<input  type="radio"  readonly='readonly' value="2" name="isloan" <eq name='data.isloan'  readonly='readonly' value='2'>checked="checked"</eq>/>有租赁
+<input  type="radio"  name="isloan"  readonly='readonly' value='1' <eq name='data.isloan'  readonly='readonly' value='1'>checked="checked"</eq>/>无租赁
+  </td>
+  <td>
+    抵押情况
+  </td>
+  <td>
+<select name="pledge">
+<option  readonly='readonly' value='0'>请选择</option>
+<volist name='pllist' id='vo'>
+<option  readonly='readonly' value="{$vo.sort}" <eq name='data.pledge'  readonly='readonly' value='$vo.sort'>selected='selected'</eq>>{$vo.condition}</option>
+</volist>
+</select>
+  </td>
+  <td>
+    房屋类型
+  </td>
+  <td>
+<select name="housetype"  required>
+<option  readonly='readonly' value="0">请选择</option>
+<volist name='htlist' id='vo'>
+<option  readonly='readonly' value="{$vo.id}" <eq name='data.housetype'  readonly='readonly' value='$vo.id'>selected='selected'</eq>>{$vo.housetype}</option>
+</volist>
+</select>
+  </td>
+  <td>
+    房屋地址
+<input type="text"  name="address"  readonly='readonly' value="{$data.address}" >
+  </td>
+  <tr>
+  <td>
+    房屋市场价(元)
+  </td>
+    <td>
+<input type="text" class="width_333"  name="price"  readonly='readonly' value="{$data.price}"  onblur='num2ch(this.value,this.name)'>
+<span id='price' style='display:none;color:red;'>
+  </td>
+  <td>
+    房屋评估价(元)  </td>
+      <td>
+<input type="text" class="width_356"  name="estimateprice"  readonly='readonly' value="{$data.estimateprice}" onblur='num2ch(this.value,this.name)'>
+<span id='estimateprice' style='display:none;color:red'>
+    
+  </td>
+  <td>
+    房屋户口  </td>
+    <td>
+<input type="text"  name="residence"  readonly='readonly' value="{$data.residence}" >
+  </td>
+</tr>
+<tr>
+  <td>
+    房屋面积(平方米)  </td>
+      <td>
+<input type="text" class="width_321"  name="area"  readonly='readonly' value="{$data.area}" >
+  </td>
+  <td>
+    房地产权证号  </td>
+      <td>
+<input type="text" class="width_363"  name="pledgeno"  readonly='readonly' value="{$data.pledgeno}">
+  </td>
+<td>
+  备用房地址  </td>
+    <td>
+<input type="text"   name="anotheradd"  readonly='readonly' value="{$data.anotheradd}">
+</td>
+<tr>
+<td>
+  备用房面积  </td>
+    <td>
+<input type="text"   name="anotherarea"  readonly='readonly' value="{$data.anotherarea}">
+</td>
+</tr>
+<!-- <span > -->
+<tr class='ca' style="display:none"><td colspan='6'>车辆</td></tr>
+ <tr class='ca' style="display:none">
+<td>车子品牌  </td>
+  <td>
+<input type="text"  name="carbrand"  readonly='readonly' value="{$data.carbrand}" >
+</td>
+
+  <td>车子型号  </td>
+  <td>
+<input type="text"  name="cartype"  readonly='readonly' value="{$data.cartype}" >
+</td>
+<td>车子估价(元)  </td>
+  <td>
+<input type="text"  name="carestimate"  readonly='readonly' value="{$data.carestimate}"  onblur='num2ch(this.value,this.name)'>
+<span id='carestimate' style='display:none;color:red'>
+</td>
+<tr class='ca' style="display:none">
+<td>
+车辆购买日期  </td>
+  <td>
+<input type="date"  readonly='readonly' value='{$data.carbuytime}' name='carbuytime'  />
+</td>
+</tr>
+<!-- </span> -->
+
+
+
+<tr><td colspan='6'>四、借款人账户信息</td></tr>
+<tr>
+  <td>开户名</td>
+  <td><input type="text" class="width_378"  name="bankname"  readonly='readonly' value="{$data.bankname}" maxlength='40'></td>
+  <td>
+    银行卡号
+  </td>
+  <td>
+<input type="text"  name="bankcard"  readonly='readonly' value="{$data.bankcard}"  maxlength='40'>
+  </td>
+  <td>
+    开户行</td>
+    <td>
+<input type="text" class="width_378"  name="bank"  readonly='readonly' value="{$data.bank}" maxlength='40'>
+  </td>
+</tr>
+
+<tr><td colspan='6'>过桥信息</td></tr>
+<tr>
+  <td>是否有过桥</td>
+  <td>
+    <input type="radio" name="bridge"  readonly='readonly' value="1" <eq name='data.bridge'  readonly='readonly' value='1'>checked="checked"</eq>/>有
+<input type="radio" name="bridge"  readonly='readonly' value="0" <eq name='data.bridge'  readonly='readonly' value='0'>checked="checked"</eq>/> 无   
+  </td>
+  <td>
+    请选择过桥人</td>
+    <td>
+<select name="bridgename">
+<option  readonly='readonly' value='0'>请选择过桥人</option>
+<volist name='blist' id='vo' key='k'>
+<option  readonly='readonly' value="{$vo.uid}"  <eq name='data.bridgename'  readonly='readonly' value='$vo.uid'>selected='selected'</eq>>{$vo.nickname}</option>
+</volist>
+</select>
+  </td>
+
+  <td>
+    过桥人开户行</td>
+    <td>
+<input type="text" class="width_340"  id='bank' maxlength='40' readonly='readonly'/>
+  </td>
+  <tr>
+  <td>
+    过桥人账号
+  </td>
+    <td>
+<input type="text"   id='account' maxlength='40' readonly='readonly'/>
+  </td>
+  <td>
+    过桥人开户名</td>
+    <td>
+<input type="text"  id='nickname' maxlength='40' readonly='readonly'/>
+  </td>
+</tr>
+
+<tr><td colspan='6'>五、抵押人信息</td></tr>
+<tr>
+  <td>
+    抵押人姓名</td>
+    <td>
+<input type="text"   readonly='readonly' value='{$data.pledgename}' name='pledgename' />
+  </td>
+  <td>
+  抵押人电话</td>
+  <td>
+<input type="text"   readonly='readonly' value='{$data.pledgetel}' name='pledgetel' />
+</td>
+<td>
+  抵押人身份证号码</td>
+  <td>
+<input type="text" class="width_338"  readonly='readonly' value='{$data.pledgeidno}' name='pledgeidno' />
+</td>
+</tr>
+
+
+
+
+
+<tr><td colspan='6'>六、其他信息</td></tr>
+<tr>
+  <td>资金来源</td>
+  <td>
+<select name="capitalsource">
+<option  readonly='readonly' value="0">请选择</option>
+<volist name='list' id='vo' key='k'>
+<option  readonly='readonly' value="{$vo.id}" <eq name='data.capitalsource'  readonly='readonly' value='$vo.id'>selected='selected'</eq>>{$vo.organization}</option>
+</volist>
+</select>
+</td>
+
+<td>
+借款用途</td>
+<td>
+<select name="loandest" >
+<option  readonly='readonly' value="0">请选择</option>
+<volist name='pllist2' id='vo'>
+<option  readonly='readonly' value="{$vo.sort}" <eq name='data.loandest'  readonly='readonly' value='$vo.sort'>selected='selected'</eq>>{$vo.condition}</option>
+</volist>
+</select>
+</td>
+
+
+<td>业务来源单位</td>
+<td>
+<select name="source">
+<option  readonly='readonly' value='0'>请选择</option>
+<volist name='list' id='vo' key='k'>
+<option  readonly='readonly' value="{$vo.id}" <eq name='data.source'  readonly='readonly' value='$vo.id'>selected='selected'</eq>>{$vo.organization}</option>
+</volist>
+</select>
+</td>
+
+<tr>
+<td>业务员</td>
+<td>
+<select name="salesman">
+<option  readonly='readonly' value='0'>请选择</option>
+<volist name='plist' id='vo'>
+<option  readonly='readonly' value="{$vo.id}" <eq name='data.salesman'  readonly='readonly' value='$vo.id'>selected='selected'</eq>>{$vo.username}</option>
+</volist>
+</select>
+</td>
+
+
+<td>风控初审</td>
+<td>
+<select name="riskearly">
+<option  readonly='readonly' value='0'>请选择</option>
+<volist name='elist' id='vo'>
+<option  readonly='readonly' value="{$vo.id}" <eq name='data.riskearly'  readonly='readonly' value='$vo.id'>selected='selected'</eq>>{$vo.username}</option>
+</volist>
+</select>
+</td>
+
+<td>
+风控终审</td>
+<td>
+<select name="riskfinal">
+<option  readonly='readonly' value='0'>请选择</option>
+<volist name='flist' id='vo'>
+<option  readonly='readonly' value="{$vo.id}" <eq name='data.riskfinal'  readonly='readonly' value='$vo.id'>selected='selected'</eq>>{$vo.username}</option>
+</volist>
+</select>
+</td>
+
+</tr>
+
+<tr><td colspan='6'>七、征信情况</td></tr>
+<tr>
+  <td>
+    征信逾期次数  </td>
+      <td>
+  <input type="text" value='{$data.credit}' readonly='readonly' name='credit'  />
+  </td>
+ <td>
+   负债情况</td>
+   <td>
+<input type="radio" name="debt" value="1" <eq name='data.debt' value='1'>checked=checked</eq>/>抵押负债
+<input type="radio" name="debt" value="2" <eq name='data.debt' value='2'>checked=checked</eq>/>无抵押负债     
+</td>
+<td>
+  备注信息  
+   </td>
+    <td>
+<textarea name="tip" placeholder="备注信息" rows='5' cols='80'>{$data.tip}</textarea>
+  
+</td>
+
+
+</tr>
+<tr>
+  <td colspan='3' style='text-align:center'>
+<button class="btn btn-large btn-primary btn btn-default" type='submit' >确认提交</button>
+</td>
+<td colspan='3' style='text-align:center'>
+<button class="btn btn-large btn-primary btn btn-default" type='button' id='reset'>返回修改</button>
+</td>
+
+</tr>
+
+</table>
+</form>
+</td> 
+
+</body>
+</html>
+
+<script type="text/javascript">
+    $(function(){
+        $("#fang").click(function()
+        {
+            $("#house").show();
+            $(".ca").hide();
+        });
+        $("#car").click(function(){
+            $("#house").hide();
+            $(".ca").show();
+        });
+
+        $("#reset").click(function(){
+         $("form").attr('action','__URL__/index');
+         $('form').submit();
+        });
+
+
+    });
+
+
+      var qf=1;
+    $("input:button").click(function(){
+      var name=$(this).attr("id");
+      qf+=1;
+      var button="<div class='adder'><input type='file'  name='"+name+qf+"' />"
+                  +"<a href='javascript:void(0);'' onclick='del(this);'>"
+                  +"<input type='button' onlick='del(this)'  readonly='readonly' value='-' />"
+                  +"</td></a>";
+       $(this).after(button);
+    });
+    function del(a)
+    {
+      $(a).parent().remove();
+    }
+    
+function num2ch(v,i) {
+
+  var testreuslt = true;
+  if (testreuslt) {
+    showChineseAmount(v,i);
+  }
+  var newdou=formatNum(v);
+  $('input[name='+i+']').val(newdou);
+  var newv=$("#"+i).text();
+  $('#upperprice').val(newv);
+  return testreuslt;
+}
+
+function formatNum(str){
+var newStr = "";
+var count = 0;
+ 
+if(str.indexOf(".")==-1){
+   for(var i=str.length-1;i>=0;i--){
+ if(count % 3 == 0 && count != 0){
+   newStr = str.charAt(i) + "," + newStr;
+ }else{
+   newStr = str.charAt(i) + newStr;
+ }
+ count++;
+   }
+   str = newStr + ".00"; //自动补小数点后两位
+   // console.log(str)
+}
+else
+{
+   for(var i = str.indexOf(".")-1;i>=0;i--){
+ if(count % 3 == 0 && count != 0){
+   newStr = str.charAt(i) + "," + newStr;
+ }else{
+   newStr = str.charAt(i) + newStr; //逐个字符相接起来
+ }
+ count++;
+   }
+   str = newStr + (str + "00").substr((str + "00").indexOf("."),3);
+   // console.log(str)
+ }
+ return str;
+}
+
+
+
+function showChineseAmount(v,i) {
+    // console.log(v,i);
+  var regamount = /^(([1-9]{1}[0-9]{0,})|([0-9]{1,}\.[0-9]{1,2}))$/;
+  var reg = new RegExp(regamount);
+  if (reg.test(v)) 
+  {
+    var amstr = v;
+    var leng = amstr.toString().split('.').length;
+    if (leng == 1) {
+      $("#"+v).val(v + ".00");
+    }
+    $("#"+i).text(Arabia_to_Chinese(amstr));
+    $("#"+i).show();
+    $("#"+i).css("color","red");
+  }else
+  {
+    $("#"+i).show();
+    $("#"+i).text("请输入纯数字");
+  }
+}
+
+function number(i,n)
+{
+  if(i>2||i<0.8)
+  {
+    $("#"+n).text('贷款利率介于0.8-2之间').show();
+  }
+}
+
+$(function () {       
+        var bridge=$("input[name=bridge][ readonly='readonly' value=0]");
+        var bridgeis=$("input[name=bridge][ readonly='readonly' value=1]");
+        bridge.click(function(){
+             $(".bridge").hide();
+        });
+        bridgeis.click(function(){
+            $(".bridge").show();
+        });
+
+        //当选择不同的过桥人的时候显示相应的信息
+        $("select[name=bridgename]").change(function(){
+          var id=$(this).val();
+          var text=$(this).text();
+          $.ajax({
+                    type:'post',
+                    url:"__URL__/bridgecontent",
+                    data:{id:id},
+                    dataType:"json",
+                    success:function(b){
+                        $('#bank').val(b[0]['bridgeaddress']);
+                        $('#nickname').val(b[0]['nickname']);
+                        $("#account").val(b[0]['bridgeaccount']);
+                    }
+                });
+        });
+
+        //过桥人信息要展示出来
+    var newid1=$("select[name=bridgename] option[selected]").val();
+    if(newid1)
+    {
+    $.ajax({
+                    type:'POST',
+                    url:"__URL__/bridgecontent",
+                    data:{id:newid1},
+                    dataType:"json",
+                    success:function(b){
+                        $('#bank').val(b[0]['bridgeaddress']);
+                        $('#nickname').val(b[0]['nickname']);
+                        $("#account").val(b[0]['bridgeaccount']);
+                    }
+                });
+  }
+    });
+
+</script>
+<!-- 图片上传 -->

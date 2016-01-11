@@ -1,0 +1,18 @@
+<?php
+$url = "https://lab.chinapnr.com/muser/publicRequests";
+
+$ch = curl_init();
+
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS, array('Hello' => 'World'));
+curl_setopt($ch, CURLOPT_URL, $url);
+
+$copy = curl_copy_handle($ch);
+
+curl_close($ch);
+
+curl_exec($copy);
+
+curl_close($copy);
+?>

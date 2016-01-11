@@ -1,0 +1,80 @@
+<include file='Public:_header'/>
+    <div class="form-inline definewidth m20">角色列表 &nbsp;</div>
+  <!--   <a href='__URL__/allotlist?status=4' class="btn btn-primary">已分配</a>
+    <a href='__URL__/allotlist?status=2' class="btn btn-primary">待分配</a>
+    <a href='__URL__/allotlist?status=3' class="btn btn-primary">已拒绝</a> -->
+<form class="form-inline definewidth m20" action="__SELF__" method="post">  
+
+    角色名字：
+    <input type="text" name="username"   class="abc input-default" placeholder="搜索角色名字" value="">&nbsp;&nbsp;  
+
+    <button type="submit" class="btn btn-primary">查询</button>&nbsp;&nbsp; 
+    <a href="__URL__/index" class="btn btn-success" id="addnew">添加角色</a> 
+</form>
+        <!-- 我的个人信息开始 -->
+
+<table class="table table-bordered table-hover definewidth m10" >
+    <thead>
+    <tr>
+     
+        <th>编号</th>
+        <th>角色类型</th>
+        <th>姓名</th>
+        <th>联系方式</th>
+        <th>户口</th>
+        <th>身份证号码</th>
+        <th>银行账号户名</th>
+       
+        <!-- 客户姓名，身份证号码，联系电话，贷款金额，期限，利率， -->
+    </tr>
+    </thead>
+    <volist name='list' id='vo' empty='$empty'>
+         <tr>
+           
+            <td>{$vo.id}</td>
+            <td>{$vo.ocstatus}</td>
+            <td>{$vo.username}</td>
+            <td>{$vo.mobile}</td>
+            <td>{$vo.hukou}</td>
+            <td>{$vo.idno}</td>
+            <td>{$vo.account}</td>         
+        </tr>
+    </volist>
+    
+    </table>
+     <!-- 我的个人信息结束 -->
+     <div class='page'>
+          {$page}
+    </div>
+  
+</body>
+</html>
+<script>
+    $(function () {
+        
+        $('#addnew').click(function(){
+
+                window.location.href="add.html";
+         });
+
+
+    });
+
+    function del(id)
+    {
+        
+        
+        if(confirm("确定要删除吗？"))
+        {
+        
+            var url = "index.html";
+            
+            window.location.href=url;       
+        
+        }
+    
+    
+    
+    
+    }
+</script>

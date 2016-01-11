@@ -1,0 +1,161 @@
+<include file='Public:_header'/>
+<ol class="breadcrumb">
+  <li><a href="#">业务管理-></a></li>
+  <li class="active">风控复核</li>
+</ol>
+    <div class="form-inline definewidth m20">风控复审列表</div>
+    <form class="form-inline definewidth m20" action="__SELF__" method="post">  
+        借款人：
+        <input type="text" name="cstname" class="abc input-default" placeholder="查询借款人" value="">&nbsp;&nbsp;  
+        <button type="submit" class="btn btn-primary">查询</button>&nbsp;&nbsp; 
+        <!-- <button type="button" class="btn btn-success" id="addnew">新增机构</button> -->
+    </form>
+        <!-- 个人流水开始 -->
+    <div class="form-inline definewidth m20">
+    (注：资金来源属于自己本身的，复核会出现 一个复选框 
+      <label>
+      <input type="checkbox" style='margin:0'> 
+      </label>
+否则就为&nbsp;)
+    <!-- <a class="btn btn-success" href="__URL__/deal_record">导出excel</a> -->
+    <!-- <input type="hidden" value='{$Think.session.username}' id='username' > -->
+</div>
+    <table class="table table-bordered table-hover definewidth m10" >
+    <thead>
+    <tr>
+        <th>选择</th>
+        <th>借款标号</th>
+        <th>借款标题</th>
+        <th>借款人</th>
+        <th>借款金额</th>
+        <th>期限</th>
+        <th>利率</th>
+        <th>借款类型</th>
+        <th>做单业务员</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+        <volist name='list' id='vo' empty='$empty'>
+        <tr>
+           <!--  <if condition="vo.capitalsource eq pid"> -->
+            <eq name='vo.capitalsource' value='$pid'>
+            <td><input type="checkbox" name="all" value='{$vo.id}'></td>
+            </eq>
+            <neq name='vo.capitalsource' value='$pid'>
+            <td>&nbsp;</td>
+            </neq>
+            <td>{$vo.id}</td>
+            <td><a href='__APP__/Home/Node/showlog?id={$vo.id}'>{$vo.title}</a></td>
+            <td>{$vo.cstname}</td>
+            <td>{$vo.borrowamt}</td>
+            <td>{$vo.duration}</td>
+            <td>{$vo.rate}</td>
+            <td><eq name='vo.category' value='car'>车抵押&nbsp;<input type="button" value="&nabla;" onclick="demo08({$vo.id});" /></eq>
+                <eq name='vo.category' value='fang'>房抵押&nbsp;<input type="button" value="&nabla;" onclick="demo08({$vo.id});" /></eq></td>
+            <td>
+            {$vo.username}
+            </td>
+            <td>
+            <?php
+            if($vo['capitalsource']==session('pid')){
+            ?>
+          <a href='__URL__/riskdetail?id={$vo.id}'>复核</a>
+          <?php 
+                }else{
+                    echo "--";
+                }
+          ?>
+            </td>
+        </tr>
+        </volist>
+        <tr>
+            <td colspan='12'>
+                <button class='btn btn-primary' id='all' >全选</button>|
+                <button class='btn btn-success' id='cancel'>取消全选</button>|
+                <button class='btn btn-primary' id='submit'>复核通过</button>
+            </td>
+        </tr>
+        
+    </table>
+  <div class='table table-bordered table-hover definewidth m10' style='margin:0 auto;text-align:center;'>
+  </div>
+  
+        <!-- 个人流水结束 -->
+<div class="inline pull-right page">
+    {$page}
+ </div>
+</body>
+</html>
+<script type="text/javascript">
+    $(function(){
+        var arr=[];
+        $("#all").click(function(){
+            $("input[name=all]").attr('checked',true);
+        });
+        $("#cancel").click(function(){
+             $("input[name=all]").attr('checked',false);
+        });
+        $("#submit").click(function(){
+            var len=arr.length;
+            if(len==0){
+                $("input[name=all]").each(function(){
+                if($(this).attr('checked')==true)
+                {
+                    arr.push($(this).val());
+                }
+            });
+            }else{
+                arr.splice(0,arr.length);//先清空原来的
+                 $("input[name=all]").each(function(){
+                if($(this).attr('checked')==true)
+                {
+                    arr.push($(this).val());
+                }
+            });
+            }
+           
+            // console.log((arr));
+            // if($("input[name=all]").attr('checked')==true)
+            // {
+            //   $.ajax({
+            //     type:"post",
+            //     url:"__URL__/riskasync",
+            //     data:{id:arr},
+            //     // dataType:"josn",
+            //     success:function(d){
+            //         if(d==1)
+            //         {
+            //             confirm('已经复审通过');
+            //         }
+            //     }
+
+            //   })
+            // }else{
+            //   confirm('请至少选择一项目');
+            //   return false;
+            // }
+
+            if(arr.length)
+            {
+              $.ajax({
+                type:"post",
+                url:"__URL__/riskasync",
+                data:{id:arr},
+                // dataType:"josn",
+                success:function(d){
+                    if(d==1)
+                    {
+                        alert('已经复审通过');
+                        location.reload();
+                    }
+                }
+
+              })
+            }else{
+              confirm('请至少选择一项目');
+              return false;
+            }           
+        })
+    });
+
+</script>

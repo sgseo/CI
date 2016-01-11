@@ -1,0 +1,452 @@
+<include file="Public:_header_common" />
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>{$vo.borrow_name}-我要投资-{$glo.web_name}</title>
+<meta http-equiv="keywords" content="{$glo.web_keywords}" />
+<meta http-equiv="description" content="{$glo.web_descript}" />
+<link rel="stylesheet" href="__ROOT__/Style/H/css/reset.css" />
+<link rel="stylesheet" href="__ROOT__/Style/H/css/detail.css?v=20150316" />
+<link rel="stylesheet" type="text/css" href="__ROOT__/Style/fancybox/jquery.fancybox-1.3.2.css" media="screen" />
+<include file="Public:_header_main" />
+<div class="state_main">
+<div class="xw_main_state">
+
+<div class="state_project"> 
+<div class="phc_novice"> <span>新手专区</span> <font color="#f39700">未投资过</font>的新用户专享 </div>
+
+<div class="state_novice">
+<div class="novice_content">
+<div class="newnovice_bt"><i>{$newbie.rate}%</i> 年化收益</div>
+<div class="newnovice_bt"><span>{$newbie.min}-{$newbie.max}</span> 投资区间（元） </div> 
+<div class="newnovice_bt"><span>{$newbie.bidtime}</span> 投资期限（天）</div> 
+</div>
+<ul>
+<li> 还款方式：<span>一次性还本付息</span></li>
+<li> 提现周期：<span>T+1个工作日内到账</span></li>
+</ul>
+</div>
+      
+<div class="project_right" >
+        <div class="phc_lcjsj"><a href="/tools/tool.html">理财计算器</a>我要投标</div>
+        <form method="get" action="">
+          <p class="remain"> <span>您的可用余额：</span> <strong>
+            <if condition="session('u_id') ==''">
+            ￥0.00元
+            <else/>
+             {$investInfo['account_money']+$investInfo['back_money']|getMoneyFormt=###}元
+            </if></strong>
+             <if condition="session('hasbind') eq 0">
+                     <a class="fRight icon-gree-link f16 mr20" style="padding:3px 15px;" href="__APP__/member/index/bind" target="_blank">充值</a>
+                     <else />
+                        <a class="fRight icon-gree-link f16 mr20" style="padding:3px 15px;" href="__APP__/member/charge#fragment-1" target="_blank">充值</a>
+             </if>   
+            
+
+          </p>
+          <p class="differ"> 
+   
+            <!-- <a href="__APP__/home/agreement/downfile?id={$vo.id}" target="_blank" class="bot03">借款合同:<img src="__ROOT__/Style/H/images1/pdficon.png"></a></if>
+          <if condition="$hetong eq 1">
+            <a href="__APP__/home/agreement/downfile?id={$vo.id}" target="_blank" class="bot03">借款合同:
+                <img src="__ROOT__/Style/H/images1/pdficon.png" style="width:22px;"></a> -->
+          </if>
+          </p>
+          <p>
+            <if condition="session('u_id') ==''">
+              <input  value="请先登录" type="text" class="state_text"  onclick="location.href='/member/common/login/'"/>
+            <else/>
+               <!--  " --> 
+            <input id="input_money"  style="color:#999;"  placeholder="请输入投资金额" type="text" class="state_text"
+            onkeypress="EnterPress(event)" onkeydown="EnterPress()" onkeyup="enter_value(this)" onfocus="ZinputFocus(this)" onblur="this.style.color='#333'" /> 
+            </if> 
+            <input type="button" class="popTip"  value="红包" id="useTicket" onclick='addred()' title='点击使用红包' /> 
+              </p>  
+              <div class="clear"></div>
+          <p id="zwyl" style="padding:9px 0 0 0; color:#f45a00;"></p>
+          <p class="info" style="font-weight:normal"></p> 
+          <p class="money" style="font-size:13px;">
+           起投金额:{$newbie.min|Fmoney=###}
+          </p> 
+          <div id="toubiao" class="tailttb"  onclick="invest({$newbie.id});">立即投标</div>
+          </if>
+        </form>
+      </div>
+</div>
+    <div class="clear"></div>
+
+<div class="state_info">
+<ul class="state_info_nav" id="state_info_nav">
+<li class="active"><a class="invest-tab current" href="javascript:void(0)" onclick="showTail('userintro',this);">产品详情</a></li> 
+<li class=""><a  class="last-invest-tab" href="javascript:void(0)" onclick="showTail('record',this);">投资记录</a></li>
+</ul>
+<div class="clear"></div>
+  
+<div class="state_info_con" id="userintro" style="display:block;">     
+<div class="state_info_kk">
+<div class="bt-titles">新手体验标</div>
+ 
+<div class="clear"></div> 
+<table class="table-xq" cellpadding="1" cellspacing="1">
+  <tr>
+    <td class="bgs">产品介绍</td>
+    <td>“全民新手标”是全民财富平台推出的有质押的投标解决方案，用户可实现对100%本息保障的借款项目进行方便快捷的出借。用户出借的本金和利息收益。锁定期结束后，自动将用户本金及收益返还回用户全民财富账户内，可及时提现。</td>
+  </tr>
+  <tr>
+    <td class="bgs">预期年化收益率</td>
+    <td>
+   13.8%
+</td>
+  </tr>
+  <tr>
+    <td class="bgs">加入条件</td>
+    <td>未投资过新手标的新用户，100元起，10000元封顶
+</td>
+  </tr>
+  <tr>
+    <td class="bgs">锁定期</td>
+    <td>30天
+</td>
+  </tr>
+  <tr>
+    <td class="bgs">收益方式</td>
+    <td>一次性还本付息
+</td>
+  </tr>
+  <tr>
+    <td class="bgs">到期退出方式</td>
+    <td>到期自动退出
+</td>
+  </tr>
+  <tr>
+    <td class="bgs">费用</td>
+    <td>免费
+</td>
+  </tr>
+</table>
+   
+    
+</div> 
+<div class="clear"></div>             
+
+</div>
+
+ 
+
+<div class="state_info_con"  id="record"  style="display:none" >
+<div class="bidbox">
+<table class="bid" cellspacing="0" width="100%">
+            <thead>
+              <tr class="">
+                <th class="" width="148">投标人</th>
+                <th class="" width="148">投标类型</th>
+                <th class="" width="158">投标金额</th>
+                <th class="" width="198">投标时间</th>
+              </tr>
+            </thead>
+            <tbody  class="tender-list" id='newinvestrecord'>
+              <!-- <volist name='record' id='vo'>
+                <tr class="">
+
+                <th class="" width="148">{$vo.username|hidecard=###,5}</th>
+                <th class="" width="148">新手标</th>
+                <th class="" width="158">{$vo.invest_money|Fmoney=###}元</th>
+                <th class="" width="198">{$vo.invest_time|date='Y-m-d H:i',###}</th>   
+
+              </tr>
+              </volist> -->
+            </tbody>            
+           
+</table>
+
+<div class="clear"></div>
+<div class="page">
+<!-- <ul>
+  {$pager}
+</ul> -->
+</div> 
+        </div>
+        <div class="totalAmount posa fn-clear" id="totalAmount" style="left: 751px; ">
+          <p class="f16">已投标金额</p>
+          <p><em class="f24" id="total-money">{$rtotal.0.total|getMoneyFormt=###}</em>元</p>
+          <p class="f16 mt20">加入人次</p>
+          <p><em class="f24" id="total-time">{$zong}</em>人</p>
+          <!-- <php>count($record)</php> -->
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<form class="ajax-invest" method="post" name="investForm" id="investForm" action="__URL__/newbieinvest">
+    <input type="hidden" name="borrow_id" id="borrow_id" value="{$newbie.id}" /><!-- 标的id -->
+    <input type="hidden" name="money" id="money" />
+  <input type="hidden" name='redvalue' value='0.00' id='redvalue'/><!-- 红包面值 -->
+  <input type='hidden' name='redid' value='0' id='redid'/><!-- 红包id -->  
+</form>
+<script type="text/javascript">
+ borrow_min = {$newbie.min|default=0};
+ borrow_max = {$newbie.max|default=0};
+</script>
+
+<script type="text/javascript" src="__ROOT__/Style/fancybox/jquery.fancybox-1.3.2.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("a[rel=img_group]").fancybox({
+            'transitionIn'      : 'none',
+            'transitionOut'     : 'none',
+            'titlePosition'     : 'over',
+            'titleFormat'       : function(title, currentArray, currentIndex, currentOpts) {
+                return '<span id="fancybox-title-over">Image ' + (currentIndex + 1) + ' / ' + currentArray.length + (title.length ? ' &nbsp; ' + title : '') + '</span>';
+            }
+        });
+        ajax_show(1);
+    });
+    function ajax_show(p)
+    {
+       $.get("__URL__/newinvestRecord?id={$borrow_id}&p="+p, function(data){
+          $("#newinvestrecord").html(data);
+       });
+
+       $(".pages a").removeClass('current');
+       $(".pages a").eq(p).addClass("current");
+    }
+    $(function() {
+        $(".borrowlist5").bind("mouseover", function(){
+            $(this).css("background", "#c9edff");
+        })
+
+        $(".borrowlist5").bind("mouseout", function(){
+            $(this).css("background", "#fff");
+        })
+
+
+        $(".borrowlist3").bind("mouseover", function(){
+            $(this).css("background", "#c9edff");
+        })
+
+        $(".borrowlist3").bind("mouseout", function(){
+            $(this).css("background", "#fff");
+        })
+    });
+
+</script>
+<!-- <input id="hid" type="hidden" value="{$vo.lefttime}" /> -->
+<script type="text/javascript">
+    function showht(){
+        var status = '{$invid}';
+        if(status=="no"){
+            $.jBox.tip("您未投此标");
+        }else if(status=="login"){
+            $.jBox.tip("请先登陆");
+        }else{
+            window.location.href="__APP__/member/agreement/downfile?id="+status;
+        }
+    }
+
+    var seconds;
+    var pers = {$vo.progress|default=0}/100;
+    var timer=null;
+    function setLeftTime() {
+        seconds = parseInt($("#hid").val(), 10);
+        timer = setInterval(showSeconds,1000);
+    }
+    
+    $(document).ready(function(){
+        if($("#display2").length>0){ 
+            $('#display1').show();
+        }
+                        
+    });
+</script>
+<include file="Public:_footer" />
+<script language="javascript" src="__ROOT__/Style/H/js/index.js"></script>
+<script language="javascript" src="__ROOT__/Style/H/js/borrow.js"></script>
+<script>
+function invest(id){
+    var num = $('#input_money').val();
+    var borrow_max = isNaN(parseInt({$newbie.max}))?0:parseInt({$newbie.max});
+    var borrow_min = {$newbie.min};
+    var money = parseInt($("#input_money").val())+parseInt($("#redvalue").val());//加上投资券金额
+    $("#money").val(money);
+    var redvalue=$("#redvalue").val();
+    var borrow_id = $("#borrow_id").val();
+    if(money<borrow_min){
+    $.jBox.tip("本标最低投标金额为"+borrow_min+"元，请重新输入投标金额");  
+    return false;
+        }
+  $.ajax({
+      url: "__URL__/newbie_check",
+      type: "post",
+      dataType: "json",
+      data: {"money":money,'borrow_id':borrow_id,'redvalue':redvalue},
+      success: function(d) {
+        //console.log(d);
+              if (d.status == 1) {
+                  investmoney = money;
+                  $.jBox.confirm(d.message, "会员投标提示", isinvest, { buttons: { '确认投标': true, '暂不投标': false},top:'40%' });
+              } 
+              else if(d.status == 2)// 无担保贷款多次提醒
+              {
+                  var content = '<div class="jbox-custom"><p>'+ d.message +'</p><div class="jbox-custom-button"><span onclick="$.jBox.close()">取消</span><span onclick="ischarge(true)">去充值</span></div></div>';
+                    $.jBox(content, {title:'会员投标提示'});
+              }
+              else if(d.status == 3)// 无担保贷款多次提醒
+              {
+                  $.jBox.tip(d.message);//d.message
+              }else if(d.status==5){
+                  $.jBox.tip(d.message); 
+              }else{
+                // investmoney = money;
+                 // $.jBox.confirm(d.message, "会员投标提示", isinvest, { buttons: { '确认投标': true, '暂不投标': false},top:'40%' });
+                 investmoney = money;
+                  $.jBox.confirm(d.message, "会员投标提示", isinvest, { buttons: { '确认投标': true, '暂不投标': false},top:'40%' });
+              }
+      }
+  });
+}
+var investmoney = 0;
+var borrowidMS = 0;
+var borrow_min = 0;
+var borrow_max = 0;
+//投资金额
+    $('#input_money').blur(function(){
+       BlurMoney();
+    });
+       
+    function BlurMoney() {
+      //$investInfo['account_money']+$investInfo['back_money']
+        var account_money={$investInfo.account_money};
+        var back_money={$investInfo.back_money};
+        var pat =  /^\d+$/;
+        var str = $('#input_money').val();
+        if((account_money+back_money)<str)
+        {
+           $("#zwyl").html("");
+           $('.info').html("<font style='color:#f35900'>输入的金额大于可用金额！</font>");
+           return false;
+        }
+        //把红包的总值设置为零 防止钻漏洞
+        $("#redvalue").val('0.00');
+        if (str == "") {
+            $("#zwyl").html("");
+            $('.info').html("<font style='color:#f35900'>输入的金额不能为空！</font>");
+            return false;
+        }
+        var borrow_max = isNaN(parseInt({$newbie.max}))?0:parseInt({$newbie.max});
+        var borrow_min = {$newbie.min};
+        if(str<borrow_min){
+            $('#input_money').val('请输入投资金额');
+            $('.info').html("<font style='color:red'>投资金额不能小于起投金额</font>");
+            $("#zwyl").html("");
+        }else if(str>borrow_max && borrow_max!=0){
+            $('#input_money').val('请输入投资金额');
+            $('.info').html("<font style='color:red'>投资金额不能大于最大金额限制</font>");
+            $("#zwyl").html("");
+        }else{
+            $('#input_money').val(str);
+            $('.info').html("");
+                       
+        }
+    }
+
+          function ZinputFocus(zwinput){
+                zwinput.value = ""; 
+                zwinput.style.color='#333'
+                $("#zwyl").html("");
+      }
+    // 提交支付当前要投标表单
+    function isinvest(d){
+    if(d===true) document.forms.investForm.submit();
+    }   
+    // 充值
+    function ischarge(d){
+    if(d===true) location.href='/member/charge#fragment-1';
+    }   
+    
+    // 新风格
+        var znll = "{$newbie.rate}";    
+        var zjkqx ="{$newbie.bidtime}";
+    function enter_value(owner){
+        var num = owner.value,re=/^\d*$/;
+        //console.log(num);
+        var zghdlx = parseFloat(znll)/(100*365)*zjkqx*num;
+        //console.log(zghdlx);
+        if(!re.test(num)){
+         isNaN(parseInt(num))?owner.value={$newbie.min}:owner.value=parseInt(num);
+        }else{  
+              //if(zghdlx>0 && zghdlx<=1){zghdlx=1;}
+
+              $("#zwyl").html("还款完成后收益：<font style='color:red'>"+zghdlx.toFixed(2)+"</font>元");
+             }
+    }
+        function EnterPress(e){ //传入 event 
+            var e = e || window.event; 
+            if(e.keyCode == 13){ 
+              if(e && e.preventDefault){  
+                    e.preventDefault();  
+                }  
+                //IE中组织浏览器行为  
+                else{  
+                    window.event.returnValue=false; 
+                    window.event.cancelBubble = true;
+                }  
+
+             $('#toubiao').click();
+              return false;
+            } 
+        } 
+</script>
+ 
+
+       <!-- 现金券的使用 -->
+          <script type='text/javascript'>
+          //确定使用哪个红包
+           function jfun_red() {
+            //红包的id 放进一个数组
+            var redid=new Array();
+             $("input[name^=redpacket]:checked").each(function(){
+                redid.push($(this).val());
+             });
+            //红包的总值
+             var redvalue=0;
+            $("input[name^=redpacket]:checked").each(function(){
+                  redvalue+=parseInt($(this).attr('face-value'));
+             });
+             //红包id
+             $("#redid").val(redid);
+             //提示语
+             $("#qian").html(redvalue);
+             //红包面值
+             $("#redvalue").val(redvalue);
+             var redvalue= $("#redvalue").val();
+            if(redvalue!=0)
+            {
+             $.jBox.tip("已选择面值"+redvalue+'元现金券', "success");
+            }
+             $.jBox.close(true);
+               //获取千分之10 1%
+              var str = $('#input_money').val();
+              var redvalue=$("#redvalue").val();
+
+              if((str/10)<redvalue)
+              {
+                $('.info').html("<font style='color:red'>红包总额不能超过所投资金额的10%</font>");
+                $("#zwyl").html("");
+                $("#redid").val("");
+                 $("#redvalue").val('0.00');
+                return false;
+              }
+
+           }
+
+          function addred()
+           {
+            var im=$("#input_money").val();
+            if(im>=1000)
+              {
+                $.jBox("get:__URL__/redpacket/",{title:"我的现金券",buttons:{'就这个了': 'jfun_red()','关闭': true},width:500,height:400});
+              }else{
+                $.jBox.tip("只有投资金额大于1000元才允许使用代金券（红包）", "error");
+              }
+           }
+          </script>

@@ -1,0 +1,28 @@
+<script type="text/javascript" src="__ROOT__/Style/M/js/amounttochinese.js" language="javascript"></script>
+<script language="javascript" type="text/javascript" src="__ROOT__/Style/A/js/jquery.min.js"></script>
+<script type="text/javascript">
+//$(document).ready(function(){
+//})
+</script>
+<style type="text/css">
+        .btnEnable { width: 96px; height: 28px; line-height: 25px; text-align: center; cursor: pointer; background-image: url(__ROOT__/Style/M/images/sendMsg.jpg); }
+        a.btnEnable:hover { color: #F4FFFF; }
+        a.btnDisable { color: Gray; }
+        .tdTitle { text-align: right; padding-left: 10px; font-size: 12px; height: 40; line-height: 40px; vertical-align: middle; width: 110px; color: #000; }
+        .tdContent { text-align: left; padding-left: 10px; font-size: 12px; height: 40; line-height: 40px; vertical-align: middle; width: 535px; color: #000; }
+        .reg_wrong { font-size: 12px; background-color: #fff9dd; border: 1px solid #ff0000; color: #ff0000; height: 22px; line-height: 21px; }
+        #vtiplink, #bacctip { width: 115px; border: none; cursor: pointer; display: block; height: 5px; }
+        #formTb { width: 100%; margin: 0px; padding: 0px; border-collapse: collapse; text-align: left; }
+        #currentMoeny { color: Red; font-weight: bold; font-size: 12px; }
+        .titstrong { height: 30px; line-height: 30px; text-indent: 30px; padding-top: 20px; text-align: left; border-bottom: dashed 1px #ccc; margin-bottom: 10px; }
+        .listframe { width: 100%; overflow: hidden; padding: 0px 0px; }
+        .listframe td { border: 1px solid #dedede; }
+        .listframe a { color: #0000ff; }
+    </style>
+    <style type="text/css">
+        .dv_header_8 { background-image: url(); }
+        .dv_account_0 { margin-top: 10px; }
+    </style>
+<div class="listframe" style="clear: both; margin-top: 20px; width: 100%;">
+      <?php print_r($res); ?>
+</div>

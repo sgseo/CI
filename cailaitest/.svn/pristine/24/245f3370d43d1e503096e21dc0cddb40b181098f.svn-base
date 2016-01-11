@@ -1,0 +1,57 @@
+<include file="../Public/_header" />
+<script type="text/javascript" src="__ROOT__/Style/My97DatePicker/WdatePicker.js" language="javascript"></script>
+<style type="text/css">
+.tip{color:#F2F4F6}
+</style>
+<tagLib name="htmlA" />
+<div class="so_main">
+  <!--列表模块-->
+  <form name="sdf" id="sdf" action="__URL__/zwindex" method="post">
+  <div class="Toolbar_inbox">
+  	<span>从<htmlA:timer id="start_time" tip='只选开始时间则查询从开始时间往后所有' arg="{maxDate:'#F{$dp.$D(\\\\'end_time\\\\')||\\\\'2020-10-01\\\\'}',dateFmt:'yyyy-MM-dd HH:mm:ss',alwaysUseStartDate:true}"  class="Wdate" value="{$search.start_time|mydate='Y-m-d H:i:s',###}"/>到<htmlA:timer id="end_time" tip='只选结束时间则查询从结束时间往前所有' arg="{minDate:'#F{$dp.$D(\\\\'start_time\\\\')}',maxDate:'2020-10-01',dateFmt:'yyyy-MM-dd HH:mm:ss',alwaysUseStartDate:true}" class="Wdate" value="{$search.end_time|mydate='Y-m-d H:i:s',###}"/></span>
+    <a href="javascript:;" onclick="javascript:document.forms.sdf.submit();" class="btn_a"><span>统计</span></a>
+  </div>
+</form>
+<style>
+
+#container{ width:800px; margin:0 auto; display:block; font-weight:b}
+
+.input1{ width:260px;line-height:22px; min-height:22px;padding:3px;} 
+.input2{ width:260px;line-height:22px; min-height:22px;padding:3px;}  
+
+.table_100{width:100%;float:left;height:auto;background:#cecece;color:#000;margin:5px 0;}
+.table_100 tr{ background:#fff;} 
+.table_100 tr td{ padding:6px 3px;}      
+.table_100 tr.top{background:#edecec; font-weight:bold;} 
+.table_100 tr:nth-of-type(odd){background:#edecec;} 
+
+</style> 
+  <div class="list">
+<table class="table_100" border="0" cellspacing="0" cellpadding="0">
+<tr class="top">
+<td width="16%">ID</td>
+<td width="16%">姓名</td>
+<td width="16%">实名注册数</td>
+<td width="16%">首次有效投资数</td>
+<td width="16%">年化投资金额</td>
+<td width="17%">年化投资金额</td>
+</tr>
+<?php foreach($recommenderInfo as $key=>$value ){ ?>
+<tr>
+<td> <?php echo $value['id']; ?></td>
+<td><?php echo $value['recommender']; ?></td>
+<td><?php echo $value['register_number']; ?></td>
+<td><?php echo $value['first_invest']; ?></td>
+<td><?php echo $value['investMoney']; ?></td>
+<td><?php echo $value['investAllMoney']; ?></td>
+</tr>
+<?php } ?>
+    </table>
+  </div>
+<!--<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Ff708bea5a5b94473d52231dbe92e5017' type='text/javascript'%3E%3C/script%3E"));
+</script>
+-->
+</div>
+<include file="Public:_footer" />

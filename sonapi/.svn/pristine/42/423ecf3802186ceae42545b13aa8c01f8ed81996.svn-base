@@ -1,0 +1,27 @@
+<?php
+
+/*
+ * Dsc: App push
+ * Author:zxm
+ * Time:2015-7-14
+ * * */
+define('IS_APP', 'app');
+
+class user_push {
+
+    public $tbl = "push_device";
+
+    public function setUserChannelId($userId, $channelId) {
+        $db = core::db()->getConnect('CAILAIPUSH', true);
+        $_sql = sprintf('SELECT * FROM `%s` WHERE member_id="%s" AND channel_id="%s"', $this->tbl, $userId, $channelId);
+        //判断是否存在，已经存在则不存库
+        if (!$db->query($_sql, 1)) {
+            $sql = sprintf('INSERT INTO `%s`(`member_id`,`channel_id`,`is_app`) VALUES("%s","%s","%s")', $this->tbl, $userId, $channelId, IS_APP);
+            $result = $db->query($sql);
+            return mysql_insert_id();
+        } else {
+            return "已经存在";
+        };
+    }
+
+}

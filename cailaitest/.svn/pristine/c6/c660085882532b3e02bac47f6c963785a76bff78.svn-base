@@ -1,0 +1,35 @@
+<include file="Public:_header_common" />
+<title>提现返回结果</title>
+<include file="default:Public:_header_main" group="Home"/>
+<!--中部开始-->
+<div class="wrap2">
+    <div id="hy_left">
+        <include file="Public:_left" />
+    </div>
+    <div id="hy_right">
+        <div style=" margin: 200px 50px; text-align: center;">
+             <span style=" font-size: 17px; color:red; font-weight: bold;">{$msg}</span>
+             <span id="time_span"></span>
+        </div>    
+    </div>
+</div>
+<script language='javascript' type='text/javascript'>
+     var secs =5; //倒计时的秒数 
+      var URL ;
+      Load('/member/withdraw#fragment-1');
+     function Load(url){
+        URL =url;
+        for(var i=secs;i>=0;i--) 
+       { 
+         window.setTimeout('doUpdate(' + i + ')', (secs-i) * 1000); 
+        
+       } 
+    }
+    
+    function doUpdate(num) 
+    { 
+     document.getElementById('time_span').innerHTML = '将在'+num+'秒后自动跳转' ;
+     if(num == 0) { window.location=URL;  } 
+    }
+  </script> 
+<include file="default:Public:_footer_inner" group="Home" />

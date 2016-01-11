@@ -1,0 +1,269 @@
+<include file="Public:_header_common" />
+<title>{$glo.web_name}-邮件反馈</title>
+<link rel="stylesheet" href="__ROOT__/Style/H/css/base.css" />
+<link rel="stylesheet" href="__ROOT__/Style/H/css/yijinshunrong.css" />	
+<style type="text/css">
+body { margin: 0; _height: 100%; }
+.frames { width: 980px; border: solid 1px #dedede; margin: 0 auto; text-align: left; padding-bottom: 10px; overflow: hidden; }
+.frames p { font-size: 14px; color: #333; ; padding: 10px 20px 10px 20px;   }
+.feedbar { background: url(__ROOT__/Style/H/images/feedbar.jpg); width: 458px; height: 9px; margin-top: 10px; }
+.feed_note { width: 564px; line-height: 25px; color: #666666; padding-left: 5px; margin-top: 10px; }
+span.colrad { color: #b4050c; }
+ul.feedlist { margin: 0px; padding: 0px; list-style: none; overflow: hidden; line-height: 23px; width: 564px; margin-top: 8px; }
+ul.feedlist li { float: left; text-align: right; padding-left: 5px; }
+ul.feedlist li .inttext { border: solid 1px #acadb2; height: 20px; width: 193px; }
+ul.feedlist li .inttext1 { border: solid 1px #acadb2; height: 25px; width: 262px; }
+ul.feedlist li .tear { width: 400px; height: 130px; border: solid 1px #acadb2; }
+.sendBtn { background: url(__ROOT__/Style/H/images/area_47.jpg); width: 150px; height: 35px; border: 0px; margin-top:20px; }
+.sendBtn1 { background: url(__ROOT__/Style/H/images/repeat.jpg); width: 82px; height: 28px; border: 0px; }
+.dv_r_6 li { line-height:30px; }
+.jkshuoming{ font-size:14px; text-indent:2em; width:430px; margin:0 auto; overflow:hidden; color:#333}
+.qingdan { font-size:14px; border:1px solid #CCC; padding:3px}
+</style>
+<script language="javascript" src="__ROOT__/Style/H/js/borrow.js" type="text/javascript"></script>
+
+<include file="Public:_header_main" />
+<script type="text/javascript">
+        var newTitle = '{$glo.web_name}提醒您：';
+        $(function() {
+            $("#btn_send").click(
+            function() {
+				if ($("#qiyename").val().length < 1) {
+                    setErr("请填写企业名称！");
+                    return false;
+                }
+				if ($("#zhucehao").val().length < 1) {
+                    setErr("请填写注册号！");
+                    return false;
+                }
+				if ($("#faren").val().length < 1) {
+                    setErr("请填写法人/负责人！");
+                    return false;
+                }
+				if ($("#shenfenzheng").val().length < 1) {
+                    setErr("请填写身份证号！");
+                    return false;
+                }
+				if ($("#phone").val().length < 1) {
+                    setErr("请填写联系电话！");
+                    return false;
+                }
+				if ($("#city").val().length < 1) {
+                    setErr("请填写所在城市！");
+                    return false;
+                }
+				if ($("#jine").val().length < 1) {
+                    setErr("请填写借款金额！");
+                    return false;
+                }
+				if ($("#zhouqi").val().length < 1) {
+                    setErr("请填写结款周期！");
+                    return false;
+                }
+				if ($("#yongtu").val().length < 1) {
+                    setErr("请填写借款用途！");
+                    return false;
+                }
+				if ($("#huankuanlaiyuan").val().length < 1) {
+                    setErr("请填写还款来源！");
+                    return false;
+                }
+				
+                if ($("#txt_check").val().length < 1) {
+                    setErr("请填写验证码！");
+                    return false;
+                }
+                return true;
+            });
+        });
+
+        function setErr(msg) {
+            $.jBox.tip(msg,'tip');
+        } 
+    </script>
+<!--中部开始-->
+
+<div class="bodyer">
+	<div class="YJpagetitle">
+		<ul>
+			<li><a href="/index.html">首页</a></li>
+			<li>&gt;</li>
+			<li><a href="/invest/index.html">我要借款</a></li>
+			<li>&gt;</li>
+			<li><span>发布企业借款</span></li>
+		</ul>
+		
+	</div>
+
+	<div class="doc">
+	  <div class="head-style-1">
+       	  <div class="hs1-banner">
+        		<!--{:get_ad(20)}-->
+                <div class="qiye_form">
+                	<div class="qyf-title qiye_bj_sprite qiye_icon-9">
+                    	<h2>企业融资申请</h2>
+                        <span>（<em>*</em>为必填选项）</span>
+                    </div>
+                    <form name="feedback" method="post" action="__URL__/save">
+						<input type="hidden" name="submit" value="true" />
+                        <ul class="qyf-con cf">
+                            <li>
+                                <label><em>*</em>企业名称：</label>
+                                <input type="text" name="qiyename" id="qiyename" class="qyf-txt"/>
+                            </li>
+                            <li>
+                                <label><em>*</em>注册号：</label>
+                                <input type="text" name="zhucehao" id="zhucehao"  class="qyf-txt"/>
+                            </li>
+                            <li>
+                                <label><em>*</em>法人/负责人：</label>
+                                <input type="text" name="faren" id="faren" class="qyf-txt"/>
+                            </li>
+                            <li>
+                                <label><em>*</em>身份证号：</label>
+                                <input type="text" name="shenfenzheng" class="qyf-txt" id="shenfenzheng"/>
+                            </li>
+                            <li>
+                                <label><em>*</em>联系电话：</label>
+                                <input type="text" name="phone" id="phone" class="qyf-txt"/>
+                            </li>
+                            <li>
+                                <label><em>*</em>所在城市：</label>
+                                <input type="text" value="" name="city" class="qyf-txt" id="city" />
+                            </li>
+                            <li>
+                                <label><em>*</em>借款金额：</label>
+                                <input type="text" name="jine" id="jine" class="qyf-txt txt-w-1"/><span class="fl" style="margin:0 5px;">万元</span>
+                              <label style="width:48px;"><em>*</em>周期：</label>
+                                <input type="text" name="zhouqi" class="qyf-txt txt-w-2" id="zhouqi"/><span class="fl" style="margin-left:5px;">月</span>
+                            </li>
+                            <li style="height:auto;  margin-top:4px;">
+                                <label><em>*</em>借款用途：</label>
+                                <textarea class="qyf-txtarea"  name="yongtu" id="yongtu"></textarea>
+                            </li>
+                            <li style="height:auto; margin-top:6px;">
+                                <label><em>*</em>还款来源：</label>
+                                <textarea class="qyf-txtarea" name="huankuanlaiyuan" id="huankuanlaiyuan" ></textarea>
+                            </li>
+                            <li style="margin-top:6px;">
+                                <label><em>*</em>验证码：</label>
+                                <input type="text" name="txt_check" class="qyf-txt txt-w-3 valicode_1" style="margin-right:5px" id="txt_check"/>
+                                <img onclick="this.src=this.src+'?t='+Math.random()" id="imVcode" alt="点击换一个校验码" style=" width: auto; height:auto;border: 1px solid #fff;" src="__APP__/member/Common/verify">
+                       
+                            </li>
+                            <li>
+                                <input type="submit" id="btn_send" name="btn_send" value="提交申请"class="qyf-submit qiye_bj_sprite qiye_icon-2" />
+                            </li>
+                        </ul>
+                    </form>
+                    <div class="pop-city" style="display:none">
+                    	<div class="pop-city-con">
+                    		<span class="qyf-sanjiao"></span>
+                            <div class="pop-city-con-1">目前支持北京及部分京外企业</div>
+                        </div>
+                    </div>
+                </div>
+       	</div>
+      </div>
+        <div class="content-style-1">
+        	<div class="financing_step cf">
+            	<h2>只需简单<em>5</em> 步，您的资金问题迎刃而解</h2>
+            	<ul>
+                	<li style="padding-left:20px;">
+                    	<span class="qiye_sprite qiye_icon-3"></span>
+                        <strong>提交申请</strong>
+                        <span class="qiye_sprite qiye_icon-8"></span>
+                    </li>
+                    <li>
+                    	<span class="qiye_sprite qiye_icon-4"></span>
+                        <strong>审核材料</strong>
+                        <span class="qiye_sprite qiye_icon-8"></span>
+                    </li>
+                    <li>
+                    	<span class="qiye_sprite qiye_icon-5"></span>
+                        <strong>实地考察</strong>
+                        <span class="qiye_sprite qiye_icon-8"></span>
+                    </li>
+                    <li>
+                    	<span class="qiye_sprite qiye_icon-6"></span>
+                        <strong>签署协议</strong>
+                        <span class="qiye_sprite qiye_icon-8"></span>
+                    </li>
+                    <li style="width:80px;">
+                    	<span class="qiye_sprite qiye_icon-7"></span>
+                        <strong>融资成功</strong>
+                    </li>
+                </ul>
+            </div>
+            <div class="app_document cf">
+            	<div class="app_d_con">
+                	<div class="app_d_title">
+                    	<h2>我们的优势</h2>
+                    </div>
+                    <div class="app_d_details">
+                    	<dl>
+                        	<dt>1、权威的信用评级</dt>
+                            <dd>{$glo.web_name}依据商务部信用认证与评级中心的信用评级办法，融合了信用评级系统综合企业真实经营状况、产品市场情况，高层管理者素质及稳定性等20多个不同的权重参数，合理实用，更真实全面的体现了企业的信用状况。</dd>
+                        </dl>
+                        <dl>
+                        	<dt>2、高效的风险程序</dt>
+                            <dd>{$glo.web_name}风险控制部执行高效灵活的风控流程和制度，对企业及时地做出尽职调查，合理客观评审，以及贷后监管等措施，降低投资风险；同时有多家实力雄厚的合作担保公司提供全额担保服务，快速高效的帮企业解决燃眉之急。</dd>
+                        </dl>
+                        <dl>
+                        	<dt>3、专业的金融团队</dt>
+                            <dd>{$glo.web_name}拥有至少五年以上信用分析、信用评估、风险评估、风险控制、融资规划等经验的风控及融资顾问团队，能有效降低融资成本，最大限度的提高企业的资金利用率。</dd>
+                        </dl>
+                        <dl>
+                        	<dt>4、快速的受理项目</dt>
+                            <dd>项目企业提出申请后，第一天审查资料；第二天尽职调查并开评审会；第三天完成评审进入平台发布队列。</dd>
+                        </dl>
+                    </div>
+                </div>
+                <div class="app_d_con">
+                	<div class="app_d_title">
+                    	<h2>申请条件</h2>
+                    </div>
+                    <div class="app_d_details">
+                    	<ul>
+                        	<li>1、年检合格工商局登记企业；</li>
+                            <li>2、正常经营一年以上；</li>
+                            <li>3、企业及负责人银行征信记录良好；</li>
+                            <li>4、无现有诉讼记录；</li>
+                            <li>5、企业流水额度覆盖贷款额。</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="app_d_con" style="margin-right:0;">
+                	<div class="app_d_title">
+                    	<h2>申请材料</h2>
+                        <span>以下材料尽可能提供</span>
+                    </div>
+                    <div class="app_d_details">
+                    	<ul>
+                            <li>1、年检合格的营业执照及副本；</li>
+                            <li>2、税务登记证及副本；</li>
+                            <li>3、组织机构代码证及副本；</li>
+                            <li>4、银行开户许可证；</li>
+                            <li>5、办公场地购买或租赁合同及土地证、房产证；</li>
+                            <li>6、法人代表身份证复印件；</li>
+                            <li>7、法定代表人简历；</li>
+                            <li>8、本年度及之前2年的财务审计报告；</li>
+                            <li>9、企业简介；</li>
+                            <li>10、企业章程；</li>
+                            <li>11、企业各种资质证书；</li>
+                            <li>12、近三个月的税票；</li>
+                            <li>13、进、销货单或者销售合同（每样 5 份）；</li>
+                            <li>14、主要生产设备的购买合同；</li>
+                            <li>15、抵、质押物的所有权的证明材料；</li>
+                            <li>16、近一年流水信息（银行对账单）；</li>
+                            <li>17、企业征信报告及企业法人征信。</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+
+</div>
+
+<include file="Public:_footer_inner" />

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <link href="__PUBLIC__/bootstrap-datetimepicker/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="__PUBLIC__/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Css/bootstrap-responsive.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Css/style.css" />
+     <script type="text/javascript" src="__PUBLIC__/Js/jquery.js"></script>
+   <!-- <script type="text/javascript" src="__PUBLIC__/Js/jquery.sorted.js"></script>-->
+   <link rel="stylesheet" type="text/css" href="__PUBLIC__/webuploader015/webuploader.css">
+
+<!--引入JS-->
+    <script type="text/javascript" src="__PUBLIC__/webuploader015/webuploader.js"></script>
+   <!-- 时间插件 -->
+    <script type="text/javascript" src="__PUBLIC__/bootstrap-datetimepicker/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="__PUBLIC__/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.fr.js" charset="UTF-8">
+    </script>
+    <!-- 时间插件结束 -->
+    <script type="text/javascript" src="__PUBLIC__/Js/bootstrap.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Js/ckform.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Js/common.js"></script>
+
+    <style type="text/css">
+        body {
+            padding-bottom: 40px;
+        }
+        .sidebar-nav {
+            padding: 9px 0;
+        }
+
+        @media (max-width: 980px) {
+            /* Enable use of floated navbar text */
+            .navbar-text.pull-right {
+                float: none;
+                padding-left: 5px;
+                padding-right: 5px;
+            }
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="table table-bordered table-hover definewidth m10" style='margin:auto auto'>
+       <!-- 项目录入 -->
+        <form  class="table table-bordered table-hover definewidth m10" action="__URL__/save" method="post" enctype="multipart/form-data" >
+        <!-- 基础文档模型 -->
+            <div class="controls">
+               借款编号&nbsp;<input type="text" class="text input-large" name="id" value="{$list.id}"  readonly='readonly'></br>
+               <input type="hidden" name='respid' value="{$list.respid}">
+               借款标题&nbsp;<input type="text" class="text input-large" name="title" value="{$list.title}"  readonly='readonly'></br>
+               客户姓名&nbsp;<input type="text" class="text input-large" name="cstname" value="{$list.cstname}"  readonly='readonly'></br>
+               身份证号&nbsp;<input type="text" class="text input-large" name="idno" value="{$list.idno}"  readonly='readonly'></br>
+               手机号码&nbsp;<input type="text" class="text input-large" name="tel" value="{$list.tel}"  readonly='readonly'></br>
+               贷款金额&nbsp;<input type="text" class="text input-large" name="borrowamt" value="{$list.borrowamt}" readonly='readonly'></br>
+               贷款期限&nbsp;<input type="text" class="text input-large" name="duration" value="{$list.duration}" readonly='readonly'></br>
+               贷款利率&nbsp;<input type="text" class="text input-large" name="rate" value="{$list.rate}" readonly='readonly'></br>
+               贷款抵押&nbsp;<input type="text" class="text input-large" name="category" value="{$list.category}" readonly='readonly'></br>
+               当前期数&nbsp;<input type="text" class="text input-large" name="cursort" value="{$list.cursort}" readonly='readonly' ></br>
+               应还金额&nbsp;<input type="text" class="text input-large" name="shouldrepay" value="{$list.shouldrepay}" readonly='readonly'>（元）</br>
+               应还日期&nbsp;<input type="text" class="text input-large time" name="shouldtime" value="{$list.shouldtime}" readonly='readonly'></br>
+               实还金额&nbsp;<input type="text" class="text input-large" name="realrepay" value="" >（元）</br>
+               实还时间&nbsp;<input type="date" class="text input-large " name="donetime"  value="" ></br>
+               还款方式&nbsp;<select class="text input-large time" name='repaytype'>
+                 <option  value='1'>银行转账</option>
+                 <option  value='2'>现金还款</option>
+                 <option  value='3'>其他</option>
+               </select>
+             </br>
+               <!-- 还款情况手工录入： 还款金额，时间，方式（银行转账，现金还款，其他）。 -->
+               <!-- <input type="radio" class="text input-large" name="wed" value=""姻状况"></br> -->
+               <!-- <label class="radio" ><input checked="checked" type="radio" value="1" name="wed" />未婚</label>
+               <label class="radio" ><input  type="radio" value="fang" name="wed" value='2'  />已婚</label></br> -->
+               <!-- <input type="text" class="text input-large" name="source" value="{$list.source}"款客户来源"></br>
+               <label class="textarea"> <textarea name="tip" 注信息">{$list.tip}</textarea></label></br>
+               <label class="radio" ><input checked="checked" type="radio" value="fang" name="category" id='fang' />房屋抵押</label>
+               <label class="radio"><input type="radio" value="car" name="category" id='car'>车辆抵押</label></br>
+         
+            <div id='house'>
+               <input type="text" class="text input-large" name="address" value="{$list.address}"屋地址"></br>
+               <input type="text" class="text input-large" name="price" value="{$list.price}"屋市场价"></br>
+               <input type="text" class="text input-large" name="residence" value="{$list.residence}" 屋户口"></br>
+               <input type="text" class="text input-large" name="area" value="{$list.area}" 屋面积"></br>
+            </div>
+             <div id='ca' style="display:none">
+               <input type="text" class="text input-large" name="carbrand" value="{$list.carbrand}" 子品牌"></br>
+               <input type="text" class="text input-large" name="cartype" value="{$list.cartype}" 子型号"></br>
+               <input type="text" class="text input-large" name="carestimate" value="{$list.carestimate}" 子估价"></br>-->
+               <!-- <input type="text" class="text input-large time" name="carbuytime" value="" 子购买日期"></br> -->
+                <!-- <input type="text" class="text input-large" name='carbuytime' id="datetimepicker" value='{$list.carbuytime}' 选择车辆购买日期"/> -->
+            <!-- </div> -->
+                 上传凭证&nbsp;<input type="file"  name='pic1'>
+         <!--       <input type="file"  name='pic1'><input type='button' id='AddFile' value='+' /></br>
+               <input type="file"  name='pic2'></br>
+               <input type="file"  name='pic3'></br>
+               <input type="file"  name='pic4' id='last'></br> -->
+
+
+            </div>
+              <p><button class="btn btn-large btn-primary btn btn-default" type="submit">确 定</button></p>
+    </form>
+</div>
+
+</body>
+</html>
+
+<script type="text/javascript">
+   $('#datetimepicker').datetimepicker({
+                    format: 'yyyy-mm-dd',
+                    showMeridian: true,
+                    weekStart: 1,
+                    autoclose: true,
+                    showTime:false,
+                    todayBtn: true
+                });
+                  
+    //showTab();
+</script>
+<script type="text/javascript">
+
+
+
+    // var button="<div id='adder'><input type='file' id='upLoadFiles[]' name='upLoadFile' /><a href='javascript:void(0);'' onclick='del(this)'><input type='button' onlick='del(this)' value='-' /></div></a>";
+
+
+    // $("#AddFile").click(function(){
+    //   //$(this).parent().remove();
+    //    $('#last').after(button);
+    // });
+    // function del(a)
+    // {
+    //   $(a).parent().remove();
+    // }
+    
+</script>
+<!-- 图片上传 -->
